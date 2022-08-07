@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SetMouseDelay</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetMouseDelay.html'>SetMouseDelay</a></div>
+<h1>SetMouseDelay</h1>
+<p>마우스 조작 관계 커멘드로 조작동안에 삽입되는 간격을 변경</p>
+
+<pre>SetMouseDelay, Delay, Play</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Delay
+</td>
+<td>간격을 밀리 세컨드로 지정.「-1」(으)로 일절 사이를 비우지 않고 입력을 실시한다.
+초기치는 「10」.<br>
+OS의 사양에 의해,10밀리 세컨드 단위보다 세세한 지정은 할 수 없다.
+</td>
+</tr>
+<tr><td>Play</td><td>
+제2인수에 「Play」(이)가 지정되어 있으면,SendPlay커멘드나<a target=_top href='../commands/SendMode.html'>SendMode</a>그리고Play하지만 지정되어 있을 때의Send커멘드의 조작 간격이 변경된다.
+</td>
+</table>
+
+
+<h2>Remarks</h2>
+<p><a target=_top href='../commands/MouseMove.html'>MouseMove</a>,<a target=_top href='../commands/MouseClick.html'>MouseClick</a>,<a target=_top href='../commands/MouseClickDrag.html'>MouseClickDrag</a>커멘드는, 어플리케이션이 확실히 키 조작에 응답할 수 있도록, 조작의 뒤에 짧은 시간 휴지 상태가 된다.</p>
+<p>
+OS의 사양에 의해,10밀리 세컨드 단위보다 세세한 지정은 할 수 없다.
+</p>
+<p>「0」(을)를 지정했을 경우,0밀리 세컨드의Sleep하지만 실행되어 다른 프로세스가 처리를 실시할 수 있다.<br>
+「-1」(을)를 지정하면, 일절 사이를 비우지 않고 입력되므로, 입력이 끝날 때까지 다른 프로세스에 처리가 돌지 않는 경우가 있다.
+</p>
+
+<p>
+<a target=_top href='../Variables.html#MouseDelay'>A_MouseDelay</a>변수로 현재의 설정을 참조할 수 있다.
+</p>
+<p>
+이 설정의 기본치는, 스크립트의 최초의<a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>그리고 설정한다.<br>
+hot key등에서 새롭게 기동되었다<a target=_top href='../misc/Threads.html'>스렛드</a>그럼, 설정은 기본치로 설정된다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/MouseMove.html'>MouseMove</a>, <a target=_top href='../commands/MouseClick.html'>MouseClick</a>, <a target=_top href='../commands/MouseClickDrag.html'>MouseClickDrag</a>, <a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>, <a target=_top href='../commands/SetControlDelay.html'>SetControlDelay</a>, <a target=_top href='../commands/SetWinDelay.html'>SetWinDelay</a>, <a target=_top href='../commands/SetBatchLines.html'>SetBatchLines</a></p>
+
+<h2>Example(s)</h2>
+<pre>SetMouseDelay, 0</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetMouseDelay.html'>SetMouseDelay</a></div>
+</body>
+</html>

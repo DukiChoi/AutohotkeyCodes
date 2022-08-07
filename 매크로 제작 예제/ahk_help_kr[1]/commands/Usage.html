@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>사용 방법</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../Usage.html'>사용 방법</a></div>
+
+<h1>사용 방법</h1>
+
+
+<h2><a name="install">인스톨</a></h2>
+<p>ZIP어카이브(archive)판은, 해동하는 것만으로 실행 가능하게 된다.<br>
+installer판은, 실행한다고 표시되는 화면에서 「Next>」 「I Agree」 「Next」 「Install」의 순서에 눌러 가면 인스톨 할 수 있다.<br>
+</p>
+
+<h3><a name="association">스크립트 파일이 관련지어</a></h3>
+<p>
+AutoHotkey(을)를 installer로 인스톨 하면, 확장자(extension) 「.ahk」의 파일에 관련지어를 해 확장자(extension) 「.ahk」의 스크립트 파일을 익스플로러로 더블 클릭 했을 때 등에AutoHotkey.exe그리고 실행되게 된다.<br>
+오른쪽 클릭 메뉴에는, 스크립트를 실행하는 「Run Script」외, 후술의ahk2.exe그리고 실행 파일화하는 「Compile Script」,notepad.exe그리고 스크립트 파일을 여는 「Edit Script」(이)가 추가된다.<br>
+또, installer의 「Choose Components」의 화면에서 「Enable drag & drop onto scripts」에 체크를 했을 경우, 스크립트 파일의 아이콘에 파일을 드러그&드롭 했을 때에, 스크립트 파일에 인수(<a target=_top href='../Variables.html#arg'>%1%</a>)(으)로서 보내지게 된다.
+</p>
+
+
+
+<h2><a name="ahk2exe"></a>스크립트의 실행 파일화</h2>
+<p>ahk2exe.exe(을)를 사용하는 것으로, 스크립트를 실행 파일화하는 것이 가능.<br>
+실행 파일은UPX에 의한 압축이 베풀어진다.<br>
+역컴파일러도 공개되고 있지만, 패스워드로 암호화하면 역 컴파일을 막을 수 있다.<br>
+작성한 실행 파일의 배포는 자유.
+</p>
+<p>
+컴파일 된 스크립트에서는 통상, task tray 메뉴로부터 메인 윈도우를 표시하는 것은 할 수 없다.<br>
+「<code><a target=_top href='../commands/Menu.html'>Menu</a>,TRAY,MainWindow</code>」(으)로 메인 윈도우를 표시 가능하게 할 수 있다.
+</p>
+<p>
+스크립트측으로부터, 컴파일 된 상태로 실행되고 있는지 어떤지를 알려면 , 「A_IsCompiled」변수를 사용한다.「1」(이)라면 컴파일 되고 있다.
+</p>
+<h3>ahk2exe.exe의 커멘드 라인</h3>
+<pre>
+Ahk2exe.exe /in &lt;infile.ahk&gt; [/out &lt;outfile.exe&gt;][/icon &lt;iconfile.ico&gt;][/pass &lt;passphrase&gt;]
+</pre>
+
+<p>Ahk2exe.exe(은)는 커멘드 라인으로부터 직접 컴파일을 실행하는 일도 가능.</p>
+
+<h3>컴파일 된 실행 파일의 커멘드 라인</h3>
+<pre>CompiledScript.exe [/f] [/r] [/ErrorStdOut] [Script Parameters] 
+</pre>
+<p>컴파일 해 작성된 실행 파일은, 상기의 커멘드 라인으로 실행할 수 있다.<br>
+Script Filename의 지정이 없는 이외는AutoHotkey.exe(와)과 같다.
+</p>
+
+
+<h2><a name="cmd"></a>AutoHotkey.exe의 실행</h2>
+<p>AutoHotkey.exe하AutoHotkey의 스크립트를 실행하는 메인 프로그램이다.<br>
+실행시의 커멘드 라인은 이하와 같은 서식이 되어 있다.<br>
+스크립트 파일을 관련지어로부터 실행하는 경우는, 의식할 필요는 없다.
+</p>
+<pre>
+AutoHotkey.exe [/f] [/r] [/ErrorStdOut] [Script Filename] [Script Parameters]
+</pre>
+
+<p>
+각 옵션의 의미는 이하와 같다.
+</p>
+<dl>
+<dt>/f</dt><dd>경고 다이얼로그를 내지 않고 , 강제적으로 기동</dd>
+<dt>/r</dt><dd>스크립트를 재독 보고 하고 싶을 때에 사용.</dd>
+<dt>/ErrorStdOut</dt><dd>문법 에러를 다이얼로그 표시하지 않고 표준 출력에 출력한다</dd>
+</dl>
+<p>
+단지AutoHotkey.exe(을)를 실행하는 등,Script Filename(을)를 지정하지 않고 기동했을 경우는, 기동시의 작업 디렉토리의AutoHotkey.ini하지만 읽힌다.<br>
+파일이 존재하지 않는 경우,AutoHotkey.ini(을)를 작성해도 좋은가를 문의하는 다이얼로그가 표시된다.<br>
+</p>
+
+<p>Script Filename(을)를 지정하지 않으면Script Parameters(을)를 지정하는 것은 할 수 없다.
+</p>
+
+<p>
+Script Parameters에는 임의의 수의 문자열을 스페이스 단락으로 건네줄 수 있다.<br>
+스페이스를 포함한 경우는 「"」(으)로 둘러싼다.<br>
+건네받은 인수는,<a target=_top href='../Variables.html'>변수</a>에 격납되어 스크립트내에서 「%1%」, 「%2%」……(와)과 같이 기술하는 것으로 참조할 수 있다.<br>
+「%0%」에는 인수의 수가 격납된다.<br>
+덧붙여 스크립트 자신 패스를 취득하려면  「%A_ScriptFullPath%」변수를 사용한다.
+</p>
+
+<h3>스크립트의 에러</h3>
+<p>스크립트의 에러에는, 읽기시의 에러와 실행시의 에러가 있다.</p>
+<p>
+존재하지 않는 커멘드나 함수의 호출해, 커멘드의 서식 잘못해, 존재하지 않는 라벨의 지정, 열림 괄호라고 닫아 괄호의 대응의 미비등이 읽어들여 때 에러가 된다.<br>
+이러한 문제가 있는 스크립트를 실행하려고 하면, 에러 개소나 에러 개요등이 다이얼로그로 표시되고 실행은 행해지지 않는다.
+</p>
+
+<p>스크립트의 실행중에 커멘드가 어떠한 형태로 실패했을 경우등에는, 실행시 에러가 된다.<br>
+실행시 에러가 발생하면, 다이얼로그가 표시되어 에러의 발생했다<a target=_top href='../misc/Threads.html'>스렛드</a>(은)는 그 자리에서 종료한다.<br>
+hot key등을 할당할 수 있어<a target=_top href='../commands/_Persistent.html'>상주 상태</a>(이)가 되어 있는 스크립트에서는, 스크립트 자체는 종료하지 않는다.그러나, 스크립트가 기대 대로에 실행되지 않았던 것으로, 그 후의 실행에 지장을 초래하는 경우가 있다.
+</p>
+
+
+<h3>리로드</h3>
+<p>task tray 아이콘의 오른쪽 클릭 메뉴로부터 「Reload This Script」(을)를 실행하는 것으로, 스크립트를 다시 읽어들여 실행할 수 있다.<br>
+또, 상주 상태가 되어 있는 스크립트는, 같은 스크립트를 한번 더 기동하는 것으로, 「기존의 프로세스를 종료해 기동할까」를 문의하는 다이얼로그가 표시되어 「네」를 선택하는 것으로 다시 읽기 한다.<br>
+<a target=_top href='../commands/Reload.html'>Reload</a>커멘드로 스크립트중으로부터 다시 읽기를 실시하게 하는 일도 가능.
+</p>
+
+<h2><a name="tray">AutoHotkey.exe의 task tray 아이콘</a></h2>
+<p>
+AutoHotkey.exe(을)를 실행하면, task tray에 아이콘이 표시된다.(이것은<a target=_top href='../commands/_NoTrayIcon.html'>#NoTrayIcon</a>지령이나<a target=_top href='../commands/Menu.html'>Menu</a>커멘드로 비표시에 할 수 있다)<br>
+더블 클릭으로AutoHotkey의 메인 윈도우가 표시되는 것 외에 오른쪽 클릭 메뉴로부터 이하의 조작을 실행할 수 있다.
+</p>
+<dl>
+<dt>Open</dt><dd>
+AutoHotkey의 메인 윈도우를 표시한다.
+</dd>
+<dt>Help</dt><dd>
+헬프 파일(AutoHotkey.chm)(을)를 연다
+</dd>
+<dt>Window Spy</dt><dd>
+윈도우 정보 표시 툴·AU3_Spy.exe(을)를 기동한다
+</dd>
+<dt>Reload This Script</dt><dd>
+스크립트를 다시 읽기 해, 최초부터 다시 실행한다(<a target=_top href='../commands/Reload.html'>Reload</a>커멘드와 같다)
+</dd>
+<dt>Edit This Script</dt><dd>
+스크립트를 메모장(notepad.exe)그리고 열린다
+</dd>
+<dt>Suspend Hotkeys</dt><dd>
+할당한 hot key를 모두 정지한다(<a target=_top href='../commands/Suspend.html'>Suspend</a>커멘드와 같다)
+</dd>
+<dt>Pause Script</dt><dd>
+스크립트를 일시정지한다(<a target=_top href='../commands/Pause.html'>Pause</a>커멘드와 같다)
+</dd>
+<dt>Exit</dt><dd>
+스크립트를 종료한다.<a target=_top href='../commands/ExitApp.html'>ExitApp</a>커멘드와 같다.
+</dd>
+</dl>
+<h2><a name="mainwindow">AutoHotkey.exe의 메인 윈도우</a></h2>
+<p>
+AutoHotkey의 메인 윈도우에서는, 실행중의 스크립트의 여러가지 정보를 표시할 수 있다.<br>
+표시 모드는 도구모음의 「View」이하로부터 선택해 바꾼다.<br>
+또, 각 화면을 표시하기 위한 커멘드도 각각 준비되어 있다.<br>
+어느 화면도, 호출 커멘드를 실행할까 「F5」키를 누르는 것으로 최신의 정보로 갱신할 수 있다.
+</p>
+<h3><a name="listlines">Lines most recently executed</a></h3>
+<p>실행된 스크립트의 행이 차례로 표시된다.<br>
+이 화면은<a target=_top href='../commands/ListLines.html'>ListLines</a>커멘드에서도 표시할 수 있다.
+</p>
+<pre>
+Script lines most recently executed (oldest first).  Press [F5] to refresh.  The seconds elapsed between a 
+line and the one after it is in parentheses to the right (if not 0).  The bottommost line's elapsed time is 
+the number of seconds since it executed.
+
+002: Return (2.59)
+003: Sleep,100 (0.11)
+004: MsgBox (1.63)
+005: ListLines
+
+Press [F5] to refresh.</pre>
+<p>
+행 번호와 행의 내용이 실행된 순서에 표시된다.행의 내용은, 실제로 스크립트 파일에 기술되고 있는 것 것과 같다고는 할 수 없지만, 의미는 완전히 같게 되어 있다.<br>
+행의 내용의 뒤를 뒤따르고 있는 것이 있는 숫자가 들어간 「()」(은)는, 다음의 처리가 실행 될 때까지 경과한 시간(초)이다.<br>
+어떠한 이유로 스크립트의 처리를 하지 않았던 기간이 있는 경우에 표시된다.
+</p>
+
+<h3><a name="listvars">Variables and their contents</a></h3>
+
+<p>
+스크립트에 의해서 작성된 변수와 그 내용이 일람표 나타난다.<br>
+이 화면은<a target=_top href='../commands/ListVars.html'>ListVars</a>커멘드에서도 표시할 수 있다.
+</p>
+<pre>Local Variables for func2()
+--------------------------------------------------
+b[1 of 1]: a
+
+
+Global Variables (alphabetical)
+--------------------------------------------------
+0[1 of 1]: 0
+ErrorLevel[1 of 1]: 0
+value[8 of 63]: aaaaaaaa
+</pre>
+<p>
+
+각 행의 선두가 변수명이다.일람은 변수명 순서에 늘어놓을 수 있고 있다.<br>
+변수명의 뒤의 「[x of y]」가 되고 있는 부분은, 왼쪽의 숫자가 변수의 내용의 문자수, 오른쪽의 숫자가 변수를 위해서 확보되고 있는 메모리의 용량(<a target=_top href='../commands/VarSetCapacity.html'>VarSetCapacity()</a>함수로 설정 가능)이다.<br>
+「:」보다 오른쪽으로 변수의 내용의 선두60아르바이트분이 표시된다.
+</p>
+<p>
+화면이 표시된 시점에서AutoHotkey의<a target=_top href='../Function.html'>유저 정의 함수</a>하지만 실행되고 있는 경우는, 함수내에서만 유효한 로컬 변수의 일람이 표시된다.(「Local Variables for ...」이하의 부분)<br>
+함수중에서 다른 함수 호출을 하고 있는 경우에서도, 현재 실행되고 있는 맨 위위의 함수의 물건만이 표시된다.
+</p>
+
+
+<h3><a name="listhotkeys">Hotkeys and their methods</a></h3>
+<p>스크립트에 의해서 할당할 수 있고 있는 hot key가 일람표 나타난다.<br>
+이 화면은<a target=_top href='../commands/ListHotkeys.html'>ListHotkeys</a>커멘드에서도 표시할 수 있다.</p>
+<pre>Type	Off?	Running	Name
+-------------------------------------------------------------------
+reg			F1
+m-hook			MButton
+k-hook			$F2
+k-hook			F3
+</pre>
+<p>
+각각의 열의 의미는 이하와 같다.
+</p>
+<dl>
+<dt>Type</dt><dd>hot key의 등록 방법.이하와 같은 것이 있다.
+<dl>
+<dt>reg</dt><dd>
+Windows의 hot key 등록 기구를 이용해 등록
+</dd>
+<dt>reg(no)</dt><dd>
+hot key가 무효화되고 있기 때문에, 등록을 해제되어 있다
+</dd>
+<dt>k-hook</dt><dd>
+키보드 훅에 의해서 키 눌러 인하를 검지하고 있다
+</dd>
+<dt>m-hook</dt><dd>
+마우스 훅에 의해서 mouse button 눌러 인하를 검지하고 있다
+</dd>
+<dt>2hooks</dt><dd>
+마우스와 키보드의 양쪽 모두의 훅을 사용하고 있다
+</dd>
+<dt>joypoll</dt><dd>
+죠이스틱의 버튼을 검출하기 위한 처리를 실시하고 있다
+</dd>
+</dl>
+</dd>
+<dt>Off?</dt><dd>
+<a target=_top href='../commands/Hotkey.html'>Hotkey</a>커멘드등에 의해서 일시적으로 무효화되고 있는 경우는 「OFF」(이)가 된다<br>
+#IfWinActive지령의 조건 나누기에 의해 복수 할당할 수 있었던 우리 일부만이 무효화되고 있는 경우는 「PART」(이)가 된다
+</dd>
+<dt>Running</dt><dd>
+hot key 써브루틴의 스렛드가 실행되고 있는 수
+</dd>
+<dt>Name</dt><dd>
+hot key명
+</dd>
+
+</dl>
+
+<h3><a name="keyhistory">Key history and script info</a></h3>
+<p>키보드의 이력이나 밀리고 있는 키, 그 외 스크립트의 정보등이 표시된다.<br>
+<a target=_top href='../commands/KeyHistory.html'>KeyHistory</a>커멘드에서도 표시할 수 있다.
+</p>
+
+<pre>
+Window: E:\test\test.ahk - AutoHotkey v1.0.44.07
+Keybd hook: yes
+Mouse hook: yes
+Enabled Timers: 0 of 0 ()
+Interrupted threads: 0
+Paused threads: 0 of 0 (0 layers)
+Modifiers (GetKeyState() now) = 
+Modifiers (Hook's Logical) = 
+Modifiers (Hook's Physical) = 
+Prefix key is down: no
+
+NOTE: To disable the key history shown below, add the line "#KeyHistory 0" anywhere in the script.  The same 
+method can be used to change the size of the history buffer.  For example: #KeyHistory 100  (Default is 40, 
+Max is 500)
+
+The oldest are listed first.  VK=Virtual Key, SC=Scan Code, Elapsed=Seconds since the previous event.  Types:
+ h=Hook Hotkey, s=Suppressed (blocked), i=Ignored because it was generated by an AHK script, a=Artificial, #=
+Disabled via #IfWinActive/Exist.
+
+VK  SC	Type	Up/Dn	Elapsed	Key		Window
+-------------------------------------------------------------------------------------------------------------
+78  043	 	u	0.08	F9             	E:\test\test.ahk - VxEditor
+70  03B	 	d	2.61	F1             	
+70  03B	 	u	0.11	F1             	
+01  000	 	d	0.98	LButton        	
+01  000	 	u	0.08	LButton        	
+Press [F5] to refresh.</pre>
+
+<p>상부에 표시되는 정보의 의미는 이하와 같다.</p>
+<dl>
+<dt>Window</dt><dd>
+이 화면이 표시되기 직전에 액티브했던 윈도우의 타이틀
+</dd>
+<dt>Keybd hook</dt><dd>
+키보드 훅이 유효하게 되어 있으면 「yes」.키보드 훅을 유효하게 하려면 , 「$」수식자  hot key를 할당하는지,<a target=_top href='../commands/_InstallKeybdHook.html'>#InstallKeybdHook</a>지령을 기술해 둔다
+</dd>
+<dt>Mouse hook</dt><dd>
+마우스 훅이 유효하게 되어 있으면 「yes」.마우스 훅을 유효하게 하려면 , mouse button에 hot key를 할당하는지,<a target=_top href='../commands/_InstallMouseHook.html'>#InstallMouseHook</a>지령을 기술해 둔다
+</dd>
+<dt>Enabled Timers</dt><dd>
+유효화 되고 있는 타이머의 수.「()」 안은 할당할 수 있었던 라벨명의 일람.타이머의 할당은<a target=_top href='../commands/SetTimer.html'>SetTimer</a>커멘드로 실시한다
+</dd>
+<dt>Interrupted threads</dt><dd>
+<a target=_top href='../misc/Threads.html'>스렛드</a>의 세치기에 의해서 정지하고 있는 스렛드의 수
+</dd>
+<dt>Paused threads</dt><dd>
+<a target=_top href='../commands/Pause.html'>Pause</a>커멘드등에 의해서 정지하고 있는 스렛드의 수
+</dd>
+<dt>Modifiers (GetKeyState() now)</dt><dd>
+눌러 내려지고 있는 수식 키의 일람(<a target=_top href='../commands/GetKeyStateFunction.html'>GetKeyState()</a>함수등에서 눌러 인하 상태라고 인식되는 것)
+</dd>
+<dt>Modifiers (Hook's Logical)</dt><dd>
+눌러 내려지고 있는 수식 키의 일람(프로그램등에 의해서 눌러 내려지고 있는 것)
+</dd>
+<dt>Modifiers (Hook's Physical)</dt><dd>
+눌러 내려지고 있는 수식 키의 일람(실제로 키보드의 키가 눌러 내려지고 있는 것)
+</dd>
+<dt>Prefix key is down</dt><dd>
+「MButton & LButton」(와)과 같은 콤비네이션 키의 좌측으로 지정되어있는 키가 밀리고 있을 때 「yes」(이)가 된다
+</dd>
+</dl>
+
+
+<p>이력 부분의 설명문에 이어 키의 이력이 표시된다.<br>
+아래에 갈 만큼 새로운 이벤트이다.<br>
+각각의 열은 이하와 같은 의미가 되어 있다.
+</p>
+<dl>
+<dt>VK</dt><dd>조작된 키의 가상 키코드.hot key 라벨이나Send커멘드등에서 「vk??」(와)과 같이 해 키명 대신에 사용할 수 있다
+</dd>
+<dt>SC</dt><dd>조작된 키의 스캔 코드.hot key 라벨이나Send커멘드등에서 「sc???」(와)과 같이 해 키명 대신에 사용할 수 있다
+</dd>
+<dt>Type</dt><dd>
+이벤트의 타입.이하의 것이 있다.
+<dl>
+<dt>h</dt><dd>훅을 이용한 hot key가 발동했다
+</dd>
+<dt>s</dt><dd>훅에 의해서 이벤트가 은폐 되었다(어느 키에 hot key를 할당할 수 있고 있고, 그 키가 밀어 올려 이벤트에는 아무것도 할당할 수 있지 않은 경우, 밀어 올려 이벤트가 은폐 된다)
+</dd>
+<dt>i</dt><dd>AutoHotkey자신이 생성한 이벤트(AutoHotkey의 hot key는 발동하지 않는다)
+</dd>
+<dt>a</dt><dd>
+다른 프로그램에 의해서 생성된 이벤트
+</dd>
+<dt>#</dt><dd>hot key는 할당할 수 있고 있지만<a target=_top href='../commands/_IfWinActive.html'>#IfWinActive</a>지령의 조건에 일치하지 않기 때문에 무시되었다
+</dd>
+</dl>
+</dd>
+<dt>Up/Dn</dt><dd>
+키를 눌렀을 경우는 「d」, 떼어 놓았을 경우는 「u」(이)가 된다
+</dd>
+<dt>Elapsed</dt><dd>하나전의 이벤트로부터의 경과시간(초)
+</dd>
+<dt>Key</dt><dd>키명
+</dd>
+<dt>Window</dt><dd>이벤트가 발생한 윈도우의 타이틀.윈도우가 바뀐 직후의 이벤트만 표시된다
+</dd>
+</dl>
+
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../Usage.html'>사용 방법</a></div>
+</body>
+</html>

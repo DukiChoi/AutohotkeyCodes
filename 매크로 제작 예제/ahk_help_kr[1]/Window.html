@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>윈도우의 지정</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Window.html'>윈도우의 지정</a></div>
+<h1>윈도우 지정의 방법</h1>
+<p>커멘드명의 머리에Win혹은Control(와)과 붙는 커멘드에는,WinTitle, WinText, ExcludeTitle, ExcludeText그렇다고 하는 인수를 취하는 것이 많다.<br>
+이러한 지정 방법은, 대개 모든 커멘드로 같아서, 여기서 정리해 설명한다.
+
+</p>
+<dl>
+<dt>WinTitle</dt><dd>윈도우의 타이틀 바등의 타이틀을 지정한다.<br>
+대문자 소문자는 구별된다.<br>
+그 밖에, 이후에 설명하는 지정이 가능.<br>
+대체로의 경우, 나머지의3인수는 생략 된다.<br>
+</dd>
+<dt>WinText</dt><dd>윈도우내에 포함되는 텍스트로 좁힌다</dd>
+<dt>ExcludeTitle</dt><dd>무시하는 윈도우의 타이틀을 지정한다</dd>
+<dt>ExcludeText</dt><dd>무시하는 윈도우의 텍스트를 지정한다</dd>
+</dl>
+<p>
+타이틀이나 텍스트의 체크는, 디폴트에서는 전방 일치가 되어 있다.<br>
+「<code><a target=_top href='./commands/SetTitleMatchMode.html'>SetTitleMatchMode</a>,2</code>」라고 하는 커멘드로 부분 일치가 된다.<br>
+「<code><a target=_top href='./commands/SetTitleMatchMode.html'>SetTitleMatchMode</a>,3</code>」(으)로 완전 일치.<br>
+「<code><a target=_top href='./commands/SetTitleMatchMode.html'>SetTitleMatchMode</a>,RegEx</code>」에서는, 정규 표현에 의한 지정이 가능.<br>
+</p>
+<p>
+「<code><a target=_top href='./commands/DetectHiddenWindows.html'>DetectHiddenWindows</a>,On</code>」(을)를 실시하지 않으면, 비표시의 윈도우는 무시된다.<br>
+다만, 후술의LastFoundWindow하지만AutoHotkey의<a target=_top href='./commands/Gui.html'>Gui</a>윈도우의 경우,DetectHiddenWindows하지만Off그렇지만 검출된다.
+</p>
+<p>
+「<code><a target=_top href='./commands/DetectHiddenText.html'>DetectHiddenText</a>,Off</code>」(을)를 실시하면, 비표시의 텍스트는 무시된다.
+</p>
+
+
+<h2>Control계 커멘드의 「Control」인수</h2>
+<p>
+GUI컨트롤을 조작한다Control계 커멘드의 인수에는, 앞의4인수의 전에 「Control」라고 하는 인수를 취하는 것이 많다.<br>
+이 인수에는,ClassNN(클래스명과 인스턴스 번호)혹은, 버튼등의 텍스트에 포함되는 문자열을 지정한다.<br>
+생략 하면, 제일 전의 컨트롤이 사용된다.
+</p>
+
+
+<h2>Control계 커멘드로의 윈도우 핸들의 직접 지정</h2>
+<p>
+「Control」인수가 있는 컨트롤 조작계 커멘드에서는,WinTitle에 「ahk_id %controlHWND%」라고 하도록(듯이) 컨트롤의 윈도우 핸들을 지정해,Control인수를 생략 하는 것으로, 윈도우 핸들로 지정해 컨트롤을 조작할 수 있다.<br>
+컨트롤의 윈도우 핸들은,<a target=_top href='./commands/MouseGetPos.html'>MouseGetPos</a>,<a target=_top href='./commands/WinGet.html'>WinGet</a>,<a target=_top href='./commands/ControlGet.html'>ControlGet</a>커멘드나,<a target=_top href='./commands/DllCall.html'>DllCall()</a>함수에 의한 각종API의 호출에 의해서 취득할 수 있다.
+</p>
+
+<p>
+ClassNN(을)를 이용한 컨트롤의 지정에서는, 클래스명이 「SysListView」인 컨트롤과 「SysListView32」인 컨트롤이 존재해, 「SysListView321」라고 한다ClassNN하지만 지정되었을 때, 「1번째의SysListView32」(을)를 지정했는지 「321번째의SysListView」(을)를 지정했는지를 분별할 수 없다.<br>
+이러한 문제가 있는 것부터,ClassNN보다 윈도우 핸들의 직접 지정을 사용하는 것이 바람직하다.<br>
+ClassNN보다 윈도우 핸들의 직접 지정이,2배정도 고속으로 동작한다.
+</p>
+
+
+
+
+<h2><a name="classname">윈도우 클래스의 지정</a></h2>
+<p>WinTitle(을)를 「<code>ahk_class classname</code>」(와)과 같이 지정하면, 윈도우 클래스가classname의 윈도우를 지정할 수 있다.<br>
+윈도우 클래스는,<a target=_top href='./commands/WinGetClass.html'>WinGetClass</a>그리고 취득할 수 있는 것 외에 부속의 툴로 조사하는 일도 가능.<br>
+</p>
+
+<h2>윈도우 핸들의 지정</h2>
+<p>WinTitle(을)를 「<code>ahk_id 0x01234567</code>」(와)과 같이 지정하면, 윈도우 핸들이0x01234567의 윈도우를 지정할 수 있다.<br>
+윈도우 핸들은,<a target=_top href='./commands/WinGet.html'>WinGet</a>커멘드로 취득한 것을 사용할 수 있다.
+</p>
+<h2>윈도우 소유 프로세스로의 지정</h2>
+<p>
+WinTitle(을)를 「<code>ahk_pid %pid%</code>」(와)과 같이 지정하면,<a target=_top href='./commands/WinGet.html'>WinGet</a>,<a target=_top href='./commands/Run.html'>Run</a>,<a target=_top href='./commands/Process.html'>Process</a>커멘드로 취득한 프로세스ID(PID)의 프로세스가 소유하는 윈도우를 대상으로 할 수 있다.
+</p>
+
+<h2>윈도우 그룹의 지정</h2>
+<p>
+WinTitle(을)를 「<code>ahk_group GroupName</code>」(와)과 같이 지정하면,<a target=_top href='./commands/GroupAdd.html'>GroupAdd</a>커멘드로 작성한 윈도우 그룹에 대해서 일괄하고 조작을 실시할 수 있다.<br>
+<a target=_top href='./commands/WinMinimize.html'>WinMinimize</a>,<a target=_top href='./commands/WinMaximize.html'>WinMaximize</a>,<a target=_top href='./commands/WinRestore.html'>WinRestore</a>,<a target=_top href='./commands/WinHide.html'>WinHide</a>,<a target=_top href='./commands/WinShow.html'>WinShow</a>,<a target=_top href='./commands/WinClose.html'>WinClose</a>,<a target=_top href='./commands/WinKill.html'>WinKill</a>그럼, 모든 윈도우가 조작된다.<br>
+그 이외의 커멘드에서는, 가장 앞에 있는 윈도우가 대상이 된다.
+</p>
+
+<h2>복수의 조건의 동시 지정</h2>
+<p>「%title% ahk_class %class% ahk_pid %pid%」(와)과 같이 반각 스페이스 혹은Tab문자로 단락지어 조건을 열거하는 것으로, 윈도우 타이틀이나ahk_class,ahk_pid,ahk_group의 조건을 조합해 지정할 수 있다.<br>
+윈도우 타이틀의 조건을 지정하는 경우는, 반드시 제일 최초로 기술한다.<br>
+스페이스가 두 개 이상 연속하고 있으면, 마지막 하나 이외는 직전의 조건의 일부이다고 보인다.
+</p>
+
+
+<h2>액티브 윈도우의 지정</h2>
+<p>WinTitle(을)를 「A」라고 지정해, 나머지의 인수를 생략 하면, 액티브한 윈도우를 지정할 수 있다.<br>
+만약 액티브 윈도우가 비표시로,DetectHiddenWindows하지만Off(이었)였던 경우, 일치하는 윈도우 없음이라는 것이 된다.
+</p>
+
+<h2>복수 윈도우가 매치했을 경우</h2>
+<p>
+WinTitle,WinText인수의 지정에 매치하는 윈도우가 다수 있었을 경우, 일번수전의 윈도우가 대상이 된다.
+</p>
+
+
+<h2><a name="lastfoundwindow">Last Found Window</a></h2>
+<p><a target=_top href='./commands/IfWinExist.html'>IfWinExist, IfWinNotExist</a>,  <a target=_top href='./commands/IfWinActive.html'>IfWinActive, IfWinNotActive</a>, <a target=_top href='./commands/WinWaitActive.html'>WinWaitActive, WinWaitNotActive</a>, <a target=_top href='./commands/WinWait.html'>WinWait</a>의 커멘드로 검출된 윈도우는,Last Found Window(으)로서 기록된다.<br>
+WinTitle, WinText, ExcludeTitle, ExcludeText(을)를 모두 생략 했을 경우, 이 윈도우가 대상이 된다.<br>
+이것에 의해, 몇의 것도 윈도우 조작 커멘드로 같은 지정을 반복할 필요가 없어진다.
+</p>
+
+<p>이 정보는<a target=_top href='./misc/Threads.html'>스렛드</a>마다 보관 유지되어 세치기가 발생해도 써 바뀔 것은 없다.
+</p>
+
+<h2>마우스 커서아래의 윈도우·컨트롤</h2>
+<p><a target=_top href='./commands/MouseGetPos.html'>MouseGetPos</a>(을)를 사용하면, 마우스아래의 윈도우 핸들과 컨트롤의ClassNN(을)를 취득할 수 있다.</p>
+
+<h2><a name="spy">윈도우 클래스명의 조사</a></h2>
+<p>
+윈도우 클래스나GUI컨트롤의ClassNN(을)를 조사하고 싶은 경우,AutoHotkey동고의AU3_Spy.exe(을)를 사용한다.<br>
+기동해 조사하고 싶은 윈도우를 액티브하게 하면 각종 정보가 표시된다.<br>
+GUI컨트롤의ClassNN(을)를 조사하고 싶은 경우는, 해당 컨트롤 위에 마우스 커서를 이동한다.
+</p>
+<pre>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Window Title )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+데스크탑
+<strong>ahk_class ExploreWClass</strong>
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Mouse Position )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+On Screen:	x: 691	y: 545  (less often used)
+In Window:	x: 307	y: 198
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Pixel Color )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+10524816
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Window Position )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+left: 384     top: 347     width: 800     height: 600
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Last Control Under Mouse )&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+<strong>SysListView321</strong>
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Status Bar Text )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+(1): 
+(2): 11.7 KB
+(3): 마이 컴퓨터
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Visible Window Text )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+FolderView
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( Hidden Window Text )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( TitleMatchMode=slow Visible Text )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+데스크탑
+데스크탑
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;( TitleMatchMode=slow Hidden Text )&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+</pre>
+<p>
+AU3_Spy.exe(을)를 기동해 다른 윈도우를 액티브하게 하면, 상기와 같은 내용이 표시된다.<br>
+3행목이 윈도우 클래스,16행목이 마우스아래의 컨트롤의ClassNN.<br>
+Shift+Alt+Tab그리고AU3_Spy.exe의 윈도우로 전환하면,ClassNN등의 정보가 고정되므로 범위 선택으로 카피할 수 있다.
+</p>
+
+<h2>Example</h2>
+<pre>IfWinExist, Untitled - Notepad
+{
+	WinActivate  ; Automatically uses the window found above.
+	WinMaximize  ; same
+	Send, Some text.{Enter}
+	return
+}
+
+
+IfWinNotExist, Calculator
+	return
+else
+{
+	WinActivate  ; The above &quot;IfWinNotExist&quot; also set the &quot;last found&quot; window for us.
+	WinMove, 40, 40  ; Move it to a new position.
+	return
+}
+
+
+; Make a hotkey to maximize a window.
+; Specify just &quot;A&quot; to make it operate on the active window:
+^Up::WinMaximize, A
+</pre>
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Window.html'>윈도우의 지정</a></div>
+</body>
+</html>

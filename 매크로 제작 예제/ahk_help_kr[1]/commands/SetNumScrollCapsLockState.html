@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SetCapsLockState/SetNumLockState/SetScrollLockState</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetNumScrollCapsLockState.html'>SetCapsLockState/SetNumLockState/SetScrollLockState</a></div>
+<h1>Set[Caps|Num|Scroll]LockState</h1>
+<p>Capslock/NumLock/ScrollLock키의 락 상태를 설정하거나 항상On(이)나Off(으)로 하거나 한다</p>
+
+<pre>SetCapsLockState, State
+SetNumLockState, State 
+SetScrollLockState, State </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>State
+</td>
+<td>
+<dl>
+<dt>On</dt><dd>On(으)로 한다</dd>
+<dt>Off</dt><dd>Off(으)로 한다</dd>
+<dt>AlwaysOn</dt><dd>항상On(이)가 되도록(듯이) 한다(NT계 전용)</dd>
+<dt>AlwaysOff</dt><dd>항상Off(이)가 되도록(듯이) 한다(NT계 전용)</dd>
+</dl>
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+
+<p>
+상태의On/Off(을)를 바꾸려면 ,<a target=_top href='../commands/Send.html'>Send</a>커멘드를 사용한다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SetStoreCapslockMode.html'>SetStoreCapslockMode</a>, <a target=_top href='../commands/GetKeyState.html'>GetKeyState</a></p>
+
+<h2>Example(s)</h2>
+<pre>SetNumlockState, on
+</pre>
+<pre>
+SetScrollLockState, AlwaysOff
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetNumScrollCapsLockState.html'>SetCapsLockState/SetNumLockState/SetScrollLockState</a></div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PostMessage/SendMessage Tutorial</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/SendMessage.html'>PostMessage/SendMessage Tutorial</a></div>
+<h1>PostMessage/SendMessage관련</h1>
+<h2>윈도우 메세지에 대해</h2>
+<p>Windows의GUI(은)는, 시스템이나 어플리케이션이 윈도우나GUI컨트롤에 대해서 윈도우 메세지를 송신해, 윈도우를 소유하는 어플리케이션이 보내진 메세지에 대응한 동작을 실시하는 것으로 성립되고 있다.<br>
+AutoHotkey그렇지만,<a target=_top href='../commands/PostMessage.html'>PostMessage(이)나SendMessage</a>의 커멘드로 윈도우 메세지를 송신하는 것으로써, 윈도우에 대해서 여러가지 조작을 실시할 수 있다.
+</p>
+
+<p>
+윈도우 메세지나 각 메세지의 동작에 대해서는,Web위에 많은 자료가 있다.<br>
+일반적인 메세지의 일람에 대해서는,<A href='http://www.winapi-database.com/' target="_blank">WinAPI Database for VB Programmer</A>의 알파벳순서 표시 「W」의 항등이 자세하다.
+</p>
+
+
+
+<h2><a name="cmdid">WM_COMMAND의 커멘드 번호를 조사한다</a></h2>
+<p>
+「WM_COMMAND」메세지를 보내면, 메뉴등의 커멘드를 실행시킬 수 있다.<br>
+WM_COMMAND(을)를 보내려면 ,Msg인수에 「0x111」(을)를 지정한다.<br>
+wParam인수에는 커멘드ID(을)를 지정한다.
+</p>
+<p>
+커멘드ID(을)를 조사하는 간단한 방법은,<A href='http://www.users.on.net/johnson/resourcehacker/' target="_blank">Resource Hacker</A>(을)를 사용하는 방법이다.<br>
+조사하고 싶은 실행 파일을 열어, 트리의 「Menu」이하를 보면,
+</p>
+<pre>
+MENUITEM "&File...   \tL",  40029
+</pre>
+<p>
+(와)과 같은 형식에서 메뉴 항목이 기술되고 있다.<br>
+제일 마지막 숫자가, 메뉴 항목에 대응하는 커멘드ID이다.
+</p>
+<p>
+또, 트리의 「Accelerators」이하에서는,
+</p>
+<pre>
+VK_A, 40019, NOINVERT, CONTROL, VIRTKEY
+</pre>
+<p>
+(와)과 같은 행이 열거되고 있다.<br>
+커멘드명이 쓰여지지 않기 때문에 알기 힘들지만, 단축 키에 대응하는 커멘드ID하지만 조사할 수 있다.
+</p>
+
+<p>
+이러한 방법에서는, 툴바 밖에 할당할 수 있지 않은 커멘드ID(을)를 조사하는 것은 할 수 없다.<br>
+거기서,<a target=_top href='http://lukewarm.s101.xrea.com/myscripts/index.html#tbid'>툴바 버튼의 커멘드ID(을)를 조사하는 스크립트</a>(을)를 작성했다.<br>
+표준적인 툴바이면, 버튼 번호에 대응하는 커멘드ID(을)를 조사할 수 있을 것이다.
+</p>
+
+<p>
+Windows부속의 페인트의 툴 박스와 같은 표준적으로 없는 툴바의 경우, 이 스크립트에서도 커멘드ID(을)를 조사할 수 없지만,<a href='http://member.nifty.ne.jp/hayazo/' target="_blank">창콘</a>등의 툴로 실행된 커멘드를 감시해 조사할 수 있는 경우도 있다.
+</p>
+<p>
+Delphi(이)나VisualBasic등, 일부의 개발 환경에서 만들어진 소프트의 경우, 커멘드ID하지만 일정이 아니거나 하고, 커멘드ID(을)를 조사해도 도움이 되지 않는다.
+</p>
+
+
+
+<!-- 
+<address>by Rajat</address>
+<p>This page discusses the <a target=_top href='../commands/PostMessage.html'>PostMessage</a> and <a target=_top href='../commands/PostMessage.html'>SendMessage</a> commands and will answer some questions like:</p>
+<p>"How do I press a button on a minimized window?" <br>
+"How do I select a menu item when <a target=_top href='../commands/WinMenuSelectItem.html'>WinMenuSelectItem</a> doesn't work with it?!"<br>
+"This is a skinnable window.... how do I send a command that works every time?"<br>
+"and what about <strong>hidden</strong> windows?!"<br>
+<br>
+<br>
+Requirements: AutoHotkey v1.0.09+ and Winspector Spy (<a target=_top href='http://www.windows-spy.com/'>http://www.windows-spy.com</a>)</p>
+<p>As a first example, note that <a target=_top href='../commands/WinMenuSelectItem.html'>WinMenuSelectItem</a> fails to work with the menu bar on Outlook Express's &quot;New Message&quot; window. In other words, this code will not work:</p>
+<p><em> WinMenuSelectItem, New Message,, &amp;Insert, &amp;Picture...</em></p>
+<p>&nbsp;</p>
+<p>But <a target=_top href='../commands/PostMessage.html'>PostMessage</a> can get the job done:</p>
+<p><em> PostMessage, 0x111, 40239, 0, , New Message</em></p>
+<p>Works like a charm! But what the heck is that? 0x111 is the hex code of <a target=_top href='../misc/SendMessageList.html'>wm_command message</a> and 40239 is the code that this particular window understands as menu-item 'Insert Picture' selection. Now let me tell you how to find a value such as 40239:</p>
+<ol>
+  <li>    Open Winspector Spy and a &quot;New Message&quot; window.</li>
+  <li>Drag the crosshair from Winspector Spy's window to &quot;New Message&quot; window's titlebar (the portion not covered by Winspector Spy's overlay).</li>
+  <li>Right click the selected window in the list on left and select 'Messages'.</li>
+  <li>Right click the blank window and select 'Edit message filter'.</li>
+  <li>Press the 'filter all' button and then dbl click 'wm_command' on the list on left. This way you will only monitor this message.</li>
+  <li>Now go to the &quot;New Message&quot; window and select from its menu bar: Insert &gt; Picture.</li>
+  <li>Come back to Winspector Spy and press the traffic light button to pause monitoring.</li>
+  <li>Expand the wm_command messages that've accumulated (forget others if any).</li>
+  <li>What you want to look for (usually) is a code 0 message. sometimes there are wm_command messages saying 'win activated' or 'win destroyed' and other stuff.. not needed. You'll find that there's a message saying 'Control ID: 40239' ...that's it!</li>
+  <li>Now put that in the above command and you've got it! It's the wParam value.</li>
+</ol>
+<p>For the next example I'm taking Paint because possibly everyone will have that. Now let's say it's an app where you have to select a tool from a toolbar using AutoHotkey; say the dropper tool is to be selected.</p>
+<p>What will you do? Most probably a mouse click at the toolbar button, right? But toolbars can be moved and hidden! This one can be moved/hidden too. So if the target user has done any of this then your script will fail at that point. But the following command will still work:</p>
+<p><em> PostMessage, 0x111, 639,,,untitled - Paint</em></p>
+<p>Another advantage to <a target=_top href='../commands/PostMessage.html'>PostMessage</a> is that the Window can be in the background; by contrast, sending mouse clicks would require it to be active.<br>
+  <br>
+  <br>
+Here are some more examples. Note: I'm using WinXP Pro (SP1) ... if you use a different OS then your params may change (only applicable to apps like Wordpad and Notepad that come with windows; for others the params shouldn't vary):</p>
+<p>;makes writing color teal in Wordpad <br>
+  <a target=_top href='../commands/PostMessage.html'>PostMessage</a>, 0x111, 32788, 0, , Document - WordPad </p>
+<p>;opens about box in Notepad <br>
+  <a target=_top href='../commands/PostMessage.html'>PostMessage</a>, 0x111, 65, 0, , Untitled - Notepad </p>
+<p>;toggles word-wrap in Notepad <br>
+  <a target=_top href='../commands/PostMessage.html'>PostMessage</a>, 0x111, 32, 0, , Untitled - Notepad </p>
+<p>;play/pause in Windows Media Player <br>
+<a target=_top href='../commands/PostMessage.html'>PostMessage</a>, 0x111, 32808, 0, , Windows Media Player </p>
+<p>;suspend the hotkeys of a running AHK script!<br>
+  DetectHiddenWindows, on<br>
+  SetTitleMatchMode, 2<br>
+  PostMessage, 0x111, 32800,,,MyScript.ahk - AutoHotkey<br>
+  <br>
+  <br>
+  This above was for PostMessage. <a target=_top href='../commands/PostMessage.html'>SendMessage</a> works the same way but additionally waits for a return value, which can be used for things such as getting the currently playing track in Winamp (see <a target=_top href='../misc/Winamp.html'>Automating Winamp</a> for an example). <br>
+</p>
+<p>Here are some more notes:</p>
+<ul>
+  <li>The note above regarding OS being XP and msg values changing with different OSes is purely cautionary. if you've found a msg that works on your system (with a certain version of a software) then you can be sure it'll work on another system too with the same version of the software. In addition, most apps keep these msg values the same even on different versions of themselves (e.g. Windows Media Player and Winamp).</li>
+  <li> If you've set the filter to show only wm_command in Winspector Spy and still you're getting a flood of messages then right click that message and select hide (msg name)... you don't want to have a look at a msg that appears without you interacting with the target software. </li>
+  <li> The right pointing arrow in Winspector Spy shows the msg values and the blurred left pointing arrows show the returned value. A 0 (zero) value can by default safely be taken as 'no error' (use it with SendMessage, the return value will be in <a target=_top href='../misc/ErrorLevel.html'>%ErrorLevel%</a>). </li>
+  <li> For posting to partial title match add this to script:<br>
+    SetTitleMatchMode, 2 </li>
+  <li>For posting to hidden windows add this to script: <br>
+    DetectHiddenWindows, On</li>
+</ul>
+<p>Note: There are apps with which this technique doesn't work. I've had mixed luck with VB and Delphi apps. This technique is best used with C, C++ apps. With VB apps the 'LParam' of the same command keeps changing from one run to another. With Delphi apps... the GUI of some apps doesn't even use wm_command. It probably uses mouse pos &amp; clicks. </p>
+<p>Go and explore.... and share your experiences in the AutoHotkey Forum. Feedback is welcome!</p>
+<p>This tutorial is not meant for total newbies (no offense meant) since these commands are considered advanced features. So if after reading the above you've not made heads or tails of it, please forget it.</p>
+<p>-Rajat</p>
+
+
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/SendMessage.html'>PostMessage/SendMessage Tutorial</a></div>
+</body>
+</html>

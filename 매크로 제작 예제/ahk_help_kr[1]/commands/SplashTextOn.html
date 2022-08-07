@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SplashTextOn/SplashTextOff</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SplashTextOn.html'>SplashTextOn/SplashTextOff</a></div>
+<h1>SplashTextOn / SplashTextOff</h1>
+<p>스플래쉬 텍스트 윈도우를 표시·비표시한다</p>
+
+<pre>SplashTextOff
+SplashTextOn [, Width, Height, Title, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Width
+</td>
+<td>윈도우의 폭을 지정.디폴트는200.
+</td>
+</tr>
+<tr> 
+<td>Height
+</td>
+<td>윈도우의 타이틀 바를 제외한 부분의 높이를 지정.디폴트는0.
+</td>
+</tr>
+<tr> 
+<td>Title
+</td>
+<td>타이틀 바에 표시되는 텍스트를 지정.생략시는 아무것도 표시되지 않는다.
+</td>
+</tr>
+<tr> 
+<td>Text
+</td>
+<td>윈도우에 표시되는 텍스트를 지정.생략시는 아무것도 표시되지 않는다.
+</td>
+</tr>
+</table>
+
+<h2>Remarks</h2>
+
+<p>
+SplashTextOn그리고 맨 앞면표시의 윈도우를 스크린의 중앙에 표시한다.<br>
+스플래쉬 텍스트 윈도우는, 스크립트 전체로1개를 공유한다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Progress.html'>Progress</a>, <a target=_top href='../commands/Progress.html'>SplashImage</a>, <a target=_top href='../commands/ToolTip.html'>ToolTip</a>, <a target=_top href='../commands/MsgBox.html'>MsgBox</a>, <a target=_top href='../commands/InputBox.html'>InputBox</a>, <a target=_top href='../commands/FileSelectFile.html'>FileSelectFile</a>, <a target=_top href='../commands/FileSelectFolder.html'>FileSelectFolder</a>, <a target=_top href='../commands/WinMove.html'>WinMove</a>, <a target=_top href='../commands/WinSet.html'>WinSet</a></p>
+
+<h2>Example(s)</h2>
+<pre>SplashTextOn, , , Just a simple title.
+Sleep, 2000
+SplashTextOn, 400, 300, Clipboard, The clipboard contains:`n%clipboard%
+WinMove, Clipboard, , 0, 0  ; Move the splash window to the top left corner. 
+Msgbox, Press OK to dismiss the SplashText
+SplashTextOff
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SplashTextOn.html'>SplashTextOn/SplashTextOff</a></div>
+</body>
+</html>

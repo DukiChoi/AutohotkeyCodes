@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SetEnv</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetEnv.html'>SetEnv</a></div>
+<h1>SetEnv</h1>
+<p>변수에 값을 대입한다</p>
+
+<pre>SetEnv, Var, Value</pre>
+<pre>Var = Value</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Var
+</td>
+<td>대입처의 변수명.변수명의 전개를 사용할 수 있다.
+</td>
+</tr>
+<tr>
+<td>Value
+</td>
+<td>대입하는 수치나 문자열.변수명의 전개를 사용할 수 있다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+공문자열을 대입하는 것으로, 변수에 할당할 수 있었던 메모리를 개방할 수 있다.<br>
+변수에 큰 문자열이 격납될 가능성이 있는 경우는, 불필요하게 되면 공문자열을 할당해 개방하는 것으로, 메모리를 쓸데 없게 계속 하는 것 를 막을 수 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/EnvSet.html'>EnvSet</a>, <a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='../commands/EnvSub.html'>EnvSub</a>, <a target=_top href='../commands/EnvMult.html'>EnvMult</a>, <a target=_top href='../commands/EnvDiv.html'>EnvDiv</a>, <a target=_top href='../commands/IfEqual.html'>If</a>, <a target=_top href='../misc/Arrays.html'>Arrays</a></p>
+
+<h2>Example(s)</h2>
+<pre>Var1 = This is a string.
+Color2 = 450
+Color3 = %Var1%
+
+;의사적인 배열
+Loop,10{
+	Array%A_Index% = %A_TICKCOUNT%
+}
+MsgBox,Array1
+MsgBox,Array2
+
+;불요 메모리의 개방
+string=%large_string%
+Gosub,use_string
+string=
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetEnv.html'>SetEnv</a></div>
+</body>
+</html>

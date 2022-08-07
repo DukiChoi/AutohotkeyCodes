@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>GetKeyState</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GetKeyState.html'>GetKeyState</a></div>
+<h1>GetKeyState</h1>
+<p>키보드나 mouse button의 눌러 인하 상태, 죠이스틱 상태를 취득</p>
+
+<pre>GetKeyState, OutputVar, KeyName [, Mode] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>
+결과를 격납하는 변수명.<br>
+취득에 실패하면, 내용은 비운다.<br>
+</td>
+</tr>
+<tr>
+<td>KeyName
+</td>
+<td>상태를 취득하고 싶은 키의 명칭.<br>
+특수 키의 일람은<a target=_top href='../KeyList.html'>Key List</a>참조.
+</tr>
+<tr>
+<td>Mode
+</td>
+<td>
+「P」(을)를 지정하면, 소프트웨어적인 키보드 이벤트 생성을 무시해, 실제로 유저가 키를 누르고 있는지를 취득할 수 있다.(NT계 전용)(<a target=_top href='../commands/_InstallKeybdHook.html'>#InstallKeybdHook</a>,<a target=_top href='../commands/_InstallMouseHook.html'>#InstallMouseHook</a>(을)를 기술하는 등,Hook(을)를 유효하게 하고 있을 필요 있어)<br>
+「T」(을)를 지정하면,CapsLock,NumLock,ScrollLock의ON/OFF상태를 취득할 수 있다.<br>
+이 경우,ON(이)라면 「D」,OFF(이)라면 「U」(이)가 된다.<br>
+이 인수는 생략 가능하고, 죠이스틱에서는 무효.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+<p>
+버튼의 경우, 눌러 인하 상태라면 「D」, 밀리지 않으면 「U」(이)가OutputVar의 변수에 격납된다.<br>
+죠이스틱의 축(JoyX등)의 경우,0...100의 사이의 소수로 쓰러지는 상태가 나타내진다.(50(이)라면 쓰러지지 않았다)(수치의 서식은<a target=_top href='../commands/SetFormat.html'>SetFormat</a>그리고 지정 가능)<br>
+JoyPOV의 경우,0...35900의 값이 된다.정면을0(으)로 한 각도를100배가 된 것이 되는 모양.<br>
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../KeyList.html'>Key List</a>, <a target=_top href='../commands/KeyHistory.html'>KeyHistory</a>, <a target=_top href='../commands/_InstallKeybdHook.html'>#InstallKeybdHook</a>, <a target=_top href='../commands/_InstallMouseHook.html'>#InstallMouseHook</a>, <a target=_top href='../commands/GetKeyStateFunction.html'>GetKeyState()</a></p>
+
+<h2>Example(s)</h2>
+<p>; Basic Examples: <br>
+GetKeyState, state, Shift <br>
+GetKeyState, state, CapsLock, T ;  D if CapsLock is ON or U otherwise.<br>
+GetKeyState, state, RButton
+; Right mouse button. <br>
+GetKeyState, state, Joy2 ; The second button of the first joystick. </p>
+<pre>
+; Advanced Example:
+; In this case, the mouse button is kept held down while NumpadAdd
+; is down, which effectively transforms NumpadAdd into a mouse button.
+; This method can also be used to repeat an action while the user is
+; holding down a key or button:
+NumpadAdd::
+MouseClick, left, , , 1, 0, D  ; Hold down the left mouse button.
+Loop
+{
+	Sleep, 10
+	GetKeyState, state, NumpadAdd, P
+	if state = U  ; The key has been released, so break out of the loop.
+		break
+	; ... insert here any other actions you want repeated.
+}
+MouseClick, left, , , 1, 0, U  ; Release the mouse button.
+return
+
+; Example: Make joystick button behavior depend on joystick axis position.
+joy2:: 
+GetKeyState, joyx, JoyX 
+if joyx &gt; 75 
+	MsgBox Action #1 (button pressed while joystick was pushed to the right)
+else if joyx &lt; 25 
+	MsgBox Action #2 (button pressed while joystick was pushed to the left)
+else
+	MsgBox Action #3 (button pressed while joystick was centered horizontally)
+return</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GetKeyState.html'>GetKeyState</a></div>
+</body>
+</html>

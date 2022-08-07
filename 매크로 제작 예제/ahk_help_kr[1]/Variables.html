@@ -1,0 +1,685 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>편입 변수</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Variables.html'>편입 변수</a></div>
+<h1>편입 변수</h1>
+<!-- 
+<h3>Introduction</h3>
+<p>Variables are areas of memory set aside to hold <em>values</em>. A <em>value</em> (or <em>string</em>, as it is sometimes called) can be any series of characters or digits. For example, the following  line assigns a value to the variable named MyVar:<br>
+MyVar = 123abc</p>
+<p>To later retrieve the contents of the variable, make a <em>reference</em> to it by enclosing its name in percent signs, as in this example:<br>
+MsgBox, The value in the variable named MyVar is %MyVar%.</p>
+<p>However, the parameters of some commands are explicitly defined as input or output variables. In these cases, do <strong>not</strong> enclose the variable in percent signs. For example, neither of the following variables should have percent signs around them: <a target=_top href='./commands/StringLen.html'>StringLen</a>, OutputVar, InputVar</p>
+<p>Although each variable's capacity is essentially unlimited, more system memory will be allocated on-the-fly whenever a variable needs to be enlarged to accept a longer string. The memory occupied by a large variable can be freed by setting it equal to nothing, e.g. var =</p>
+<p>Variable <strong>names</strong> may consist of numbers, letters, and the following punctuation: # _ @ $ ? [ ]<br>
+(the square brackets might typically be used for <a target=_top href='./misc/Arrays.html'>arrays</a>). In addition, variable names may start with a number, or even be entirely numeric.</p>
+
+<h3><a name="env"></a>Environment Variables vs. &quot;Normal&quot; Variables</h3>
+<p>Unlike AutoIt2, AutoHotkey does not store its variables as environment variables. This is because performance would be worse and also because the operating system limits such variables to 32 KBytes (AutoHotkey variables, including the <a target=_top href='./misc/Clipboard.html'>clipboard</a>, are essentially unlimited in size). Use <a target=_top href='./commands/EnvSet.html'>EnvSet</a> (not to be confused with <a target=_top href='./commands/SetEnv.html'>SetEnv</a>) to explicitly place a value into an environment variable.</p>
+<p>Any reference to an undefined or blank variable (e.g. %EmptyVar%) resolves to an empty string unless that variable is defined in the environment (e.g. %ProgramFiles%), in which case the environment's value will be retrieved and used.</p>
+
+ -->
+<h2>특수 문자</h2>
+<table>
+<tr>
+<td><a name="Space">A_Space</a></td>
+<td>단독의 반각 스페이스를 나타내는데 사용한다.<a target=_top href='./commands/AutoTrim.html'>AutoTrim</a>도 참조.</td>
+</tr>
+<tr>
+<td><a name="Tab">A_Tab</a></td>
+<td>단독의Tab문자를 나타내는데 사용한다.<a target=_top href='./commands/AutoTrim.html'>AutoTrim</a>도 참조.</td>
+</tr>
+<tr>
+<td><a name="False"></a>False</td>
+<td>「0」.<br>
+「가짜」를 나타낼 때 사용한다.
+</td>
+</tr>
+<tr>
+<td><a name="True"></a>True</td>
+<td>「1」.<br>
+「진」을 나타낼 때 사용한다.
+</td>
+</tr>
+
+</table>
+
+<h2>스크립트 정보</h2>
+<table>
+<tr>
+<td><a name="AhkPath">A_AhkPath</a></td>
+<td>
+현재의 스크립트를 실행하고 있는 실행 파일(AutoHotkey.exe)의 풀 패스.<br>
+<br>
+컴파일 된 스크립트에서는, 레지스트리에 기록된 인스톨처 디렉토리내의AutoHotkey.exe의 패스가 된다.<br>
+인스톨처를 취득할 수 없는 경우는, 공문자열이 된다.
+</td></tr>
+<tr>
+<td><a name="AhkVersion">A_AhkVersion</a></td>
+<td>
+AutoHotkey의 버젼을 「1.0.22」등의 문자열로 격납한다.<br>
+실행 파일화 된 스크립트의 경우, 컴파일을 실시했다AutoHotkey의 버젼이 된다.<br>
+「if A_AhkVersion >= 1.0.25.07」(와)과 같이 하고, 버젼 번호의 대소를 비교하는 것이 가능.</td>
+</tr>
+<tr>
+<td><a name="IsCompiled">A_IsCompiled</a></td>
+<td>실행 파일화 된 스크립트의 경우 「1」(이)가 된다.<br>
+그 이외의 경우는 비운다.
+</td>
+</tr>
+
+<tr><td><a name="env">환경 변수명(PATH등)</a></td><td>
+AutoHotkey실행시의 환경 변수는 보통 변수와 같이 액세스 할 수 있다.<br>
+</td>
+</tr>
+<tr>
+<td><a name="arg">1, 2, 3, ……및 0</a> </td>
+<td>
+커멘드 라인 인수.<br>
+%0%에는 인수의 수가 격납된다.<br>
+인수의 건네주는 방법 등은<a target=_top href='./Scripts.html'>스크립트</a>의 항을 참조.
+</td>
+</tr>
+<tr>
+<td><a name="WorkingDir">A_WorkingDir</a></td>
+<td>
+작업 디렉토리.<br>
+파일의 읽고 쓰기등에서 디폴트의 디렉토리가 된다.<br>
+<a target=_top href='./commands/SetWorkingDir.html'>SetWorkingDir</a>커멘드로 변경 가능.<br>
+마지막 「\」(은)는 제외해진다.다만, 드라이브 루트만은 예외.<br>
+</td>
+</tr>
+<tr>
+<td><a name="ScriptName">A_ScriptName</a></td>
+<td>
+스크립트의 파일명.<br>
+<a target=_top href='./Usage.html#ahk2exe'>실행 파일화</a>되고 있는 경우, 확장자(extension)가 「.exe」(이)가 된다.<br>
+<code><a target=_top href='./commands/IfInString.html'>IfInString, A_ScriptName, .exe</a></code>그리고, 실행 파일화 되고 있는지를 판별할 수 있다.
+</td>
+</tr>
+<tr>
+<td><a name="ScriptDir">A_ScriptDir</a></td>
+<td>
+스크립트가 있는 디렉토리 패스.<br>
+마지막 「\」(은)는 제외해진다.
+</td>
+</tr>
+<tr>
+<td><a name="ScriptFullPath">A_ScriptFullPath</a></td>
+<td>스크립트의 풀 패스</td>
+</tr>
+<tr>
+<td><a name="ThisLabel">A_ThisLabel</a></td>
+<td>
+현재의 스렛드로 마지막에 불려 간 라벨명.<br>
+<a target=_top href='./commands/SetTimer.html'>타이머</a>, <a target=_top href='./commands/Gui.html#DefaultWin'>GUI이벤트</a>, <a target=_top href='./commands/Menu.html'>메뉴</a>, <a target=_top href='./Hotkeys.html'>hot key</a>, <a target=_top href='./Hotstrings.html'>핫 스트링</a>, <a target=_top href='./misc/Clipboard.html#OnClipboardChange'>OnClipboardChange</a>, <a target=_top href='./commands/OnExit.html'>OnExit</a>그리고 실행된 스렛드에서는, 할당할 수 있었던 라벨 명화 초기치가 된다.<br>
+<a target=_top href='./commands/Gosub.html'>Gosub</a>/<a target=_top href='./commands/Return.html'>Return</a>(이)나<a target=_top href='./commands/Goto.html'>Goto</a>그리고 점프 하면 갱신된다.
+</td>
+</tr>
+<tr>
+<td><a name="ThisFunc">A_ThisFunc</a></td>
+<td>
+실행중의 함수명.<br>
+불특정 다수의 함수로부터Gosub그리고 불려 갈 가능성이 있는 써브루틴내에서, 호출원의 함수를 알 수 있다.
+</td>
+</tr>
+<tr>
+<td><a name="LineNumber">A_LineNumber</a></td>
+<td>
+스크립트의 현재 실행중의 행 번호.<br>
+<a target=_top href='./commands/ListLines.html'>ListLines</a>커멘드로 표시되는 행 번호와 같다.
+</td>
+</tr>
+<tr><td><a name="LineFile">A_LineFile</a></td><td>
+현재 실행중의 부분이 쓰여진 스크립트 파일의 풀 패스.<br>
+<a target=_top href='./commands/_Include.html'>#Include</a>(을)를 사용하고 있지 않는 경우는, 항상A_ScriptFullPath(와)과 같게 된다.</td></tr>
+<tr>
+<td><a name="ExitReason">A_ExitReason</a></td>
+<td>
+<a target=_top href='./commands/OnExit.html'>OnExit</a>그리고 지정된 써브루틴이 종료전에 불려 갔을 때, 종료 이유가 격납된다.<br>
+자세한 것은<a target=_top href='./commands/OnExit.html'>OnExit</a>참조.
+</td>
+</tr>
+</table>
+
+<h2>반복 처리 관련</h2>
+<table>
+<tr>
+<td><a name="Index">A_Index</a></td>
+<td>루프의 실행 회수.<br>
+1번째는1.
+자세한 것은<a target=_top href='./commands/Loop.html'>Loop</a>의 항참조.</td>
+</tr>
+<tr>
+<td>A_LoopFileName, etc. </td>
+<td><a target=_top href='./commands/LoopFile.html'>file-loop</a>그리고 사용.</td>
+</tr>
+<tr>
+<td>A_LoopRegName, etc. </td>
+<td><a target=_top href='./commands/LoopReg.html'>registry-loop</a>그리고 사용.</td>
+</tr>
+<tr>
+<td>A_LoopReadLine</td>
+<td><a target=_top href='./commands/LoopReadFile.html'>file-read loop</a>그리고 사용.읽어들인 행의 내용.</td>
+</tr>
+<tr>
+<td>A_LoopField</td>
+<td><a target=_top href='./commands/LoopParse.html'>문자열 해석 루프</a>그리고 사용.필드 내용.</td>
+</tr>
+</table>
+<h2>일자 시각</h2>
+<p><a target=_top href='./commands/FormatTime.html'>FormatTime</a>커멘드를 사용하는 것으로, 보다 많은 형식을 사용할 수 있다.</p>
+<table>
+<tr>
+<td><a name="YYYY" id="YYYY">A_YYYY,A_Year</a></td>
+<td>현재 일시의 해를 나타낸다4자리수의 숫자(...2004...)</td>
+</tr>
+<tr>
+<td><a name="MM" id="MM">A_MM,A_Mon</a></td>
+<td>달을 나타낸다2자리수의 숫자(01...12)</td>
+</tr>
+<tr>
+<td><a name="DD" id="DD">A_DD,A_MDay</a></td>
+<td>일을 나타낸다2자리수의 숫자(01...31)</td>
+</tr>
+<tr>
+<td><a name="MMMM">A_MMMM</a></td>
+<td>달의 명칭(...July...)</td>
+</tr>
+<tr>
+<td><a name="MMM">A_MMM</a></td>
+<td>달을 나타낸다3문자의 생략명(...Jul...)</td>
+</tr>
+<tr>
+<td><a name="DDDD">A_DDDD</a></td>
+<td>요일을 나타내는 문자열(Sunday...)</td>
+</tr>
+<tr>
+<td><a name="DDD">A_DDD</a></td>
+<td>요일을 나타낸다3문자의 생략명(Sun...)</td>
+</tr>
+<tr>
+<td><a name="WDay">A_WDay</a></td>
+<td>요일을 나타낸다1문자의 숫자(1...7)1하지만 일요일</td>
+</tr>
+<tr>
+<td><a name="YDay">A_YDay</a></td>
+<td>1해 중(안)에서 며칠눈인가(1...366)<br>
+제로 서플라이 되지 않기 때문에,001...099...366(와)과 같은 형식으로 하고 싶은 경우는, 「<code>FormatTime, OutputVar, , YDay0</code>」라고 한다.
+</td>
+</tr>
+<tr>
+<td><a name="WWeek">A_YWeek</a></td>
+<td>서기년과 주번호를 연결했다ISO8601형식의 문자열(...200453...)<br>
+1월1일을 포함한 주가4일 이상 있는 경우, 그 주가 제1주에, 그렇지 않은 경우는 다음의 주가 제1주가 된다.
+</td>
+</tr>
+<tr>
+<td><a name="YDay">A_YDay</a></td>
+<td>1월1일부터의 날짜를 나타낸다1~3자리수의 수(1...366)</td>
+</tr>
+<tr>
+<td><a name="Hour">A_Hour</a></td>
+<td>시간을 나타낸다2자리수의 숫자(00...23)</td>
+</tr>
+<tr>
+<td><a name="Min">A_Min</a></td>
+<td>분을 나타낸다2자리수의 숫자(00...59)</td>
+</tr>
+<tr>
+<td><a name="Sec">A_Sec</a></td>
+<td>초를 나타낸다2자리수의 숫자(00...59)</td>
+</tr>
+<tr>
+<td><a name="MSec">A_MSec</a></td>
+<td>
+밀리 세컨드를 나타낸다3자리수의 숫자(000...999).
+</td>
+</tr>
+
+<tr>
+<td><a name="Now">A_Now</a></td>
+<td>현재 시각을<a target=_top href='./misc/Time.html#YYYYMMDDHH24MISS'>YYYYMMDDHH24MISS</a>의 서식에서 나타낸 것</td>
+</tr>
+<tr>
+<td><a name="NowUTC">A_NowUTC</a></td>
+<td>UTC시각을<a target=_top href='./misc/Time.html#YYYYMMDDHH24MISS'>YYYYMMDDHH24MISS</a>의 서식에서 나타낸 것</td>
+</tr>
+<tr>
+<td><a name="TickCount">A_TickCount</a></td>
+<td>OS하지만 기동하고 나서의 경과시간(밀리 세컨드)
+</td>
+</tr>
+</table>
+
+
+
+
+<h2>스크립트 설정</h2>
+<table>
+<tr>
+<td><a name="IsSuspended">A_IsSuspended</a></td>
+<td>
+스크립트가<a target=_top href='./commands/Suspend.html'>Suspend</a>커멘드로 중지 되고 있는 경우는 「1」(이)가 된다.그 이외의 경우는 「0」.
+</td>
+</tr>
+
+<tr>
+<td><a name="BatchLines">A_BatchLines</a></td>
+<td><a target=_top href='./commands/SetBatchLines.html'>SetBatchLines</a>그리고 설정한 처리 속도.</td>
+</tr>
+<tr>
+<td><a name="TitleMatchMode">A_TitleMatchMode</a></td>
+<td><a target=_top href='./commands/SetTitleMatchMode.html'>SetTitleMatchMode</a>그리고 지정한 윈도우 타이틀의 매치 방식.(1/2/3)</td>
+</tr>
+<tr>
+<td><a name="TitleMatchModeSpeed">A_TitleMatchModeSpeed</a></td>
+<td><a target=_top href='./commands/SetTitleMatchMode.html'>SetTitleMatchMode</a>그리고 지정한 윈도우 타이틀 매치의 종류.(fast/slow)</td>
+</tr>
+<tr>
+<td><a name="DetectHiddenWindows">A_DetectHiddenWindows</a></td>
+<td><a target=_top href='./commands/DetectHiddenWindows.html'>DetectHiddenWindows</a>그리고 지정한, 비표시 윈도우의 검출의 유무.(On/Off)</td>
+</tr>
+<tr>
+<td><a name="DetectHiddenText">A_DetectHiddenText</a></td>
+<td><a target=_top href='./commands/DetectHiddenText.html'>DetectHiddenText</a>그리고 지정한 은폐 텍스트 검출의 유무(On/Off)</td>
+</tr>
+<tr>
+<td><a name="AutoTrim">A_AutoTrim</a></td>
+<td><a target=_top href='./commands/AutoTrim.html'>AutoTrim</a>그리고 지정한, 인수의 전후의 공백을 자동 제거할지.(On/Off)</td>
+</tr>
+<tr>
+<td><a name="StringCaseSense">A_StringCaseSense</a></td>
+<td><a target=_top href='./commands/StringCaseSense.html'>StringCaseSense</a>그리고 지정한, 대문자 소문자 구별의 유무.(On/Off/Locale)</td>
+</tr>
+<tr>
+<td><a name="FormatInteger">A_FormatInteger</a></td>
+<td><a target=_top href='./commands/SetFormat.html'>SetFormat</a>그리고 지정한 정수치의 서식(H/D)</td>
+</tr>
+<tr>
+<td><a name="FormatFloat">A_FormatFloat</a></td>
+<td><a target=_top href='./commands/SetFormat.html'>SetFormat</a>그리고 지정한 소수치의 서식</td>
+</tr>
+<tr>
+<td><a name="KeyDelay">A_KeyDelay</a></td>
+<td><a target=_top href='./commands/SetKeyDelay.html'>SetKeyDelay</a>그리고 지정한, 키 입력의 간격.(밀리 세컨드)</td>
+</tr>
+<tr>
+<td><a name="WinDelay">A_WinDelay</a></td>
+<td><a target=_top href='./commands/SetWinDelay.html'>SetWinDelay</a>그리고 지정한, 윈도우 조작의 간격.(밀리 세컨드)</td>
+</tr>
+<tr>
+<td><a name="ControlDelay">A_ControlDelay</a></td>
+<td><a target=_top href='./commands/SetControlDelay.html'>SetControlDelay</a>그리고 지정했다GUI컨트롤 조작의 간격.(밀리 세컨드)</td>
+</tr>
+<tr>
+<td><a name="MouseDelay">A_MouseDelay</a></td>
+<td><a target=_top href='./commands/SetMouseDelay.html'>SetMouseDelay</a>그리고 지정한, 마우스 조작의 간격.(밀리 세컨드)</td>
+</tr>
+<tr>
+<td><a name="DefaultMouseSpeed">A_DefaultMouseSpeed</a></td>
+<td><a target=_top href='./commands/SetDefaultMouseSpeed.html'>SetDefaultMouseSpeed</a>그리고 지정한, 마우스의 이동 속도의 디폴트.(0...100)</td>
+</tr>
+<tr>
+<td><a name="IconHidden">A_IconHidden</a></td>
+<td>트레이 아이콘이 비표시가 되어 있는지 어떤지.(0=표시,1=비표시)<br>
+<a target=_top href='./commands/_NoTrayIcon.html'>#NoTrayIcon</a>지령이나<a target=_top href='./commands/Menu.html'>Menu</a>커멘드로 아이콘비표시로 할 수 있다.</td>
+</tr>
+<tr>
+<td><a name="IconTip">A_IconTip</a></td>
+<td>「<code><a target=_top href='./commands/Menu.html'>Menu</a>, Tray, Tip somestring</code>」(으)로 트레이 아이콘의 툴 팁을 지정했을 때, 그 내용</td>
+</tr>
+<tr>
+<td><a name="IconFile">A_IconFile</a></td>
+<td>「<code><a target=_top href='./commands/Menu.html'>Menu</a>, tray, icon iconfilename.ico</code>」(으)로 트레이 아이콘을 지정했을 경우, 그 파일명</td>
+</tr>
+<tr>
+<td><a name="IconNumber">A_IconNumber</a></td>
+<td>아이콘 파일에 아이콘이 포함되어 있으면, 그 수</td>
+</tr>
+</table>
+
+
+
+<h2>대기 경과시간</h2>
+<table>
+<tr>
+<td><a name="TimeIdle">A_TimeIdle</a></td>
+<td>
+마지막에 어떠한 입력이 있고 나서의 경과시간을 밀리 세컨드로 격납.(NT계 전용)<br>
+PC하지만 방치되어 있을 때 액션을 일으키는데 사용할 수 있다.<br>
+어떠한 프로그램이 생성한 입력 이벤트에서도 리셋트 되어 버린다.<br>
+</td>
+</tr>
+<tr>
+<td><a name="TimeIdlePhysical">A_TimeIdlePhysical</a></td>
+<td>
+A_TimeIdle(와)과 같지만,<a target=_top href='./commands/_InstallKeybdHook.html'>키보드Hook</a>(이)나<a target=_top href='./commands/_InstallMouseHook.html'>마우스Hook</a>하지만 사용되고 있으면, 프로그램이 발생시킨 입력 이벤트를 무시할 수 있다.<br>
+</td>
+</tr>
+</table>
+
+
+<h2>hot key·GUI관련</h2>
+<table>
+<tr>
+<td><a name="ThisMenu">A_ThisMenu</a></td>
+<td>A_ThisMenuItem의 아이템이 들어가 있던 메뉴명을 격납.</td>
+</tr>
+<tr>
+<td><a name="ThisMenuItem">A_ThisMenuItem</a></td>
+<td>마지막에 선택된 메뉴 아이템명이 격납된다.<br>
+자세한 것은,<a target=_top href='./commands/Menu.html'>Menu</a>커멘드 참조.<br>
+복수의 메뉴 아이템에 하나의 써브루틴을 할당하는 경우 등에 사용.
+</tr>
+<tr>
+<td><a name="ThisMenuItemPos">A_ThisMenuItemPos</a></td>
+<td>A_ThisMenuItem의 아이템이A_ThisMenu안에서 몇번째에 있었는지를 격납한다.<br>
+맨 위는 「1」.세퍼레이터도 카운트 된다.A_ThisMenu(이)나A_ThisMenuItem하지만 삭제되었을 경우, 이 변수는 비운다.
+</tr>
+<tr>
+<td><a name="ThisHotkey">A_ThisHotkey</a></td>
+<td>
+마지막에 실행된 hot key의 라벨명이 격납된다.(Win+A(이)라면 「#a」)<br>
+hot key 써브루틴의 실행중에 다른 hot key가 끼어들어 오면, 이 값은 변경되어 버리기 때문에, 필요하면 써브루틴의 초의 분으로 다른 변수에 카피하는 것.<br>
+</td>
+</tr>
+<tr>
+<td><a name="PriorHotkey">A_PriorHotkey</a></td>
+<td>하나전의 hot key</td>
+</tr>
+<tr>
+<td><a name="TimeSinceThisHotkey">A_TimeSinceThisHotkey</a></td>
+<td>A_ThisHotkey의 발생으로부터 경과한 시간(밀리 세컨드).A_ThisHotkey하지만 하늘이라면-1.</td>
+</tr>
+<tr>
+<td><a name="TimeSincePriorHotkey">A_TimeSincePriorHotkey</a></td>
+<td>A_PriorHotkey의 발생으로부터 경과한 시간</td>
+</tr>
+<tr>
+<td><a name="EndChar">A_EndChar</a></td>
+<td>
+제일 최근의<a target=_top href='./Hotstrings.html'>스크립트 실행형 핫 스트링</a>(을)를 발동시킨 종료 키.<br>
+「*」옵션에 의해 종료 키가 불필요하게 되어 있었을 경우는, 공백이 된다.</td>
+</tr>
+<tr>
+<td><a name="GUI">A_GUI</a></td>
+<td>현재의<a target=_top href='./misc/Threads.html'>스렛드</a>(을)를 호출했다<a target=_top href='./commands/Gui.html'>GUI</a>윈도우의 번호.<br>
+현재의 스렛드가GUI위의 이벤트로 불려 갔으므로 않는 경우, 비운다.
+</td>
+</tr>
+<tr>
+<td><a name="GUIControl">A_GuiControl</a></td>
+
+<td>
+현재의<a target=_top href='./misc/Threads.html'>스렛드</a>(을)를 호출했다<a target=_top href='./commands/Gui.html'>GUI</a>컨트롤.<br>
+컨트롤에 「V」옵션으로 변수를 관련지을 수 있고 있는 경우, 그 변수명이 격납된다.변수를 관련지을 수 있지 않은 경우, 컨트롤의 텍스트가 최대63문자 격납된다.<br>
+이 변수에 격납된 값은,<a target=_top href='./commands/GuiControl.html'>GuiControl</a>커멘드의ControlID인수로 사용할 수 있다.<br>
+현재의 스렛드가GUI컨트롤의 조작 이벤트로 불려 갔으므로 않는 경우는 비운다.
+</td>
+</tr>
+
+<td><a name="GuiWidth">A_GuiWidth</a></td>
+<td><a target=_top href='./commands/Gui.html#GuiSize'>GuiSize이벤트</a>하지만 불려 갔을 때의 해당GUI윈도우의 가로폭.<br>
+현재의 스렛드가GuiSize이벤트 이외로 불려 갔을 경우는, 부정 혹은 미정도리가 된다.
+
+</td>
+<tr>
+<td><a name="GuiHeight">A_GuiHeight</a></td>
+<td><a target=_top href='./commands/Gui.html#GuiSize'>GuiSize이벤트</a>하지만 불려 갔을 때의 해당GUI윈도우의 높이.<br>
+
+</td>
+</tr>
+
+<td><a name="GuiX">A_GuiX</a></td>
+<td>일부의GUI관련 이벤트로 마우스 커서의 횡좌표를 윈도우의 좌단으로부터의 상대 좌표로 격납한다
+</td>
+</tr>
+<td><a name="GuiY">A_GuiY</a></td>
+<td>일부의GUI관련 이벤트로 마우스 커서의 종좌표를 윈도우의 상단으로부터의 상대 좌표로 격납한다
+</td>
+</tr>
+
+<tr>
+<td><a name="GuiEvent">A_GuiEvent</a></td>
+<td>
+현재의<a target=_top href='./misc/Threads.html'>스렛드</a>하지만GUI목응인 조작에 의해서 불려 갔는지.<br>
+내용은 이하의 어떤 것인가
+
+
+
+<dl>
+<dt>(공)</dt><dd>현재의 스렛드가<a target=_top href='./commands/Gui.html'>GUI의 액션</a>(으)로서 불려 간 것이 아닌 경우</dd>
+<dt>Normal</dt><dd>컨트롤의 싱글 클릭이나 그 다른 키스트로크(keystroke)에 의해서 불려 갔을 경우.<br>
+도구모음 부하의 메뉴 아이템의 실행이나,GuiEscape,GuiClose이벤트로서 실행되었을 경우에서도, 이 값을 할당할 수 있다.</dd>
+<dt>DoubleClick</dt><dd>더블 클릭의2번째의 클릭에 의해서 불려 갔을 때에 이 값을 할당할 수 있다.(1번째의 클릭에서는,Normal하지만 할당할 수 있었던 스렛드가 실행된다)</dd>
+<dt>슬라이더의 조작을 나타내는 값</dt><dd><a target=_top href='./commands/Gui_Add_Slider.html'>Slider컨트롤</a>에 할당할 수 있었던 라벨이 실행되었을 경우, 어떠한 조작으로 값이 변경되었는지를 나타내는 값이 격납된다.</dd>
+<dt>파일명</dt><dd><a target=_top href='./commands/Gui.html#GuiDropFiles'>GuiDropFiles이벤트</a>그리고 불려 갔을 경우, 파일명이 개행 단락으로 격납된다.</dd>
+<dt>그 외</dt><dd>GUI컨트롤의 타입에 따라서는, 다른 값이 돌려주어지는 경우도 있다.「DoubleClick(이)가 아니면 통상의 실행」등의 판정을 실시하는 것은 추천 되지 않는다.
+</dd>
+</dl>
+</td>
+</tr>
+
+<tr>
+<td><a name="GuiControlEvent">A_GuiControlEvent</a></td>
+<td>A_GuiEvent(와)과 같다</td></tr>
+<tr><td><a name="EventInfo">A_EventInfo</a></td><td>
+현재의 스렛드가 불려 간 이벤트에 관한 추가의 정보를 격납한다.<br>
+추가의 정보를 가지지 않는 이벤트에서는, 「0」(이)가 된다.
+</td></tr>
+
+</table>
+
+
+
+<h2>OS및 유저 정보</h2>
+<table>
+<tr>
+<td><a name="OSType">A_OSType</a></td>
+<td>Windows9x계라면 「WIN32_WINDOWS」,NT계라면 「WIN32_NT」.</td>
+</tr>
+
+
+<tr>
+<td><a name="OSVersion">A_OSVersion</a></td>
+<td>"WIN_VISTA", "WIN_XP", "WIN_2000", "WIN_NT4", "WIN_95", "WIN_98", "WIN_ME".</td>
+</tr>
+
+
+<tr>
+<td><a name="Language">A_Language</a></td>
+<td>시스템의 언어를 나타낸다4자리수의16진수치.<br>
+값과 언어의 대응은<a target=_top href='./misc/Languages.html'>language table</a>(을)를 참조.일본어는 「0411」.</td>
+</tr>
+
+
+<tr>
+<td><a name="A_ComputerName">A_ComputerName</a></td>
+<td>현재의 컴퓨터의 네트워크상에서의 이름</td>
+</tr>
+
+
+<tr>
+<td><a name="A_UserName">A_UserName</a></td>
+<td>로그인하고 있는 유저명</td>
+</tr>
+
+<tr>
+<td><a name="IsAdmin">A_IsAdmin</a></td>
+<td>유저가 관리자 권한을 가지고 있는 경우 「1」, 관리자 권한이 없는 경우 「0」.9x계에서는 항상 「1」.</td>
+</tr>
+
+<tr>
+<td><a name="ComSpec">ComSpec</a></td>
+<td>콘솔 쉘(많은 경우 「cmd.exe」)의 풀 패스.</td>
+</tr>
+
+
+
+
+<tr>
+<td><a name="WinDir">A_WinDir</a></td>
+<td>Windows디렉토리의 패스.(례:C:\Windows)</td>
+</tr>
+<tr>
+<td><a name="ProgramFiles">A_ProgramFiles<br>
+ProgramFiles</a></td>
+<td>Program Files디렉토리의 패스.(례:C:\Program Files)</td>
+</tr>
+
+
+
+<tr>
+<td><a name="AppData">A_AppData</a></td>
+<td>Application Data폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="AppDataCommon">A_AppDataCommon</a></td>
+<td>전유저 공통의Application Data폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="Temp">A_Temp</a></td>
+<td>텐포라리포르다의 풀 패스.</td>
+</tr>
+
+
+
+
+
+<tr>
+<td><a name="Desktop">A_Desktop</a></td>
+<td>데스크탑 폴더의 풀 패스.</td>
+</tr>
+
+
+<tr>
+<td><a name="DesktopCommon">A_DesktopCommon</a></td>
+<td>AllUsers의 공통 데스크탑 폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="StartMenu">A_StartMenu</a></td>
+<td>스타트 메뉴 폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="StartMenuCommon">A_StartMenuCommon</a></td>
+<td>AllUsers의 공통 스타트 메뉴 폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="Programs">A_Programs</a></td>
+<td>스타트 메뉴의 「프로그램」폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="ProgramsCommon">A_ProgramsCommon</a></td>
+<td>AllUsers의 공통 스타트 메뉴의 「프로그램」폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="Startup">A_Startup</a></td>
+<td>스타트 업 폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="StartupCommon">A_StartupCommon</a></td>
+<td>AllUsers의 공통 스타트 업 폴더의 풀 패스.</td>
+</tr>
+
+<tr>
+<td><a name="MyDocuments">A_MyDocuments</a></td>
+<td>My Documents폴더의 풀 패스.<br>
+이 변수만은, 드라이브의 루트가 설정되어 있을 때, 마지막 「\」(이)가 제외해져 「D:」(와)과 같이 된다.</td>
+</tr>
+
+
+
+
+
+<tr>
+<td><a name="ScreenWidth">A_ScreenWidth</a></td>
+<td>
+화면의 가로폭.<br>
+멀티 모니터 환경에서의 제2모니터 이후나 데스크탑 전체의 치수를 얻으려면 ,<a target=_top href='./commands/SysGet.html'>SysGet</a>커멘드를 사용한다.<br>
+</td>
+</tr>
+<tr>
+<td><a name="ScreenHeight">A_ScreenHeight</a></td>
+<td>화면의 높이</td>
+</tr>
+<tr>
+<td><a name="IPAddress">A_IPAddress1...A_IPAddress4 </a></td>
+<td>1번째로부터4번째의 네트워크 어댑터의IP주소</td>
+</tr>
+</table>
+
+<h2>타</h2>
+<table>
+<tr>
+<td><a name="Cursor">A_Cursor</a></td>
+<td>현재의 마우스 커서의 종류.이하의 문자열의 어떤 것인가.<br>
+AppStarting, Arrow, Cross, Help, IBeam, Icon, No, Size, SizeAll, SizeNESW, SizeNS, SizeNWSE, SizeWE, UpArrow, Wait, Unknown.<br>
+Size??의??(은)는 방위를 나타낸다.
+브라우저로 링크를 포인트 했을 때 등에 사용되는 손의 형태의 커서는,Unknown(으)로서 다루어진다.
+</td>
+</tr>
+<tr>
+<td><a name="CaretX">A_CaretX</a></td>
+<td>
+caret(텍스트 입력 커서)의X좌표.<br>
+통상은 액티브 윈도우의 좌상으로부터의 좌표이지만, 「<code><a target=_top href='./commands/CoordMode.html'>CoordMode</a>,Caret,Screen</code>」라고 하는 커멘드를 실행하면, 스크린상에서의 좌표가 된다.<br>
+caret가 없는 경우나 좌표를 취득할 수 없는 경우는 공백이 된다.
+<!--     
+<p><a name="Caret" id="Caret"></a>The current X and Y coordinates of the caret (text insertion point). [requires v1.0.17+] The coordinates are relative to the active window unless <a target=_top href='./commands/CoordMode.html'>CoordMode</a> is used to make them relative to the entire screen. If there is no active window or the caret position cannot be determined, these variables are blank.</p>
+<p>The following example script allows you to move the caret around to see its current position displayed in an auto-update tooltip. Note that some windows (e.g. certain versions of MS Word) report the same caret position regardless of its actual position.</p>
+<p>#Persistent<br>
+SetTimer, WatchCaret, 100<br>
+return<br>
+WatchCaret:<br>
+display_y = %A_CaretY%<br>
+display_y -= 20 ; Move tooltip up a little so as not to hide the caret.<br>
+ToolTip, X%A_CaretX% Y%A_CaretY%, %A_CaretX%, %display_y%<br>
+return</p> --></td>
+</tr>
+<tr>
+<td><a name="CaretY">A_CaretY</a></td>
+<td>caret의Y좌표</td>
+</tr>
+<tr>
+<td><a name="Clipboard">Clipboard</a></td>
+<td>클립보드의 텍스트.<br>
+<a target=_top href='./misc/Clipboard.html'>Clipboard</a>(을)를 참조.
+</td>
+</tr>
+<tr>
+<td><a name="ClipboardAll">ClipboardAll</a></td>
+<td>클립보드의 전내용.<br>
+통상의 변수와는 취급이 크게 다르다.<br>
+<a target=_top href='./misc/Clipboard.html'>Clipboard</a>(을)를 참조.
+</td>
+</tr>
+<tr>
+<td><a name="ErrorLevel">ErrorLevel</a></td>
+<td><a target=_top href='./misc/ErrorLevel.html'>ErrorLevel</a>참조.</td>
+</tr>
+
+<td><a name="LastError">A_LastError</a></td>
+<td>DllCall(이)나Run,RunWait의 실행 후에, 「GetLastError()」API하지만 돌려주는 에러 코드를 격납한다.</td>
+</tr>
+
+
+</table>
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Variables.html'>편입 변수</a></div>
+</body>
+</html>

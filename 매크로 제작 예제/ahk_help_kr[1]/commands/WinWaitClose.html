@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinWaitClose</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinWaitClose.html'>WinWaitClose</a></div>
+<h1>WinWaitClose</h1>
+<p>윈도우가 닫는다(존재하지 않게 된다)의를 기다린다</p>
+
+<pre>WinWaitClose[, WinTitle, WinText, Seconds , ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+
+<tr>
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+
+<tr> 
+<td>Seconds
+</td>
+<td>최대몇 초간까지 기다릴까.<br>
+생략시는 무한하게 기다린다.<br>
+0(을)를 지정하면0.5초 기다린다.
+</td>
+</tr>
+
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+
+
+
+<dl>
+<dt>0</dt><dd>윈도우가 존재하지 않게 되었다</dd>
+<dt>1</dt><dd>윈도우가 존재하지 않게 되기 전에Seconds그리고 지정한 시간이 경과했다</dd>
+</dl>
+
+
+<h2>Remarks</h2>
+
+<p>
+조건에 일치하는 윈도우가 존재하면, 존재하지 않게 될 때까지 최대로Seconds그리고 지정한 시간까지 대기한다.<br>
+조건에 일치하는 윈도우가 존재하지 않게 되면, 곧바로 다음의 처리로 옮긴다.
+</p>
+
+<p>
+대기중은 hot key나 타이머등에서 기동되었다<a target=_top href='../misc/Threads.html'>스렛드</a>하지만 끼어들 수 있다.
+</p>
+<p>
+이 커멘드의 인수에 사용되고 있는 변수의 내용이, 끼어든 스렛드에 의해서 변경되어도, 대기중의 이 커멘드에는 영향을 주지 않고, 커멘드 개시시에 변수에 들어가 있던 내용이 그대로 사용된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinClose.html'>WinClose</a>, <a target=_top href='../commands/WinWait.html'>WinWait</a>, <a target=_top href='../commands/WinWaitActive.html'>WinWaitActive</a>, <a target=_top href='../commands/IfWinExist.html'>IfWinExist</a>, <a target=_top href='../commands/IfWinActive.html'>IfWinActive</a>, <a target=_top href='../commands/SetTitleMatchMode.html'>SetTitleMatchMode</a>, <a target=_top href='../commands/DetectHiddenWindows.html'>DetectHiddenWindows</a></p>
+
+<h2>Example(s)</h2>
+Run, notepad.exe<br>
+WinWait, Untitled - Notepad<br>
+WinWaitClose ; Wait for the exact window found by WinWait to be closed.<br>
+MsgBox, Notepad is now closed.
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinWaitClose.html'>WinWaitClose</a></div>
+</body>
+</html>

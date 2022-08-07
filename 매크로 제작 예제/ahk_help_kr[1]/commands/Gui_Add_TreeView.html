@@ -1,0 +1,431 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,TreeView</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_TreeView.html'>Gui,Add,TreeView</a></div>
+<h1>Gui,Add,TreeView</h1>
+<p>GUI윈도우에 트리뷰콘트로르를 추가한다.항목의 조작을 실시하는 편입 함수도 준비되어 있다.</p>
+
+<pre>Gui, Add, TreeView [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+공통의 옵션에 대해서는,<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+고유의 옵션은 후술.<br>
+「V」옵션으로 변수를 관련지어도, 변수에 정보가 격납될 것은 없다.다만,<a target=_top href='../commands/GuiControl.html'>GuiControl</a>등의 커멘드로 컨트롤을 지정하기 위해서 이용할 수 있다.<br>
+G그리고 라벨명을 지정하면, 각종의 조작을 할 때 마다 써브루틴이 실행된다.자세한 것은<a target=_top href='../commands/Gui_Add_TreeView.html#Event'>이벤트</a>시에를 참조.
+
+</td>
+</tr>
+<tr><td>Text</td><td>
+미사용.
+</td>
+</tr>
+</table>
+
+<h3>고유의Option</h3>
+<dl>
+<dt>AltSubmit</dt><dd>
+「G」옵션으로 지정된 써브루틴이 불려 간다<a target=_top href='../commands/Gui_Add_TreeView.html#Event'>이벤트</a>의 수를 확장한다.<br>
+자세한 것은 후술.
+</dd>
+<dt>cCOLOR</dt><dd>
+COLOR에 문자색을 지정한다.(례:「cFF9900」 「cRed」 「cDefault」)<br>
+RRGGBB형식의 칼라 코드나<a target=_top href='../misc/Color.html'>색의 이름</a>, 「Default」(을)를 지정할 수 있다.
+</dd>
+<dt>BackgroundCOLOR</dt><dd>
+COLOR에 배경색을 지정한다.(례:「BackgroundFF9900」 「BackgroundRed」 「BackgroundDefault」)<br>
+RRGGBB형식의 칼라 코드나<a target=_top href='../misc/Color.html'>색의 이름</a>, 「Default」(을)를 지정할 수 있다.<br>
+이 옵션이 없는 경우,<a target=_top href='../commands/Gui_Color.html'>Gui,Color</a>의 지정에 의존한다.
+</dd>
+<dt>Buttons</dt><dd>
+트리 항목의 좌측으로 꺾어 접어 상태를 표시·변경하는 「+」 「-」버튼을 표시한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-Buttons」(으)로 버튼을 비표시로 할 수 있다.
+</dd>
+<dt>Checked</dt><dd>
+항목의 좌측으로 체크 박스를 붙인다.<br>
+체크의ON/OFF(은)는 항목 조작 함수로 조작할 수 있다.
+</dd>
+<dt>HScroll</dt><dd>
+횡방향에의 스크롤을 실시한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-HScroll」(으)로 옆에 스크롤 하지 않게 할 수 있다.(IE5이상이 필요)
+</dd>
+<dt>ImageListH</dt><dd>
+아이콘에 사용하는 화상을 격납한 이미지 리스트를 설정한다.<br>
+이미지 리스트는<a target=_top href='../commands/Gui_Add_ListView.html#IconFunc'>이미지 리스트 조작 함수</a>그리고 작성·조작할 수 있다.<br>
+H에IL_Create()하지만 돌려준 이미지 리스트 핸들을 지정한다.(예 「ImageList%himl%」)<br>
+이 옵션은Gui,Add시에 밖에 사용할 수 없다.(SendMessage그리고TVM_SETIMAGELIST(0x1109)(을)를 보내는 것으로 변경은 가능)<br>
+트리뷰가 파기되어도, 이미지 리스트는 자동적으로 파기되지 않기 때문에, 「IL_Destroy(himl)」(으)로 파기시킬 필요가 있다.
+</dd>
+<dt>Lines</dt><dd>
+트리의 선을 표시한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-Lines」(으)로 선을 비표시로 할 수 있다.
+</dd>
+<dt>ReadOnly</dt><dd>
+텍스트를 변경 금지로 한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-ReadOnly」라고 하면,1번째의 부분을 클릭하거나F2키를 누르는 것으로 내용을 편집할 수 있게 된다.<br>
+편집을 하면, 「G」옵션으로 지정한 써브루틴이 불려 간다.<br>
+</dd>
+<dt>WantF2</dt><dd>
+「-ReadOnly」(이)가 설정되어 있을 때,F2키로 텍스트를 편집할 수 있도록 한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-WantF2」라고 하면,F2키가 밀려도 편집 상태가 되지 않게 할 수 있다.
+</dd>
+<dt>Rn</dt><dd>
+n에 행수를 수치로 지정한다(례:「R10」)<br>
+컨트롤의 높이는, 이 행수가 들어가는 높이가 된다.<br>
+Icon표시로 했을 경우 등은, 항목이 세로에 이 수만큼 들어가는 높이가 된다.
+</dd>
+
+<dt>(그 외 수치)</dt><dd>
+트리뷰의 스타일을 설정할 수 있다.<br>
+이하와 같은 물건이 있다.
+</dd>
+<dt>0x1000</dt><dd>
+1행 선택식으로 한다.<br>
+「-Lines」라고 동시에 설정할 필요가 있다.
+</dd>
+<dt>0x4</dt><dd>
+최상 위계층의 항목의 왼쪽으로 선을 표시한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-0x4」라고 하는 것으로 무효로 할 수 있다.
+</dd>
+<dt>0x400</dt><dd>
+동시에 하나의 항목 밖에 전개할 수 없게 한다
+</dd>
+<dt>0x200</dt><dd>
+마우스 커서하의 항목에 밑줄을 표시한다.
+</dd>
+
+</dl>
+<h2><a name="Functions">TreeView조작용 편입 함수</a></h2>
+<p>트리뷰를 조작하기 위해서, 다수의 기능이 함수로서 준비되어 있다.<br>
+TV계의 함수가 조작 대상으로 하는 트리뷰는,<a target=_top href='../commands/Gui.html#multiwin'>디폴트GUI윈도우</a>위의 카렌트트리뷰이다.<br>
+카렌트트리뷰는, 통상은 마지막에 항목을 추가한 트리뷰이지만, 「<a target=_top href='../commands/Gui_Add_ListView.html'>Gui,TreeView,TVName</a>」(와)과 같이 해 변경할 수 있다.<br>
+GUI윈도우가 존재하지 않거나, 디폴트GUI윈도우상에 트리뷰콘트로르가 존재하지 않았던 경우,TV계 함수는 「0」(을)를 돌려준다.
+</p>
+<h3><a name="ItemFunc">항목 조작</a></h3>
+<dl>
+<dt><a name="TV_Add">TV_Add</a>(Name, [ParentItemID, Options])</dt><dd>
+트리뷰에 항목을 추가한다.<br>
+Name에는, 항목에 표시되는 텍스트를 지정한다.<br>
+ParentItemID(으)로 지정한 항목의 제일 마지막 아이 항목으로서 추가된다.<br>
+ParentItemID(을)를 생략 할까 「0」(을)를 지정하면, 최상 위계층에 추가된다.<br>
+Options에는 후술의 옵션을 반각 스페이스인가Tab문자 단락으로 지정한다.<br>
+또,TV_Add()전용의 옵션으로서 삽입 위치를 지정하는 이하의 옵션이 있다.<br>
+<dl>
+<dt>First</dt><dd>친항목의 제일 최초의 아이 항목이 된다.</dd>
+<dt>Sort</dt><dd>
+텍스트의 문자 코드순서로 소트 되는 위치에 삽입된다.<br>
+항목은 미리 소트 되고 있을 필요가 있다.(TV_Add()시에 매회Sort옵션을 지정하면 좋다)
+</dd>
+<dt>(수치)</dt><dd>
+항목의ID(을)를 지정한다.<br>
+이 항목의 다음에 삽입된다.
+</dd>
+
+</dl>
+</dd>
+<dt><a name="TV_Modify">TV_Modify</a>(ItemID [, Options, NewName])</dt><dd>
+ItemID그리고 지정한 항목 상태를 변경한다.<br>
+Options(으)로 변경하는 옵션을,NewName에 새로운 텍스트를 지정한다.<br>
+Options(와)과NewName하지만 생략 되었을 경우는,Options에 「Select」(이)가 설정된 것과 같게 된다.<br>
+성공하면ItemID(와)과 같은 값이, 실패하면0하지만 돌려주어진다.
+</dd>
+<dt><a name="TV_Delete">TV_Delete</a>([ItemID])</dt><dd>
+ItemID그리고 지정한 항목을 삭제한다.<br>
+ItemID하지만 지정되지 않았던 경우는, 모든 항목을 삭제한다.<br>
+성공하면1하지만, 실패하면0하지만 돌려주어진다.
+</dd>
+</dl>
+
+<h4><a name="ItemFuncOption">항목 조작으로 사용되는 옵션</a></h4>
+<dl>
+<dt>Bold</dt><dd>텍스트를 굵은 글씨로 표시한다</dd>
+<dt>-Bold</dt><dd>텍스트를 굵은 글씨로 표시하는 옵션을 해제한다
+</dd>
+<dt>Check</dt><dt>Check1</dt><dd>체크 박스의 체크를ON(으)로 한다.</dd>
+<dt>-Check</dt><dt>Check0</dt><dd>체크 박스의 체크를OFF(으)로 한다.</dd>
+<dt>Expand</dt><dt>Expand1</dt><dd>
+항목이 친항목의 경우, 계층을 전개해 직하의 항목을 표시한다.<br>
+항목이 아이 항목을 가지지 않는 경우,TV_Modify()(은)는 실패로 간주해진다.<br>
+TV_Add()그리고 이 옵션이 지정되었을 경우, 전개 상태가 기억되어 다음에 아이 항목이 추가되었을 때에 전개된다.<br>
+항목이 전개되어도, 친항목의 전개의 유무에는 영향을 주지 않는다.
+</dd>
+<dt>-Expand</dt><dt>Expand0</dt><dd>
+항목이 전개되고 있는 경우, 꺾어 접는다.
+</dd>
+<dt>IconN</dt><dd>
+표시하는 아이콘을 설정한다.<br>
+「ImageList」옵션으로 이미지 리스트를 할당해 있을 필요가 있다.<br>
+N에는 「IL_Add」함수가 돌려준 아이콘 번호를 지정한다.(예 「Icon%I%」)<br>
+<dt></dt><dd>
+</dd>
+<dt>Select</dt><dd>항목을 선택 상태로 한다.<br>
+이전에 선택 그런데 판항목의 선택 상태는 없어진다.<br>
+항목의 친항목은 강제적으로 전개된다.<br>
+</dd>
+<dt>Sort</dt><dd>
+아이 항목을 텍스트의 문자 코드순서로 소트 한다
+</dd>
+<dt>Vis</dt><dd>
+그 항목이 표시되도록(듯이) 스크롤 한다.<br>
+친항목이 전개되어 있지 않은 경우는 전개한다.
+</dd>
+<dt>VisFirst</dt><dd>
+Vis(와)과 같지만, 항목이 컨트롤의 맨 위에 나타나도록(듯이) 스크롤 된다.
+</dd>
+
+
+</dl>
+
+<h3><a name="InfoFunc">정보 취득</a></h3>
+<dl>
+<dt><a name="TV_GetSelection">TV_GetSelection</a>()</dt><dd>선택되고 있는 항목의ID(을)를 돌려준다.
+</dd>
+<dt><a name="TV_GetCount">TV_GetCount</a>()</dt><dd>항목의 총수를 돌려준다.
+</dd>
+<dt><a name="TV_GetParent">TV_GetParent</a>(ItemID)</dt><dd>ItemID그리고 지정한 항목의 친항목의ID(을)를 돌려준다.
+</dd>
+<dt><a name="TV_GetChild">TV_GetChild</a>(ItemID)</dt><dd>ItemID그리고 지정한 항목의 제일 최초의 아이 항목의ID(을)를 돌려준다.아이 항목이 존재하지 않는 경우는0(을)를 돌려준다.
+</dd>
+<dt><a name="TV_GetPrev">TV_GetPrev</a>(ItemID)</dt><dd>ItemID그리고 지정한 항목의 하나상의 항목을 돌려준다.항목이 같은 계층안으로 제일 최초의 항목이었던 경우는0(을)를 돌려준다.
+</dd>
+<dt><a name="TV_GetNext">TV_GetNext</a>([ItemID, "Checked | Full"])</dt><dd>
+ItemID그리고 지정한 항목아래의 항목의ID(을)를 돌려준다.<br>
+ItemID(을)를 「0」(으)로 할까 모든 인수를 생략 하면, 제일 최초의 항목의ID하지만 돌려주어진다.<br>
+제2인수에 「"Full"」또는 「"F"」(을)를 지정하면, 계층 관계에 관계없이 다음의 항목이 돌려주어진다(제일 최후였던 경우는0하지만 돌려주어진다.<br>
+제2인수에 「"Checked"」또는 「"C"」(을)를 지정하면, 계층 관계에 관련되지 않고 다음의 체크가ON(이)가 되어 있는 항목이 돌려주어진다.(없으면0하지만 돌려주어진다)<br>
+제2인수를 생략 했을 경우는, 단지 다음의 항목이 돌려주어지지만, 같은 개장중으로 제일 마지막 항목이었던 경우는0하지만 돌려주어진다.
+</dd>
+<dt><a name="TV_GetText">TV_GetText</a>(OutputVar, ItemID):</dt><dd>
+ItemID그리고 지정한 항목의 텍스트를OutputVar에 격납한다.<br>
+문자수가8191아르바이트를 넘었을 경우, 초과 부분은 잘라 버릴 수 있다.<br>
+성공하면ItemID하지만, 실패하면0하지만 돌려주어진다.
+</dd>
+<dt><a name="TV_Get">TV_Get</a>(ItemID, "Expand | Check | Bold")</dt><dd>
+ItemID그리고 지정한 항목 상태를 취득한다.<br>
+제2인수에 「"Expand"」또는 「"E"」(을)를 지정하면 전개의 유무가, 「"Check"」또는 「"C"」(을)를 지정하면 체크 박스의 체크의 유무가, 「"Bold"」또는 「"B」(을)를 지정한다고 문자가 굵은 글씨가 되어 있는지 어떤지가 돌려주어진다.<br>
+각각, 전개되고 있는, 체크가ON(이)가 되어 있는, 굵은 글씨가 되어 있는 경우는,ItemID하지만 돌려주어진다.쌍이 아닌 경우는,0하지만 돌려주어진다.
+</dd>
+</dl>
+
+<h2><a name="Event">이벤트</a></h2>
+<p>「G」옵션으로 라벨명을 지정해 있으면, 아래와 같은 이벤트가 발생할 때마다 써브루틴이 실행된다.<br>
+이 때,<a target=_top href='../Variables.html#GuiEvent'>A_GuiEvent</a>변수에 이벤트명이 격납된다.<br>
+「E」와「e」 등 대문자와 소문자와 소문자가 다른 이벤트명은 별개이다.
+덧붙여 이벤트는 향후도 추가될 가능성이 있다.
+</p>
+<dl>
+<dt>DoubleClick</dt><dd>
+항목이 더블 클릭 되었을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 더블 클릭 된 항목의ID하지만 격납된다.
+</dd>
+<dt>D</dt><dd>항목을 마우스의 왼쪽 버튼으로 드러그 하려고 했을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 드러그 하려고 한 항목의ID하지만 격납된다.<br>
+현재, 드러그&드롭에 관한 기능은 준비되어 있지 않지만, 윈도우 메세지등을 사용해 자기 부담으로 실장하는 것은 가능하다.
+</dd>
+<dt>d</dt><dd>
+항목을 마우스의 오른쪽 버튼으로 드러그 하려고 했을 때에 실행된다.
+</dd>
+<dt>e</dt><dd>
+항목의 텍스트의 편집을 완료했을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 편집된 항목의ID하지만 격납된다.
+</dd>
+<dt>S</dt><dd>
+항목의 선택 상태가 종료했을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 새롭게 선택된 항목의ID하지만 격납된다.
+</dd>
+
+</dl>
+
+<h3><a name="ExEvent">확장 이벤트</a></h3>
+<p>AltSubmit옵션을 지정하면, 상기의 이벤트에 가세해 아래와 같은 이벤트시에도 써브루틴이 불려 간다.
+</p>
+<dl>
+<dt>Normal</dt><dd>
+아이템이 왼쪽 싱글 클릭 되었을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 클릭된 항목의ID하지만 격납된다.
+</dd>
+<dt>RightClick</dt><dd>
+항목이 오른쪽 클릭되었을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 포커스가 있는 항목의 항목 번호가 격납된다.<br>
+Apps키등의 대체 context menu 호출 조작에서는 실행되지 않는다.
+</dd>
+<dt>E</dt><dd>
+「-ReadOnly」(으)로1번째의 텍스트를 편집 가능하게 되어 있을 때, 텍스트를 편집하기 시작했을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 편집되는 행의 번호가 격납된다.
+</dd>
+<dt>F</dt><dd>
+포커스를 받았을 때에 실행된다.
+</dd>
+<dt>f</dt><dd>
+포커스를 잃었을 때에 실행된다.
+</dd>
+<dt>K</dt><dd>
+포커스가 있을 때 키보드의 키가 밀렸다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는, 밀린 키의 가상 키코드가 격납된다.<br>
+키를 누르고 있을 뿐으로 하면, 키 반복이 일해 이벤트가 반복해 발생한다.
+</dd>
+<dt>+</dt><dd>
+항목이 전개되었다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 전개된 항목의ID하지만 격납된다.
+</dd>
+<dt>-</dt><dd>
+항목이 꺾어 접어졌다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 꺾어 접어진 항목의ID하지만 격납된다.
+</dd>
+</dl>
+
+
+<h2>Remarks</h2>
+<p>내부에 격납되고 있는 텍스트의 길이에 관련되지 않고, 최초의260문자까지 밖에 표시되지 않는다.
+</p>
+<p>
+보관 유지할 수 있는 항목의 최대수는65536이다.
+</p>
+<p>
+트리뷰콘트로르는Enter키가 밀린 것을 알 수 없다.<br>
+Enter키가 밀렸을 때에 특정의 동작을 시키고 싶을 때는, 아래와 같은 예의 같게 윈도우에 디폴트 버튼을 설정한다.<br>
+디폴트 버튼은 비표시로 하는 것도 가능하다.
+</p>
+<pre>
+Gui,Add,TreeView,gTVEvent
+Gui,Add,Button,gOnEnter Hidden Default
+;그 외의 초기화 동작
+return
+
+OnEnter:
+	GuiControlGet, FocusedControl, Focus
+	if FocusedControl = SysTreeView321
+		Selected(TV_GetSelection())
+return
+
+LVEvent:
+	if A_GuiEvent = DoubleClick
+		Selected(A_EventInfo)
+return
+
+Selected(item)
+{
+	;항목 결정시의 동작
+}
+</pre>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui_Add_ListView.html'>ListView</a> <a target=_top href='../commands/Gui.html'>Gui</a>, <a target=_top href='../commands/Gui.html#GuiContextMenu'>GuiContextMenu</a>, <a target=_top href='../commands/GuiControl.html'>GuiControl</a>, <a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a>, <a target=_top href='../misc/Styles.html'>윈도우 스타일</a></p>
+
+
+<h2>Example(s)</h2>
+<pre>; The following is a working script that is more elaborate than the one near the top of this page.
+; It creates and displays a TreeView containing all folders the all-users Start Menu.  When the
+; user selects a folder, its contents are shown in a ListView to the right (like Windows Explorer).
+; In addition, a <a target=_top href='../commands/Gui_Add_StatusBar.html'>StatusBar</a> control shows information about the currently selected folder.
+
+; The following folder will be the root folder for the TreeView. Note that loading might take a long
+; time if an entire drive such as C:\ is specified:
+TreeRoot = %A_StartMenuCommon%
+TreeViewWidth := 280
+ListViewWidth := A_ScreenWidth - TreeViewWidth - 30
+
+; Allow the user to maximize or drag-resize the window:
+Gui +Resize
+
+; Create an ImageList and put some standard system icons into it:
+ImageListID := <a target=_top href='../commands/Gui_Add_ListView.html#IL_Create'>IL_Create</a>(10)
+Loop 10  ; Below omits the DLL's path so that it works on Windows 9x too:
+	<a target=_top href='../commands/Gui_Add_ListView.html#IL_Add'>IL_Add</a>(ImageListID, &quot;shell32.dll&quot;, A_Index)
+
+; Create a TreeView and a ListView side-by-side to behave like Windows Explorer:
+Gui, Add, TreeView, vMyTree r20 w%TreeViewWidth% gMyTree ImageList%ImageListID%
+Gui, Add, ListView, vMyList r20 w%ListViewWidth% x+10, Name|Modified
+
+; Set the ListView's column widths (this is optional):
+Col2Width = 70  ; Narrow to reveal only the YYYYMMDD part.
+LV_ModifyCol(1, ListViewWidth - Col2Width - 30)  ; Allows room for vertical scrollbar.
+LV_ModifyCol(2, Col2Width)
+
+; Create a Status Bar to give info about the number of files and their total size:
+<a target=_top href='../commands/Gui_Add_StatusBar.html'>Gui, Add, StatusBar</a>
+SB_SetParts(60, 90)  ; Create three parts in the bar (the third part fills all the remaining width).
+
+; Add folders and their subfolders to the tree. Display the status in case loading takes a long time:
+SplashTextOn, 200, 25, TreeView and StatusBar Example, Loading the tree...
+AddSubFoldersToTree(TreeRoot)
+SplashTextOff
+
+; Display the window and return. The OS will notify the script whenever the user performs an eligible action:
+Gui, Show,, %TreeRoot%
+return
+
+AddSubFoldersToTree(Folder, ParentItemID = 0)
+{
+	; This function adds to the TreeView all subfolders in the specified folder.
+	; It also calls itself recursively to gather nested folders to any depth.
+	Loop %Folder%\*.*, 2  ; Retrieve all of Folder's sub-folders.
+		AddSubFoldersToTree(A_LoopFileFullPath, <a target=_top href='../commands/Gui_Add_TreeView.html#TV_Add'>TV_Add</a>(A_LoopFileName, ParentItemID, &quot;Icon4&quot;))
+}
+
+MyTree:
+if A_GuiEvent &lt;&gt; S  ; i.e. an event other than &quot;select new tree item&quot;.
+	return  ; Do nothing.
+; Otherwise, populate the ListView with the contents of the selected folder:
+; First determine the full path of the selected folder:
+<a target=_top href='../commands/Gui_Add_TreeView.html#TV_GetText'>TV_GetText</a>(SelectedItemText, A_EventInfo)
+ParentID := A_EventInfo
+Loop  ; Build the full path to the selected folder.
+{
+	ParentID := <a target=_top href='../commands/Gui_Add_TreeView.html#TV_GetParent'>TV_GetParent</a>(ParentID)  ; Parent itself can be a parent of another child.
+	if not ParentID  ; No more ancestors.
+		break
+	TV_GetText(ParentText, ParentID)
+	SelectedItemText = %ParentText%\%SelectedItemText%
+}
+SelectedFullPath = %TreeRoot%\%SelectedItemText%
+
+; Put the files and folders into the ListView:
+LV_Delete()  ; Clear all rows.
+GuiControl, -Redraw, MyListView  ; Improve performance by disabling redrawing during load.
+FileCount = 0  ; Init prior to loop below.
+TotalSize = 0
+Loop %SelectedFullPath%\*.*  ; For simplicity, this omits folders so that only files are shown in the ListView.
+{
+	LV_Add(&quot;&quot;, A_LoopFileName, A_LoopFileTimeModified)
+	FileCount += 1
+	TotalSize += A_LoopFileSize
+}
+GuiControl, +Redraw, MyListView
+
+; Update the three parts of the status bar to show info about the currently selected folder:
+SetFormat, float, 0.2  ; Show total file size with only 2 decimal places vs. 6.
+SB_SetText(FileCount . &quot; files&quot;, 1)
+SB_SetText((TotalSize / 1024) . &quot; KB&quot;, 2)
+SB_SetText(SelectedFullPath, 3)
+return
+
+GuiSize:  ; Expand/shrink the ListView and TreeView in response to user's resizing of window.
+if A_EventInfo = 1  ; The window has been minimized.  No action needed.
+	return
+; Otherwise, the window has been resized or maximized. Resize the controls to match.
+GuiControl, Move, MyTree, % &quot;H&quot; . (A_GuiHeight - 30)  ; -30 for StatusBar and margins.
+GuiControl, Move, MyList, % &quot;H&quot; . (A_GuiHeight - 30) . &quot; W&quot; . (A_GuiWidth - TreeViewWidth - 30)
+return
+
+GuiClose:  ; Exit the script when the user closes the TreeView's GUI window.
+ExitApp</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_TreeView.html'>Gui,Add,TreeView</a></div>
+</body>
+</html>

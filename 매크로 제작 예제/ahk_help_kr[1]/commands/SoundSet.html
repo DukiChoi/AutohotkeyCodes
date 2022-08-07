@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SoundSet</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundSet.html'>SoundSet</a></div>
+<h1>SoundSet</h1>
+<p>사운드 디바이스의 각종 설정을 변경</p>
+
+<pre>SoundSet, NewSetting [, ComponentType, ControlType, DeviceNumber]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>NewSetting
+</td>
+<td>
+새로운 설정을-100...100의 사이의 수치로 지정.<br>
+인수가 「+」인가 「-」(으)로부터 시작되는 경우, 현재의 설정으로부터의 상대치의 지정이 된다.<br>
+ControlType하지만 「ONOFF」 「MUTE」 「MONO」 「LOUDNESS」 「STEREOENH」 「BASSBOOST」의 경우, 정의 값을 지정하면ON에, 「0」(을)를 지정하면OFF(이)가 된다.「+」(이)나 「-」(으)로 시작되는 값으로는,ON/OFF(을)를 바꾼다.
+</td>
+</tr>
+<tr>
+<td>ComponentType
+</td>
+<td>
+이하의 어떤 것인가.<br>
+<ul>
+<li>MASTER(디폴트)</li>
+<li>DIGITAL</li>
+<li>LINE</li>
+<li>MICROPHONE</li>
+<li>SYNTH</li>
+<li>CD</li>
+<li>TELEPHONE</li>
+<li>PCSPEAKER</li>
+<li>WAVE</li>
+<li>AUX</li>
+<li>ANALOG</li>
+<li>HEADPHONES</li>
+<li>N/A</li>
+</ul>
+디바이스가 존재하지 않는 경우,ErrorLevel에 그 취지를 나타내는 문자열이 대입된다.<br>
+같은 종류의 것이 다수 있을 때는 「ANALOG:2」(와)과 같이 지정하는 것으로,2번째 이후의 디바이스를 지정할 수 있다.많은 경우,1번째는 입력,2번째는 출력이다.
+</td>
+</tr>
+<tr>
+<td>ControlType
+</td>
+<td><ul>
+<li>VOLUME(디폴트)</li>
+<li>ONOFF</li>
+<li>MUTE</li>
+<li>MONO</li>
+<li>LOUDNESS</li>
+<li>STEREOENH</li>
+<li>BASSBOOST</li>
+<li>PAN</li>
+<li>QSOUNDPAN</li>
+<li>BASS</li>
+<li>TREBLE</li>
+<li>EQUALIZER</li>
+</ul>
+수치로 컨트롤 번호를 지정할 수도 있다.<br>
+그 설정이 존재하지 않는 경우,ErrorLevel에 그 취지를 나타내는 문자열이 대입된다.<br>
+</td>
+</tr>
+<tr>
+<td>DeviceNumber
+</td>
+<td>디바이스 번호.<br>
+디폴트는 「1」
+</td>
+</tr>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>성공했을 경우, 「0」.<br>
+무엇인가 문제가 있으면, 이하와 같은 문장이 대입된다.
+</p>
+<ul>
+<li>Invalid Control Type or Component Type</li>
+<li>Can't Open Specified Mixer</li>
+<li>Mixer Doesn't Support This Component Type</li>
+<li>Mixer Doesn't Have That Many of That Component Type</li>
+<li>Component Doesn't Support This Control Type</li>
+<li>Can't Get Current Setting</li>
+<li>Can't Change Setting</li>
+</ul>
+
+<h2>Remarks</h2>
+<p>현재의 설정치를 취득하려면 ,<a target=_top href='../commands/SoundGet.html'>SoundGet</a>(을)를 사용한다</p>
+<p>이 커멘드로 음량이 변경된 컴퍼넌트는, 좌우의 밸런스가 중앙으로 설정되어 버린다.<br>
+<a target=_top href='../commands/SoundSetWaveVolume.html'>SoundSetWaveVolume</a>그럼 이 부작용은 발생하지 않는다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SoundGet.html'>SoundGet</a>, <a target=_top href='../commands/SoundGetWaveVolume.html'>SoundGetWaveVolume</a>, <a target=_top href='../commands/SoundSetWaveVolume.html'>SoundSetWaveVolume</a>, <a target=_top href='../commands/SoundPlay.html'>SoundPlay</a></p>
+
+<h2>Example(s)</h2>
+<pre>SoundSet, 50  ; Set the master volume to 50%
+SoundSet +10  ; Increase master volume by 10%
+SoundSet -10  ; Decrease master volume by 10%
+SoundSet, 1, Microphone, mute  ; mute the microphone
+SoundSet, +1, , mute  ; Toggle the master mute (set it to the opposite state)
+SoundSet, +20, Master, bass  ; Increase bass level by 20%.
+if ErrorLevel &lt;&gt; 0
+	MsgBox, The BASS setting is not supported for MASTER.
+</pre>
+<pre>
+;사운드 카드의 모든 컴퍼넌트, 컨트롤의 설정을 표시한다.
+; Use the following script to discover your soundcard's capabilities (component types and control types).
+; This script requires v1.0.36+ because it uses a <a target=_top href='../commands/Gui_Add_ListView.html'>ListView</a>.
+
+SetBatchLines -1
+SplashTextOn,,, Gathering Soundcard Info...
+
+Component1 = MASTER
+Component2 = DIGITAL
+Component3 = LINE
+Component4 = MICROPHONE
+Component5 = SYNTH
+Component6 = CD
+Component7 = TELEPHONE
+Component8 = PCSPEAKER
+Component9 = WAVE
+Component10 = AUX
+Component11 = ANALOG
+Component12 = N/A
+
+Control1 = VOLUME
+Control2 = ONOFF
+Control3 = MUTE
+Control4 = MONO
+Control5 = LOUDNESS
+Control6 = STEREOENH
+Control7 = BASSBOOST
+Control8 = PAN
+Control9 = QSOUNDPAN
+Control10 = BASS
+Control11 = TREBLE
+Control12 = EQUALIZER
+; Most of the following probably don't exist in any mixer, but they're queried for completeness:
+Control13 = 0x00000000  ; CUSTOM
+Control14 = 0x10010000  ; BOOLEANMETER
+Control15 = 0x10020000  ; SIGNEDMETER
+Control16 = 0x10020001  ; PEAKMETER
+Control17 = 0x10030000  ; UNSIGNEDMETER
+Control18 = 0x20010000  ; BOOLEAN
+Control19 = 0x21010000  ; BUTTON
+Control20 = 0x30040000  ; DECIBELS
+Control21 = 0x30020000  ; SIGNED
+Control22 = 0x30030000  ; UNSIGNED
+Control23 = 0x30050000  ; PERCENT
+Control24 = 0x40020000  ; SLIDER
+Control25 = 0x50030000  ; FADER
+Control26 = 0x70010000  ; SINGLESELECT
+Control27 = 0x70010001  ; MUX
+Control28 = 0x71010000  ; MULTIPLESELECT
+Control29 = 0x71010001  ; MIXER
+Control30 = 0x60030000  ; MICROTIME
+Control31 = 0x61030000  ; MILLITIME
+
+; Create a ListView and prepare for the main loop:
+Gui, Add, Listview, w400 h400 vMyListView, Component Type|Control Type|Setting|Mixer
+LV_ModifyCol(4, &quot;Integer&quot;)
+SetFormat, Float, 0.2  ; Limit number of decimal places in percentages to two.
+
+Loop  ; For each mixer number that exists in the system, query its capabilities.
+{
+	CurrMixer := A_Index
+	SoundGet, Setting,,, %CurrMixer%
+	if ErrorLevel = Can't Open Specified Mixer  ; Any error other than this indicates that the mixer exists.
+		break
+
+	Loop  ; For each component type that exists in this mixer, query its instances and control types.
+	{
+		CurrComponent := Component%A_Index%
+		if CurrComponent =
+			break  ; No more component types in array.
+		; First check if this component type even exists in the mixer:
+		SoundGet, Setting, %CurrComponent%,, %CurrMixer%
+		if ErrorLevel = Mixer Doesn't Support This Component Type
+			continue  ; Start a new iteration to move on to the next component type.
+		Loop  ; For each instance of this component type, query its control types.
+		{
+			CurrInstance := A_Index
+			; First check if this instance of this instance even exists in the mixer:
+			SoundGet, Setting, %CurrComponent%:%CurrInstance%,, %CurrMixer%
+			; Checking for both of the following errors allows this script to run on older versions:
+			if ErrorLevel in Mixer Doesn't Have That Many of That Component Type,Invalid Control Type or Component Type
+				break  ; No more instances of this component type.
+			Loop  ; Get the current setting of each control type that exists in this instance of this component.
+			{
+				CurrControl := Control%A_Index%
+				if CurrControl =
+					break  ; No more control types in array.
+				SoundGet, Setting, %CurrComponent%:%CurrInstance%, %CurrControl%, %CurrMixer%
+				; Checking for both of the following errors allows this script to run on older versions:
+				if ErrorLevel in Component Doesn't Support This Control Type,Invalid Control Type or Component Type
+					continue
+				if ErrorLevel  ; Some other error, which is unexpected so show it in the results.
+					Setting := ErrorLevel
+				ComponentString := CurrComponent
+				if CurrInstance &gt; 1
+					ComponentString = %ComponentString%:%CurrInstance%
+				LV_Add(&quot;&quot;, ComponentString, CurrControl, Setting, CurrMixer)
+			}  ; For each control type.
+		}  ; For each component instance.
+	}  ; For each component type.
+}  ; For each mixer.
+
+Loop % LV_GetCount(&quot;Col&quot;)  ; Auto-size each column to fit its contents.
+	LV_ModifyCol(A_Index, &quot;AutoHdr&quot;)
+
+SplashTextOff
+Gui, Show
+return
+
+GuiClose:
+ExitApp</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundSet.html'>SoundSet</a></div>
+</body>
+</html>

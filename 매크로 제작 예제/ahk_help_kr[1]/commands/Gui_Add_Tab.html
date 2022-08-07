@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Tab</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Tab.html'>Gui,Add,Tab</a></div>
+<h1>Gui,Add,Tab</h1>
+<p>GUI윈도우에 탭 변환 컨트롤을 추가한다</p>
+
+<pre>Gui, Add, Tab [, Options, Text]
+</pre>
+
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+V그리고 변수명을 지정했을 경우, 「<code><a target=_top href='../commands/Gui_Show.html'>GUI,Submit</a></code>」(이)나<a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a>커멘드로 선택되고 있는 페이지명을 취득할 수 있다.<br>
+고유의 옵션에 대해서는, 아래와 같이 참조.
+</td>
+</tr>
+<tr><td>Text</td><td>
+「|」(으)로 단락지어 선택 가능 항목을 열거한다.<br>
+항목의 뒤의 「|」(을)를 두 개로 하면, 그 항목이 초기 상태로 선택된 상태가 된다.(례:「Default||aaa|bbb」 「aaa|bbb|Default||」)
+</td>
+</tr>
+</table>
+
+<h3>고유의Option</h3>
+
+<dl>
+<dt>Wrap</dt><dd>
+탭이1행에 들어가지 않을 때, 복수행으로 표시한다.(디폴트)<br>
+「-Wrap」라고 지정하면, 복수행으로 하지 않고, 화살표 버튼으로 스크롤 시키는 형식이 된다.
+</dd>
+<dt>Buttons</dt><dd>
+탭을 버튼형으로 표시한다.<br>
+탭 페이지 부분의 입체적인 테두리는 표시되지 않게 된다.<br>
+탭이 복수행 때, 위의 행의 탭을 선택해도, 행이 바뀌지 않는다.
+</dd>
+<dt>Left</dt><dt>Right</dt><dt>Bottom</dt>
+<dd>
+탭을 탭 페이지의  다음이 아니고, 왼쪽/우/아래에 표시한다.<br>
+좌/오른쪽으로 표시하는 경우, 「-Wrap」(은)는 사용할 수 없다.또, 커스텀 배경색을 사용하고 있다고 문자가 정상적으로 묘화 되지 않기 때문에, 「-BackGround」등에서 무효로 해 줄 필요가 있다.
+</dd>
+
+</dd>
+<dt>AltSubmit</dt><dd>
+<a target=_top href='../commands/Gui_Submit.html'>Gui,Submit</a>(이)나<a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a>그리고 취득되는 정보를 변경한다.<br>
+통상은, 선택된 페이지의 캡션이 취득되지만, 이 옵션을 지정하면, 선택된 페이지의 번호가 취득된다.(1번째가 「1」, 미선택시는 공문자열)
+</dd>
+
+<dt>ChooseN</dt><dd>
+N에 최초로 선택되는 항목의 번호를 지정한다.
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+<p>
+탭 콘트롤에서는,Ctrl+PageDown/Ctrl+PageUp(이)나Ctrl+Tab/Ctrl+Chift+Tab그리고 탭 페이지를 교체된다.
+</p>
+
+
+<p>
+Tab컨트롤을 배치하면, 그 탭 페이지상에 컨트롤을 배치할 수 있게 된다.<br>
+<a target=_top href='../commands/Gui_Tab.html'>Gui, Tab</a>서브 커멘드로 배치처를 변경할 수 있다.<br>
+각 탭 페이지에 최초의 컨트롤을 배치할 때,X,Y옵션에 의한 좌표 지정을 생략 하면, 탭 페이지의 좌상에 배치된다.<br>
+또,X+n/Y+n옵션으로 상대 좌표를 지정하면, 탭 페이지의 좌상으로부터의 상대 좌표가 된다.
+</p>
+<p>탭 페이지상의 컨트롤은, 탭 페이지에서는 봐 내 배치하는 일도 가능.<br>
+초과하고 있는 컨트롤은, 배치된 탭 페이지가 액티브한 때 마셔 표시된다.
+</p>
+<p>각 윈도우에 배치할 수 있다Tab컨트롤수의 상한은255, 각Tab컨트롤의 페이지수의 상한은256페이지.
+</p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Tab.html'>Gui,Tab</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Tab.html'>Gui,Add,Tab</a></div>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>식</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Expression.html'>식</a></div>
+<h1>식</h1>
+<h2>개요</h2>
+<pre>
+x:=(a+b)*10
+if(x>1000){
+    func(x+y,1)
+}
+</pre>
+
+<p>연산자나<a target=_top href='./Function.html'>함수</a>호출해, 「()」 등을 조합하고, 복잡한 처리를 실시할 수 있다.<br>
+식의 결과는<a target=_top href='./commands/__Assign.html'>변수에 대입</a>하거나<a target=_top href='./commands/IfExpression.html'>분기의 조건에 사용</a>할 수 있다.<br>
+단지 함수의 실행만을 실시하는 일도 가능.
+</p>
+<p>
+또, 일부의 커멘드에 준비되어 있는 수치를 단독으로 지정하는 타입의 인수에서는, 식에서 값을 지정할 수도 있다.<br>
+그 이외의 인수에서도, 「% a+b」(와)과 같이 인수의 최초로 「%」라고 공백 문자를 적으면, 식을 지정할 수 있다.
+</p>
+
+<pre>
+getSomeValue()>0 or die()
+</pre>
+<p>상기와 같이, 「<a target=_top href='./commands/__Or.html'>or</a>」연산자가 좌변이 가짜 때만 우변의 평가를 실시하는 것 등을 이용하면, 「함수의 결과가0보다 크지 않으면 다른 함수를 실행」이라고 하는 처리를 식만으로 기술할 수도 있다.<br>
+다만, 아래와 같은 대입식이나 함수 호출해 이외로 시작되는 식은, 부정한 행으로 간주해져 버린다.
+</p>
+<pre>
+0<(x:=getSomeValue()) or die()
+</pre>
+
+
+<h2>변수</h2>
+<p>각종 커멘드의 인수로 사용하는 경우와 달리, 식중에서 변수를 사용하는 경우는, 「%」(으)로 사이에 두지 않고 그대로 변수명을 쓰면 좋다.
+</p>
+<p>
+아래와 같이, 식중에 「%」에서는씨로 변수명을 쓰면, 그 내용이 전개된 다음, 변수명으로서 다루어진다.<br>
+전후의 변수명으로서 타당한 문자와  아울러 변수명으로서 다루어진다.
+</p>
+<pre>
+Var1:=100,Var2:=10,Index:=1,VarName:="Var2"
+MsgBox,% Var%Index%+%VarName%
+</pre>
+<pre>
+a:=1,b:=2,c:=3,xxx1xxx23xxx:=10000
+MsgBox,% xxx%a%xxx%b%%c%xxx
+</pre>
+
+<p>
+변수내의 문자열을 전개한 결과, 변수명으로서 올바르지 않은 문자열이 되어 버리는 경우는, 에러가 된다.
+</p>
+<h2>문자열</h2>
+<pre>showmessage("He said ""hello""")
+</pre>
+<p>문자열은, 「&quot;」(으)로 사이에 둔다.<br>
+하늘의 문자열을 나타내려면 , 「&quot;&quot;」라고2개 계속하고 쓰면 좋다.<br>
+문자열중에 「&quot;」(을)를 포함하고 싶은 경우, 「&quot;」대신에 「&quot;&quot;」라고2개 계속하고 쓴다.
+</p>
+<pre>
+text:=
+MsgBox,% text
+</pre>
+<p>식의 내용이 하늘의 경우, 하늘의 문자열로 간주해진다.<br>
+
+
+
+</p>
+<h2>수치</h2>
+
+<pre>
+SetFormat,FLOAT,0.1
+MsgBox,% 0.1+0.2
+MsgBox,% 10/3
+MsgBox,% 10/3 + 10/3 + 10/3
+</pre>
+<p>산술 연산자의 어느 쪽인지가 소수치였던 경우, 결과는 소수치가 된다.<br>
+또, 연산 결과가 소수가 되는 경우도, 자동적으로 소수치가 된다.
+</p>
+<p>
+산술 연산의 결과가 소수의 경우, 계산 도중은 부동 소수점치로 보관 유지되어 최종적으로<a target=_top href='./commands/SetFormat.html'>SetFormat</a>커멘드로 지정된 형식에서 변수에 격납된다.
+</p>
+
+<p>
+「1/0」 「x+*y」등과 같이, 정상적으로 처리할 수 없는 연산은, 하늘의 문자열로서 다루어진다.
+</p>
+
+
+<h2>진위치</h2>
+<p>if()(이)나 「!」 「NOT」 「AND(&amp;&amp;)」 「OR(||)」등의 논리 연산자에서는, 피연산자가 되는 식이 진위치로서 다루어진다.
+</p>
+<p>
+「&lt;」 「&gt;」 「&lt;=」 「&gt;=」 「=」 「==」 「&lt;&gt;」 「!=」(와)과 같은 비교 연산자의 연산 결과는, 조건에 일치했을 경우진, 일치하지 않았던 경우가짜로 간주해진다.<br>
+수치는, 「0.0」(이)나 「0」(이)가 가짜, 그 이외는 진으로 간주해진다.<br>
+하늘의 문자열은 가짜,1문자 이상의 문자열은 진으로 간주해진다.
+</p>
+<p>
+비교 연산자나 논리 연산자의 결과는, 진정한 경우는 「1」, 가짜 경우는 「0」(이)가 된다.
+</p>
+
+<p>진을 나타내는 「true」, 가짜를 나타내는 「false」라고 하는 편입 변수가 준비되어 있다.
+</p>
+
+
+<h2>논리 연산의 생략</h2>
+<p>
+식중에서 「and」(이)나 「or」의 연산으로 연결된 논리식을 실행하는 경우, 왼쪽에서 실행해, 대답이 확정한 시점에서 평가를 종료한다.<br>
+예를 들어, 「a or b」에서는, 「a」(이)가true의 경우, 식 전체가true(이)가 되는 것은 분명해서 「b」의 평가는 행해지지 않는다.<br>
+같이 「a and b」에서는, 「a」(이)가false의 경우, 식 전체가false(이)가 되는 것이 분명해서 「b」의 평가는 행해지지 않는다.<br>
+식중의 함수 호출은 평가시에 실행되므로, 「a or B()」(와)과 같은 식에서는, 「B()」(이)가 실행되지 않는 경우가 있다.
+</p>
+
+
+<h2>연산자</h2>
+<p>식중에서 사용할 수 있는 연산자에는, 이하의 것이 있다.<br>
+자세한 것은 링크처의 개별 설명을 참조.
+</p>
+
+
+<h3>문자열 연산자</h3>
+<p>
+<a target=_top href='./commands/__Concat.html' title="2개의 식을 문자열로서 연결하는 연산자"><code>.</code>(문자열 연결)</a>
+</p>
+
+
+<h3>산술 연산자</h3>
+<p><a target=_top href='./commands/__Minus.html' title="식의 부호를 반전하는 연산자">-(부호 반전)</a>, 
+<a target=_top href='./commands/__Add.html' title="2개의 식의 화를 돌려주는 연산자">+(가산)</a>, 
+<a target=_top href='./commands/__Sub.html' title="2개의 식의 차이를 돌려주는 연산자">-(감산)</a>, 
+<a target=_top href='./commands/__Multi.html' title="2개의 식의 적을 돌려주는 연산자">*(곱셈)</a>, 
+<a target=_top href='./commands/__Div.html' title="2개의 식의 상을 돌려주는 연산자">/(제산)</a>, 
+<a target=_top href='./commands/__Div2.html' title="2개의 식의 상을 돌려주는 연산자">//(결론 짓지 않는 제산)</a>, 
+<a target=_top href='./commands/__Pow.html' title="2개의 식 나무승을 요구하는 연산자">**(나무승)</a>,
+<a target=_top href='./commands/__IncDec.html' title="변수의 값을1늘린다/줄인다">++/--</a>
+
+</p>
+
+
+
+<h3>비트 연산자</h3>
+<p><a target=_top href='./commands/__BitNot.html' title="식을 정수로서 비트 반전하는 연산자">~(비트 반전)</a>, 
+<a target=_top href='./commands/__BitOr.html' title="2개의 식의 비트마다의 논리합을 요구하는 연산자">|(비트 논리합)</a>, 
+<a target=_top href='./commands/__BitAnd.html' title="2개의 식의 비트마다의 논리적을 요구하는 연산자">&(비트 논리적)</a>, 
+<a target=_top href='./commands/__BitXor.html' title="2개의 식의 비트마다의 배타적 논리합을 요구하는 연산자">^(비트 배타적 논리합)</a>, 
+<a target=_top href='./commands/__RShift.html' title="비트를 지정 자리수 오른쪽 시프트 하는 연산자">>>(논리 오른쪽 시프트)</a>, 
+<a target=_top href='./commands/__LShift.html' title="비트를 지정 자리수왼쪽으로 시프트 하는 연산자"><<(왼쪽 시프트)</a>
+</p>
+<h3>논리 연산자</h3>
+<p><a target=_top href='./commands/__Not.html' title="반대의 진위치를 돌려주는 연산자">!(논리 부정)</a>, 
+<a target=_top href='./commands/__Or.html' title="2개의 식의 논리합의 진위치를 돌려주는 연산자">||(논리합)</a>, 
+<a target=_top href='./commands/__And.html' title="2개의 식의 논리적의 진위치를 돌려주는 연산자">||(논리적)</a>
+</p>
+<h3>비교 연산자</h3>
+<p><a target=_top href='./commands/__Gt.html' title="왼쪽의 식이 크면 실로 되는 연산자">&gt;(대든지)</a>, 
+<a target=_top href='./commands/__Lt.html' title="왼쪽의 식이 작으면 실로 되는 연산자">&lt;(소든지)</a>, 
+<a target=_top href='./commands/__GtEq.html' title="왼쪽의 식이 오른쪽의 식 이상의 크기라면 실로 되는 연산자">&gt;=(이상)</a>, 
+<a target=_top href='./commands/__LtEq.html' title="왼쪽의 식이 오른쪽의 식 이하의 크기라면 실로 되는 연산자">&lt;=(이하)</a>, 
+<a target=_top href='./commands/__Equal.html' title="좌우의 식이 같은 값이라면 실로 되는 연산자(문자열의 대문자 소문자를 무시)">=(대문자 소문자 무시의 등치)</a>, 
+<a target=_top href='./commands/__Equal2.html' title="좌우의 식이 같은 값이라면 실로 되는 연산자(문자열의 대문자 소문자를 구별)">==(등치)</a>, 
+<a target=_top href='./commands/__NotEqual.html' title="좌우의 식이 다른 값이라면 실로 되는 연산자">!=(비등치)</a>
+</p>
+<h3>주소 연산자</h3>
+<p><a target=_top href='./commands/__Addr.html' title="변수의 내용이 격납된 메모리 영역의 주소를 얻는 연산자">&(주소)</a>, 
+<a target=_top href='./commands/__Ref.html' title="주소로 지정된 메모리 영역의 아르바이트치를 얻는 연산자">*(주소에 격납된 값)</a>
+</p>
+
+<h3>그 외</h3>
+<p>
+<a target=_top href='./commands/__Assign.html'>각종 대입 연산자</a>, <a target=_top href='./commands/__Condition.html' title="첫째의 식이 진이라면2손톱의 식을, 가짜라면3손톱의 식을 평가한다">?:(조건)</a>, 
+<a target=_top href='./commands/__Comma.html' title="왼쪽의 식을 평가한 후우의 식을 평가한다">,(콤마 단락으로 복수의 식을 평가) </a>
+</p>
+
+
+<!-- 
+<h2>문자열 연산자</h2>
+<table>
+<tr><td><code>Exp1 . Exp2</code></td>
+<td>2개의 변수나 문자열, 식의 결과를 문자열로서 연결한다.<br>
+Exp1(와)과 「.」, 「.」라고Exp2의 사이에는 스페이스를 비우지 않으면 안 된다.
+</td>
+</tr>
+</table>
+<table>
+<tr><td>-A
+</td><td>
+「-」(을)를 붙여진 항이나 식은 부의 값을 나타낸다.
+</td></tr>
+
+
+
+<tr><td>A+B
+</td><td>
+가산
+</td></tr>
+
+
+<tr><td>A-B
+</td><td>
+제산
+</td></tr>
+
+
+<tr><td>A*B
+</td><td>
+곱셈
+</td></tr>
+
+
+<tr><td>A/B
+</td><td>
+제산
+</td></tr>
+
+
+<tr><td>A//B
+</td><td>
+결론 짓지 않는 제산.<br>
+예를 들어, 「7//3」(은)는2에, 「7//-3」(은)는-2(이)가 된다.<br>
+몇개의 피연산자가 소수 표현이었던 경우, 소수로서 제산한 상을 넘지 않는 최대의 정수에 말 수 있다.또, 이 경우 결과는 소수 표현이 된다.(「7//3.0」(은)는2.0, 「7//-3.0」(은)는-3.0(이)가 된다)
+
+</td></tr>
+
+
+
+<tr><td>A**B
+</td><td>
+누승.A의B승<br>
+A(와)과B(은)는 모두 소수치를 사용할 수 있다.<br>
+A(을)를 부의 값으로 하는 것은 할 수 없다.
+</td></tr>
+
+
+</table>
+
+<h2>비트 연산자</h2>
+<p>비트 연산 할 수 있는 것은 정수치만.<br>
+소수치는, 정수치로 변환하고 나서 계산된다.<br>
+내부적으로는64비트 부호 첨부 정수로 다루어지고 있는 모양.
+부호 첨부64비트 정수의 범위(-9223372036854775808..9223372036854775807)의 범위에 들어가지 않는 경우,65비트째부터 위는 잘라 버릴 수 있다.
+</p>
+<table>
+<tr><td>~A
+</td><td>
+A의 비트를 반전한다.<br>
+32비트 부호 없음 정수의 범위내의 값은, 하위32비트만 반전된다.(부의 값의 경우,32비트에서도64비트에서도 결과는 같다)
+</td></tr>
+
+
+<tr><td>A|B
+</td><td>
+비트의 논리합
+</td></tr>
+
+
+<tr><td>A&amp;B
+</td><td>
+비트의 논리적
+</td></tr>
+
+<tr><td>A^B
+</td><td>
+비트의 배타적 논리합
+</td></tr>
+
+
+<tr><td>A&gt;&gt;B
+</td><td>
+A(을)를 오른쪽으로B비트만 시프트 한다.<br>
+논리 오른쪽 시프트이므로, 최상위비트가1그렇지만, 열린 좌측에는 항상0하지만 채울 수 있다.<br>
+산술 오른쪽 시프트를 하고 싶을 때는,2**B그리고 나눈다.
+</td></tr>
+
+
+<tr><td>A&lt;&lt;B
+</td><td>
+A(을)를 왼쪽으로B비트만 시프트 한다.
+</td></tr>
+
+
+</table>
+
+
+<h2>논리 연산자</h2>
+<p>수치의 제로나 하늘의 문자열은 가짜(False)(으)로서 다루어져 그 이외는 진(True)(으)로서 다루어진다.
+</p>
+<p>논리 연산의 결과를 변수에 대입하면, 가짜(False)의 경우 「0」, 진(True)의 경우 「1」(이)가 대입된다.
+</p>
+<table>
+<tr><td>NOT A<br>
+! A
+</td><td>
+진위를 반전한다.
+!쪽이 연산자의 우선도가 높다.
+</td></tr>
+
+<tr><td>A OR B<br>
+A || B
+</td><td>
+논리합
+</td></tr>
+
+
+<tr><td>A AND B<br>
+A &amp;&amp; B
+</td><td>
+논리적
+</td></tr>
+
+</table>
+
+<h2>비교 연산자</h2>
+<p>
+주로 조건 분기에서 사용하지만, 비교 연산의 결과를 변수에 대입하는 경우, 가짜(False)(이)라면 「0」, 진(True)(이)라면 「1」(이)가 대입된다.
+</p>
+<p>수치가 아닌 것을 비교하는 경우, 문자열로서 문자 코드의 줄 순서로 비교된다.<br>
+수치여도, 「&quot;」(으)로 둘러싸여 있는 경우는, 문자열로 간주해진다.(례:「&quot;10&quot;」)
+이 때,<a target=_top href='./commands/StringCaseSense.html'>StringCaseSense</a>커멘드로 설정이 변경되지 않는 이상 대문자 소문자의 차이는 무시된다.(「=」 「==」(을)를 제외한다)
+</p>
+
+<table>
+<tr><td>A &gt; B
+</td><td>
+A하지만B보다 크면 진(True)(이)가 된다.
+</td></tr>
+
+
+<tr><td>A &lt; B
+</td><td>
+A하지만B보다 작으면 진(True)(이)가 된다.
+</td></tr>
+
+<tr><td>A &gt;= B
+</td><td>
+A하지만B이상이라면 진(True)(이)가 된다.
+</td></tr>
+
+
+<tr><td>A &lt;= B
+</td><td>
+A하지만B이하라면 진(True)(이)가 된다.
+</td></tr>
+
+<tr><td>A = B
+</td><td>
+A(와)과B하지만 동치 때 진(True)(이)가 된다.<br>
+문자열의 연산에 있어서의 대문자 소문자의 차이는 항상 무시된다.
+</td></tr>
+
+
+<tr><td>A == B
+</td><td>
+A(와)과B하지만 동치 때 진(True)(이)가 된다.<br>
+문자열의 연산에 있어서의 대문자 소문자의 차이는 항상 구별된다.
+
+</td></tr>
+
+
+<tr><td>A &lt;&gt; B<br>
+A != B
+</td><td>
+A(와)과B하지만 동치가 아닐 때 진(True)(이)가 된다.
+</td></tr>
+
+
+</table>
+
+<h2>주소 연산자</h2>
+<table>
+<tr><td>&amp;Var</td><td>변수Var의 격납된 메모리 영역의 주소가 된다.
+</td></tr>
+<tr><td>*Addr</td><td>주소가 정수Addr그리고 나타내지는 메모리 영역의 아르바이트치(0...255)(이)가 된다.<br>
+「<code>*Addr:=Asc("x")</code>」(와)과 같이 대입 끝에는 할 수 없다.<br>
+값을 변경하려면 , 「<code>DllCall("RtlFillMemory", UInt, Addr, UInt, 1 , UChar, Asc("x")) </code>」(와)과 같이 한다.
+</td>
+</tr></table>
+ -->
+
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Expression.html'>식</a></div>
+</body>
+</html>

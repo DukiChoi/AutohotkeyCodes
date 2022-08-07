@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#MaxMem</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_MaxMem.html'>#MaxMem</a></div>
+
+<h1>#MaxMem</h1>
+<p>변수를 사용할 수 있는 메모리 용량의 최대치를MB그리고 지정</p>
+
+<pre>#MaxMem Megabytes</pre>
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>  <tr>
+    <td>Megabytes</td>
+    <td>용량을MB그리고 지정.지정할 수 있는 범위는1...4095.초기설정은64.</td>
+  </tr>
+</table>
+<h2>Remarks</h2>
+<p>변수의 용량을 제한하는 것으로써, 스크립트가 대량의 메모리를 사용해 버리는 상황을 막을 수 있다.
+
+</p>
+<p>
+스크립트가 사용하는 메모리를 절약하고 싶은 경우, 큰 사이즈의 데이터를 격납하는 변수는, 불필요하게 되면 공문자열을 대입해 주면 좋다.
+</p>
+<p>
+VarSetCapacity에 의한 수동 할당에서는, 여기서의 설정에 관계없이 얼마든지 큰 사이즈를 할당할 수 있다.
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/VarSetCapacity.html'>VarSetCapacity</a>, <a target=_top href='../Variables.html'>Variables</a>, <a target=_top href='../commands/Sort.html'>Sort</a>, <a target=_top href='../commands/WinGetText.html'>WinGetText</a>, <a target=_top href='../commands/ControlGetText.html'>ControlGetText</a>, <a target=_top href='../commands/_MaxThreads.html'>#MaxThreads</a></p>
+<h2>Example(s)</h2>
+<pre>#MaxMem 256 ; Allow 256 MB per variable.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_MaxMem.html'>#MaxMem</a></div>
+</body>
+</html>

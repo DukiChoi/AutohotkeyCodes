@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#MaxThreads</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_MaxThreads.html'>#MaxThreads</a></div>
+<h1>#MaxThreads</h1>
+<p>동시에 실행할 수 있는 최대의<a target=_top href='../misc/Threads.html'>스렛드</a>수를 설정</p>
+
+<pre>#MaxThreads Value </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>Value
+</td>
+<td>1(으)로부터20까지의 정수를 지정
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+<p>디폴트 설정은 「10」.</p>
+<p>이 지령은 스크립트중에서1회만 지정 가능.</p>
+
+<p>「1」(을)를 지정할 수도 있지만,<a target=_top href='../commands/MsgBox.html'>MsgBox</a>등에서 정지중에 hot key를 실행할 수 없게 되어 버리기 위해, 추천 되지 않는다.
+</p>
+
+<p>1행목으로<a target=_top href='../commands/ExitApp.html'>ExitApp</a>, <a target=_top href='../commands/Pause.html'>Pause</a>, <a target=_top href='../commands/Edit.html'>Edit</a>, <a target=_top href='../commands/Reload.html'>Reload</a>, <a target=_top href='../commands/KeyHistory.html'>KeyHistory</a>, <a target=_top href='../commands/ListLines.html'>ListLines</a>, <a target=_top href='../commands/ListVars.html'>ListVars</a>, <a target=_top href='../commands/ListHotkeys.html'>ListHotkeys</a>하지만 실행되는 hot key는, 여기서의 설정에 관계없이 기동된다.</p>
+<p>이 지령으로의 설정이<a target=_top href='../commands/_MaxThreadsPerHotkey.html'>#MaxThreadsPerHotkey</a>(으)로의 설정보다 작은 경우, 이쪽의 설정이 우선된다.</p>
+
+<h2>Related</h2>
+<p> <a target=_top href='../commands/_MaxThreadsPerHotkey.html'>#MaxThreadsPerHotkey</a>, <a target=_top href='../misc/Threads.html'>Threads</a>, <a target=_top href='../commands/_MaxHotkeysPerInterval.html'>#MaxHotkeysPerInterval</a>, <a target=_top href='../commands/_HotkeyInterval.html'>#HotkeyInterval</a>, <a target=_top href='../commands/ListHotkeys.html'>ListHotkeys</a> </p>
+
+<h2>Example(s)</h2>
+<pre>#MaxThreads 2
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_MaxThreads.html'>#MaxThreads</a></div>
+</body>
+</html>

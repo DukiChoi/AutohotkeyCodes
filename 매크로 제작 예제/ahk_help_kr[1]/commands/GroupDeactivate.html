@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>GroupDeactivate</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GroupDeactivate.html'>GroupDeactivate</a></div>
+<h1>GroupDeactivate</h1>
+<p><a target=_top href='../commands/GroupAdd.html'>GroupAdd</a>그리고 정의한 윈도우 그룹에 속하지 않는 윈도우를 순서에 액티브화한다</p>
+
+<pre>GroupDeactivate, GroupName [, R] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>GroupName
+</td>
+<td><a target=_top href='../commands/GroupAdd.html'>GroupAdd</a>그리고 정의한 그룹명
+</td>
+</tr>
+<tr>
+<td>R
+</td>
+<td>
+그룹에 속하는 윈도우가 액티브한 상태로에 이 커멘드를 실행했을 때, 통상은 제일 옛날에 액티브했던 윈도우가 액티브하게 되지만, 제2당겨 수에 「R」(을)를 지정했을 경우, 제일 최근 액티브했던 윈도우가 액티브하게 된다.<br>
+그룹에 속하지 않는 윈도우가 액티브한 경우, 다음에 액티브하게 되는 것은 항상 제일 옛날에 액티브했던 윈도우.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+<p>
+액티브 윈도우가 바뀐 직후에 다른 윈도우가 액티브하게 되면,OS(이)나 설정에 따라서는 태스크바 버튼이 점멸하는 것만으로 액티브 윈도우가 변하지 않다.<br>
+이것을 막으려면 ,<a target=_top href='../commands/_WinActivateForce.html'>#WinActivateForce</a>지령을 사용한다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/GroupAdd.html'>GroupAdd</a>, <a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>, <a target=_top href='../commands/GroupClose.html'>GroupClose</a></p>
+
+<h2>Example(s)</h2>
+<pre>GroupDeactivate, MyFavoriteWindows ; Visit non-favorite windows to clean up desktop.</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GroupDeactivate.html'>GroupDeactivate</a></div>
+</body>
+</html>

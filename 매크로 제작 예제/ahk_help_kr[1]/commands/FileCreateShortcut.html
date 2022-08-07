@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FileCreateShortcut</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileCreateShortcut.html'>FileCreateShortcut</a></div>
+<h1>FileCreateShortcut</h1>
+<p>쇼트 컷(.lnk)(을)를 작성한다</p>
+
+<pre>FileCreateShortcut, Target, LinkFile [, WorkingDir, Args, Description, IconFile, ShortcutKey, IconNumber, RunState]</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr>
+<td>Target
+</td>
+<td>
+쇼트 컷의 링크 앞.<br>
+다만, 인수는 「Args」 쪽으로 지정한다.
+
+</td>
+</tr>
+<tr>
+<td>LinkFile
+</td>
+<td>
+작성하는 쇼트 컷의 파일명.<br>
+확장자(extension)는 「.lnk」(으)로 하는 것.<br>
+벌써 파일이 존재하는 경우는, 덧쓰기된다.
+상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.
+
+</td>
+</tr>
+<tr>
+<td>WorkingDir
+</td>
+<td>
+쇼트 컷이 실행될 때의 작업 폴더.<br>
+</td>
+</tr>
+<tr>
+<td>Args
+</td>
+<td>
+링크 앞 가운데, 인수의 부분.
+</td>
+</tr>
+<tr>
+<td>Description
+</td>
+<td>코멘트
+</td>
+</tr>
+<tr>
+<td>IconFile
+</td>
+<td>
+아이콘을 포함한 파일의 풀 패스.<br>
+확장자(extension)가 「.exe」(이)나 「.dll」의 파일을 지정했을 경우, 제일 최초의 아이콘이 사용된다.
+</td>
+</tr>
+<tr>
+<td>ShortcutKey
+</td>
+<td>
+영숫자나 기호,<a target=_top href='../KeyList.html'>key list</a>에 있는 키명 등.<br>
+표준 키만 사용할 수 있다.<br>
+Ctrl+Alt+여기서 지정한 키가 단축 키가 된다.<br>
+단축 키가 유효한 것은, 데스크탑이나 스타트 메뉴 이하에 있는 쇼트 컷 파일만.
+</td>
+</tr>
+<tr>
+<td>IconNumber</td>
+<td>프로그램 파일중의 몇번째의 아이콘을 쇼트 컷의 아이콘으로 하는지를 설정
+</td>
+</tr>
+<tr>
+<td>RunState</td>
+<td>쇼트 컷의 프롭퍼티의 「실행시의 크기」의 부분을 설정.<br>
+이하의 어떤 것인가.<br>
+어플리케이션에 따라서는, 이 설정은 무시된다.<br>
+<dl>
+<dt>1</dt><dd>통상의 윈도우(디폴트)</dd>
+<dt>3</dt><dd>최대화</dd>
+<dt>7</dt><dd>최소화</dd>
+</dl>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>성공시는 「0」, 실패시는 「1」.</p>
+
+<h2>Remarks</h2>
+
+<p>
+Target에 상대 패스를 지정했을 경우, 자동적으로 시스템 패스로부터 파일이 검색되어 해당하는 파일이 있으면 그 패스로 쇼트 컷이 작성된다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/FileGetShortcut.html'>FileGetShortcut</a>, <a target=_top href='../commands/FileAppend.html'>FileAppend</a></p>
+
+<h2>Example(s)</h2>
+<pre>; The letter &quot;i&quot; in the last parameter makes the shortcut key be Ctrl-Alt-I:</pre>
+<pre>FileCreateShortcut, Notepad.exe, %HOMEDRIVE%%HOMEPATH%\Desktop\My Shortcut.lnk, C:\, &quot;%A_ScriptFullPath%&quot;, My Description, C:\My Icon.ico, i</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileCreateShortcut.html'>FileCreateShortcut</a></div>
+</body>
+</html>

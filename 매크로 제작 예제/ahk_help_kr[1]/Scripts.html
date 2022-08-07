@@ -1,0 +1,588 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>스크립트</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Scripts.html'>스크립트</a></div>
+
+
+<h1>스크립트</h1>
+<h2><a name="script">스크립트의 구성요소</a></h2>
+<p>AutoHotkey의 스크립트는, 이하와 같은 요소로 구성된다.
+</p>
+
+<h3>커멘드</h3>
+<pre>FileAppend,This is test file.,test.txt
+Run,notepad.exe test.txt
+</pre>
+<p>
+AutoHotkey의 스크립트는, 원칙으로서1행에 하나의 커멘드를 기술한다.<br>
+1행의 문자수는16,383아르바이트 이내라고 하는 제한이 있다.<br>
+커멘드는, 커멘드명과 인수를 콤마로 단락지어 기술한다.<br>
+커멘드명의 직후는, 공백 문자로 단락지으면, 콤마를 생략 해도 괜찮다.(제1인수에 공백을 지정하는 경우를 제외하다)<br>
+인수에 문자열을 지정하는 경우에서도, 「"」등에서 괄충분해는 하지 않고, 그대로 기술한다.<br>
+인수의 선두와 말미의 공백 문자는 무시되지만, 「%<a target=_top href='./Variables.html#Space'>A_Space</a>%」(와)과 같이 짜넣어 변수의 참조로서 기술하면 무시되지 않게 된다.<br>
+또,<a target=_top href='./commands/AutoTrim.html'>AutoTorim</a>(을)를Off(으)로 하는 것도, 전후의 공백이 무시되지 않게 할 수 있다.
+</p>
+<p>커멘드에는, 단지 그 자리에서 실행되어 다음의 행으로 옮기는 것 뿐만이 아니고, 조건에 의해서 다음에 실행되는 행이 바뀐다If계 커멘드나, 일련의 커멘드를 반복해 실행한다Loop커멘드, 스크립트의 다른 장소에 점프 한다GoTo커멘드,GoSub커멘드 등도 있다.
+</p>
+<p>사용할 수 있는 커멘드에 대해서는,<a target=_top href='./commands/index.html'>레퍼런스</a>(을)를 참조.</p>
+
+<h3>복수행에 건너는 식·커멘드</h3>
+<pre>
+if(value=1
+    or value=2){
+    MsgBox,value is 1 or 2
+}
+</pre>
+<p>최초의 비공백 문자가 「++」 및 「--」이외의 연산자의 경우, 전의 행의 계속으로 간주해진다.<br>
+긴 식을 분할하는 것으로, 스크립트의 가독성을 향상 당한다.
+</p>
+<pre>
+Gui,Add,Text
+    ,w100 h100 xp+0 yp+24 vTextLabel
+    ,DUMMYMESSAGE
+</pre>
+<p>「,」도 연결에 사용할 수 있기 위해, 커멘드의 인수를 복수행으로 분할할 수도 있다.
+</p>
+<pre>MsgBox,1
+    +2
+</pre>
+<p>커멘드의 인수에서는, 「+」등의 연산자는 문자열의 일부로 간주해지지만, 행의 연결에는 유효하기 때문에, 상기예에서는 「1+2」라고 하는 문자열이 표시된다.
+</p>
+<pre>val:=var1
+    ;comment
+    +var2 ;comment
+    /* comment
+    */ +var3
+</pre>
+<p>공행, 공백 문자만의 행, 코멘트등이 늦지 않아도 연결할 수 있다.
+</p>
+
+<h3>히아드큐먼트</h3>
+<pre>MsgBox,this
+(
+ is
+ long
+) message
+</pre>
+<p>「(」만의 행이 있으면, 그 다음의 행으로부터 다음의 「)」(으)로 시작되는 행의 것까지가 개행(`n)단락으로 연결되어 직전의 행의 계속으로서 추가된다.
+</p>
+<p>상기예에서는, 이하와 같이 표시된다.
+</p>
+<pre>
+this is
+ long message
+</pre>
+<p>도중에 「)」(으)로 시작되는 행을 포함하고 싶은 경우는, 「`)」(와)과 같이 이스케이프 한다
+</p>
+<p>연결 후의 행의 총문자수는16,383아르바이트까지이다.
+</p>
+
+<p>
+「(」의 후에는, 이하의 옵션을 공백 문자 단락으로 열거할 수 있다.
+</p>
+<dl>
+<dt>Join[Str]</dt><dd>
+각 행의 사이에 삽입하는 문자열을 개행(「`n」)이외로 변경한다.단지 「Join」라고 지정하면, 단락 문자 없음으로 연결된다.<br>
+Str에는15아르바이트까지의 문자열을 지정할 수 있다.이Str부분에서만, 「`s」(이)가 반각 스페이스로 간주해진다.(례:「Join&lt;br`s/&gt;」)
+</dd>
+<dt>LTrim</dt><dd>
+각 행의 줄머리의 반각 스페이스나Tab문자를 무시한다
+</dd>
+<dt>RTrim0</dt><dd>
+줄 끝의 말미의 반각 스페이스나Tab문자를 무시하지 않게 한다
+</dd>
+<dt>C</dt><dd>
+「;」에 의한 행 코멘트, 줄 끝 코멘트를 유효하게 한다
+</dd>
+<dt>%</dt><dd>
+「%」(을)를 자동적으로 「`%」에 이스케이프 한다(변수 전개등이 행해지지 않게 된다)
+</dd>
+<dt>`</dt><dd>
+「`」(을)를 자동적으로 「``」에 이스케이프 한다(「`n」등이 그대로 문자열의 일부로서 다루어진다)
+</dd>
+<dt>,</dt><dd>
+콤마(「,」)하지만 자동적으로 「`,」로서 이스케이프 되는 것을 억제한다(커멘드의 인수의 단락등으로 해서 다루어지게 된다)
+</dd>
+</dl>
+
+
+
+<h3>블록</h3>
+<pre>
+If a=1
+{
+	FileAppend,This is test file.,test.txt
+	Run,notepad.exe test.txt
+}
+</pre>
+<p>
+「{」라고 하는 내용의 행이 있으면, 「}」라고 하는 내용의 행이 나타날 때까지가 하나의 블록이 된다.If계 커멘드에 의한 조건 분기나Loop에 의한 반복 처리로, 복수의 커멘드를 연속해 실행시키는 경우에 사용한다.<br>
+줄머리의Tab에 의한 인덴트는 있어도 없어도 좋지만, 인덴트 해 두면 가독성이 향상한다.<br>
+자세한 예 등은<a target=_top href='./commands/__Block.html'>블록</a>의 설명을 참조.
+</p>
+
+<h3>프리프로세서 지령</h3>
+<p>
+커멘드와는 별도로 「#」(으)로 시작되는 프리프로세서 지령과 같은 것이 있다.<br>
+이것은, 스크립트가 실행되기 전의 해석의 단계에서 처리되므로, 인수에 변수의 참조를 포함하는 것은 원칙으로서 할 수 없다.<br>
+통상은, 블록등의 안쪽에서 사용하는 것은 할 수 없다.
+</p>
+<p>
+각종 지령에 대해서도,<a target=_top href='./commands/index.html'>레퍼런스</a>(을)를 참조.</p>
+
+<h3>라벨</h3>
+<pre>
+Label1:
+MsgBox,Label1
+
+Goto,Label1
+</pre>
+<p>라벨명에 이어 「:」(이)가 기술되었을 뿐의 행이 있으면, 라벨로 해서 인식된다.<br>
+GoTo커멘드나GoSub커멘드를 사용하는 것으로, 특정의 라벨의 직후의 행에 처리를 점프 시킬 수 있다.<br>
+GoSub커멘드로 점프 했을 경우는,Return커멘드를 실행하는 것으로써GoSub하지만 실행된 다음의 행으로 돌아올 수 있다.
+</p>
+<p>
+OnClipboardChange등 특정의 명칭의 라벨이 존재하면, 대응하는 이벤트가 발생했을 때에AutoHotkey에 의해서 자동적으로 실행된다.<br>
+또,OnExit커멘드등과 같이 이벤트에 대해 라벨을 할당하는 커멘드도 있다.
+</p>
+
+<h3>hot key 라벨</h3>
+<pre>#F1::
+Run,notepad
+Run,iexplore
+return</pre>
+<p>키명에 이어 「::」(이)가 기술된 행은 hot key 라벨이 되어, 그 키가 밀렸을 때에 그 자리소에 기술된 커멘드가 실행되게 된다.<br>
+또, 보통 라벨과 같이GoTo등에서 점프 하는 것도 가능하다.<br>
+자세한 것은<a target=_top href='./Hotkeys.html'>hot key</a>의 항을 참조.<br>
+또, 이용할 수 있는 키명에 대해서는<a target=_top href='./KeyList.html'>키 리스트</a>의 항을 참조.
+</p>
+
+<pre>#F1::Run,notepad</pre>
+<p>hot key에 할당하는 써브루틴은,1행 뿐이라면 라벨과 같은 행에 기술해도 좋다.</p>
+<h3>키리맙 정의</h3>
+<pre>q::d</pre>
+<p>키명과 「::」에 이어 다른 키명만을 기술하면, 어느 키의 동작을 다른 키의 동작으로 바꾸어 버리는 리맙을 실시할 수 있다.<br>
+이것은 라벨은 아니기 때문에,GoTo등에 의하는 점프는 할 수 없다.<br>
+자세한 것은<a target=_top href='./remap.html'>리맙</a>의 항을 참조.
+</p>
+
+
+<h3>핫 스트링 라벨</h3>
+<pre>::ahk::AutoHotkey</pre>
+<p>hot key 외에, 특정의 문자열이 타입 되었을 때에 자동적의 다른 문자열에 다시 타이프 치거나 써브루틴을 실행시키거나 하는 「핫 스트링」이라고 하는 기능이 존재한다.<br>
+자세한 것은<a target=_top href='./Hotstrings.html'>Hotstring</a>의 항을 참조.
+</p>
+
+
+<h3>유저 정의 함수</h3>
+<pre>add(a,b,c=0,d=0){
+	return a+b+c+d
+}
+MsgBox,% add(1,2,3)
+</pre>
+<p>인수를 받아 일련의 동작을 실행해, 돌아가 값을 돌려주는 함수를 정의할 수 있다.<br>
+함수는 식 중(안)에서 사용하거나 단독으로 호출하거나 해 사용한다.
+</p>
+<p>자세한 것은<a target=_top href='./Function.html'>함수</a>의 항을 참조.</p>
+
+<h3><a name="comment">코멘트</a></h3>
+<pre>;this is comment
+MsgBox,this is message ;this is comment
+/*
+this
+     is
+        comment
+*/
+</pre>
+<p>줄머리에 「;」(세미콜론)(이)가 있는 행은 코멘트행이 되어, 무시된다.<br>
+또, 커멘드의 후에 반각 스페이스를 비우고 세미콜론이 있으면, 그 이후도 코멘트가 된다.
+</p>
+<p>
+「/*」(으)로 시작되는 행과 「*/」라고 하는 내용의 행의 사이도 코멘트가 된다.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<h2><a name="datatype">값의 데이터 형식</a></h2>
+<p>
+커멘드의 인수로서 사용되는 데이터는, 모두 문자열로서 보관 유지된다.<br>
+일정한 서식에 합치하는 문자열의 경우, 정수·소수·일자 시각으로서 계산등에서 사용할 수 있다.<br>
+「100」(이)나 「0xFFFF」(와)과 같은 것이 정수치, 「10.05」(이)나 「6.023e+23」(와)과 같은 것이 소수치, 「20061231235959」(와)과 같은 것이<a target=_top href='./misc/Time.html'>일자 시각</a>(으)로서 다루어진다.<br>
+변수의 내용이 이러한 형식일지를 판정하려면 ,<a target=_top href='./commands/IfIs.html'>If var is [not] type</a>(을)를 사용한다.<br>
+각 커멘드가 정수나 소수를 출력할 때는,<a target=_top href='./commands/SetFormat.html'>SetFormat</a>커멘드로 설정한 서식에 따라서 출력된다.<br>
+정수는 부호 첨부64비트 상당한 범위의 값을 취급할 수 있다.<br>
+소수는double상당한의 것이 취급할 수 있다.
+</p>
+
+<pre>a=this is string
+MsgBox,%a%
+
+b=10
+b*=10
+MsgBox,%b%
+
+c=0.1
+c*=4
+MsgBox,%c%
+
+d=20060101
+EnvAdd,d,2,Days
+MsgBox,%d%
+</pre>
+
+<h2><a name="var">변수</a></h2>
+<pre>
+Var = 123abc			;변수 「Var」에 「123abc」라고 하는 값을 대입
+MsgBox,Var is %Var%		;「Var is 123abc」라고 표시된다
+</pre>
+<p>
+이름이 붙은 「변수」에 데이터를 격납해 둘 수 있다.<br>
+변수명에는 알파벳, 숫자, 「_」등의 문자를 사용할 수 있다.<br>
+「Var=this is value」(와)과 같이 쓰는 것으로, 변수에 값을 격납할 수 있다.<br>
+변수에 격납한 값은, 「%Var%」(와)과 같이 커멘드의 인수중에 묻는 것으로, 내용을 전개해 사용할 수 있다.<br>
+같은 값을 복수의 장소에서 사용하고 싶을 때 등, 여러가지 목적으로 사용된다.
+</p>
+<pre>
+FileRead,Var,test.txt		;test.txt의 내용이 읽혀 변수 「Var」에 격납된다
+</pre>
+<p>
+또, 커멘드에 따라서는, 처리의 결과등을 변수에 격납하는 일이 있다.<br>
+많은 경우, 인수로서 격납처의 변수의 변수명을 지정할 수 있다.
+</p>
+<pre>
+VarName=FileContent
+FileRead,%VarName%,test.txt		;격납처 변수는 「FileContent」
+MsgBox,%FileContent%			;읽어들인 내용이 표시된다
+</pre>
+<p>격납처의 변수명을 지정하는 인수에서도, 「%Var%」(와)과 같은 변수 전개를 사용할 수 있다.<br>
+이 테크닉은, 불특정 다수의 데이터를 취급할 때 등에 도움이 되는 일이 있다.
+</p>
+
+<pre>
+EnvSet,TestEnv,this is a test env
+Run,%ComSpec% /K set TestEnv 		cmd.exe하지만 기동해,TestEnv에 격납된 내용을 표시한다
+</pre>
+<p>
+변수와는 별도로, 환경 변수도 취급할 수 있다.<a target=_top href='./commands/EnvSet.html'>EnvSet</a>커멘드로 환경 변수에 대입을 실시할 수 있다.<br>
+이 환경 변수는,<a target=_top href='./commands/Run.html'>Run</a>커멘드등에서 기동한 프로그램내로부터 참조할 수 있다.<br>
+「%Var%」(와)과 같은 변수의 전개에서는, 통상의 변수와 같이 환경 변수도 전개할 수 있지만, 미정도리의 변수는 길이0의 문자열에 전개된다.<br>
+「<a target=_top href='./commands/_NoEnv.html'>#NoEnv</a>」지령을 사용하는 것으로, 환경 변수의 참조를 무효화해, 처리 효율을 높일 수 있다.<br>
+이 경우에서도, 「<a target=_top href='./commands/EnvGet.html'>EnvGet</a>」커멘드를 사용하면, 환경 변수의 값을 읽어들이는 것은 가능하다.
+</p>
+<p>
+미리 준비된 편입 변수로 불리는 변수도 있다.<br>
+사용할 수 있는 편입 변수에 대해서는,<a target=_top href='./Variables.html'>편입 변수</a>의 항을 참조.<br>
+많은 편입 변수는 대입에 의해 직접 변경하는 것은 할 수 없다.<br>
+잘 사용되는 편입 변수로서 커멘드의 실행 결과를 격납한다<a target=_top href='./misc/ErrorLevel.html'>ErrorLevel</a>변수가 있다.
+</p>
+<p>변수에 값을 격납하면, 값의 용량보다 약간 좀 많은 메모리가 확보된다.<br>
+이것은, 내용의 변경으로 용량이 많아졌을 때, 하나 하나 메모리를 다시 확보할 필요가 없게 하기 위한(해)이다.<br>
+「var=」라고 하도록(듯이), 하늘의 값을 할당하는 것으로, 할당할 수 있었던 메모리를 개방할 수 있다.<br>
+하나의 변수의 용량의 상한은64KB까지되고 있지만,<a target=_top href='./commands/_MaxMem.html'>#MaxMem</a>지령으로 변경할 수 있다.
+</p>
+
+<h2><a name="calc">변수의 계산</a></h2>
+<p>
+변수가 수치의 경우,<a target=_top href='./commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='./commands/EnvSub.html'>EnvSub</a>, <a target=_top href='./commands/EnvMult.html'>EnvMult</a>, <a target=_top href='./commands/EnvDiv.html'>EnvDiv</a>커멘드로 사칙 연산을 실시할 수 있다.<br>
+이것들 커멘드의 생략형으로서 「+=」,「-=」,「*=」,「/=」(이)가 사용할 수 있다.<br>
+좌변에는 변수명이 오지만, 우변에는 값이 오지 않으면 안 되기 때문에, 「%」(으)로 사이에 두어 변수의 내용을 전개하도록(듯이) 할 필요가 있다.
+</p>
+<pre>
+posX = 0
+posX += %speedX%
+</pre>
+
+<p>
+이러한 커멘드에서는, 제1인수와 제2인수의 어느쪽이나가 정수라면 결과는 정수에, 어느 쪽인지 한편에라도 소수 형식의 값이 포함되어 있으면 결과는 소수가 된다.<br>
+정수로 제산을 실시해 결과를 소수로 얻고 싶은 경우, 다음과 같이 소수 형식의 값으로 나누어 줄 필요가 있다.
+</p>
+<pre>
+var=10
+var/=3.0
+</pre>
+
+<p>
+또,0(을)를 더하는 등의 결과가 변하지 않는 계산을 실시하는 것으로, 형식의 변환만을 실시할 수 있다.
+</p>
+<pre>
+SetFormat,FLOAT,0.0	;소수의 소수점 이하를 잘라 버리도록(듯이) 한다
+var+=0		;var의 내용이 정수 형식에 변환된다
+</pre>
+<pre>
+var+=0.0	;var의 내용을 소수 형식에 변환
+</pre>
+<p>「:=」에 의한 대입이나 「If()」에 의한 조건 분기등에서는, 복잡한 식을 사용할 수도 있다.<br>
+1회의 사칙 연산 뿐이라면 「v:=v+1」보다 「v+=1」(분)편이 고속으로 실행되지만,2회이상의 연산은 복수의 커멘드로 나누는 것보다 하나의 식으로 하는 것이 고속으로 실행될 가능성이 있다.
+</p>
+<h2><a name="str">문자열 처리</a></h2>
+<p>「StringTrimLeft」 등, 「String」(으)로부터 시작되는 커멘드에서는, 문자열의 시작이나 분할등의 문자열 처리를 실시할 수 있다.<br>
+문자열을 차례로 줄서 바꾸는 「Sort」커멘드 등도 있다.<br>
+또,<a target=_top href='./commands/Transform.html'>Transform</a>커멘드의 서브 커멘드 「Deref」에서는, 「value is %var%」(와)과 같은 문자열의 변수 참조를 전개시킬 수 있다.<br>
+템플릿 파일에 항목을 묻거나 하는데 이용할 수 있다.
+</p>
+
+
+<h2><a name="if">조건 분기 커멘드</a></h2>
+<p>
+If커멘드로 조건 분기를 실시할 수 있다.<br>
+비교 조건은,<code>if var = value</code>그렇다고 하는 형태로 기술할 수 있다.<br>
+비교 연산자는, 「=」, 「&lt;&gt;」(not equal), 「&gt;」 「&lt;」 「&gt;=」 「&lt;=」(이)가 사용할 수 있다.<br>
+좌변에는 변수명이 오지만, 우변에는 값이 오지 않으면 안 되기 때문에, 「%」(으)로 사이에 두어 변수의 내용을 전개하도록(듯이) 할 필요가 있다.
+</p>
+<pre>
+If MyVar > %Max%
+	MsgBox,over
+else
+	MsgBox,not over
+</pre>
+<p>
+그 외에도, 몇개의 조건문을 사용할 수 있다.
+</p>
+<dl>
+<dt><a target=_top href='./commands/IfEqual.html'>If/IfEqual/IfNotEqual/IfLess/IfLessOrEqual/IfGreater/IfGreaterOrEqual</a></dt><dd>변수의 비교(「=」 「&lt;&gt;」 「&gt;」 「&lt;」 「&gt;=」 「&lt;=」와 같다)</dd>
+<dt><a target=_top href='./commands/IfExpression.html'>if(식)</a></dt><dd>식의 결과의 값에 의해서 분기</dd>
+<dt><a target=_top href='./commands/IfExist.html'>IfExist / IfNotExist</a></dt><dd>파일의 존재의 유무</dd>
+<dt><a target=_top href='./commands/IfInString.html'>IfInString / IfNotInString </a></dt><dd>문자열중으로 지정의 문자열이 포함될지</dd>
+<dt><a target=_top href='./commands/IfIn.html'>If var [not] in values / If var [not] contains values</a></dt><dd>var의 내용이values에 열거한 문자열과 일치할지</dd>
+<dt><a target=_top href='./commands/IfIs.html'>If var is [not] type</a></dt><dd>변수의 데이터 형식</dd>
+<dt><a target=_top href='./commands/IfMsgBox.html'>IfMsgBox</a></dt><dd>제일 최근의MsgBox커멘드로 밀린 버튼</dd>
+<dt><a target=_top href='./commands/IfWinActive.html'>IfWinActive</a></dt><dd>지정한 윈도우가 액티브할지</dd>
+<dt><a target=_top href='./commands/IfWinExist.html'>IfWinExist</a></dt><dd>지정한 윈도우가 존재할지</dd>
+</dl>
+
+
+<h2><a name="loop">반복 처리</a></h2>
+<p>
+Loop문장으로 반복 처리를 사용할 수 있다.<br>
+반복 회수나, 대상 데이터는<a target=_top href='./Variables.html#Index'>편입 변수</a>(으)로서 취득할 수 있다.<br>
+복수행의 처리를 반복할 때는,<a target=_top href='./commands/Continue.html'>Continue</a>커멘드로 나머지의 처리를 스킵 해 다음의 회의 실행으로 옮길 수 있다.<br>
+또,<a target=_top href='./commands/Break.html'>Break</a>커멘드에서는 반복을 즉석에서 종료할 수 있다.
+</p>
+<p>
+많은 프로그램 언어에 존재한다while구문이나for구문에 해당하는 것은 없기 때문에,If커멘드나Break커멘드를 사용해 자기 부담으로 기술할 필요가 있다.
+</p>
+<p>
+반복에는, 이하의 종류가 있다.
+</p>
+<dl>
+<dt><a target=_top href='./commands/Loop.html'>Loop</a></dt><dd>지정 회수의 반복</dd>
+<dt><a target=_top href='./commands/LoopFile.html'>LoopFile</a></dt><dd>와일드 카드 등에 매치하는 파일이나 폴더 각각 대하는 처리</dd>
+<dt><a target=_top href='./commands/LoopReg.html'>LoopReg</a></dt><dd>레지스트리의 지정 키 이하의 키에 대한 처리</dd>
+<dt><a target=_top href='./commands/LoopReadFile.html'>LoopReadFile</a></dt><dd>파일을1행씩 읽으면서 처리</dd>
+<dt><a target=_top href='./commands/LoopParse.html'>LoopParse</a></dt><dd>문자열의1문자마다, 혹은 지정의 단락 기호로 단락지어진 필드 마다 처리</dd>
+</dl>
+
+
+
+<h2><a name="jump">써브루틴 호출해, 점프</a></h2>
+<p><a target=_top href='./commands/Goto.html'>Goto</a>커멘드를 실행하면, 지정한 라벨의 행에 점프 하고, 그 다음의 행으로부터를 실행시킬 수 있다.<br>
+또,<a target=_top href='./commands/Return.html'>Return</a>커멘드로 점프 원래대로 돌아갈 수 있다<a target=_top href='./commands/Gosub.html'>Gosub</a>커멘드도 있다.
+Goto문장을 너무 다용하면 프로그램을 알 수 있기 힘들어지므로, 가능한 한 사용하지 않는 것이 좋다.
+</p>
+<p>
+<a target=_top href='./Function.html'>함수</a>(을)를 사용하면, 호출해 먼저 인수를 건네주거나 돌아가 값을 되돌리거나 다른 장소의 변수와 격리된 로컬 변수를 사용하거나 할 수 있다.
+</p>
+
+
+<h2><a name="thread">스렛드 세치기</a></h2>
+<p>
+이하의 커멘드로 라벨을 지정해 두면, 특정의 이벤트가 발생했을 때에 그 써브루틴이 불려 가게 된다.<br>
+이러한 써브루틴 호출에서는,<a target=_top href='./misc/Threads.html'>스렛드</a>의 세치기를 한다.
+</p>
+<dl>
+<dt><a target=_top href='./commands/SetTimer.html'>SetTimer</a></dt><dd>타이머에 정기적으로 실행되는 써브루틴을 지정</dd>
+<dt><a target=_top href='./commands/Menu.html'>Menu</a></dt><dd>커스텀 메뉴를 작성해, 선택되었을 때에 실행되는 써브루틴을 지정</dd>
+<dt><a target=_top href='./commands/Gui.html'>GUI</a></dt><dd>GUI(을)를 작성해, 버튼이 밀렸을 때 등에 실행되는 써브루틴을 지정</dd>
+<dt><a target=_top href='./commands/OnExit.html'>OnExit</a></dt><dd>스크립트가 종료할 경우에 실행되는 써브루틴을 지정</dd>
+<dt><a target=_top href='./commands/Hotkey.html'>Hotkey</a></dt><dd>지정된 hot key가 밀렸을 때에 실행되는 써브루틴을 지정</dd>
+<dt><a target=_top href='./Hotstrings.html'>핫 스트링</a></dt><dd>특정의 문자열을 타이프 쳤을 때에 써브루틴이 실행되도록(듯이) 설정</dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2><a name="escape">이스케이프 문자</a></h2>
+<p>
+커멘드의 인수 중(안)에서 특별한 의미가 있는 기호를 포함한 문자열을 취급하고 싶은 경우는, 기호의 전에 이스케이프 문자를 붙여 이스케이프 할 필요가 있다.<br>
+많은 프로그램 언어에서는 「\」(이)가 이스케이프 문자로서 사용되고 있지만,AutoHotkey그럼 파일 패스의 「\」의 이스케이프의 필요를 없애기 위해 「`」(Shift+@)하지만 사용된다.<br>
+이하와 같은 escape sequence가 있다.<br>
+그 이외의 문자를 이스케이프 했을 경우, 그 문자 자신이 된다.(례:「`x」→「x」)<br>
+<a target=_top href='./commands/_EscapeChar.html'>#EscapeChar지령</a>그리고 이스케이프 문자를 변경할 수 있다.
+</p>
+<table>
+<caption>escape sequence 일람</caption>
+<tr><th>기호</th>
+<th>의미</th>
+</tr>
+<tr>
+<td>`,
+</td>
+<td>「,」(콤마)의 문자.<br>
+커멘드의 단락과 구별하기 위해(때문에), 이스케이프가 필요.<br>
+덧붙여 커멘드의 마지막 인수내에서는, 문자로서의 콤마인 것이 자명하기 때문에, 콤마를 이스케이프 할 필요는 없다.
+</td>
+</tr>
+<tr>
+<td>`;
+</td>
+<td>「;」(세미콜론)의 문자.<br>
+반각 스페이스인가Tab문자의 다음에 오는 경우만, 코멘트의 개시 기호와 구별하기 위해서 이스케이프 할 필요가 있다.
+</td>
+</tr>
+<tr>
+<td>`::
+</td>
+<td>문자열 「::」(코론 둘).핫 스트링등에서 사용.
+</td>
+</tr>
+<tr>
+<td>`%
+</td>
+<td>「%」(퍼센트 기호)
+</td>
+</tr>
+<tr>
+<td>`n
+</td>
+<td>개행(LF/0x0A)
+</td>
+</tr>
+<tr>
+<td>`r
+</td>
+<td>복귀(CR/0x0D)
+</td>
+</tr>
+<tr>
+<td>`t
+</td>
+<td>Tab문자(0x09)
+</td>
+</tr>
+<tr>
+<td>`v
+</td>
+<td>수직Tab(0x0B)
+</td>
+</tr>
+<tr>
+<td>`b
+</td>
+<td>BackSpace문자(0x08)
+</td>
+</tr>
+<tr>
+<td>`a
+</td>
+<td>Bell문자(0x07)
+</td>
+</tr>
+<tr>
+<td>`f
+</td>
+<td>개페이지(0x0C)
+</td>
+</tr>
+<tr>
+<td>``
+</td>
+<td>「`」자신.<br>
+(이스케이프 문자2개로 이스케이프 문자 자신이 된다.)
+</td>
+</tr>
+</table>
+
+
+
+
+<h2><a name="autoexecsection">스크립트의 기동과Auto-execute섹션</a></h2>
+<p>스크립트는 읽어들여 때에 해석되어<a target=_top href='./misc/Performance.html'>최적화된다</a>.<br>
+문법 에러는 읽어들여 때에 체크되어 수정될 때까지 실행할 수 없다.<br>
+</p>
+<p>
+스크립트가 읽히면, 최초로<a target=_top href='./commands/Return.html'>Return</a>인가<a target=_top href='./commands/Exit.html'>Exit</a>하지만 실행되는지,<a target=_top href='./Hotkeys.html'>hot key 라벨</a>하지만 기술되고 있는 행이나 스크립트의 마지막에 이를 때까지, 스크립트가 실행된다.<br>
+이 부분을,auto-execute섹션이라고 부른다.
+</p>
+
+<p>hot key를 할당할 수 있거나<a target=_top href='./commands/_Persistent.html'>#Persistent</a>지령,<a target=_top href='./commands/SetNumScrollCapsLockState.html'>Lock계 키의 고정</a>등에서 상주 상태로 되지 않는 경우,auto-execute섹션이 종료한 시점에서 스크립트는 종료한다.<br>
+</p>
+
+
+
+<p>
+<a target=_top href='./Hotkeys.html'>hot key</a>,<a target=_top href='./commands/Menu.html'>커스텀 메뉴 아이템</a>,<a target=_top href='./commands/SetTimer.html'>타이머</a>그리고 기동된다<a target=_top href='./misc/Threads.html'>스렛드</a>그럼, 아래와 같은 커멘드로 설정되는 값은 각각 독립하고 있다.<br>
+이러한 초기치는Auto-execute섹션으로 설정할 수 있다.<br>
+설정을 하기 전에 스렛드가 불려 가면, 기대한 동작이 되지 않는 것이 있으므로,Auto-execute섹션의 가능한 한 최초의 분으로 설정하면 좋다.
+</p>
+<ul>
+<li><a target=_top href='./commands/DetectHiddenWindows.html'>DetectHiddenWindows</a></li>
+<li><a target=_top href='./commands/DetectHiddenText.html'>DetectHiddenText</a></li>
+<li><a target=_top href='./commands/SetTitleMatchMode.html'>SetTitleMatchMode</a></li>
+<li><a target=_top href='./commands/SetBatchLines.html'>SetBatchLines</a></li>
+<li><a target=_top href='./commands/SetKeyDelay.html'>SetKeyDelay</a></li>
+<li><a target=_top href='./commands/SetMouseDelay.html'>SetMouseDelay</a></li>
+<li><a target=_top href='./commands/SetWinDelay.html'></a><a target=_top href='./commands/SetWinDelay.html'>SetWinDelay</a></li>
+<li><a target=_top href='./commands/SetControlDelay.html'>SetControlDelay</a></li>
+<li><a target=_top href='./commands/SetDefaultMouseSpeed.html'>SetDefaultMouseSpeed</a></li>
+<li><a target=_top href='./commands/Thread.html'>Thread attributes</a></li>
+<li><a target=_top href='./commands/CoordMode.html'>CoordMode</a></li>
+<li><a target=_top href='./commands/SetStoreCapslockMode.html'>SetStoreCapslockMode</a></li>
+<li><a target=_top href='./commands/AutoTrim.html'>AutoTrim</a></li>
+<li><a target=_top href='./commands/SetFormat.html'>SetFormat</a></li>
+<li><a target=_top href='./commands/StringCaseSense.html'>StringCaseSense</a></li>
+</ul>
+
+
+
+
+
+<h2>스크립트의 디버그</h2>
+<p>스크립트가 기대 대로에 동작하고 있는지를 확인하려면 , 스크립트의 요소 요소에<a target=_top href='./commands/MsgBox.html'>MsgBox</a>커멘드를 넣고, 동작 상황이나 변수의 내용을 표시하면 좋다.<br>
+그 밖에도,<a target=_top href='./commands/ListVars.html'>ListVars</a>커멘드와<a target=_top href='./commands/Pause.html'>Pause</a>커멘드로 변수의 내용을 정리해 표시한다고 하는 방법도 있다.<br>
+이러한 디버그는, 액티브 윈도우가 바뀌어 버리면 정상적으로 동작하지 않는 듯한 곳에서는 사용할 수 없기 때문에 주의가 필요하다.
+</p>
+
+
+<!-- 
+<h2>샘플 스크립트</h2>
+<p><a target=_top href='./scripts/'>Script Showcase</a>에 편리한 샘플 스크립트가 게재되고 있다.</p>
+
+<p>A script compiler  (courtesy of Jonathan Bennett's AutoIt3 source code) is  included with the program. Presently, .aut scripts are not supported because there's no way for the compiled script to figure out whether to run in AutoIt2 mode (backslash as <a target=_top href='./commands/_EscapeChar.html'>escape char</a>) or AutoHotkey mode (accent as <a target=_top href='./commands/_EscapeChar.html'>escape char</a>). So if necessary, first <a target=_top href='./AutoIt2Users.html'>auto-convert</a> your .aut file to .ahk.</p>
+<p> Once a script is compiled, it becomes a standalone executable, meaning that it can be used even on machines where AutoHotkey isn't present (and such EXEs can be distributed or sold with no restrictions). The compilation process compresses and encrypts all of the following: the script, any files it <a target=_top href='./commands/_Include.html'>includes</a>, and any files it has incorporated via the <a target=_top href='./commands/FileInstall.html'>FileInstall</a> command.</p>
+<p>Ahk2Exe can be used in the following ways:</p>
+<ol>
+  <li><strong>GUI Interface</strong>: Run the &quot;Convert .ahk to .exe&quot; item in the Start Menu. A passphrase should be specified if you plan to distribute your EXE and don't want anyone to be able to view the source code of your script.</li>
+  <li><strong>Right-click</strong>: Within an open Explorer window, you can right-click any .ahk file and select &quot;Compile Script&quot; (only available if the script compiler option was chosen when AutoHotkey was installed). This will create an EXE file of the same base filename as the script, which will appear after a short time in the same directory. Note: The EXE file will be produced using the same custom icon and compression level that was last used by Method #1 above <u>and it will not have a password</u>. </li>
+  <li><strong>Command Line</strong>: The compiler can be run from the command line with the following parameters:<br>
+    Ahk2exe.exe /in &lt;infile.ahk&gt; [/out &lt;outfile.exe&gt;][/icon &lt;iconfile.ico&gt;][/pass &lt;passphrase&gt;]<br>
+    Parameters containing spaces should be enclosed in double quotes. If the &quot;out&quot; file is omitted, the EXE will have the same base filename as the &quot;in&quot; file.</li>
+</ol>
+<p><a name="exe2ahk" id="exe2ahk"></a>Note: The commands <a target=_top href='./commands/_NoTrayIcon.html'>#NoTrayIcon</a> and &quot;<a target=_top href='./commands/Menu.html'>Menu, Tray, ShowMainWindow</a>&quot; affect the behavior of compiled scripts. In addition, an EXE can be &quot;decompiled&quot; to retrieve the original script by downloading <a target=_top href='http://www.autohotkey.com/download/Exe2Ahk.exe'>Exe2Ahk</a> (a command line utility).</p>
+ -->
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Scripts.html'>스크립트</a></div>
+</body>
+</html>

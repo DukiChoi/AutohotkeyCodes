@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>GroupAdd</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GroupAdd.html'>GroupAdd</a></div>
+<h1>GroupAdd</h1>
+<p>윈도우의 조건을 윈도우 그룹에 추가한다(그룹이 없으면 만들어진다)</p>
+
+<pre>GroupAdd, GroupName, WinTitle [, WinText, Label, ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>GroupName
+</td>
+<td>그룹명
+</td>
+</tr>
+<tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>Label
+</td>
+<td><a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>실행시에 조건에 일치하는 윈도우가 없었을 때에 실행하는 써브루틴 라벨.
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+윈도우 그룹을 사용하면, 조건에 일치하는 윈도우를 그룹화 해,<a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>그리고 그것들을 순서에 액티브화할 수 있다.
+</p>
+<p>
+또,<a target=_top href='../commands/WinMinimize.html'>WinMinimize</a>, <a target=_top href='../commands/WinMaximize.html'>WinMaximize</a>, <a target=_top href='../commands/WinRestore.html'>WinRestore</a>, <a target=_top href='../commands/WinHide.html'>WinHide</a>, <a target=_top href='../commands/WinShow.html'>WinShow</a>, <a target=_top href='../commands/WinClose.html'>WinClose</a>, and <a target=_top href='../commands/WinKill.html'>WinKill</a>의 커멘드에서는,WinTitle에 「ahk_group GroupName」라고 지정하는 것으로, 그룹에 속하는 모든 윈도우를 정리해 조작할 수 있다.<br>
+다른 커멘드에서도 「ahk_group」(은)는 사용할 수 있지만, 조건에 일치하는 최선면의 윈도우만이 대상이 된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>, <a target=_top href='../commands/GroupDeactivate.html'>GroupDeactivate</a>, <a target=_top href='../commands/GroupClose.html'>GroupClose</a></p>
+
+<h2>Example(s)</h2>
+<pre>; In the autoexecute section at the top of the script: 
+SetTitleMatchMode, 2
+GroupAdd, MSIE, - Microsoft Internet Explorer ; Add only a single window to this group. 
+return ; End of autoexecute section.</pre>
+<pre>; Assign a hotkey to activate this group, which traverses
+;through all open MSIE windows, one at a time (i.e. each
+;press of the hotkey).
+Numpad1::
+GroupActivate, MSIE, r
+</pre>
+<pre>; Here's a more complex group for MS Outlook 2002.
+; In the autoexecute section at the top of the script: 
+SetTitleMatchMode, 2 
+GroupAdd, mail, Message - Microsoft Word ; This is for mails currently being composed 
+GroupAdd, mail, - Message ( ; This is for already opened items 
+; Need extra text to avoid activation of a phantom window:
+GroupAdd, mail, Advanced Find, Sear&amp;ch for the word(s)
+GroupAdd, mail, , Recurrence: 
+GroupAdd, mail, Reminder 
+GroupAdd, mail, - Microsoft Outlook 
+return ; End of autoexecute section.</pre>
+<pre>Numpad5::GroupActivate, mail ; Assign a hotkey to traverse through the group.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GroupAdd.html'>GroupAdd</a></div>
+</body>
+</html>

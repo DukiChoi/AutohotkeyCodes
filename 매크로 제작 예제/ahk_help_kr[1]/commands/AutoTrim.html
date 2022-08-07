@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>AutoTrim</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/AutoTrim.html'>AutoTrim</a></div>
+<h1>AutoTrim</h1>
+<p>변수의 대입으로, 문자열의 초와 마지막의 공백 문자를 자동 제거할지를 설정한다</p>
+
+<pre>AutoTrim, On|Off</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>On|Off
+</td>
+<td>
+「On」(으)로 하면, 변수의 대입시에 전후의 반각 스페이스와Tab문자가 자동 제거된다.<br>
+「Off」(으)로 하면, 자동소 오늘은 행해지지 않는다.<br>
+초기설정은 「On」.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+편입 변수<a target=_top href='../Variables.html#AutoTrim'>A_AutoTrim</a>그리고 현재의 설정치를 참조할 수 있다.
+</p>
+<p>
+<a target=_top href='../commands/__Assign.html'>식의 대입(<code>:=</code>)</a>에 의한에 있어서의 「&quot;」(으)로 둘러싸인 문자열에서는,AutoTrim의 설정에 관계없이, 전후의 공백 문자의 제거는 행해지지 않는다.
+</p>
+<p>
+이 설정의 기본치는, 스크립트의 최초의<a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>그리고 설정한다.<br>
+hot key등에서 새롭게 기동되었다<a target=_top href='../misc/Threads.html'>스렛드</a>그럼, 설정은 기본치로 설정된다.
+</p>
+
+
+<h2>Example(s)</h2>
+<pre>AutoTrim, off
+NewVar1 = %OldVar% ; If OldVar contains leading and trailing spaces, NewVar will have them too.
+NewVar2 = %A_Space%  ; With AutoTrim off, a single space can be assigned this way.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/AutoTrim.html'>AutoTrim</a></div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>CoordMode</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/CoordMode.html'>CoordMode</a></div>
+<h1>CoordMode</h1>
+<p>각종 좌표의 취급을 스크린상에서의 절대 위치로 할까 액티브 윈도우로부터의 상대 위치로 하는지를 설정</p>
+
+<pre>CoordMode, ToolTip|Pixel|Mouse｜Caret|Menu [, Screen|Relative]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Param1
+</td>
+<td>
+<dl>
+<dt>ToolTip</dt><dd><a target=_top href='../commands/ToolTip.html'>ToolTip</a>의 표시 좌표</dd>
+<dt>Pixel</dt><dd><a target=_top href='../commands/PixelGetColor.html'>PixelGetColor</a>(와)과<a target=_top href='../commands/PixelSearch.html'>PixelSearch</a>,<a target=_top href='../commands/ImageSearch.html'>ImageSearch</a>그리고 사용하는 좌표</dd>
+<dt>Mouse</dt><dd><a target=_top href='../commands/MouseMove.html'>MouseMove</a>,<a target=_top href='../commands/MouseClick.html'>MouseClick</a>,<a target=_top href='../commands/MouseClickDrag.html'>MouseClickDrag</a>,<a target=_top href='../commands/MouseGetPos.html'>MouseGetPos</a>그리고 사용하는 좌표</dd>
+<dt>Caret</dt><dd>편입 변수<a target=_top href='../Variables.html#CaretX'>A_CaretX,A_CaretY</a>의 좌표</dd>
+<dt>Menu</dt><dd>「<code><a target=_top href='../commands/Menu.html'>Menu</a> Show</code>(으)로의 표시 좌표 지정</dd>
+</dl>
+</td>
+
+</tr>
+<tr>
+<td>Param2
+</td>
+<td>
+<dl>
+<dt>Screen</dt><dd>스크린상에서의 절대 좌표</dd>
+<dt>Relative</dt><dd>액티브 윈도우의 좌상으로부터의 상대 좌표</dd>
+</dl>
+모든 항목의 초기설정은Relative.<br>
+인수를 생략 했을 때는,Screen(을)를 지정한 것이  된다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+이 설정의 기본치는, 스크립트의 최초의<a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>그리고 설정한다.<br>
+hot key등에서 새롭게 기동되었다<a target=_top href='../misc/Threads.html'>스렛드</a>그럼, 설정은 기본치로 설정된다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/MouseMove.html'>MouseMove</a>, <a target=_top href='../commands/MouseClick.html'>MouseClick</a>, <a target=_top href='../commands/MouseClickDrag.html'>MouseClickDrag</a>, <a target=_top href='../commands/MouseGetPos.html'>MouseGetPos</a>, <a target=_top href='../commands/PixelGetColor.html'>PixelGetColor</a>, <a target=_top href='../commands/PixelSearch.html'>PixelSearch</a>, <a target=_top href='../commands/ToolTip.html'>ToolTip</a>, <a target=_top href='../commands/Menu.html'>Menu</a></p>
+
+<h2>Example(s)</h2>
+<pre>; Place ToolTips at absolute screen coordinates:
+CoordMode, ToolTip, Screen</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/CoordMode.html'>CoordMode</a></div>
+</body>
+</html>

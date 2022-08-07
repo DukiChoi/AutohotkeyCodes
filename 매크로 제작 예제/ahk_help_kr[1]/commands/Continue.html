@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Continue</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Continue.html'>Continue</a></div>
+<h1>Continue</h1>
+<p>
+루프의 현재의 회의 나머지의 처리를 스킵 해, 다음의 회에 진행된다.</p>
+
+<pre>Continue </pre>
+
+<h2>Remarks</h2>
+<p>
+제일 안쪽의 루프의 나머지의 처리를 스킵 해 다음의 회에 진행된다.
+
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Loop.html'>Loop</a>, <a target=_top href='../commands/Break.html'>Break</a>, <a target=_top href='../commands/__Block.html'>Blocks</a> </p>
+
+<h2>Example(s)</h2>
+<pre>; This example displays 5 MsgBoxes, one for each number between 6 and 10.
+; Note that in the first 20 iterations of the Loop, the &quot;continue&quot; command
+; causes the loop to start over before it reaches the MsgBox line.
+Loop, 10
+{
+	if A_Index &lt;= 5
+		continue
+	MsgBox, %A_Index%
+}
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Continue.html'>Continue</a></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>?:연산자(조건)</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__Condition.html'>?:연산자(조건)</a></div>
+
+<h1>?:연산자(조건)</h1>
+<p>조건식이 실로 될 때라고 가짜가 될 때로 다른 식을 평가한다</p>
+<pre>
+Condition ? ExpressionA : ExpressionB
+</pre>
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>
+<tr><td>Condition</td><td>조건식</td></tr>
+<tr><td>ExpressionA</td><td>condition하지만 진정한 때에 평가되는 식</td></tr>
+<tr><td>ExpressionB</td><td>condition하지만 가짜 풀어에 평가되는 식</td></tr>
+</table>
+<h2>Remarks</h2>
+<p>
+우선Condition하지만 평가되어 진이었던 경우는ExpressionA하지만, 가짜였던 경우는ExpressionB하지만 평가된다.<br>
+식 전체의 값은,ExpressionA혹은ExpressionB의 값이 된다.
+</p>
+
+<p>「flag ? "flag is on" :」(이)나 「flag ? : "flag is off"」(와)과 같이,ExpressionA(이)나ExpressionB(은)는 하늘에서 만나도 좋다.<br>
+그 경우, 하늘의 문자열로서 평가된다.</p>
+
+<p>과거의 버젼과의 호환성 때문에, 「?」의 전후에는 공백 문자를 둘 필요가 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../Expression.html'>식</a>, <a target=_top href='../commands/IfExpression.html'>if(식)</a>
+</p>
+<h2>Examples</h2>
+<pre>
+flag=0
+MsgBox,% flag ? "플래그는ON입니다" : "플래그는OFF입니다"
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__Condition.html'>?:연산자(조건)</a></div>
+</body>
+</html>

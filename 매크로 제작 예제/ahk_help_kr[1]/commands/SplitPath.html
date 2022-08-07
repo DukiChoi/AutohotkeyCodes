@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SplitPath</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SplitPath.html'>SplitPath</a></div>
+<h1>SplitPath</h1>
+<p>파일 패스나URL(을)를 드라이브나 확장자(extension)등의 요소 로 분해한다</p>
+
+<pre>SplitPath, InputVar [, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>InputVar
+</td>
+<td>
+분해하는 파일 패스를 격납한 변수명
+</td>
+</tr>
+<tr> 
+<td>OutFileName
+</td>
+<td>
+폴더 패스를 제외한 파일명을 격납하는 변수명
+폴더 패스만의 경우는, 비운다
+</td>
+</tr>
+<tr>
+<td>OutDir
+</td>
+<td>
+폴더 패스(마지막 「\」(을)를 포함하지 않는다)(을)를 격납하는 변수명<br>
+InputVar하지만 파일명만의 경우는, 비운다.
+</td>
+</tr>
+<tr>
+<td>OutExtension
+</td>
+<td>
+파일의 확장자(extension)(「.」(은)는 포함하지 않는다)(을)를 격납하는 변수명
+</td>
+</tr>
+<tr>
+<td>OutNameNoExt
+</td>
+<td>
+확장자(extension)를 제외한 이름 부분을 격납하는 변수명
+폴더 패스만의 경우는, 비운다
+</td>
+</tr>
+<tr>
+<td>OutDrive
+</td>
+<td>
+드라이브 문자(「:」부착)(이)나 네트워크상의 패스의 머신명을 격납하는 변수명
+InputVar하지만 상대 패스등의 경우는, 비운다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+인수를 생략 한 항목에 대해서는 취득되지 않는다.
+</p>
+<p>
+「*」(이)나 「?」 등 파일명에 사용할 수 없는 문자도 통상의 문자와 같이 다루어진다.
+</p>
+<p>
+InputVar의 패스가 실제로 존재할지 어떨지는 체크되지 않는다.
+</p>
+<p>
+InputVar에 「://」(이)가 포함되는 경우,URL(으)로서 처리된다.<br>
+예를 들어,URL하지만 「http://www.example.com/~user/dir/file.ext」(이었)였던 경우,OutDrive에는 「http://www.example.com」까지가,OutDir에는 「http://www.example.com/~user/dir」까지가 격납된다.<br>
+다른 부분에 대해서는, 통상의 파일 패스와 같다.
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/StringSplit.html'>StringSplit</a>, <a target=_top href='../commands/StringGetPos.html'>StringGetPos</a>, <a target=_top href='../commands/StringMid.html'>StringMid</a>, <a target=_top href='../commands/StringTrimLeft.html'>StringTrimLeft</a>, <a target=_top href='../commands/StringLeft.html'>StringLeft</a></p>
+
+<h2>Example(s)</h2>
+<pre>FileSpec = C:\My Documents\Address List.txt
+</pre>
+<pre>
+; To fetch only the bare filename: 
+SplitPath, FileSpec, name
+</pre>
+<pre>
+; Or, to fetch all info:
+SplitPath, FileSpec, name, dir, ext, name_no_ext, drive
+; The above will set the variables as follows:
+; name = Address List.txt
+; dir = C:\My Documents
+; ext = txt
+; name_no_ext = Address List
+; drive = C:
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SplitPath.html'>SplitPath</a></div>
+</body>
+</html>

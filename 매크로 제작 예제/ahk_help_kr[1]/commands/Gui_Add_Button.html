@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Button</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Button.html'>Gui,Add,Button</a></div>
+<h1>Gui,Add,Button</h1>
+<p>GUI윈도우에 버튼 컨트롤을 추가한다</p>
+
+<pre>Gui, Add, Button [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+고유의 옵션으로서 「Default」(이)가 있다.<br>
+그 이외는,<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+G옵션으로 지정한 써브루틴은, 버튼을 눌렀을 때에 실행된다.<br>
+
+</td>
+</tr>
+<tr><td>Text</td><td>
+버튼에 표시되는 텍스트.<br>
+개행을 포함할 수도 있다.<br>
+「&amp;A」(와)과 같이&amp;+영숫자를 넣는 것으로, 액세스 키를 설정할 수 있다.<br>
+액세스 키는 「<u>A</u>」(와)과 같이 언더라인 첨부의 문자로 표시된다.<br>
+Alt+문자 키를 누르면, 그 컨트롤을 클릭했을 때의 동작을 한다.<br>
+「&amp;&amp;」라고 쓰는 것으로, 텍스트중에 「&amp;」(을)를 표시할 수 있다.
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>Default</dt><dd>
+Button(을)를 윈도우의 디폴트 버튼으로 한다.<br>
+윈도우가 액티브한 상태로Enter키를 누르면, 그 버튼이 밀린다.
+</dd>
+</dl>
+<h2>Remarks</h2>
+<p>
+Button컨트롤에서는, 「G」옵션으로 써브루틴을 지정하지 않아도, 자동적으로 디폴트의 라벨을 할당할 수 있다.<br>
+예를 들어,Text인수가 「Text」의 버튼에서는, 「ButtonText」라고 하는 라벨에 할당할 수 있다.(해당하는 라벨이 존재하면)<br>
+다만,Text인수에 반각 스페이스나 「&amp;」, 개행 문자등이 포함되는 경우, 그러한 문자를 제외한 문자열이 사용된다.
+</p>
+<p>
+2번째 이후의 윈도우의 버튼에 대해서는, 「2ButtonText」(와)과 같은 최초로 윈도우 번호를 매긴 이름의 라벨에 할당할 수 있다.
+</p>
+<pre>
+GUI,Add,Button,,Exit
+
+ButtonExit:
+ExitApp
+</pre>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Button.html'>Gui,Add,Button</a></div>
+</body>
+</html>

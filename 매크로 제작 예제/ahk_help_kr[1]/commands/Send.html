@@ -1,0 +1,679 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Send</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Send.html'>Send</a></div>
+<h1>Send/SendRaw/SendEvent/SendInput/SendPlay</h1>
+<p>키스트로크(keystroke)를 발생시킨다</p>
+
+<pre>Send, Keys
+SendRow, Keys
+SendEvent, Keys
+SendInput, Keys
+SendPlay, Keys
+</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Keys
+</td>
+<td>키스트로크(keystroke).<a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>그리고 지정된 간격을 비우면서 입력된다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<h3>수식 키</h3>
+<p>
+hot key의 지정과 같은 수식 키(+=Shift,^=Ctrl,!=Alt,#=Win)(을)를 키명의 전에 붙이면, 수식 키를 누른 것이  된다.
+</p>
+<h3>키명</h3>
+<p>영숫자나, 특별한 의미를 가지지 않는 기호는, 그대로 기술하면 좋다.<br>
+Shift(을)를 누르면서 나오는 문자는,Shift+문자의 키가 송신된다.<br>
+그 외의 키는, 이하와 같이 「{}」(으)로 둘러싸 지정한다.<br>
+</p>
+<p>
+{vkXX}(이)나{vkXXscYYY}(와)과 같이 하고, 가상 키코드가XX의 키나, 스캔 코드가YYY의 키를 지정 가능.
+</p>
+<h3>연속한 입력</h3>
+<p><code>{BS 5}</code>(와)과 같이, 「{}」(으)로 둘러싸고, 오른쪽으로 수치를 지정하면, 여러 차례 누를 수 있다.
+</p>
+<h3>눌러 내려 밀어 올려</h3>
+<p><code>{Ctrl Down}</code>(이)나<code>{Ctrl Up}</code>(와)과 같이, 「{}」(으)로 둘러싸고,Down(이)나Up(을)를 지정하면, 키를 눌러 그대로 하거나 밀리고 있는 키를 떼어 놓거나 할 수 있다.<br>
+수식 키 뿐만이 아니라, 보통 키도 누르고 있을 뿐으로 할 수 있는 것 같지만, 키 반복은 발생하지 않는 모양.
+</p>
+
+<h3>수식 키의 자동 복원</h3>
+<p>
+Send커멘드가 시작될 때, 가상적으로 수식 키를 떼어 놓은 상태가 된다.<br>
+커멘드 종료시에, 다시 원래의 상태에 되돌려진다.<br>
+이 동작은,Keys의 최초로 「{Blind}」(을)를 붙이는 것으로 무효화할 수 있다.
+</p>
+<p>
+키보드 훅이 사용되고 있는 경우, 물리적인 눌러 인하 상태와 같은 상태에 복원되지만, 훅이 사용되어 있지 않은 경우, 지정 시간이 경과하고 있으면 복원은 실시하지 않고, 지정 시간이 경과하고 있지 않으면Send커멘드 개시전 상태에 복원된다.<br>
+이 때의 지정 시간은<a target=_top href='../commands/_HotkeyModifierTimeout.html'>#HotkeyModifierTimeout</a>지령으로 설정 가능.
+</p>
+
+<h3>특수 기호의 이스케이프와 이스케이프의 불필요한SendRaw커멘드</h3>
+<p>
+수식 키를 지정하는 기호나 「{」 「}」 등은, 「{{}}」(와)과 같이 「{}」(으)로 둘러싸면 입력할 수 있다.<br>
+SendRaw커멘드는, 수식 키나 특수 키명을 해석하지 않고,Keys인수의 텍스트를 그대로 타이프 치므로, 이러한 기호를 이스케이프 할 필요가 없어진다.
+</p>
+<p>
+통상의Send커멘드 및ControlSend커멘드에서는,Keys에 「{Raw}」(이)가 포함되면, 그 이후가SendRaw(와)과 같이 수식 키나 특수 키명을 해석하지 않고 보내지게 된다.
+</p>
+
+<h3>SendEvent/SendInput/SendPlay</h3>
+<p>상기의3커멘드는,Send(와)과 기능은 같지만 입력 생성의 실현 방식이 다르다.<br>
+Send커멘드는 통상,SendEvent(와)과 같은 방식을 사용하지만,<a target=_top href='../commands/SendMode.html'>SendMode</a>커멘드를 사용하는 것으로SendInput(이)나SendPlay의 방식으로 변경할 수 있다.<br>
+각각의 모드의 차이 등은,<a target=_top href='../commands/SendMode.html'>SendMode</a>의 페이지 참조.
+</p>
+
+<h3>특수 키명 일람</h3>
+<table>
+<caption>특별한 의미를 가지는 문자 키의 이스케이프</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+<tr> 
+<td>{!}
+</td>
+<td>!
+</td>
+</tr>
+<tr> 
+<td>{#}
+</td>
+<td>#
+</td>
+</tr>
+<tr> 
+<td>{+}
+</td>
+<td>+
+</td>
+</tr>
+<tr> 
+<td>{^}
+</td>
+<td>^
+</td>
+</tr>
+<tr> 
+<td>{{}
+</td>
+<td>{
+</td>
+</tr>
+<tr> 
+<td>{}}
+</td>
+<td>}
+</td>
+</tr>
+</table>
+<table>
+<caption>특수 키</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+
+<tr>
+<td>{F1} - {F24}
+</td>
+<td>function key
+</td>
+</tr>
+<tr>
+<td>{ENTER}
+</td>
+<td>Enter키
+</td>
+</tr>
+<tr>
+<td>{ESCAPE} or {ESC}
+</td>
+<td>ESCAPE
+</td>
+</tr>
+<tr> 
+<td>{SPACE}
+</td>
+<td>SPACE(인수의 최초나 최후 이외는, 보통으로 반각 스페이스에서 좋다.)
+</td>
+</tr>
+<tr>
+<td>{TAB}
+</td>
+<td>TAB
+</td>
+</tr>
+<tr> 
+<td>{BACKSPACE} or {BS}
+</td>
+<td>Backspace
+</td>
+</tr>
+<tr> 
+<td>{DELETE} or {DEL}
+</td>
+<td>Delete
+</td>
+</tr>
+<tr>
+<td>{INSERT} or {INS}
+</td>
+<td>Insert
+</td>
+</tr>
+<tr> 
+<td>{UP}
+</td>
+<td>커서 키위
+</td>
+</tr>
+<tr> 
+<td>{DOWN}
+</td>
+<td>커서 키아래
+</td>
+</tr>
+<tr> 
+<td>{LEFT}
+</td>
+<td>커서 키의 왼쪽
+</td>
+</tr>
+<tr> 
+<td>{RIGHT}
+</td>
+<td>커서 키의 오른쪽
+</td>
+</tr>
+<tr> 
+<td>{HOME}
+</td>
+<td>Home
+</td>
+</tr>
+<tr> 
+<td>{END}
+</td>
+<td>End
+</td>
+</tr>
+<tr>
+<td>{PGUP}
+</td>
+<td>PageUp
+</td>
+</tr>
+<tr>
+<td>{PGDN}
+</td>
+<td>PageDown
+</td>
+</tr>
+<tr>
+<td>{APPSKEY}
+</td>
+<td>어플리케이션 키(context menu가 나오거나 하는 놈)
+</td>
+</tr>
+<tr>
+<td>{SLEEP}
+</td>
+<td>SLEEP
+</td>
+</tr>
+<tr>
+<td>{PRINTSCREEN}
+</td>
+<td>PRINTSCR
+</td>
+</tr>
+<tr>
+<td>{CTRLBREAK}
+</td>
+<td>Ctrl+break
+</td>
+</tr>
+<tr>
+<td>{PAUSE}
+</td>
+<td>PAUSE
+</td>
+</tr>
+</table>
+<table>
+<caption>Lock계</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+<tr>
+<td>{CapsLock}
+</td>
+<td>CapsLock키(<a target=_top href='../commands/SetNumScrollCapsLockState.html'>SetCapsLockState</a>그리고 확실히 상태를 제어할 수 있다(NT계만))
+</td>
+</tr>
+<tr>
+<td>{ScrollLock}
+</td>
+<td>ScrollLock
+</td>
+</tr>
+<tr> 
+<td>{NumLock}
+</td>
+<td>NumLock
+</td>
+</tr>
+</table>
+<table>
+<caption>수식 키</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+<tr>
+<td>{CONTROL} or {CTRL} 
+</td>
+<td>Ctrl키
+</td>
+</tr>
+<tr>
+<td>{LCONTROL} or {LCTRL}
+</td>
+<td>왼쪽의Ctrl키
+</td>
+</tr>
+<tr>
+<td>{RCONTROL} or {RCTRL}
+</td>
+<td>오른쪽의Ctrl키
+</td>
+</tr>
+<tr>
+<td>{CONTROLDOWN} or {CtrlDown}
+</td>
+<td>Ctrl키를 눌러 인하 상태로 한다.좌우를 명시적으로 지정하려면 , 「{RCtrl Down}」(와)과 같이 한다.
+</td>
+</tr>
+<tr>
+<td>{CONTROLUP} or {CtrlUp}
+</td>
+<td>눌러 인하 상태를 해제한다
+</td>
+</tr>
+<tr>
+<td>{ALT}
+</td>
+<td>ALT
+</td>
+</tr>
+<tr>
+<td>{LALT}
+</td>
+<td>좌Alt
+</td>
+</tr>
+<tr>
+<td>{RALT}
+</td>
+<td>우Alt
+</td>
+</tr>
+<tr>
+<td>{ALTDOWN}
+</td>
+<td>Alt키를 눌러 인하 상태로 한다.
+</td>
+</tr>
+<tr>
+<td>{SHIFT}
+</td>
+<td> SHIFT
+</td>
+</tr>
+<tr>
+<td>{LSHIFT}
+</td>
+<td>좌Shift
+</td>
+</tr>
+<tr>
+<td>{RSHIFT}
+</td>
+<td>우Shift
+</td>
+</tr>
+<tr>
+<td>{SHIFTDOWN}
+</td>
+<td>Shift키를 눌러 인하 상태로 한다
+</td>
+</tr>
+<tr>
+<td>{LWIN}
+</td>
+<td>좌Windows키
+</td>
+</tr>
+<tr>
+<td>{RWIN}
+</td>
+<td>우Windows키
+</td>
+</tr>
+<tr>
+<td>{LWINDOWN}
+</td>
+<td>좌Windows키를 눌러 인하 상태로 한다
+</td>
+</tr>
+<tr>
+<td>{RWINDOWN}
+</td>
+<td>우Windows키를 눌러 인하 상태로 한다
+</td>
+</tr>
+</table>
+<table>
+<caption>숫자 패드</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+<tr> 
+<td>{Numpad0} - {Numpad9}
+</td>
+<td>숫자 패드의 숫자 키
+</td>
+</tr>
+<tr>
+<td>{NumpadDot}
+</td>
+<td>숫자 패드의 「.」
+</td>
+</tr>
+<tr>
+<td>{NumpadEnter}
+</td>
+<td>Enter key on keypad
+</td>
+</tr>
+<tr> 
+<td>{NumpadMult}
+</td>
+<td>Numpad Multiply
+</td>
+</tr>
+<tr>
+<td>{NumpadDiv}
+</td>
+<td>Numpad Divide
+</td>
+</tr>
+<tr> 
+<td>{NumpadAdd}
+</td>
+<td>Numpad Add
+</td>
+</tr>
+<tr> 
+<td>{NumpadSub}
+</td>
+<td>Numpad Subtract
+</td>
+</tr>
+<tr>
+<td>{NumpadDel}
+</td>
+<td>Delete key on keypad (this key and the following Numpad keys are used when Numlock is OFF)
+</td>
+</tr>
+<tr>
+<td>{NumpadIns}
+</td>
+<td>Insert key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadClear}
+</td>
+<td>Clear key on keypad (usually the '5' key). 
+</td>
+</tr>
+<tr>
+<td>{NumpadUp}
+</td>
+<td>Cursor up key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadDown}
+</td>
+<td>Cursor down key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadLeft}
+</td>
+<td>Cursor left key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadRight}
+</td>
+<td>Cursor right key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadHome}
+</td>
+<td>Home key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadEnd}
+</td>
+<td>End key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadPgUp}
+</td>
+<td>Page up key on keypad 
+</td>
+</tr>
+<tr>
+<td>{NumpadPgDn}
+</td>
+<td>Page down key on keypad 
+</td>
+</tr>
+</table>
+<table>
+<caption>다기능 키보드의 특수 키</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+<tr> 
+<td>{BROWSER_BACK}
+</td>
+<td>2000/XP Only: Select the browser &quot;back&quot; button
+</td>
+</tr>
+<tr> 
+<td>{BROWSER_FORWARD}
+</td>
+<td>2000/XP Only: Select the browser &quot;forward&quot; button
+</td>
+</tr>
+<tr> 
+<td>{BROWSER_REFRESH}
+</td>
+<td>2000/XP Only: Select the browser &quot;refresh&quot; button
+</td>
+</tr>
+<tr> 
+<td>{BROWSER_STOP}
+</td>
+<td>2000/XP Only: Select the browser &quot;stop&quot; button
+</td>
+</tr>
+<tr> 
+<td>{BROWSER_SEARCH}
+</td>
+<td>2000/XP Only: Select the browser &quot;search&quot; button
+</td>
+</tr>
+<tr> 
+<td>{BROWSER_FAVORITES}
+</td>
+<td>2000/XP Only: Select the browser &quot;favorites&quot; button
+</td>
+</tr>
+<tr> 
+<td>{BROWSER_HOME}
+</td>
+<td>2000/XP Only: Launch the browser and go to the home page
+</td>
+</tr>
+<tr> 
+<td>{VOLUME_MUTE}
+</td>
+<td>2000/XP Only: Mute the volume
+</td>
+</tr>
+<tr> 
+<td>{VOLUME_DOWN}
+</td>
+<td>2000/XP Only: Reduce the volume
+</td>
+</tr>
+<tr> 
+<td>{VOLUME_UP}
+</td>
+<td>2000/XP Only: Increase the volume
+</td>
+</tr>
+<tr> 
+<td>{MEDIA_NEXT}
+</td>
+<td>2000/XP Only: Select next track in media player
+</td>
+</tr>
+<tr> 
+<td>{MEDIA_PREV}
+</td>
+<td>2000/XP Only: Select previous track in media player
+</td>
+</tr>
+<tr> 
+<td>{MEDIA_STOP}
+</td>
+<td>2000/XP Only: Stop media player
+</td>
+</tr>
+<tr> 
+<td>{MEDIA_PLAY_PAUSE}
+</td>
+<td>2000/XP Only: Play/pause media player
+</td>
+</tr>
+<tr> 
+<td>{LAUNCH_MAIL}
+</td>
+<td>2000/XP Only: Launch the email application
+</td>
+</tr>
+<tr> 
+<td>{LAUNCH_MEDIA}
+</td>
+<td>2000/XP Only: Launch media player
+</td>
+</tr>
+<tr> 
+<td>{LAUNCH_APP1}
+</td>
+<td>2000/XP Only: Launch user app1
+</td>
+</tr>
+<tr> 
+<td>{LAUNCH_APP2}
+</td>
+<td>2000/XP Only: Launch user app2
+</td>
+</tr>
+</table>
+<table>
+<caption>직접 지정</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+<tr>
+<td><a name="asc"></a>{ASC nnnnn}
+</td>
+<td>키보드에 없는 문자를 입력한다.<br>
+nnnnn에는 문자 코드를 지정한다.<br>
+1...255그리고ASCII코드,0128...0255그리고ANSI코드,256...65535그리고Unicode(을)를 지정 가능.<br>
+원문에는Unicode(이)라고 써 있었지만,ShiftJIS코드를 지정하면 일본어의 코드를 입력할 수 있었다.<br>
+<br>
+내부적으로는,Alt(을)를 누르면서 숫자 패드의 숫자를 송신하고 있다.</td></tr>
+<tr>
+<td><a name="vk"></a>{vkXX} or {vkXXscYYY}
+</td>
+<td>가상 키코드XX, 스캔 코드YYY의 키를 송신한다.<br>
+XX(와)과YYY하16진수.<br>
+YYY(을)를 생략 했을 경우, 가상 키코드로 설정된 디폴트의 스캔 코드가 된다.<br>
+
+AutoHotkey윈도우 메뉴의 「View」→「Key history」(으)로 키코드를 표시 가능.
+</td>
+</tr>
+</table>
+<table>
+<caption>mouse button</caption>
+<tr> 
+<th>Send Command</th>
+<th>Resulting Keypress</th>
+</tr>
+<tr>
+<td>{LButton}<br>
+{RButton}<br>
+{MButton}<br>
+{XButton1}<br>
+{XButton2}<br>
+{WheelDown}<br>
+{WheelUp}
+</td>
+<td>각 마우스 조작을 송신한다.현재의 커서 위치에서의 조작이 된다.
+</td>
+</tr>
+<tr><td><a name="click">{Click[, options]}</a></td><td>
+클릭 조작을 실시한다.<br>
+Options의 서식 등은,<a target=_top href='../commands/Click.html'>Click</a>커멘드와 같다.
+</td>
+</tr>
+</table>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>, <a target=_top href='../commands/SetStoreCapslockMode.html'>SetStoreCapslockMode</a>, <a target=_top href='../commands/ControlSend.html'>ControlSend</a>, <a target=_top href='../commands/WinActivate.html'>WinActivate</a> </p>
+
+<h2>Example(s)</h2>
+<pre>Send, Sincerely,{enter}John Smith</pre>
+<pre>Send, !fs ; Select the File-&gt;Save menu (Alt+F followed by S).</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Send.html'>Send</a></div>
+</body>
+</html>

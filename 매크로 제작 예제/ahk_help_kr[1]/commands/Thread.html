@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Thread</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Thread.html'>Thread</a></div>
+<h1>Thread</h1>
+<p>현재의<a target=_top href='../misc/Threads.html'>스렛드</a>의 세치기 우선도를 설정한다</p>
+
+<pre>Thread, Priority,n
+Thread, Interrupt, Duration [, LineCount]
+Thread, NoTimers [, false]
+</pre>
+
+
+
+<h3>Thread, Priority,n</h3>
+
+<p>
+n에 현재의 스렛드의 세치기 우선도를 지정한다.<br>
+이것보다 우선도의 낮은 이벤트는 끼어들 수 없게 된다.
+</p>
+
+
+
+
+<h3>Thread, Interrupt, Duration [, LineCount]</h3>
+<p>
+스렛드 개시부터 세치기를 절대 금지하는 시간을 설정한다.<br>
+지정 밀리 세컨드 경과하는지, 지정행수(커멘드수)실행할 때까지, 우선도에 관계없이 세치기는 행해지지 않는다.<br>
+Duration에 밀리 세컨드,LineCount에 행수를 설정한다.<br>
+디폴트는15밀리 세컨드,1000행.
+</p>
+<p>
+어느 쪽인지를 「0」(으)로 하면, 막 시작한 스렛드에서도 끼어들어지게 된다.<br>
+어느 쪽인지를 「-1」(으)로 하면, 세치기는 절대로 행해지지 않게 된다.
+</p>
+<p>
+이 설정은, 스크립트 전체로 유효.<br>
+다만, 한 번 끼어들어 금지 기간을 지난 스렛드를 재차 세치기 금지로 하는 것은 할 수 없다.
+</p>
+
+<p>
+세치기 금지 기간의 사이에 다른 스렛드가 기동하려고 했을 때, 그 스렛드는 버퍼 되어 실행중의 스렛드가 종료하는지, 세치기 금지 기간을 지난 시점에서 실행된다.<br>
+다만, 세치기 금지 기간을 지난 시점에서 실행중의 스렛드가 끼어들려고 한 스렛드보다 우선도가 높은 경우, 세치기는 행해지지 않고, 스렛드는 소멸한다.
+</p>
+
+<h3>Thread, NoTimers [, false]</h3>
+<p>
+현재의 스렛드의 실행중의 사이, 타이머 이벤트의 세치기를 금지한다.
+</p>
+<p><a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>하지만 타이머 세치기 금지 상태인 채 종료했을 경우, 그 스크립트에서는 모든 스렛드가 타이머 세치기 금지로 개시되게 된다.<br>
+이 경우에서도, 스렛드가 실행되어 있지 않은 동안이라면 타이머 이벤트의 개시는 가능.
+</p>
+<p>제2인수에 「false」(이)나 「0」 등을 지정하면, 현재의 스렛드의 타이머 세치기 금지를 해제할 수 있다.
+</p>
+
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../misc/Threads.html'>Threads</a>, <a target=_top href='../commands/Hotkey.html'>Hotkey</a>, <a target=_top href='../commands/Menu.html'>Menu</a>, <a target=_top href='../commands/SetTimer.html'>SetTimer</a> </p>
+<h2>Example(s)</h2>
+<pre>Thread, priority, 1 ; Make priority of current thread slightly above average.</pre>
+<pre>Thread, interrupt, 50, 2000</pre>
+<pre>; Make each newly launched thread immediately interruptible:
+Thread, interrupt, 0</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Thread.html'>Thread</a></div>
+</body>
+</html>

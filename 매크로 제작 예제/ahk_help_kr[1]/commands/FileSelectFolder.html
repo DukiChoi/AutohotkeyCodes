@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FileSelectFolder</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileSelectFolder.html'>FileSelectFolder</a></div>
+<h1>FileSelectFolder </h1>
+<p>폴더 선택 다이얼로그를 표시</p>
+
+<pre>FileSelectFolder, OutputVar [, RootOrStartingFolder, Options, Prompt]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>선택된 폴더 패스가 격납되는 변수명.<br>
+드라이브 루트(례:「C:\」)(을)를 제외하고, 패스의 말미에는 「\」(은)는 붙지 않는다.
+</td>
+</tr>
+<tr> 
+<td>RootOrStartingFolder
+</td>
+<td>
+트리의 루트가 되는 디렉토리를 지정.<br>
+반드시 풀 패스로 지정해야 한다.<br>
+::{20d04fe0-3aea-1069-a2d8-08002b30309d}(와)과 같은CLSID도 지정 가능.<br>
+지정할 수 있다CLSID하<a target=_top href='../misc/CLSID.html'>CLSID일람</a>참조<br>
+「::{450d8fba-ad25-11d0-98a8-0800361b1103}\My Pictures」(와)과 같이,CLSID에 이어 서브 폴더의 패스를을 지정하는 일도 가능<br>
+생략시는 「내 컴퓨터」<br>
+또, 폴더 패스의 선두에 「*」(을)를 붙인 것을 지정하면, 최초로 선택되고 있는 폴더를 지정할 수 있다.<br>
+「C:\ *C:\Windows」(와)과 같이 하는 것으로, 루트 폴더와 초기 폴더를 동시에 지정할 수 있다.
+</td>
+</tr>
+<tr> 
+<td>Options
+</td>
+<td>
+이하의 것의 화.<br>
+디폴트는 「1」.
+<dl>
+<dt>0</dt><dd>옵션 없음</dd>
+<dt>1</dt><dd>「신규 폴더 작성」버튼을 표시.(WindowsXP+IE6이상이 필요)</dd>
+<dt>2</dt><dd>폴더 나이리력란을 표시</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>Prompt
+</td>
+<td>다이얼로그에 표시되는 메세지
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+<p>다이얼로그를 표시하고 있는 동안GUI윈도우를 조작할 수 없게 하고 싶은 경우는, 「Gui,＋OwnDialogs」(을)를 실행한다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/FileSelectFile.html'>FileSelectFile</a>, <a target=_top href='../commands/MsgBox.html'>MsgBox</a>, <a target=_top href='../commands/InputBox.html'>InputBox</a>, <a target=_top href='../commands/ToolTip.html'>ToolTip</a>, <a target=_top href='../commands/FileCopyDir.html'>FileCopyDir</a>, <a target=_top href='../commands/FileMoveDir.html'>FileMoveDir</a>, <a target=_top href='../commands/SplitPath.html'>SplitPath</a></p>
+
+<h2>Example(s)</h2>
+<pre>
+FileSelectFolder, OutputVar, , 3
+if OutputVar =
+	MsgBox, The user didn't select a folder.
+else
+	MsgBox, The user selected folder &quot;%OutputVar%&quot;.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileSelectFolder.html'>FileSelectFolder</a></div>
+</body>
+</html>

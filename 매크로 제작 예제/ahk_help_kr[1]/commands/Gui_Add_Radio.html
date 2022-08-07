@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Radio</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Radio.html'>Gui,Add,Radio</a></div>
+<h1>Gui,Add,Radio</h1>
+<p>GUI윈도우에 라디오 버튼을 추가한다</p>
+
+<pre>Gui, Add, Radio [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+V그리고 변수명을 지정해, 「<code>GUI, Submit</code>」(을)를 실행하는 것으로, 그 라디오 버튼이 체크되고 있는지 어떤지를 취득할 수 있다.체크되어 있지 않으면 「0」, 체크되고 있으면 「1」(이)가 취득된다.<br>
+다만, 같은 그룹의Radio 중 하나 밖에 변수가 설정되어 있지 않은 경우, 그 변수에 몇번째의Radio에 체크가 들어가 있을지가 격납된다.<br>
+G그리고 써브루틴 라벨명을 지정하는 것으로, 체크 상태를 바꾸었을 때에 실행되는 써브루틴을 설정할 수 있다.
+</td>
+</tr>
+<tr><td>Text</td><td>
+「&amp;A」(와)과 같이&amp;+영숫자를 넣는 것으로, 액세스 키를 설정할 수 있다.<br>
+액세스 키는 「<u>A</u>」(와)과 같이 언더라인 첨부의 문자로 표시된다.<br>
+Alt+문자 키로, 그 컨트롤에 체크를 넣을 수 있다.
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+
+<dl>
+<dt>Checked</dt><dd>
+최초부터 체크된 상태로 한다.<br>
+Checked0/Checked1(으)로 하는 것으로, 체크 없음/를 설정할 수도 있다.이것은,<code>GUI, Submit</code>등에서 얻을 수 있는 체크 상태를 변수X에 격납해 「Checked%X%」(와)과 같이 해 사용한다.
+</dd>
+<dt>Group</dt><dd>
+직전의Radio(와)과 같은 그룹이 아니고, 새로운 그룹에 소속시킨다
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+<p>
+라디오 버튼은 체크 박스를 닮아 있지만, 같은 그룹에 속하는 라디오 버튼 중 하나 밖에 체크를 할 수 없다.<br>
+Radio의 그룹의 어떤 것인가에 체크를 하면, 같은 그룹에 속하는 것 외의Radio(은)는 모두 체크가 빗나간다.
+</p>
+<p>
+연속해 추가했다Radio(은)는 자동적으로 하나의 그룹 풍부해 하신다.<br>
+도중에 다른 컨트롤을 추가하면, 다음에서는 새로운 그룹이 된다.
+
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Radio.html'>Gui,Add,Radio</a></div>
+</body>
+</html>

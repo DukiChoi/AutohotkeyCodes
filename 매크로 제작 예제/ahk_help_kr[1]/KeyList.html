@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>키 리스트</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!-- 
+.style1 {font-size: xx-small}
+ -->
+</style>
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./KeyList.html'>키 리스트</a></div>
+<h1>키/mouse button명 일람</h1>
+<h2>마우스(NT계 전용)</h2>
+<dl>
+<dt>LButton</dt><dd>왼쪽 버튼</dd>
+<dt>RButton</dt><dd>오른쪽 버튼</dd>
+<dt>MButton</dt><dd>중앙 버튼(휠 클릭)</dd>
+<dt>WheelDown</dt><dd>휠하 회전</dd>
+<dt>WheelUp</dt><dd>휠상 회전</dd>
+</dl>
+<p>WheelDown,WheelUp에 할당할 수 있었던 써브루틴이 실행될 때 , 「A_EventInfo」변수에 휠이 회전한 양이 격납된다.<br>
+많은 경우 「1」이지만, 재빠르게 휠을 돌렸을 경우등에는2이상이 된다.
+</p>
+
+<h3>2000/XP마셔</h3>
+
+<dl>
+<dt>XButton1</dt><dd>확장 버튼1</dd>
+<dt>XButton2</dt><dd>확장 버튼2</dd>
+</dl>
+
+<h2>Joystick</h2>
+
+<dl>
+<dt>Joy1...Joy32</dt><dd>버튼.<a target=_top href='http://www.autohotkey.com/doc/scripts/JoystickTest.html'>test script</a>에서 각 버튼의 번호를 조사할 수 있다.<br>
+수식 키와의 편성은 지정할 수 없다.
+</dd>
+
+</dl>
+
+<p>
+이하는 hot key 할당에는 사용할 수 없지만,<a target=_top href='./commands/GetKeyState.html'>GetKeyState</a>그리고 상태를 조사하는 것이 가능.
+</p>
+<dl>
+<dt>JoyX, JoyY, JoyZ, JoyR, JoyU, JoyV</dt><dd>아날로그 입력의 각 축 상태</dd>
+<dt>JoyPOV</dt><dd>point-of-view 컨트롤</dd>
+<dt>JoyName</dt><dd>JoyStick명</dd>
+<dt>JoyButtons</dt><dd>사용할 수 있는 버튼수를 취득(올바르지 않은 경우도 있다)</dd>
+<dt>JoyAxes</dt><dd>사용할 수 있는 아날로그 입력의 수를 취득</dd>
+<dt>JoyInfo</dt><dd>사용할 수 있는 기능을 취득.이하의 문자 중 사용할 수 있는 것을 연결한 문자열이 된다.<br>
+Z (Z축), R (R축), U (U축), V (V축), P (point-of-view 컨트롤), D (the POV control has a limited number of discrete/distinct settings), C (the POV control is continous/fine)
+</dd>
+</dl>
+
+
+<h3>복수의 죠이스틱이 있는 경우</h3>
+<p>
+복수의 죠이스틱이 접속되고 있고,2번째 이후를 사용하고 싶은 경우, 전에 죠이스틱의 번호를 매긴다.<br>
+례: <code>2Joy1</code> 제2죠이스틱의1버튼
+</p>
+
+
+
+<h2>Keyboard</h2>
+<dl>
+<dt>a...zA...Z</dt><dd>그 알파벳의 키.대문자에서도 소문자에서도, 그 알파벳의 키 단독을 지정한 것이  된다.
+</dd>
+<dt>0...9</dt>
+<dd>숫자 키.
+</dd>
+<dt>!등</dt>
+<dd>Shift키와 조합해 입력하는 기호는, 그 편성을 지정한 것과 같다.<br>
+「!」의 hot key는 「Shift+1」(을)를 눌렀을 때에 실행된다.
+</dd>
+<dt>그 외의 기호</dt><dd>기본적으로 그 문자 자신이지만, 「;」 등 특별한 의미를 가지는 키는 「`;」(와)과 같이<a target=_top href='./Scripts.html#escape'>이스케이프</a>할 필요가 있다.<br>
+취직 심볼은 이스케이프 불요.「^」(은)는 「^」키, 「^^」(은)는 「Ctrl+^」의 의미가 된다.
+</dd>
+</dl>
+<dl>
+<dt>Space</dt>
+<dt>Tab</dt>
+<dt>Return</dt>
+<dt>Esc</dt>
+<dt>BS</dt>
+<dt>Del</dt>
+<dt>Ins</dt>
+<dt>Home</dt>
+<dt>End</dt>
+<dt>PgUp</dt>
+<dt>PgDn</dt>
+<dt>Up</dt>
+<dt>Down</dt>
+<dt>Left</dt>
+<dt>Right</dt>
+<dt>ScrollLock</dt>
+<dt>CapsLock</dt>
+<dt>NumLock</dt>
+</dl>
+
+
+<dl>
+<dt>NumpadDiv</dt><dd>숫자 패드의 「<kbd>/</kbd>」</dd>
+<dt>NumpadMult</dt><dd>숫자 패드의 「<kbd>*</kbd>」</dd>
+<dt>NumpadAdd</dt><dd>숫자 패드의 「<kbd>+</kbd>」</dd>
+<dt>NumpadSub</dt><dd>숫자 패드의 「<kbd>-</kbd>」</dd>
+<dt>NumpadEnter</dt><dd>숫자 패드의 「<kbd>Enter</kbd>」</dd>
+</dl>
+
+<p>이하는NumLock하지만OFF때</p>
+<dl>
+
+<dt>NumpadDel</dt>
+<dt>NumpadIns</dt>
+<dt>NumpadClear</dt>
+<dt>NumpadUp</dt>
+<dt>NumpadDown</dt>
+<dt>NumpadLeft</dt>
+<dt>NumpadRight</dt>
+<dt>NumpadHome</dt>
+<dt>NumpadEnd</dt>
+<dt>NumpadPgUp</dt>
+<dt>NumpadPgDn</dt>
+</dl>
+
+
+<p>이하는NumLock하지만ON때</p>
+
+<dl>
+<dt>Numpad0</dt>
+<dt>Numpad1</dt>
+<dt>Numpad2</dt>
+<dt>Numpad3</dt>
+<dt>Numpad4</dt>
+<dt>Numpad5</dt>
+<dt>Numpad6</dt>
+<dt>Numpad7</dt>
+<dt>Numpad8</dt>
+<dt>Numpad9</dt>
+<dt>NumpadDot</dt><dd>「<kbd>.</kbd>」</dd>
+</dl>
+
+<dl>
+<dt>F1 …… F24</dt><dd>function key</dd>
+<dt>AppsKey</dt><dd>우하(분)편에 있는 context menu를 내는 키</dd>
+</dl>
+
+
+<dl>
+<dt>Shift</dt>
+<dt>Ctrl</dt>
+<dt>Alt</dt>
+<dt>LWin</dt><dd>좌Win키</dd>
+<dt>RWin</dt><dd>우Win키</dd>
+</dl>
+
+<p>이하는NT계 전용</p>
+
+<dl>
+<dt>LShift</dt>
+<dt>LCtrl</dt>
+<dt>LAlt</dt>
+<dd>각각, 왼쪽의Shift,Ctrl,Alt키</dd>
+<dt>RShift</dt>
+<dt>RCtrl</dt>
+<dt>RAlt</dt>
+<dd>각각, 오른쪽의Shift,Ctrl,Alt키</dd>
+</dl>
+
+
+<dl>
+
+<dt>PrintScreen</dt>
+<dt>CtrlBreak</dt>
+<dt>Pause</dt>
+<dt>Break</dt>
+<dt>Help</dt>
+<dt>Sleep</dt>
+</dl>
+
+
+
+
+<p>멀티미디어 키보드등에 대해서 있는 키</p>
+<dl>
+<dt>Browser_Back</dt>
+<dt>Browser_Forward</dt>
+<dt>Browser_Refresh</dt>
+<dt>Browser_Stop</dt>
+<dt>Browser_Search</dt>
+<dt>Browser_Favorites</dt>
+<dt>Browser_Home</dt>
+<dt>Volume_Mute</dt>
+<dt>Volume_Down</dt>
+<dt>Volume_Up</dt>
+<dt>Media_Next</dt>
+<dt>Media_Prev</dt>
+<dt>Media_Stop</dt>
+<dt>Media_Play_Pause</dt>
+<dt>Launch_Mail</dt>
+<dt>Launch_Media</dt>
+<dt>Launch_App1</dt>
+<dt>Launch_App2</dt>
+</dl>
+
+<h2><a name="keycode">키코드에 의한 지정</a></h2>
+<p>일본어 키보드 특유의 키나, 그 외 상기 일람에 없는 키는, 가상 키코드나 스캔 코드를 직접 지정하는 것으로 지정할 수 있다.(스캔 코드는NT계만)<br>
+키보드 드라이버의 사양등에 의해, 키 입력 이벤트를 취득할 수 없는 경우도 있다.드라이버를 바꿔 넣는 것으로 개선될 가능성이 있다.
+</p>
+<p>키코드를 조사하려면 , 「<code><a target=_top href='./commands/_InstallKeybdHook.html'>#InstallKeybdHook</a></code>」지령을 포함한 스크립트를 읽어들여, task tray 아이콘을 더블 클릭 하고 윈도우를 내, 메뉴의 「View」→「Key history」(으)로 키 이력을 표시한다.F5키로 최신의 정보로 갱신 가능.</p>
+<p>
+hot key 라벨로 지정하는 경우, 「<code>vkYY</code>」(이)나 「<code>scXXX</code>」(YY의 부분은 가상 키코드,XXX부분은 스캔 코드)(와)과 지정한다.<br>
+Send커멘드로 송신하는 경우는, 「<code>vkYYscXXX</code>」(와)과 같이 지정한다.
+</p>
+<dl>
+<dt>반각/전각</dt><dd>vkF3sc029/vkF4sc029 (IME의ON/OFF그리고 발생하는 이벤트가 다르지만,<a target=_top href='./commands/Send.html'>Send</a>커멘드로 송신하는 경우는 어디라도 같다)</dd>
+<dt>변환</dt><dd>vk1Csc079</dd>
+<dt>무변환</dt><dd>vk1Dsc07B</dd>
+<dt>히라가나 카타카나</dt><dd>vkF2sc070</dd>
+</dl>
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./KeyList.html'>키 리스트</a></div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Hotkey</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Hotkey.html'>Gui,Add,Hotkey</a></div>
+<h1>Gui,Add,Hotkey</h1>
+<p>GUI윈도우에 키보드 쇼트 컷의 편성을 입력하기 위한 컨트롤을 추가한다</p>
+
+<pre>Gui, Add, Hotkey [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+G그리고 써브루틴 라벨을 설정하면, 입력된 hot key가 변경될 때마다 실행된다.<br>
+입력 내용이 수식 키만 상태에서도 실행된다.(다만, 수식 키를 떼어 놓아 버리면 「없이 」로 돌아와 버리기 위해, 취직 키만의 hot key가 입력된 상태대로 할 수 없다)<br>
+이 때, 새롭게 키가 눌러 내릴 수 있어 내용이 변화했을 때에는 써브루틴이 실행되지만, 키가 떼어 놓아지는 것에 의해서 내용이 변화했을 때에는 실행되지 않는다.<br>
+고유의 옵션으로서Limit하지만 있다.
+</td>
+</tr>
+<tr><td>Text</td><td>
+초기 상태로 입력되고 있는 키를 지정한다.
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>LimitN</dt><dd>
+Hotkey그리고 입력 금지로 할 수 있는 수식 키의 조를 설정한다.금지되고 있는 조를 입력하려고 하면, 대신에Ctrl+Alt의 조가 부가된다.<br>
+N에는 이하의 수의 화를 설정한다.
+<dl>
+<dt>1</dt><dd>수식 키 없음을 금지(례:A)</dd>
+<dt>2</dt><dd>Shift키만의 수식 키를 금지(례:Shift+A)</dd>
+<dt>4</dt><dd>Ctrl키만의 수식 키를 금지(례:Ctrl+A)</dd>
+<dt>8</dt><dd>Alt키만의 수식 키를 금지(례:Alt+A)</dd>
+<dt>16</dt><dd>Ctrl+Shift의 수식 키를 금지(례:Ctrl+Shift+A)</dd>
+<dt>32</dt><dd>Alt+Shift의 수식 키를 금지(례:Alt+Shift+A)</dd>
+<dt>128</dt><dd>Ctrl+Alt+Shift의 수식 키를 금지(례:Ctrl+Alt+Shift+A)</dd>
+</dl>
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+<p>
+포커스를 대면시키면서 키를 누르면, 키와 수식 키가 입력된다.<br>
+컨트롤에는 「Ctrl + C」(와)과 같이 표시되지만,Text인수로 설정하는 디폴트치나<code>GUI,Submit</code>커멘드등에서 취득되는 값은,<a target=_top href='../commands/Hotkey.html'>Hotkey</a>커멘드나<a target=_top href='../Hotkeys.html'>hot key 라벨</a>그리고 사용되는 것과 같은 서식.(례:「^!C」 「^Home」 「^NumpadHome」)수식 키는Ctrl(^),Alt(!),Shift(+)마셔 사용 가능.<br>
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Hotkey.html'>Gui,Add,Hotkey</a></div>
+</body>
+</html>

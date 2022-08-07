@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>GuiControl</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GuiControl.html'>GuiControl</a></div>
+
+<h1>GuiControl</h1>
+<p>Gui커멘드로 작성한 윈도우에 배치된 컨트롤에 대해 각종 조작을 실시한다</p>
+
+<pre>GuiControl, SubCommand, ControlID [, Param3]</pre>
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr>
+<td>SubCommand</td>
+<td>
+실행하는 조작을 지정.<br>
+생략시는 컨트롤의 내용이Param3그리고 지정한 것으로 변경된다.<br>
+자세한 것은 후술.
+
+</td>
+</tr>
+<tr>
+<td>ControlID</td>
+<td>
+대상이 되는 컨트롤을 지정한다.<br>
+컨트롤 작성시에 「v」옵션으로 변수를 할당하고 있는 경우, 그 변수명으로 지정할 수 있다.<br>
+그 이외의 경우, 컨트롤의ClassNN인가 컨트롤에 포함되는 텍스트를 지정한다.<br>
+Picture컨트롤의 화상 파일명도 지정할 수 있다.</td>
+</tr>
+<tr>
+<td>Param3</td>
+<td>각SubCommand의 설명을 참조.특히 설명이 없으면, 생략 한다.</td>
+</tr>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>무엇인가 문제가 있으면 「1」, 정상적으로 종료하면 「0」</p>
+
+<h2>SubCommand생략시</h2>
+<p>Param3에Gui,Add시간에Text인수로 설정하는 부분의 내용을 지정하는 것으로, 값을 재설정할 수 있다.<br>
+아래와 같은 컨트롤에 대해서는, 특기 사항 있어.</p>
+<dl>
+<dt>Hotkey</dt><dd>
+Param3에 공문자열이나 hot key를 지정한다.<br>
+hot key는 「^!C」 「^Home」 「^NumpadHome」(와)과 같은 hot key 라벨과 같은 형식에서 지정한다.수식 키는Ctrl(^),Alt(!),Shift(+)마셔 사용 가능.
+</dd>
+<dt>Picture</dt><dd>
+Param3에 새롭게 읽어들이는 화상 파일명을 지정한다.<br>
+파일명의 전에 반각 스페이스에서 단락지어 이하의 옵션을 지정할 수 있다.<br>
+례:<code>GuiControl,, MyPic, *icon2 *w100 *h-1 C:\My Application.exe</code>
+<dl>
+<dt>*wN</dt><dd>N에 컨트롤의 폭을 지정.「*w0」(으)로 화상의 실제의 폭.미지정의 경우는 현재의 컨트롤의 폭.「*w-1」(으)로 종횡비를 유지하도록(듯이) 「*hN」(으)로의 지정에 맞춘다.</dd>
+<dt>*hN</dt><dd>N에 컨트롤의 높이를 지정.「*h0」(으)로 화상의 실제의 높이.미지정의 경우는 현재의 컨트롤의 높이.「*h-1」(으)로 종횡비를 유지하도록(듯이) 「*wN」(으)로의 지정에 맞춘다.</dd>
+<dt>*IconN</dt><dd>N에 아이콘 번호를 지정.실행 파일등의 프로그램 파일중의 아이콘을 읽어들일 때 사용.</dd>
+</dl>
+</dd>
+<dt>Checkbox</dt><dd>
+Param3에 체크 상태를 지정한다.<br>
+「0」(이)라면 체크 이루어, 「1」(이)라면 체크 있어, 「-1」(이)라면 반체크.<br>
+그 이외의 경우, 텍스트를 변경한다.
+「0」 「-1」 「1」라고 하는 문자열을 텍스트에 설정하고 싶은 경우, 「Text」서브 커멘드를 사용한다.<br>
+</dd>
+<dt>Radio</dt><dd>
+Param3에 체크 상태를 지정한다.<br>
+「0」(이)라면 체크 이루어, 「1」(이)라면 체크 있어.<br>
+그 이외의 경우, 텍스트를 변경한다.<br>
+체크가 없음으로부터 있으가 되는 경우, 같은 그룹외의Radio의 체크는 자동적으로 빗나간다.
+</dd>
+<dt>DateTime</dt><dd>
+Param3에<a target=_top href='../misc/Time.html'>YYYYMMDDHH24MISS의 서식</a>그리고 표시 일시를 설정한다.<br>
+컨트롤의 옵션에 「2」(을)를 붙이고 체크 박스를 붙이고 있는 경우, 공문자열을 지정하는 것으로 체크를 떼어, 선택 없음을 나타내는 상태로 할 수 있다.
+</dd>
+
+<dt>MonthCal</dt><dd>
+Param3에<a target=_top href='../misc/Time.html'>YYYYMMDDHH24MISS의 서식</a>그리고 표시 일시를 설정한다.<br>
+컨트롤의 옵션에 「Multi」(을)를 붙여 복수 선택 상태로 하고 있는 경우, 「20050101-20050202」(와)과 같은 범위에서 지정한다.
+</dd>
+
+
+<dt>UpDown/Slider/Progress</dt><dd>
+새로운 값/위치를 지정한다.<br>
+「+」에 계속치를 지정하면, 현재의 위치로부터의 상대 위치에서 지정할 수 있다.줄이는 경우도 「+-10」(와)과 같이 부의 값에+(을)를 붙여 지정한다.<br>
+설정된 범위외의 수치가 되는 경우는, 범위내에서 가까운 값이 된다.
+</dd>
+<dt>DropDownList/ComboBox/ListBox</dt><dd>
+리스트에<strong>추가</strong>하는 텍스트 항목을 「|」(으)로 단락지어 열거.<br>
+리스트의 항목을 모두 설정 다시 하는 경우, 최초의 항목의 전에 「|」(을)를 넣는다.(례:「|aaa|bbb|ccc」)<br>
+항목의 뒤로 「||」(이)가 있으면, 그 항목이 선택된 상태가 된다.(례:「xxx||yyy|zzz」, 「xxx|yyy|zzz||」)
+</dd>
+<dt>Tab</dt><dd>
+탭의 이름이나 수에 의하지 않고,1번째의 탭 시트에 배치되어 있던 컨트롤은1번째의 탭 시트에,N번째의 탭 시트에 배치되어 있던 컨트롤은N번째의 탭 시트에 배치된 채로 있다.<br>
+변경에 의해서 탭 시트의 수가 줄어 드는 경우, 제일 뒤의 탭 시트가 사라지게 되지만, 후에 탭의 수가 증가하면 탭 시트의 내용와도 부활한다.
+</dd>
+
+
+<dt>ListView</dt><dd>
+리스트뷰의 조작은<a target=_top href='../commands/Gui_Add_ListView.html#Functions'>리스트뷰 조작용의 편입 함수</a>(을)를 사용한다.
+</dd>
+
+
+</dl>
+
+<h2>SubCommand</h2>
+
+<dl>
+<dt>Text</dt><dd>서브 커멘드 생략시와 거의 같은 동작이지만,Checkbox(이)나Radio에 「0」 「-1」 「1」(을)를 지정했을 경우에서도, 텍스트로서 설정된다.<br>
+또,DateTime컨트롤에서는,Param3그리고 표시 포맷을 재설정할 수 있다.(Param3(을)를 생략 하면, 짧은 일자 문자열 포맷이 된다)<br>
+ComboBox그럼, 입력란의 내용을 변경할 수 있다.
+</dd>
+<dt>Move</dt><dd>
+컨트롤을 이동/사이즈 변경한다.<br>
+Param3에는 「Xn」(n에X좌표를 지정)「Yn」(n에Y좌표를 지정)「Wn」(n에 폭을 지정)「Hn」(n에 높이를 지정)중, 변경하고 싶은 것을 스페이스 단락으로 열거한다.(례:「x10 y20 w200 h100」)<br>
+좌표는, 윈도우의 타이틀 바나 도구모음을 포함하지 않는 클라이언트 영역상에서의 좌표.
+</dd>
+<dt>MoveDraw</dt><dd>
+Move(와)과 거의 같지만, 윈도우를 재묘화 시킨다.<br>
+표시 내용이 확실히 갱신되지만, 표시가 조금씩 날리는 경우가 있다.
+</dd>
+
+<dt>Focus</dt><dd>
+컨트롤에 입력초점을 대면시킨다
+</dd>
+<dt>Enable</dt>
+<dt>Enable1</dt>
+<dt>Disable0</dt><dd>
+무효화되고 있는 컨트롤을 유효화한다
+</dd>
+<dt>Disable</dt>
+<dt>Disable1</dt>
+<dt>Enable0</dt><dd>
+컨트롤을 무효화한다
+</dd>
+<dt>Show</dt>
+<dt>Show1</dt>
+<dt>Hide0</dt><dd>
+비표시가 되어 있는 컨트롤을 표시한다
+</dd>
+<dt>Hide</dt>
+<dt>Hide1</dt>
+<dt>Show0</dt><dd>
+컨트롤을 비표시로 한다
+</dd>
+<dt>Choose</dt><dd>
+Param3번째의 항목을 선택한다(DropDownList/ComboBox/ListBox전용).<br>
+이 커멘드로 선택을 변경했을 경우, 통상은 「g」옵션으로 할당할 수 있었던 써브루틴은 실행되지 않지만, 「GuiControl,,Choose,|3」(와)과 같이Param3의 숫자의 전에 「|」(을)를 붙이면, 써브루틴이 실행된다.<br>
+또, 「||」(을)를 붙이면,<a target=_top href='../Variables.html#GuiControlEvent'>A_GuiControlEvent</a>변수가DoubleClick(이)가 되어 있는 상태로 써브루틴이 실행된다.
+</dd>
+<dt>ChooseString</dt><dd>
+Param3그리고 지정한 문자열에 전방 일치하는 항목을 선택한다(DropDownList/ComboBox/ListBox전용).<br>
+대문자 소문자는 구별되지 않는다.<br>
+이 커멘드로 선택을 변경했을 경우, 통상은 「g」옵션으로 할당할 수 있었던 써브루틴은 실행되지 않지만, 「GuiControl,,Choose,|3」(와)과 같이Param3의 숫자의 전에 「|」(을)를 붙이면, 써브루틴이 실행된다.<br>
+또, 「||」(을)를 붙이면,<a target=_top href='../Variables.html#GuiControlEvent'>A_GuiControlEvent</a>변수가DoubleClick(이)가 되어 있는 상태로 써브루틴이 실행된다.
+
+</dd>
+<dt>Font</dt><dd>
+폰트를 현재<code><a target=_top href='../commands/Gui_Font.html'>Gui,Font</a></code>그리고 윈도우로 설정되어 있는 폰트로 변경한다.「<code><a target=_top href='../commands/Gui_Font.html'>Gui,Font</a></code>」참조.
+</dd>
+
+<dt>+Redraw/-Redraw</dt><dd>
+리스트뷰등에서 대량의 항목을 추가·삭제·변경하기 전에<a target=_top href='../commands/GuiControl.html'>GuiControl,-Redraw,ControlID</a>그리고 재묘화를 정지해, 종료후에+Redraw그리고 재개시키는 것으로 퍼포먼스를 개선할 수 있다.
+</dl>
+
+<dt>+/-Option</dt><dd>
+<a target=_top href='../commands/Gui_Add.html'>GUI,add</a>시간으로 지정할 수 있는 것과 같은 옵션을 추가·해제한다.<br>
+복수를 스페이스에서 단락지어 열거할 수도 있다.<br>
+예를 들면, 「GuiControl, -g +AltSubmit, MyListBox」라고 하면, 「G」옵션에 의한 이벤트 써브루틴 할당을 해제해, 「AltSubmit」옵션을 추가할 수 있다.<br>
+스타일이나 확장 스타일의 대부분은 이 방법으로 나중에 변경할 수 없다.(덧붙여 변경에 실패해도,ErrorLevel(은)는 「0」(이)가 된다)
+
+</dd>
+
+</dl>
+
+<h2>Remarks</h2>
+<p>스크립트는 최대로10의 윈도우를 가질 수 있다.<br>
+디폴트 이외의 윈도우를 조작하려면 , 서브 커멘드의 전에 「2:」(와)과 같이 윈도우 번호와 코론을 추가한다.
+</p>
+<p>
+기본적으로 디폴트의 윈도우 번호는 「1」이지만,2번째 이후의 윈도우상의GUI조작의 결과 실행된 스렛드에서는, 그 윈도우의 번호가 디폴트가 된다.
+</p>
+<pre>GuiControl, 2:Show, MyButton
+GuiControl, 2:, MyListBox, Item1|Item2
+</pre>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>Gui</a>, <a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a>, <a target=_top href='../commands/Control.html'>Control</a></p>
+
+<h2>Example(s)</h2>
+<pre>GuiControl,, MyListBox, |Red|Green|Blue ; Replace the current list with a new list.
+GuiControl,, MyEdit, New text line 1.`nNew text line 2.
+GuiControl,, MyRadio2, 1 ; Turn on this radio button and turn off all the others in its group.
+GuiControl, Move, OK, x100 y200 ; Move the OK button to a new location.
+GuiControl, Focus, LastName ; Set keyboard focus to the control whose variable or text is &quot;LastName&quot;.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GuiControl.html'>GuiControl</a></div>
+</body>
+</html>

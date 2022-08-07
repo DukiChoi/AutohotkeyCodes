@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SysGet</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SysGet.html'>SysGet</a></div>
+
+<h1>SysGet</h1>
+<p>화면 해상도나 멀티 모니터 관련의 정보, 그 외 시스템 관련의 정보를 취득</p>
+
+<pre>SysGet, OutputVar, Sub-command [, Param3]</pre>
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr>
+<td>OutputVar</td>
+<td>취득 결과를 격납하는 변수명</td>
+</tr>
+<tr>
+<td>Sub-command</td>
+<td>취득하는 정보를 지정
+</td>
+</tr>
+<tr>
+<td>Param3</td>
+<td>일부 서브 커멘드로 사용하는 옵션</td>
+</tr>
+</table>
+
+<h3>Sub-commands</h3>
+<dl>
+<dt>MonitorCount</dt><dd>멀티 모니터 환경에서의 모니터수를 취득.후술의SM_CMONITORS(와)과 달라, 데스크탑의 일부로서 사용되지 않은 모니터도 셀 수 있다.</dd>
+<dt>MonitorPrimary</dt><dd>
+주모니터의 번호를 취득
+</dd>
+<dt>Monitor [, N]</dt><dd>
+지정한 모니터의 데스크탑 영역에서의 경계 좌표를 취득.<br>
+N에 모니터 번호를 지정한다.<br>
+N(을)를 생략 했을 경우, 주모니터의 정보가 취득된다.<br>
+N에 존재하지 않는 모니터 번호를 지정했을 경우 등은, 결과의 변수는 모두 비운다.<br>
+결과는 「OutputVarLeft」 「OutputVarTop」 「OutputVarRight」 「OutputVarBottom」라고 하는 변수에 격납된다.<br>
+</dd>
+<dt>MonitorWorkArea [, N]</dt><dd>모니터 번호N의 태스크바의 부분을 제외한 경계 좌표를 취득</dd>
+<dt>MonitorName [, N]</dt><dd>모니터 번호N의 시스템명을 취득</dd>
+<dt>(수치)</dt><dd>Sub-command에 아래와 같이로 설명하는 번호를 지정하는 것으로, 각종의 정보를 취득할 수 있다.</dd>
+</dl>
+
+
+
+<table>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+<tr><td>SM_CMONITORS</td><td>80</td><td>멀티 모니터 환경에서 데스크탑 영역의 표시에 사용되고 있는 모니터의 수를 취득</td></tr>
+<tr><td>SM_CMOUSEBUTTONS</td><td>43</td><td>mouse button의 수 (마우스가 없을 때는 0) (을)를 취득합니다.</td></tr>
+<tr><td>SM_CXFULLSCREEN, SM_CYFULLSCREEN</td><td>16,17</td><td>최대화된 윈도우의 클라이언트 영역의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXMAXIMIZED, SM_CYMAXIMIZED</td><td>61,62</td><td>최대화된 윈도우의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXMAXTRACK, SM_CYMAXTRACK</td><td>59,60</td><td>윈도우의 최대 트락킹사이즈를 취득합니다.이 사이즈보다 크게 윈도우의 테두리를 드러그 할 수 없습니다.어플리케이션으로 WM_GETMINMAXINFO 메세지를 처리하면, 최대 트락킹사이즈를 변경할 수 있습니다.</td></tr>
+<tr><td>SM_CXMIN,SM_CYMIN</td><td>28,29</td><td>윈도우의 최소 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXMINIMIZED, SM_CYMINIMIZED</td><td>57,58</td><td>최소화된 윈도우의 디폴트의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXMINTRACK, SM_CYMINTRACK</td><td>34,35</td><td>윈도우의 최소 트락킹사이즈를 취득합니다.이 사이즈보다 작게 윈도우의 테두리를 드러그 할 수 없습니다.어플리케이션으로 WM_GETMINMAXINFO 메세지를 처리하면, 최소 트락킹사이즈를 변경할 수 있습니다.</td></tr>
+<tr><td>SM_CXSCREEN, SM_CYSCREEN</td><td>0,1</td><td>화면 전체의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXVIRTUALSCREEN, SM_CYVIRTUALSCREEN</td><td>78,79</td><td>Windows 98 (와)과 Windows 2000：가상 화면의 폭과 높이를 피크셀 단위로 취득합니다.가상 화면이란, 모든 모니터를 둘러싸는 경계 장방형입니다.SM_XVIRTUALSCREEN 및 SM_YVIRTUALSCREEN 의 각 치는, 가상 화면의 좌상구석의 좌표를 나타냅니다.</td></tr>
+<tr><td>SM_MOUSEPRESENT</td><td>19</td><td>마우스가 접속되고 있는지 어떤지를 나타내는 값을 취득합니다.접속되고 있을 때는 0 이외의 값이, 접속되어 있지 않을 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_MOUSEWHEELPRESENT</td><td>75</td><td>휠을 가지는 마우스가 접속되고 있는지 어떤지를 나타내는 값을 취득합니다.접속되고 있을 때는 0 이외의 값이, 접속되어 있지 않을 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_NETWORK</td><td>63</td><td>네트워크가 존재할지를 나타내는 값을 취득합니다.존재할 때는 최하위비트가 1 의 값이, 그렇지 않을 때는 최하위비트가 0 의 값이 돌아갑니다.최하위비트 이외의 비트는 예약되고 있습니다.</td></tr>
+<tr><td>SM_REMOTECONTROL</td><td>8193</td><td>리모트 데스크탑으로 원격 조작 되고 있을 때 이외는 「0」, 원격 조작 되고 있을 때는 제로 이외.</td></tr>
+<tr><td>SM_REMOTESESSION</td><td>4096</td><td>이 값은,Terminal Services 환경에서 사용하는 것을 의도하고 있습니다.호출측 프로세스가 Terminal Services 의 클라이언트 세션에 관련지을 수 있고 있는 경우는 0 이외의 값(TRUE)(이)가 돌아갑니다.호출측 프로세스가 Terminal Services 의 콘솔 세션에 관련지을 수 있고 있는 경우 0(FALSE)(이)가 돌아갑니다.</td></tr>
+<tr><td>SM_SHOWSOUNDS</td><td>70</td><td>유저 보조의 「사운드 해설을 사용한다」가 유효하게 되어 있는지 어떤지를 조사합니다.유효하게 되어 있을 때는 0 이외의 값이, 그렇지 않을 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_SHUTTINGDOWN</td><td>8192</td><td>슛다운중에서 없으면 「0」, 슛다운중이라면 제로 이외.</td></tr>
+<tr><td>SM_SWAPBUTTON</td><td>23</td><td>좌우의 mouse button의 기능을 교환하고 있을지를 나타내는 값을 취득합니다.교환하고 있을 때는 0 이외의 값이, 교환하고 있지 않을 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_XVIRTUALSCREEN, SM_YVIRTUALSCREEN</td><td>76,77</td><td>Windows 98 (와)과 Windows 2000：가상 화면의 좌단과 상단의 좌표를 나타냅니다.가상 화면이란, 모든 모니터를 둘러싸는 경계 장방형입니다.SM_CXVIRTUALSCREEN 및 SM_CYVIRTUALSCREEN 의 각 치는, 가상 화면의 폭과 높이를 나타냅니다.</td></tr>
+<tr><td>SM_ARRANGE</td><td>56</td><td>최소화 윈도우의 배치 방법을 나타내는 값을 취득합니다.</td></tr>
+<tr><td>SM_CLEANBOOT</td><td>67</td><td>시스템이 어떻게 기동되었는지를 나타내는 값을 취득합니다.다음의 값의 어느 쪽인가에 됩니다.<dl><dt>0</dt><dd>통상의 부트</dd><dt>1</dt><dd>「 Safe 모드」로의 부트</dd><dt>2</dt><dd>「네트워크를 사용했다 Safe 모드」로의 부트</dd></dl></td></tr>
+<tr><td>SM_CXBORDER, SM_CYBORDER</td><td>5,6</td><td>비입체적인 윈도우의 인연의 폭과 높이를 취득합니다.SM_CXEDGE (와)과SM_CYEDGE 도 참조해 주세요.</td></tr>
+<tr><td>SM_CXCURSOR, SM_CYCURSOR</td><td>13,14</td><td>마우스 커서의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXDOUBLECLK, SM_CYDOUBLECLK</td><td>36,37</td><td>더블 클릭에 있어서의 2 번째의 클릭 위치의 허용 범위를 취득합니다.1 번째의 클릭의 뒤, 허용 범위내 한편 허용 시간내에 한번 더 마우스를 클릭하면, 더블 클릭이 행 것으로 간주해집니다.</td></tr>
+<tr><td>SM_CXDRAG, SM_CYDRAG</td><td>68,69</td><td>드러그 조작의 개시라고는 보이지 않는 범위를 취득합니다.mouse button를 누른 후, 이 범위를 넘고 마우스를 작동시키면, 드러그 조작이 개시된 것으로 간주해집니다.</td></tr>
+<tr><td>SM_CXEDGE, SM_CYEDGE</td><td>45,46</td><td>입체적인 윈도우의 인연의 폭과 높이를 취득합니다.SM_CXBORDER (와)과SM_CYBORDER 의 3D 판입니다.</td></tr>
+<tr><td>SM_CXFIXEDFRAME, SM_CYFIXEDFRAME</td><td>7,8</td><td>타이틀 바를 가져, 한편, 사이즈를 변경할 수 없는 윈도우에 있어서의 테두리의 폭과 높이를 취득합니다.SM_CXDLGFRAME,SM_CYDLGFRAME (와)과 같습니다.</td></tr>
+<tr><td>SM_CXFOCUSBORDER, SM_CYFOCUSBORDER</td><td>83,84</td><td>컨트롤의 포커스범위의 굵기를 취득</td></tr>
+<tr><td>SM_CXHSCROLL, SM_CYHSCROLL</td><td>21,22</td><td>수평 스크롤 바의 화살표의 폭, 또는, 수평 스크롤 바의 높이를 취득합니다.</td></tr>
+<tr><td>SM_CXHTHUMB</td><td>10</td><td>수평 스크롤 바의 안주의 폭을 취득합니다.</td></tr>
+<tr><td>SM_CXICON, SM_CYICON</td><td>11,12</td><td>아이콘의 디폴트의 사이즈를 취득합니다.통상은 32×32 피크셀입니다.</td></tr>
+<tr><td>SM_CXICONSPACING, SM_CYICONSPACING</td><td>38,39</td><td>아이콘을 정렬할 경우에 사용되는 구라두의 사이즈를 취득합니다.항상,SM_CXICON,SM_CYICON 이상이 됩니다.</td></tr>
+<tr><td>SM_CXMENUCHECK, SM_CYMENUCHECK</td><td>71,72</td><td>메뉴의 체크 마크의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXMENUSIZE, SM_CYMENUSIZE</td><td>54,55</td><td>도구모음에 표시되는 버튼의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXMINSPACING, SM_CYMINSPACING</td><td>47,48</td><td>아이콘을 정렬할 경우에 사용되는 구라두의 사이즈를 취득합니다.항상,SM_CXICON, SM_CYICON 이상이 됩니다 </td></tr>
+<tr><td>SM_CXSIZE, SM_CYSIZE</td><td>30,31</td><td>윈도우의 타이틀 바내의 버튼의 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXSIZEFRAME, SM_CYSIZEFRAME</td><td>32,33</td><td>사이즈를 변경할 수 있는 윈도우에 있어서의 테두리의 폭과 높이를 취득합니다.SM_CXFRAME,SM_CYFRAME (와)과 같습니다.</td></tr>
+<tr><td>SM_CXSMICON, SM_CYSMICON</td><td>49,50</td><td>작은 아이콘의 추천 사이즈를 취득합니다.</td></tr>
+<tr><td>SM_CXSMSIZE, SM_CYSMSIZE</td><td>52,53</td><td>차이 타이틀 바내의 버튼의 사이즈를 취득합니다</td></tr>
+<tr><td>SM_CXVSCROLL, SM_CYVSCROLL</td><td>2,20</td><td>수직 스크롤 바의 폭, 또는, 수직 스크롤 바의 화살표의 높이를 취득합니다.</td></tr>
+<tr><td>SM_CYCAPTION</td><td>4</td><td>타이틀 바의 높이를 취득합니다.</td></tr>
+<tr><td>SM_CYKANJIWINDOW</td><td>18</td><td>화면하의 한자 윈도우의 높이를 취득합니다.</td></tr>
+<tr><td>SM_CYMENU</td><td>15</td><td>일행 분의 도구모음의 높이를 취득합니다.</td></tr>
+<tr><td>SM_CYSMCAPTION</td><td>51</td><td>작은 타이틀 바의 높이를 취득합니다.</td></tr>
+<tr><td>SM_CYVTHUMB</td><td>9</td><td>수직 스크롤 바의 안주의 높이를 취득합니다.</td></tr>
+<tr><td>SM_DBCSENABLED</td><td>42</td><td>USER.EXE 하지만 2바이트 캐릭터 세트 (DBCS) (을)를 서포트하고 있을지를 나타내는 값을 취득합니다.서포트하고 있을 때는 0 이외의 값이, 서포트하고 있지 않을 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_DEBUG</td><td>22</td><td>USER.EXE 하지만 디버그 버젼인지 어떤지를 나타내는 값을 취득합니다.디버그 버젼 때는 0 이외의 값이, 디버그 버젼이 아닐 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_IMMENABLED</td><td>82</td><td>IME(Input Method Manager/Input Method Editor) 기능이 유효하게 되어 있는 경우는 0 이외의 값(TRUE)(이)가 돌아갑니다.무효가 되어 있는 경우는 0(FALSE)(이)가 돌아갑니다.<br>SM_IMMENABLED (은)는, 시스템이 Unicode 베이스의 어플리케이션으로,Unicode 베이스의 IME (을)를 사용할 준비가 되어 있을지를 나타냅니다.특정의 언어에 의존한다 IME 하지만 동작할지 확인하려면 ,SM_DBCSENABLED (와)과 시스템의 ANSI code page를 체크해 주세요.그 이외의 경우,ANSI/Unicode 사이의 변환이 올바르게 실행되지 않는 것이나, 폰트나 레지스트리 엔트리와 같은 컴퍼넌트가 존재하지 않는 것이 있습니다.</td></tr>
+<tr><td>SM_MEDIACENTER</td><td>87</td><td>OS하지만Windows XP Media Center Edition의 경우 제로 이외.</td></tr>
+<tr><td>SM_MENUDROPALIGNMENT</td><td>40</td><td>도구모음의 항목에 대해서, 드롭 다운 메뉴가 오른쪽 대어 될지를 나타내는 값을 취득합니다.오른쪽 대어 될 때는 0 이외의 값이, 왼쪽 맞춤 될 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_MIDEASTENABLED</td><td>74</td><td>헤브라이어나 아라비아어가 이용 가능한 시스템인지 어떤지를 나타내는 값을 취득합니다.이용할 수 있을 때는 TRUE 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_PENWINDOWS</td><td>41</td><td>Window for Pen computing extensions 하지만 인스톨 되고 있는지 어떤지를 나타내는 값을 취득합니다.인스톨 되고 있을 때는 0 이외의 값이, 인스톨 되어 있지 않을 때는 0 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_SECURE</td><td>44</td><td>시큐러티가 존재할지를 나타내는 값을 취득합니다.존재할 때는 TRUE 하지만, 존재하지 않을 때는 FALSE 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_SAMEDISPLAYFORMAT</td><td>81</td><td>복수의 모니터가 존재하는 경우, 모든 모니터가 같은 칼라 포맷을 사용하고 있는지 어떤지를 나타내는 값을 취득합니다.모든 모니터가 같은 칼라 포맷을 사용하고 있는 경우,0 이외의 값(TRUE)(이)가 돌아갑니다.그 이외의 경우,0(FALSE)(이)가 돌아갑니다.2 받침대의 모니터가 같은 색심도(비트수)를 사용하고 있어도, 칼라 포맷이 다를 가능성이 있는 것에 주의해 주세요.예를 들어, 각 피크셀의 RGB 의 비트수가 차이가 난다(16 비트의 경우 RGB 하지만 565 그렇다고 하는 것이 일반적입니다만, 알파블렌딩；휘도의 1 비트를 추가해 ARGB1555 그렇다고 하는 편성도 있습니다) 일이나,RGB 의 순서가 차이가 나기도 합니다.</td></tr>
+<tr><td>SM_SLOWMACHINE</td><td>73</td><td>컴퓨터의 프로세서가 늦은지 어떤지를 나타내는 값을 취득합니다.늦을 때는 TRUE 하지만, 그 이외 때는 FALSE 하지만 돌아갑니다.</td></tr>
+<tr><td>SM_TABLETPC</td><td>86</td><td>OS하지만Windows XP Tablet PC의 경우 제로 이외.</td></tr>
+</table>
+
+
+<h2>Remarks</h2>
+<p>프라이머리 모니터의 가로폭과 높이는<a target=_top href='../Variables.html#ScreenWidth'>A_ScreenWidth</a>/<a target=_top href='../Variables.html#ScreenHeight'>A_ScreenHeight</a>변수로 참조할 수 있다</p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinGet.html'>WinGet</a></p>
+
+
+
+<h2>Example(s)</h2>
+<pre>Example #1:
+SysGet, MouseButtonCount, 43
+SysGet, VirtualScreenWidth, 78
+SysGet, VirtualScreenHeight, 79
+
+Example #2: This is a working script that displays info about each monitor:
+SysGet, MonitorCount, MonitorCount
+SysGet, MonitorPrimary, MonitorPrimary
+MsgBox, Monitor Count:`t%MonitorCount%`nPrimary Monitor:`t%MonitorPrimary%
+Loop, %MonitorCount%
+{
+	SysGet, MonitorName, MonitorName, %A_Index%
+	SysGet, Monitor, Monitor, %A_Index%
+	SysGet, MonitorWorkArea, MonitorWorkArea, %A_Index%
+	MsgBox, Monitor:`t#%A_Index%`nName:`t%MonitorName%`nLeft:`t%MonitorLeft% (%MonitorWorkAreaLeft% work)`nTop:`t%MonitorTop% (%MonitorWorkAreaTop% work)`nRight:`t%MonitorRight% (%MonitorWorkAreaRight% work)`nBottom:`t%MonitorBottom% (%MonitorWorkAreaBottom% work)
+}
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SysGet.html'>SysGet</a></div>
+</body>
+</html>

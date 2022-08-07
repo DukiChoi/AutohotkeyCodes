@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>PixelGetColor</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/PixelGetColor.html'>PixelGetColor</a></div>
+<h1>PixelGetColor  </h1>
+<p>지정 좌표에 표시되고 있는 색을 취득한다</p>
+
+<pre>PixelGetColor, OutputVar, X, Y [,Alt|SlowRGB]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>칼라 코드를 취득하는 변수명
+</td>
+</tr>
+<tr> 
+<td>X,Y
+</td>
+<td>
+색을 취득하고 싶은 피크셀의 좌표.<br>
+통상은 액티브 윈도우의 좌상으로부터의 상대 좌표이지만,<a target=_top href='../commands/CoordMode.html'>CoordMode</a>커멘드를 사용하면 스크린 전체로의 좌표가 된다.
+</td>
+</tr>
+<tr>
+<td>Alt|SlowRGB</td>
+<td>
+이하의 옵션을 반각 스페이스에서 단락지어 열거한다
+<dl>
+<dt>RGB</dt><dd>결과가 「0xRRGGBB」의 포맷으로 취득된다.<br>
+이 포맷은,<a target=_top href='../commands/WinSet.html'>WinSet</a>,<a target=_top href='../commands/Gui.html'>Gui</a>,<a target=_top href='../commands/Progress.html'>Progress</a>,<a target=_top href='../commands/Progress.html'>SplashImage</a>그리고 사용된다.
+</dd>
+<dt>Alt</dt><dd>
+다른 방식으로 취득을 실시한다.<br>
+통상의 방식에 비해 잘못된 값이 취득되는 케이스가 적게 되지만,10%만큼 늦어진다.
+</dl>
+<dt>Slow</dt><dd>
+더욱 확실한 방식으로 취득을 실시한다.<br>
+일부의 풀 스크린 프로그램에 대응하기 위해서 필요.<br>
+통상의 방식에 비해3배 정도 늦다.
+</dd>
+</dl>
+</dd>
+
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+<p>성공시는 「0」, 실패시는 「1」.</p>
+
+<h2>Remarks</h2>
+
+<p>
+값은6자리수의16진수로 취득된다.<br>
+각 형은 「0xBBGGRR」(와)과 같이RGB에 대응하고 있다.<br>
+<a target=_top href='../commands/Transform.html'>Transform</a>커멘드의BitAnd(와)과BitShiftRight(을)를 사용하면, 각 요소를 꺼낼 수 있다.
+</p>
+<p>
+취득할 수 있는 것은, 화면에 표시되고 있는 부분 뿐이어서, 윈도우의 화면에서는 봐 내고 있는 부분등의 색은 취득할 수 없다.
+</p>
+
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/PixelSearch.html'>PixelSearch</a>, <a target=_top href='../commands/CoordMode.html'>CoordMode</a>, <a target=_top href='../commands/MouseGetPos.html'>MouseGetPos</a></p>
+
+<h2>Example(s)</h2>
+<pre>^!z::
+MouseGetPos, MouseX, MouseY
+PixelGetColor, color, %MouseX%, %MouseY%
+MsgBox, The color at the current cursor position is %color%.
+return
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/PixelGetColor.html'>PixelGetColor</a></div>
+</body>
+</html>

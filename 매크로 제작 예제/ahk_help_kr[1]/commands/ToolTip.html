@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>ToolTip</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/ToolTip.html'>ToolTip</a></div>
+<h1>ToolTip</h1>
+<p>툴 팁 힌트를 표시한다.최대20개 동시에 표시할 수 있다.</p>
+
+<pre>ToolTip [, Text, X, Y, WhichToolTip]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Text
+</td>
+<td>
+표시하는 텍스트.<br>
+복수행의 텍스트도 가능.<br>
+생략 하면, 그 툴 팁을 비표시로 한다.
+</td>
+</tr>
+<tr> 
+<td>X, Y 
+</td>
+<td>
+표시되는 좌표.<br>
+디폴트에서는 액티브 윈도우상에서의 상대 좌표이지만, 「<code><a target=_top href='../commands/CoordMode.html'>CoordMode</a>, ToolTip</code>」(으)로 스크린 전체로의 좌표로 지정하도록(듯이) 설정할 수 있다.<br>
+생략시는, 마우스 커서의 위치에 표시된다.
+</td>
+</tr>
+<tr>
+<td>WhichToolTip
+</td>
+<td>
+툴 팁의 번호(1...20).<br>
+생략시는1.
+</td>
+</tr>
+</table>
+
+<h2>Remarks</h2>
+<p>툴 팁은 항상 맨 앞면에 표시된다.</p>
+<p>툴 팁은,Text파라미터 없이 커멘드를 실행해 비표시로 되지 않는 한 표시계속 된다.
+</p>
+
+
+<p>툴 팁이 화면에서는 봐 내는 경우, 화면내에 들어가도록(듯이) 위치가 자동 조절된다.
+</p>
+<p><a target=_top href='../commands/Gui_Option.html'>Gui,+OwnDialogs</a>(을)를 사용하는 것으로, 툴 팁을 특정의GUI윈도우에 관련지을 수 있다.<br>
+관련지을 수 있었던 툴 팁은, 윈도우가 파기될 때 동시에 파기된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/CoordMode.html'>CoordMode</a>, <a target=_top href='../commands/TrayTip.html'>TrayTip</a>, <a target=_top href='../commands/Progress.html'>Progress</a>, <a target=_top href='../commands/SplashTextOn.html'>SplashTextOn</a>, <a target=_top href='../commands/MsgBox.html'>MsgBox</a>, <a target=_top href='../commands/InputBox.html'>InputBox</a>, <a target=_top href='../commands/FileSelectFile.html'>FileSelectFile</a>, <a target=_top href='../commands/FileSelectFolder.html'>FileSelectFolder</a></p>
+
+<h2>Example(s)</h2>
+<pre>ToolTip, Multiline`nTooltip, 100, 150
+
+; To have a ToolTip disappear after a certain amount of time
+; without having to use Sleep (which stops the current thread):
+#Persistent
+ToolTip, Timed ToolTip`nThis will be displayed for 5 seconds.
+SetTimer, RemoveToolTip, 5000
+return
+
+RemoveToolTip:
+SetTimer, RemoveToolTip, Off
+ToolTip
+return
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/ToolTip.html'>ToolTip</a></div>
+</body>
+</html>

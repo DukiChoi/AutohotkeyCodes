@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>GuiControlGet</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a></div>
+
+<h1>GuiControlGet</h1>
+<p>Gui커멘드로 작성한 윈도우에 배치된 컨트롤의 각종 정보를 취득한다</p>
+
+<pre>GuiControlGet, OutputVar [, SubCommand, ControlID, Param4]</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr>
+<td>OutputVar</td>
+<td>
+취득한 결과를 격납하는 변수명
+</td>
+</tr>
+<tr>
+<td>SubCommand</td>
+<td>
+취득하는 정보의 종류를 지정한다.<br>
+생략시는, 컨트롤의 내용을 취득한다.
+
+</td>
+</tr>
+<tr>
+<td>ControlID</td>
+<td>
+대상이 되는 컨트롤을 지정한다.<br>
+컨트롤 작성시에 「v」옵션으로 변수를 할당하고 있는 경우, 그 변수명으로 지정할 수 있다.<br>
+그 이외의 경우, 컨트롤의ClassNN인가 컨트롤에 포함되는 텍스트를 지정한다.<br>
+Picture컨트롤의 화상 파일명도 지정할 수 있다.<br>
+생략시는,OutputVar그리고 지정한 변수가 「v」옵션으로 관련지을 수 있었던 컨트롤이 된다.
+</td>
+</tr>
+<tr>
+<td>Param4</td>
+<td>각SubCommand의 설명 참조.특히 설명이 없으면, 생략 한다.</td>
+</tr>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>무엇인가 문제가 있으면 「1」, 정상적으로 종료하면 「0」</p>
+
+<h2>SubCommand생략시</h2>
+<p>이하의 종류의 컨트롤 이외에서는,Gui,Add시간에Text인수로 설정되는 부분의 내용이 취득된다.</p>
+<dl>
+<dt>Hotkey</dt><dd>hot key가 입력되고 있으면, 「^!C」 「^Home」 「^NumpadHome」(와)과 같은 형식(hot key 라벨로 그대로 사용할 수 있다)그리고 취득된다.</dd>
+<dt>Slider/Progress</dt><dd>현재의 위치가 취득된다.</dd>
+<dt>Picture</dt><dd>
+컨트롤이Gui,Add그리고 추가되었을 때에 읽힌 화상의 파일명이 취득된다.
+</dd>
+<dt>Checkbox/Radio</dt><dd>
+「0」(이)라면 체크 이루어, 「1」(이)라면 체크 있어, 「-1」(이)라면 반체크.<br>
+Param4에 「Text」(을)를 지정하면, 대신에 컨트롤의 캡션이 취득된다.
+</dd>
+<dt>DropDownList/ComboBox/ListBox/Tab</dt><dd>
+선택되고 있는 항목의 텍스트가 취득된다.<br>
+ComboBox그럼, 입력란에 입력되고 있는 텍스트가 취득된다.
+</dd>
+</dl>
+<h2>SubCommand</h2>
+<dl>
+<dt>Pos</dt><dd>
+컨트롤의 좌표와 높이를 취득한다.<br>
+이 서브 커멘드에서는,OutputVar그리고 지정한 이름에 「X」 「Y」 「W」 「H」(을)를 붙인 이름의 변수에, 각각X좌표/Y좌표/폭/높이가 격납된다.<br>
+좌표는, 윈도우의 타이틀 바나 도구모음을 들여다 본 클라이언트 에리어상에서의 좌표로 취득된다.
+</dd>
+<dt>Enabled</dt><dd>
+윈도우가 유효 상태라면 「1」, 무효화되고 있으면 「0」
+</dd>
+<dt>Visible</dt><dd>
+컨트롤이 표시되고 있으면 「1」, 비표시가 되어 있으면 「0」
+</dd>
+<dt>Focus</dt><dd>
+윈도우상의 입력초점을 가지고 있는 컨트롤의ClassNN(을)를 취득한다.<br>
+이 서브 커멘드에서는,ControlID(은)는 지정하지 않는다.<br>
+윈도우가 액티브하지 않은 경우, 입력초점을 가지는 컨트롤은 없기 때문에,OutputVar(은)는 비운다.
+</dd>
+<dt>FocusV</dt><dd>
+Focus(와)과 같지만,ClassNN대신에 컨트롤에 할당한 변수명을 취득한다.<br>
+변수를 할당할 수 있지 않은 경우, 대신에 컨트롤의 텍스트의 최초의63문자까지가 취득된다.
+</dd>
+<dt>Hwnd</dt><dd>
+<a target=_top href='../commands/DllCall.html'>DllCall</a>(이)나<a target=_top href='../commands/PostMessage.html'>PostMessage/SendMessage</a>등에서 사용하는 윈도우 핸들을 얻는다.
+</dd>
+
+</dl>
+<h2>Remarks</h2>
+<p>스크립트는 최대로10의 윈도우를 가질 수 있다.<br>
+디폴트 이외의 윈도우를 조작하려면 , 서브 커멘드의 전에 「2:」(와)과 같이 윈도우 번호와 코론을 추가한다.
+</p>
+<p>
+기본적으로 디폴트의 윈도우 번호는 「1」이지만,2번째 이후의 윈도우상의GUI조작의 결과 실행된 스렛드에서는, 그 윈도우의 번호가 디폴트가 된다.
+</p>
+<pre>GuiControlGet, MyEdit, 2:
+GuiControlGet, Outputvar, 2:Focus
+GuiControlGet, OutputVar, 2:Pos, MyEdit</pre>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>Gui</a>, <a target=_top href='../commands/GuiControl.html'>GuiControl</a>, <a target=_top href='../commands/ControlGet.html'>ControlGet</a></p>
+
+<h2>Example(s)</h2>
+<pre>GuiControlGet, MyEdit
+GuiControlGet, CtrlContents,, MyEdit ; Same as the above except uses a non-default output variable.
+GuiControlGet, MyCheckbox1 ; Retrieves 1 if it is checked, 0 if it is unchecked.
+GuiControlGet, MyCheckbox1,,, Text ; Retrieves the caption/text of the checkbox. 
+GuiControlGet, Pic, Pos, Static4 ; The position/size will be stored in PicX, PicY, PicW, and PicH</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a></div>
+</body>
+</html>

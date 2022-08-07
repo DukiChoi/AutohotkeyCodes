@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SetControlDelay</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetControlDelay.html'>SetControlDelay</a></div>
+<h1>SetControlDelay</h1>
+<p>GUI컨트롤 조작시의 간격을 지정</p>
+
+<pre>SetControlDelay, Delay </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Delay
+</td>
+<td>
+간격을 밀리 세컨드로 지정.<br>
+디폴트는20.<br>
+-1그리고 모두 간격 없음.<br>
+0(이)라면, 다른 프로세스가 끼어드는 것이 가능하게 된다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+각종 윈도우 조작 커멘드의 후에는, 윈도우가 조작에 응답하는 것을 기다리기 위해, 조금의 사이 처리가 정지된다.<br>
+「-1」(을)를 지정하면, 스크립트의 다음의 처리와 윈도우의 응답이 겹치게 되어 맛이 없기 때문에, 적어도 「0」(으)로 하는 편이 좋다.
+</p>
+
+<p>
+이 설정의 기본치는, 스크립트의 최초의<a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>그리고 설정한다.<br>
+hot key등에서 새롭게 기동되었다<a target=_top href='../misc/Threads.html'>스렛드</a>그럼, 설정은 기본치로 설정된다.
+</p>
+<p>
+<a target=_top href='../Variables.html#ControlDelay'>A_ControlDelay</a>변수로 현재의 설정치를 참조할 수 있다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Control.html'>Control</a>, <a target=_top href='../commands/ControlMove.html'>ControlMove</a>, <a target=_top href='../commands/ControlClick.html'>ControlClick</a>, <a target=_top href='../commands/ControlFocus.html'>ControlFocus</a>, <a target=_top href='../commands/ControlSetText.html'>ControlSetText</a>, <a target=_top href='../commands/SetWinDelay.html'>SetWinDelay</a>, <a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>,<a target=_top href='../commands/SetMouseDelay.html'> SetMouseDelay</a>, <a target=_top href='../commands/SetBatchLines.html'>SetBatchLines</a> </p>
+
+<h2>Example(s)</h2>
+<pre>SetControlDelay, 0 </pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetControlDelay.html'>SetControlDelay</a></div>
+</body>
+</html>

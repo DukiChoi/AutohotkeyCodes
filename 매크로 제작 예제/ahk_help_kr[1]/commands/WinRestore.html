@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinRestore</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinRestore.html'>WinRestore</a></div>
+<h1>WinRestore</h1>
+<p>윈도우의 최소화나 최대화를 바탕으로 되돌린다</p>
+
+<pre>WinRestore [, WinTitle, WinText, ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+
+<h2>Remarks</h2>
+<p>일부의 윈도우는 이 방법에서는 복원할 수 없다.<br>
+대신에 이하의 방법을 사용하면, 복원할 수 있는 경우가 있다.
+</p>
+<pre>
+<a target=_top href='../commands/PostMessage.html'>PostMessage, </a>0x112, 0xF120,,, WinTitle, WinText ; 0x112 = WM_SYSCOMMAND, 0xF120 = SC_RESTORE
+</pre>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinMinimize.html'>WinMinimize</a>, <a target=_top href='../commands/WinMaximize.html'>WinMaximize</a> </p>
+
+<h2>Example(s)</h2>
+WinRestore, Untitled - Notepad
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinRestore.html'>WinRestore</a></div>
+</body>
+</html>

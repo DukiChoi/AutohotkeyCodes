@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Picture</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Picture.html'>Gui,Add,Picture</a></div>
+<h1>Gui,Add,Picture</h1>
+<p>GUI윈도우에 화상을 표시하는 컨트롤을 추가한다</p>
+
+<pre>Gui, Add, Picture [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+W(와)과H(을)를 지정하지 않으면 화상의 실제의 사이즈로 표시된다.종횡의 비율을 유지해 확대/축소하려면 ,W인가H의 다른 한쪽을 보통으로 설정해, 이제(벌써) 다른 한쪽을 「h-1」(이)나 「w-1」(와)과 같이 지정한다.<br>
+G그리고 써브루틴 라벨명을 지정하는 것으로, 화상을 클릭했을 때에 실행되는 써브루틴을 설정할 수 있다.<br>
+고유의 옵션은 없다.
+</td>
+</tr>
+<tr><td>Text</td><td>
+화상 파일명을 지정한다.상대 패스로 지정했을 경우, 상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>IconN</dt><dd>
+N에 아이콘 번호를 지정.실행 파일이나DLL파일에 복수의 아이콘이 포함되는 경우,2번째 이후의 아이콘을 표시한다.<br>
+이 기능을 사용했을 경우,AltSubmit옵션은 사용할 수 없다.
+</dd>
+<dt>AltSubmit</dt><dd>
+GDIPlus.dll(을)를 사용하고 묘화를 실시한다.<br>
+화상의 투과색이 유효하게 되어,BackgroundTrans옵션을 모두 지정하면 아래의 컨트롤을 투과 표시할 수 있게 된다.<br>
+복수 사이즈의 화상을 가지는 아이콘 파일의 경우, 통상은32*32의 이미지가 우선되지만,AltSubmit(을)를 사용하면16*16의 이미지가 우선된다.
+</dd>
+<dt>BackgroundTrans</dt><dd>
+투과 이로베분을 투과 해, 아래에 배치된 컨트롤이 보이도록(듯이) 한다.<br>
+나중에 해제하는데는,<a target=_top href='../commands/GuiControl.html'>GuiControl</a>그리고 「+Background」(을)를 설정한다.<br>
+지정하지 않았던 경우, 투과 이로베분은 컨트롤의 배경색이 된다.
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+<p>
+아이콘(*.ico), 커서(*.cur), 애니메이션 커서(*.ani), 실행 파일이나DLL파일내의 아이콘을 표시할 수 있다.<br>
+실행 파일이나DLL파일내의 아이콘으로, 복수의 사이즈의 이미지를 포함한 경우, 항상 최대의 이미지가 로드 된다.<br>
+실행 파일이나DLL파일내의 아이콘은,BackgroundTrans에 의한 배후 컨트롤 투과는 유효하게 안 된다.<br>
+</p>
+
+<p>BMP/JPEG/GIF/PNG/TIF/ICO, 그 외 ,OS의GDI+엔진이 서포트하고 있는 형식의 화상을 표시할 수 있다.
+</p>
+
+<p>다른 컨트롤의 뒤로 배경으로서 표시하고 싶은 경우는,Picture컨트롤을 최초로 배치하면 좋다.<br>
+다만,Picture컨트롤에G옵션으로 써브루틴을 할당할 수 있고 있는 경우, 위에 배치된 컨트롤을 클릭했을 때에도 그 써브루틴이 실행되어 버린다.<br>
+이것을 회피하려면 ,Picture컨트롤을 다른 컨트롤보다 후에 배치해,Option에 「0x4000000」(WS_CLIPSIBLINGS)(을)를 설정한다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Picture.html'>Gui,Add,Picture</a></div>
+</body>
+</html>

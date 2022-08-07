@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Return</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Return.html'>Return</a></div>
+<h1>Return</h1>
+<p><a target=_top href='../commands/Gosub.html'>Gosub</a>(이)나<a target=_top href='../Hotkeys.html'>Hotkey</a>의 써브루틴 처리로부터 돌아온다</p>
+
+<pre>Return</pre>
+
+<h2>Remarks</h2>
+<p>GoSub그리고 점프 하고 있지 않을 때에Return(을)를 실행하면,<a target=_top href='../commands/Exit.html'>Exit</a>(을)를 실행했을 때와 같게<a target=_top href='../misc/Threads.html'>스렛드</a>(을)를 종료한다.</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gosub.html'>Gosub</a>, <a target=_top href='../commands/Exit.html'>Exit</a>, <a target=_top href='../commands/ExitApp.html'>ExitApp</a>, <a target=_top href='../commands/GroupActivate.html'>GroupActivate</a></p>
+
+<h2>Example(s)</h2>
+<pre>#z::
+MsgBox, The Win-Z hotkey was pressed.
+Gosub, WinZ
+
+return
+
+WinZ: 
+Sleep, 1000
+return
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Return.html'>Return</a></div>
+</body>
+</html>

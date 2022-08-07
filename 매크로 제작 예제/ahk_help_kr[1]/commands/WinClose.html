@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinClose</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinClose.html'>WinClose</a></div>
+<h1>WinClose </h1>
+<p>윈도우를 닫는다</p>
+
+<pre>WinClose [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]</pre>
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>SecondsToWait
+</td>
+<td>
+윈도우가 완전하게 닫혀질 때까지 대기하는 시간.<br>
+생략시는 일절 기다리지 않는다.「0」(을)를 지정하면,500밀리 세컨드 기다린다.<br>
+<a target=_top href='../commands/WinWaitClose.html'>WinWaitClose</a>의 기능과 닮아 있지만,ErrorLevel그리고 윈도우가 닫혀졌는지를 취득하는 것은 할 수 없다.
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+윈도우에 대해 윈도우를 닫는 메세지를 송신해 윈도우를 닫게 한다.<br>
+그것에 의해 발생하는 동작은 어플리케이션에 따라서 다르다.
+</p>
+<p>
+조건에 일치하는 윈도우 가운데, 액티브한 윈도우인가, 제일 전면의 윈도우가 대상이 된다.<br>
+</p>
+
+<p>
+<a target=_top href='../commands/WinKill.html'>WinKill</a>커멘드를 사용하면, 강제적으로 윈도우를 닫을 수도 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinKill.html'>WinKill</a>, <a target=_top href='../commands/WinWaitClose.html'>WinWaitClose</a>, <a target=_top href='../commands/WinActivate.html'>WinActivate</a>, <a target=_top href='../commands/SetTitleMatchMode.html'>SetTitleMatchMode</a>, <a target=_top href='../commands/DetectHiddenWindows.html'>DetectHiddenWindows</a>, <a target=_top href='../Window.html'>Last Found Window</a>, <a target=_top href='../commands/IfWinExist.html'>IfWinExist</a>, <a target=_top href='../commands/IfWinActive.html'>IfWinActive</a>, <a target=_top href='../commands/WinWaitActive.html'>WinWaitActive</a>, <a target=_top href='../commands/WinWait.html'>WinWait</a>, <a target=_top href='../commands/GroupActivate.html'>GroupActivate</a></p>
+
+<h2>Example(s)</h2>
+<pre>IfWinExist, Untitled - Notepad
+	WinClose ; use the window found above
+else
+	WinClose, Calculator</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinClose.html'>WinClose</a></div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SetTimer</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetTimer.html'>SetTimer</a></div>
+<h1>SetTimer</h1>
+<p>써브루틴을 지정 간격으로 실행한다</p>
+
+<pre>SetTimer, Label [, Period|On|Off, Priority]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Label
+</td>
+<td>
+라벨명.hot key 라벨등에서도 가능.<br>
+「%LabelName%」(와)과 같은 변수 참조라도 좋다.
+</td>
+</tr>
+<tr>
+<td>Period|On|Off
+</td>
+<td>
+<dl>
+<dt>간격</dt><dd>수치를 지정하면, 실행 간격을 밀리 세컨드로 설정할 수 있다.상한은4294967295밀리 세컨드(약49.7일)이다.<br>
+타이머는 자동적으로 유효하게 된다.<br>
+부의 값을 지정했을 경우, 그 절대치의 시간이 경과후에, 한 번만 써브루틴이 실행된다.
+</dd>
+<dt>On</dt><dd>Off(으)로 한 타이머를 재차 유효하게 한다.<br>
+타이머가 신규 작성되는 경우, 간격은250(으)로 설정된다.<br>
+과거에 타이머 등록되었던 적이 있는 경우는, 그 때와 같은 간격으로 설정된다.(부의 값이 지정되어 있었을 경우도)
+</dd>
+<dt>Off</dt><dd>타이머를 정지한다.</dd>
+<dt>공</dt><dd>On(와)과 같다.다만,Priority하지만 설정되어 있는 경우, 경과시간의 리셋트는 행해지지 않는다.</dd>
+</dl>
+
+</td>
+</tr>
+<tr>
+<td>Priority
+</td>
+<td><a target=_top href='../misc/Threads.html'>스렛드의 세치기 우선도</a>(을)를 지정.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+타이머를 사용하면, 정기적으로 처리를 실행하거나 무엇인가를 감시하거나 할 수 있다.
+</p>
+<p>
+타이머를 설정해도 상주는 되지 않기 때문에, hot key를 등록하지 않는 스크립트를 상주시키고 싶은 경우<a target=_top href='../commands/_Persistent.html'>#Persistent</a>지령을 기술할 필요가 있다.
+</p>
+
+<p>
+타이머는, 설정된 뒤 지정 시간이 경과하고 처음으로 실행된다.<br>
+On(으)로 하거나 간격을 설정하거나 하면, 전회 실행으로부터의 경과시간이 리셋트 되어 현재의 시간부터 지정 시간 경과후에 다음의 실행을 한다.
+</p>
+
+<p>
+타이머는, 전회의 스렛드가 개시되었을 때로부터 지정 시간 경과후에 다음이 실행된다.<br>
+다만, 같은 타이마스렛드가 중복 해 실행될 것은 없다.<br>
+같은 타이머의 타이마스렛드가 실행중에, 다음의 시간이 왔을 경우, 기존의 타이마스렛드의 종료를 기다려 즉석에서 다음의 타이마스렛드가 개시된다.
+</p>
+
+
+
+<p>
+<a target=_top href='../commands/Suspend.html'>Suspend</a>되고 있는 동안도 타이머는 계속 움직인다.<br>
+<a target=_top href='../commands/Pause.html'>Pause</a>되면 모든 타이머는 정지한다.
+</p>
+
+<p>
+OS의 제한에 의해,NT계에서는10밀리 세컨드,9x계에서는55밀리 세컨드보다 짧은 간격에서는 실행할 수 없다.<br>
+이것보다 짧은 간격을 지정했을 경우는, 최소 간격으로 설정된다.
+</p>
+<p>
+타이머나 hot key가 확실히 지정 대로에 실행되도록(듯이) 하려면 ,<a target=_top href='../commands/SetBatchLines.html'>SetBatchLines</a>에 의한 처리 속도나<a target=_top href='../commands/Thread.html'>Thread</a>에 의한 스렛드 세치기의 설정등을 조절할 필요가 있다.
+</p>
+
+
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gosub.html'>Gosub</a>, <a target=_top href='../commands/Return.html'>Return</a>, <a target=_top href='../misc/Threads.html'>Threads</a>, <a target=_top href='../commands/Menu.html'>Menu</a>, <a target=_top href='../commands/_Persistent.html'>#Persistent</a></p>
+
+<h2>Example(s)</h2>
+<pre>
+; Example #1: Close unwanted windows whenever they appear:
+SetTimer, CloseMailWarnings, 250
+return
+
+CloseMailWarnings:
+WinClose, Microsoft Outlook, A timeout occured while communicating
+WinClose, Microsoft Outlook, A connection to the server could not be established
+return
+
+</pre>
+<pre>
+; Example #2: Wait for a certain window to appear and then alert the user:
+SetTimer, Alert1, 500
+return
+Alert1:
+IfWinNotExist, Video Conversion, Process Complete
+	return
+; Otherwise:
+SetTimer, Alert1, Off  ; i.e. the timer turns itself off here.
+SplashTextOn, , , The video conversion is finished.
+Sleep, 3000
+SplashTextOff
+return
+
+</pre>
+<pre>
+; Example #3: Detection of single, double, and triple-presses of a hotkey. This
+; allows a hotkey to perform a different operation depending on how many times
+; you press it:
+#c::
+if winc_presses &gt; 0 ; SetTimer already started, so we log the keypress instead.
+{
+	winc_presses += 1
+	return
+}
+; Otherwise, this is the first press of a new series. Set count to 1 and start
+; the timer:
+winc_presses = 1
+SetTimer, KeyWinC, 400 ; Wait for more presses within a 400 millisecond window.
+return
+
+KeyWinC:
+SetTimer, KeyWinC, off
+if winc_presses = 1 ; The key was pressed once.
+{
+	Run, m:\  ; Open a folder.
+}
+else if winc_presses = 2 ; The key was pressed twice.
+{
+	Run, m:\multimedia  ; Open a different folder.
+}
+else if winc_presses &gt; 2
+{
+	MsgBox, Three or more clicks detected.
+}
+; Regardless of which action above was triggered, reset the count to
+; prepare for the next series of presses:
+winc_presses = 0
+return</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetTimer.html'>SetTimer</a></div>
+</body>
+</html>

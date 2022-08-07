@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinSet</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinSet.html'>WinSet</a></div>
+<h1>WinSet</h1>
+<p>윈도우를 항상 맨 앞면표시 상태로 하거나 반투명으로 하거나 한다</p>
+
+<pre>
+WinSet, SubCmd, Value [, WinTitle, WinText,  ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>SubCmd,Value
+</td>
+<td>
+아래와 같이 참조.
+</td>
+</tr>
+<tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+<h3>SubCmd,Value</h3>
+<dl>
+<dt>Top</dt><dd>윈도우를 일번수전으로 이동한다.액티브하게는 안 된다.시스템의 설정에 따라서는 동작하지 않는다.</dd>
+<dt>Bottom</dt><dd>윈도우를 다른 모든 윈도우의 뒤로 이동한다.</dd>
+<dt>AlwaysOnTop ,ON|OFF|TOGGLE</dt>
+<dt>Topmost ,ON|OFF|TOGGLE</dt>
+<dd>항상 맨 앞면표시 상태의 설정.TOGGLE하ON/OFF(을)를 바꾼다.</dd>
+<dt>Disable</dt><dd>윈도우를 조작 불가능하게 한다</dd>
+<dt>Enable</dt><dd>윈도우를 조작 가능하게 한다</dd>
+<dt>Redraw</dt><dd>윈도우를 재묘화 시킨다.</dd>
+
+<dt>Style,N|ExStyle,N</dt><dd>윈도우의 스타일을 설정한다.<br>
+N(으)로 지정하는 값에 대해서는,<a target=_top href='../misc/Styles.html'>윈도우 스타일 일람</a>(을)를 참조.<br>
+N의 전에 「+」(을)를 붙이면, 그 스타일을 기존의 스타일에 추가, 「-」(을)를 붙이면 스타일을 삭제, 「^」(을)를 붙이면 스타일의 유무를 반전.<br>
+ErrorLevel(은)는, 정상 종료시는 「0」, 적용 불가능한 스타일을 지정했을 경우 등은 「1」(이)가 된다.
+</dd>
+<dt>Region[,Options]</dt><dd>윈도우의 표시 영역을 변경한다.<br>
+Options(을)를 생략 했을 경우, 통상 표시로 돌아온다.<br>
+Options에는, 이하의 것을 반각 스페이스 단락으로 지정한다.<br>
+ErrorLevel(은)는, 정상 종료시는 「0」, 적용 불가능한 스타일을 지정했을 경우 등은 「1」(이)가 된다.
+<dl>
+<dt>Wn Hm x-y</dt><dd>
+폭n높이m의 구형의 범위를 표시한다.x,y하지만 구형의 좌상의 좌표(윈도우의 좌상으로부터의 상대 좌표)(이)가 된다.부의 값도 지정 가능.(례:「W640 H480 10-10」 「W640 H480 -10--10」)
+</dd>
+<dt>Rw-h Wn Hm x-y</dt><dd>
+모퉁이의 둥근 구형으로 한다.모퉁이는 폭w, 높이h의 타원이 된다.(례:「R30-30」)<br>
+단지 「R」라고 했을 경우, 「R30-30」라고 한 것이  된다.
+</dd>
+<dt>E Wn Hm x-y</dt><dd>
+구형 대신에, 구형에 접하는 타원이 된다.
+</dd>
+<dt>x1-y1 x2-y2 x3-y3 ...</dt><dd>
+각xn-yn의 조를 정점으로 한 다각형의 영역을 표시한다.(례:「0-0 0-30 30-0」)<br>
+「100-100 0-100 100-0」로서|×|형태로 하거나 하는 일도 가능.<br>
+최대2000조까지 지정 가능.
+</dd>
+<dt>Wind x1-y1 x2-y2 x3-y3 ...</dt><dd>
+Alternating메소드 대신에Winding메소드를 사용한다(?)
+</dd>
+
+</dl>
+
+
+</dd>
+
+<dt>Transparent ,0...255|OFF</dt>
+<dt>Trans ,0-255|OFF</dt>
+<dd>윈도우를 반투명으로 한다.( 2000/XP전용)<br>
+0...255의 사이에 투명도를 지정.(0그리고 완전하게 불가시)<br>
+「OFF」(을)를 지정하면, 반투명을 완전하게 해제한다.(255(으)로 한 것 만으로는, 반투명의 계산을 하기 위해, 퍼포먼스가 나빠진다)
+</dd>
+<dt>TransColor ,Color [N]</dt><dd>
+윈도우의 지정한 색 부분만큼을 투명하게 한다(XP전용)<br>
+투명하게 된 부분은 클릭하지 못하고, 아래의 윈도우가 클릭된다.
+Color에는 투명하게 하고 싶은 색을<a target=_top href='../misc/Color.html'>색의 이름</a>인가RRGGBB의 서식에서 지정.<br>
+N에 투명도를0...255의 값으로 지정할 수 있다.(례:「<code>WinSet, TransColor, EEAA99 150</code>)<br>
+윈도우의 투명색을 변경하는 경우는, 일단Transparent,OFF(을)를 실행해 투명화를 해제할 필요가 있다.<br>
+GUI윈도우로 「Gui,-Caption」(을)를 병용 하는 경우는, 먼저 「WinSet,TransColor」(을)를 실행해 둘 필요가 있다.
+</dd>
+</dl>
+
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinGet.html'>WinGet</a>, <a target=_top href='../commands/WinHide.html'>WinHide</a>, <a target=_top href='../commands/WinSetTitle.html'>WinSetTitle</a>, <a target=_top href='../commands/WinMove.html'>WinMove</a>, <a target=_top href='../commands/WinActivate.html'>WinActivate</a> </p>
+
+
+
+
+
+
+
+<h2>Example(s)</h2>
+<pre>WinSet, Transparent, 200, Untitled - Notepad ; Make the window a little bit transparent.
+WinSet, TransColor, White, Untitled - Notepad ; Make all white pixels invisible.
+WinSet, AlwaysOnTop, toggle, Calculator ; Toggle the always-on-top status of Calculator.
+
+; Longer Example:
+; Here are some hotkeys that demonstrate the effects of &quot;Transparent&quot; and
+; &quot;TransColor&quot;.  NOTE: If you press one of the hotkeys while the mouse cursor
+; is hovering over a pixel that is invisible as a result of TransColor, the window
+; visible beneath that pixel will be acted upon instead!  Also, Win+G will
+; have an effect only on Windows XP because retrieval of transparency settings
+; is not supported by Windows 2000:
+
+#t::  ; Press Win+T to make the color under the mouse cursor invisible.
+MouseGetPos, MouseX, MouseY, MouseWin
+PixelGetColor, MouseRGB, %MouseX%, %MouseY%, RGB
+; In seems necessary to turn off any existing transparency first:
+WinSet, TransColor, Off, ahk_id %MouseWin%
+WinSet, TransColor, %MouseRGB% 220, ahk_id %MouseWin%
+return
+
+#o::  ; Press Win+O to turn off transparency for the window under the mouse.
+MouseGetPos,,, MouseWin
+WinSet, TransColor, Off, ahk_id %MouseWin%
+return
+
+#g::  ; Press Win+G to show the current settings of the window under the mouse.
+MouseGetPos,,, MouseWin
+WinGet, Transparent, Transparent, ahk_id %MouseWin%
+WinGet, TransColor, TransColor, ahk_id %MouseWin%
+ToolTip Translucency:`t%Transparent%`nTransColor:`t%TransColor%
+return
+
+; Examples of &quot;WinSet Region&quot;:
+WinSet, Region, 50-0 W200 H250, WinTitle  ; Make all parts of the window outside this rectangle invisible.
+WinSet, Region, 50-0 W200 H250 R40-40, WinTitle  ; Same as above but with corners rounded to 40x40.
+WinSet, Region, 50-0 W200 H250 E, WinTitle  ; An ellipse instead of a rectangle.
+WinSet, Region, 50-0 250-0 150-250, WinTitle  ; A triangle with apex pointing down.
+WinSet, Region,, WinTitle ; Restore the window to its original/default display area.
+
+; Here is a region with a more complex area. It creates a see-through rectangular hole inside a window.
+; There are two rectangles specified below: an outer and an inner.  Each rectangle consists of 5 pairs
+; of X/Y coordinates because the first pair is repeated at the end to &quot;close off&quot; each rectangle.
+WinSet, Region, 0-0 300-0 300-300 0-300 0-0   100-100 200-100 200-200 100-200 100-100, WinTitle</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinSet.html'>WinSet</a></div>
+</body>
+</html>

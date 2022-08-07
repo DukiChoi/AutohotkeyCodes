@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,MonthCal</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_MonthCal.html'>Gui,Add,MonthCal</a></div>
+<h1>Gui,Add,MonthCal</h1>
+<p>GUI윈도우에 캘린더 컨트롤을 추가한다</p>
+
+<pre>Gui, Add, MonthCal [, Options, SelectedDay]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+공통의 옵션에 대해서는,<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+고유의 옵션에 대해서는 후술.<br>
+V그리고 변수명을 지정해, 「<code>GUI, Submit</code>」(을)를 실행하는 것으로, 현재의 값을<a target=_top href='../misc/Time.html'>YYYYMMDDHH24MISS의 서식</a>그리고 취득할 수 있다.<br>
+G그리고 써브루틴명을 지정하면, 일자 시각이 조작에 의해서 변경될 때 마다 그 써브루틴이 실행된다.
+
+</td>
+</tr>
+<tr><td>SelectedDay</td><td>
+최초로 선택되고 있는 일자를<a target=_top href='../misc/Time.html'>YYYYMMDDHH24MISS의 서식</a>그리고 지정한다.<br>
+미지정시는 현재의 일자가 된다.<br>
+「20050101-20050107」(와)과 같이2개의 일자를 하이픈으로 단락지어 지정하면, 그 범위가 선택된 상태가 된다.이 때, 자동적으로Multi옵션이 유효하게 된다.
+
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>Rn</dt><dd>
+n에 행수를 지정한다(례:「R3」)<br>
+이 수만큼 세로에 복수 월분의 캘린더가 표시된다.
+</dd>
+
+<dt>W-n</dt><dd>
+n에 옆의 수를 지정한다(례:「W-4」)<br>
+이 수만큼 옆에 복수 월분의 캘린더가 표시된다.<br>
+</dd>
+
+<dt>AltSubmit</dt><dd>
+값이 변경되는 마다 만이 아니고, mouse button에 의한 조작을 할 때 마다도G옵션으로 지정한 써브루틴이 실행되도록(듯이) 한다.<br>
+이 때,<a target=_top href='../Variables.html#GuiEvent'>A_GuiEvent</a>변수에는 이하의 것이 격납된다.<br>
+<dl>
+<dt>Normal</dt><dd>
+선택 일자가 변경되었다
+</dd>
+<dt>1</dt><dd>
+일자 부분이 클릭되었다
+</dd>
+<dt>2</dt><dd>
+컨트롤의 어딘가가 클릭되었다
+</dd>
+</dl>
+일자의 클릭에 의해서 선택이 변경되었을 경우, 「2」 「Normal」 「1」의 순서로3회써브루틴이 실행된다.<br>
+벌써 선택된 일자를 클릭했을 경우, 「2」 「1」의 순서로2회실행된다.
+</dd>
+
+
+
+<dt>RangeMin-Max</dt><dd>
+Min(와)과Max에 선택 가능한 범위의 하한과 상한을<a target=_top href='../misc/Time.html'>YYYYMMDDHH24MISS의 서식</a>그리고 설정한다.(례:「Range20050101-20051231」)<br>
+상한이나 하한의 다른 한쪽만을 지정할 수도 있다(례:「Range20050101」 「Range-20051231」)<br>
+지정되지 않았던 경우, 상한은9999년12월31일, 하한은1601년1월1일이 된다.
+</dd>
+
+<dt>Multi</dt><dd>
+복수가 연속한 일자를 선택 가능하게 한다.<br>
+클릭하면서 드러그 하는지,Shift+클릭으로 범위 선택을 할 수 있다.<br>
+Multi옵션이 지정되어 있는 경우,V옵션으로 지정된 변수에는, 「20050101-20050107」(와)과 같이 선택 개시 일자와 선택 종료 일자를 하이픈으로 단락지은 문자열이 격납된다.<br>
+선택되고 있는 일자가1일 뿐이어도, 「20050101-20050101」(와)과 같이 하이픈으로 단락지어져 격납된다.
+</dd>
+
+<dt>4</dt><dd>
+행의 왼쪽으로 그 해에 있어서의 주의 번호를 표시한다.<br>
+1월4일을 포함한 주가 주번호1(이)가 된다.
+</dd>
+
+<dt>8</dt><dd>
+현재의 일자를 붉은 선으로 둘러싸는 것을 없앤다
+</dd>
+
+<dt>16</dt><dd>
+하부의 「오늘」의 표시를 없앤다
+</dd>
+
+
+</dl>
+
+<h2>Remarks</h2>
+<p>「w」옵션이나 「h」옵션을 지정하지 않으면 컨트롤은 캘린더 하나가 막 들어가는 크기가 된다.<br>
+폭이나 높이를 크게 하면, 자동적으로 복수의 달이 표시된다.<br>
+표시되는 달의 최대수는, 현재의 해의1달부터12달까지의12개월이다.
+「R」옵션이나 「W-」옵션으로 세로나 가로에 임의의 월수를 표시시킬 수 있다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_MonthCal.html'>Gui,Add,MonthCal</a></div>
+</body>
+</html>

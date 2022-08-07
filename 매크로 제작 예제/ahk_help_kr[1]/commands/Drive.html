@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>
+Drive</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Drive.html'>Drive</a></div>
+
+<h1>Drive</h1>
+<p>광학 드라이브의 트레이의 개폐, 드라이브의 볼륨 레벨의 변경</p>
+
+<pre>Drive, Label [, Drive , NewLabel]</pre>
+<pre>Drive, Eject [, Drive , Retract?]</pre>
+<pre>Drive, Lock, Drive</pre>
+<pre>Drive, Unlock, Drive</pre>
+<h2>Drive, Label [, Drive , NewLabel]</h2>
+<p>
+드라이브의 볼륨 레벨을NewLabel(으)로 변경한다.<br>
+NewLabel(을)를 생략 하면, 볼륨 레벨없이 된다.<br>
+Drive에는, 드라이브 문자와 코론을 지정한다.(례:「<code>C:</code>」)(UNC(이)나 맙드드라이브도 지정 가능)<br>
+볼륨 레벨명을 취득하려면 , 이하와 같이 한다.
+</p>
+<pre>
+<a target=_top href='../commands/DriveGet.html'>DriveGet</a>, OutputVar, Label, C:
+</pre>
+
+<h2>Drive, Eject [, Drive , Retract?]</h2>
+<p>CD(이)나DVD등의 광학 드라이브의 트레이를 배출/격납한다.<br>
+Drive(을)를 생략 했을 경우, 디폴트의 광학 드라이브가 조작된다.<br>
+열린 트레이를 되돌리는 경우, 제3인수에 「1」(을)를 지정한다.
+</p>
+<pre>Drive, Eject, G:, 1</pre>
+<p>열려 있는 트레이를 열려고 했을 경우나, 닫고 있는 트레이를 닫으려고 했을 경우, 조작은 성공으로 간주해진다(ErrorLevel하지만 「0」(이)가 된다).<br>
+광학 드라이브 이외의 드라이브를 조작하려고 했을 경우는, 이 커멘드는 동작하지 않고,ErrorLevel(은)는 「1」(이)가 된다.
+</p>
+<p>
+이 커멘드를 실행한다는 것은, 트레이의 배출/격납이 종료할 때까지 스크립트는 정지한다.<br>
+현재로서는, 정지중은 hot key등이 효과가 없게 되어, 훅을 이용하고 있으면 키보드/마우스 조작에 래그가 발생한다.
+</p>
+<p>
+열려 있는 트레이를 열려고 하면 커멘드가 즉석에서 종료하는 것을 이용하는 것으로, 아래의 예의 같게 닫고 있으면 열어, 열려 있으면 닫는다고 하는 조작을 실현할 수 있다.
+</p>
+<pre>
+#c::
+Drive, Eject
+; If the command completed quickly, the tray was probably already ejected.
+; In that case, retract it:
+if A_TimeSinceThisHotkey &lt; 1000 ; Adjust this time if needed.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Drive, Eject,, 1
+return
+</pre>
+<p>
+<a target=_top href='../commands/DriveGet.html'>DriveGet</a>커멘드를 사용하는 것으로, 광학 드라이브의 동작 상황을 취득할 수 있다.
+</p>
+<h2>Drive, Lock, Drive</h2>
+<p>
+광학 드라이브의 트레이 배출을 금지한다.시스템 전체로 유효가 된다.<br>
+락을 실행한 스크립트 이외의 스크립트나 프로그램이 락을 해제하는 일도 가능.<br>
+락을 해제하는지, 시스템을 재기동할 때까지 락은 유효하게 된다.
+</p>
+<h2>Drive, Unlock, Drive</h2>
+<p>
+「Drive, Lock」(이)나 그 외의 이유로 락 된 드라이브의 락을 해제한다.<br>
+NT계에서는, 여러 차례 락을 걸칠 수 있었던 드라이브는, 락을 걸칠 수 있었던 회수만 언로크를 실시하지 않으면 배출 가능하게 안 된다.<br>
+드라이브가 락 되고 있는지 어떤지를 직접 조사하는 방법은, 없다.
+</p>
+
+
+<h2>ErrorLevel</h2>
+<p>정상 종료하면 「0」, 무엇인가 문제가 있으면 「1」</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/DriveGet.html'>DriveGet</a>, <a target=_top href='../commands/DriveSpaceFree.html'>DriveSpaceFree</a></p>
+<h2>Example(s)</h2>
+<pre>Drive, Label, D:, BackupDrive</pre>
+<pre>Drive, Eject,, 1 ; Retract (close) the tray of the default CD or DVD drive. </pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Drive.html'>Drive</a></div>
+</body>
+</html>

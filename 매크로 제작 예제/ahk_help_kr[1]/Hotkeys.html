@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>hot key</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Hotkeys.html'>hot key</a></div>
+<h1>Hotkeys</h1>
+<p>
+hot key는 「<code>::</code>」(코론2개)(을)를 따른 써브루틴 라벨로 해서 기술된다.<br>
+hot key가 입력되면 해당 라벨의 다음의 행에 처리가 옮겨, 최초로<a target=_top href='./commands/Return.html'>return</a>인가<a target=_top href='./commands/Exit.html'>exit</a>하지만 실행될 때까지가 처리된다.
+</p>
+<pre>#y::
+  WinActivate, Untitled - Notepad
+  return</pre>
+<p>hot key에 할당하는 동작이1커멘드 뿐이라면, 「::」(코론2개)의 직후에 커멘드를 기술하는 것으로,1행으로 끝마칠 수 있다.<a target=_top href='./commands/Return.html'>return</a>(은)는 불요.</p>
+<pre>#y::WinActivate, Untitled - Notepad</pre>
+<p>
+(비고) 프로그램은<a target=_top href='./misc/Threads.html'>의사 multi-thread</a>(이)가 되어 있다.<br>
+hot key 이벤트의 실행 도중에, 다른 hot key 이벤트가 실행되는 일도 가능.
+</p>  
+<h2>수식 심볼</h2>
+<p><a name="symbols"></a>이하의 기호로 수식 키등을 지정할 수 있다.<br>
+복수의 심볼을 동시에 지정할 때는, 「!+」(와)과 같이 사이에 아무것도 열지 않고 연속해 기술한다.</p>
+<table>
+  <tr>
+    <td><strong>+</strong></td>
+    <td>Shift</td>
+  </tr>
+  <tr>
+    <td><strong>^</strong></td>
+    <td>Control</td>
+  </tr>
+  <tr>
+    <td><strong>!</strong></td>
+    <td>Alt</td>
+  </tr>
+  <tr>
+    <td width="30"><strong>#</strong></td>
+    <td width="604">Win (미논)</td>
+  </tr>
+  <tr>
+    <td><strong>&lt;</strong></td>
+    <td>왼쪽의 모디파이아키를 사용(NT계 전용)<br>
+례: <code>&lt;!a::</code> 좌Alt+A
+</td>
+  </tr>
+  <tr>
+    <td><strong>&gt;</strong></td>
+    <td>오른쪽의 모디파이아키를 사용(NT계 전용)<br>
+례: <code>>+<^a::</code> 좌Ctrl+우Shift+A
+</td>
+  </tr>
+  <tr>
+    <td><strong><^>!</strong></td>
+    <td>AltGr(일부의 나라의 키보드 레이아웃에 존재)</td>
+  </tr>
+  <tr>
+    <td><strong>*</strong></td>
+    <td>임의의 수식 키를 나타내는 와일드 카드(NT계 전용)<br>
+례1: <code>*a::</code> Ctrl/Alt/Shift/Win상태에 관계없이,A키가 밀리면 발동<br>
+례2: <code>*+a::</code> Ctrl/Alt/Win상태에 관계없이,Shift키가 밀린 상태로A키가 밀리면 발동</td>
+  </tr>
+  <tr>
+    <td><strong>~</strong></td>
+    <td>이벤트를 빼앗지 않고, 그대로 시스템에 통한다.(NT계 전용)<br>
+    례: <code>~*a::SoundPlay,D:\AutoHotkey\typesound.wav</code> A키가 밀렸을 때에 사운드를 울린다.<br>
+
+(비고)<a target=_top href='./Hotkeys.html#AltTab'>Alt+Tab대체계 커멘드</a>하지만 할당할 수 있었을 경우, 이 지정에 관계없이 입력은 납치된다.
+</td>
+  </tr>
+  <tr>
+    <td><strong>$</strong></td>
+    <td>RegisterHotkey()(이)가 아니고, 강제적으로 키보드 훅으로 이벤트를 취득한다.(NT계 전용)<br>
+써브루틴내에서 그 hot key 자신을 송신하는 경우,RegisterHotkey()그럼 hot key 이벤트가 재귀적으로 불려 가 버린다.<br>
+<code><a target=_top href='./commands/_UseHook.html'>#UseHook</a></code>지령을 사용하면,$(을)를 생략 할 수 있다.
+</td>
+  </tr>
+</table>
+<p>사용할 수 있는 키명에 대해서는,<a target=_top href='./KeyList.html'>Key List</a>(을)를 참조</p>
+
+<h2>키 라벨의 사양</h2>
+<p>hot key 라벨은 통상의 라벨과 같이<a target=_top href='./commands/Gosub.html'>Gosub</a>(이)나<a target=_top href='./commands/Goto.html'>Goto</a>그리고 이동할 수도 있다.<br>
+또, 아래 예의 같게, 복수의 hot key에 같은 써브루틴을 할당하는 일도 가능.<br></p>
+<pre>
+~*a::
+~*b::
+~*c::
+SoundPlay,D:\AutoHotkey\typesound.wav
+return
+</pre>
+<h2>키의 무효화</h2>
+<p>
+동작으로서return문장만을 할당하면, 키를 무효화할 수도 있다.
+</p>
+<pre>RWIN::return</pre>
+<p>
+hot key를 스크립트의 실행중에 등록하거나 무효화/유효화하거나 하려면 ,<a target=_top href='./commands/Hotkey.html'>Hotkey</a>커멘드를 사용한다.<br>
+</p>
+<h2>NT계 전용의 기능</h2>
+<h3>Uphot key</h3>
+<p>
+키명의 뒤에 반각 스페이스에 이어 「Up」라고 붙이면, 키를 놓았을 때에 발동하는 hot key를 설정할 수 있다.(례:「a up」 「LShift up」)
+</p>
+<p>
+Up없음의 hot key와 함께 설정하는 일도 가능.<br>
+Up없음의 hot key를 설정하고 있지 않는 경우에서도, 눌러 인하 이벤트는 납치된다.<br>
+예를 들어, 「a up::Send b」라고 하면,A키를 눌러 내렸을 때에는 아무것도 일어나지 않게 된다.<br>
+「~a::return」(을)를 모두 설정해 두면,A키가 눌러 내릴 수 있었을 때에는 보통으로A키가 밀렸을 때의 동작을 하게 된다.
+</p>
+<p>
+밀어 올려 이벤트는, 「~」의 유무에 관계없이, 납치되지 않고 시스템에 통지된다.<br>
+예를 들어, 「LShift Up::return」(와)과 같이 해도,LShift키를 떼어 놓을 수 없게 할 수 없다.
+</p>
+
+
+<h3>콤비네이션 키</h3>
+<p>「<code>&amp;</code>」(을)를 사용하는 것으로,2개의 임의의 키(죠이스틱 이외)의 편성을 hot key로 지정하는 것이 가능.<br>
+3개이상의 키를 지정하거나<code>+^!#</code>그리고 수식 키를 추가하거나는 할 수 없다.<br>
+첫째로 지정한 키가 수식 키가 되어, 첫째의 키를 누르면서 둘째의 키를 누르면 발동한다.<br>
+첫째의 키를 누르고, hot key를 발동시키지 않고 떼어 놓으면, 첫째의 키 단독에 할당할 수 있었던 써브루틴이 실행된다.<br>
+첫째의 키 자체의 원래의 기능은 무효화된다.
+</p>
+<pre>
+Numpad0 &amp; Numpad1::AltTab
+Numpad0 &amp; Numpad2::ShiftAltTab
+Numpad0::Run, calc.exe
+</pre>
+<p>
+첫째의 키에 치르다(<kbd>~</kbd>)(을)를 붙이면, 그 키는 무효화되지 않고, 보통으로 입력된다.<br>
+하나에 붙여 두면, 첫째의 키가 같을 다른 hot key에서는 지정되어 있지 않아도, 그 키는 무효화되지 않게 된다.
+</p>
+<pre>
+~RButton &amp; LButton::MsgBox,오른쪽 클릭하면서 왼쪽 클릭했다
+RButton &amp; WheelUp::MsgBox,오른쪽 클릭하면서 휠을 위에 돌렸다
+</pre>
+<p>
+상기예에서는, 오른쪽 클릭하면서 왼쪽 클릭하거나 휠을 위에 돌리거나 한다고 메세지가 나오지만, 오른쪽 클릭은 보통으로 액티브 윈도우에 보내진다
+</p>
+
+<h3><a name="AltTab"></a>AltTab/ShiftAltTab/AltTabMenu/AltTabAndMenu/AltTabMenuDismiss</h3>
+<p>
+이러한 커멘드는, hot key에 직접 할당하는 것 마셔 가능한 특별한 커멘드.<br>
+보통으로 「<code>Send,!{Tab}</code>」라고 하면, 써브루틴이 끝날 때 마다Alt+Tab의 화면이 사라져 버려, 온전히 동작하지 않지만,AltTab/ShiftAltTab(을)를 할당하면, 수식 키를 떼어 놓을 때까지 화면이 사라지지 않게 된다.<br>
+또,<code>AltTabMenu</code>(을)를 사용하면,Alt+Tab화면의 표시의 유무를 교체된다.<br>
+AltTabAndMenu그리고 강제적으로 표시,AltTabMenuDismiss그리고 표시되고 있으면 소거라고 하는 동작도 할당할 수 있다.<br>
+또,Esc키가 밀리면, 선택된 윈도우로 전환하지 않고 표시를 종료할 수 있다.<br>
+수식 키가 없는 단독 키에AltTab/ShiftAltTab(을)를 할당했을 경우, 그대로는 아무것도 일어나지 않고,<code>AltTabMenu</code>그리고Alt+Tab의 화면을 표시하고 있는 동안만, 변환 조작을 할당할 수 있다.<br>
+덧붙여 수식 키는 좌우 어느 쪽인지를 지정해야 한다.「<code><+a</code>」(와)과 같이 수식 심볼을 사용하는지, 「<code>LShift &amp; a</code>」(와)과 같이 콤비네이션 키로 지정한다.
+
+</p>
+<pre>
+  LAlt &amp; WheelDown::AltTab
+  LAlt &amp; WheelUp::ShiftAltTab
+</pre>
+<p>
+Alt+휠로 윈도우 변환
+</p>
+
+<pre>
+  MButton::AltTabMenu
+  WheelDown::AltTab
+  WheelUp::ShiftAltTab
+</pre>
+<p>
+중앙 클릭으로 변환 화면을 표시해, 휠로 선택, 다시 중앙 클릭하면 변환 화면이 사라져 전환이 실행된다.
+</p>
+
+<h3>Lock계 키의ON/OFF</h3>
+<p>
+<a target=_top href='./commands/SetNumScrollCapsLockState.html'>SetNumlockState</a>등의 커멘드로,NumLock키등의ON/OFF상태를 고정할 수 있다.
+</p>
+<pre>
+SetNumlockState, AlwaysOn
+</pre>
+<h3>Windows표준 hot key</h3>
+<p>
+Win+E(이)나Win+R등의Windows표준 hot key도 동작을 덧쓰기하거나 무효화하거나 할 수 있다.<br>
+자세한 것은<a target=_top href='./misc/Override.html'>override page</a>참조
+</p>
+<h3>숫자 패드와NumLock</h3>
+<p>숫자 패드의 각 키는NumLock상태에 의해서2대로의 hot key를 할당할 수 있다.<br>
+NumLock상태에 관계없이1개의 동작을 할당하고 싶은 경우는, 다음과 같이 한다.
+</p>
+<pre>
+NumpadEnd::
+Numpad1::
+MsgBox, This hotkey is launched regardless of whether Numlock is on.
+return
+</pre>
+
+
+<h3>Input커멘드</h3>
+<p>
+<a target=_top href='./commands/Input.html'>Input</a>커멘드로 일련의 키스트로크(keystroke)를 받는 것으로,2스트로크 키나 단축 입력등의 기능을 실현할 수 있다.
+</p>
+<pre>
+^c::
+&nbsp;&nbsp;&nbsp;&nbsp;Input,InputChar,C&nbsp;I&nbsp;L1&nbsp;T2,{Esc},x,s
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;ErrorLevel=Match
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;InputChar=x
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send,!{F4}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;InputChar=s
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send,^s
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;return
+</pre>
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Hotkeys.html'>hot key</a></div>
+</body>
+</html>

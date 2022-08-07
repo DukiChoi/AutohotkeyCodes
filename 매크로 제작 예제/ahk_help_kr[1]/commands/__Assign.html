@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>대입 연산자</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__Assign.html'>대입 연산자</a></div>
+<h1>대입 연산자</h1>
+<p>변수에 식의 계산 결과를 대입</p>
+
+<pre>Var := Expression
+Var op= Expression
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><td>Var</td><td>대입처의 변수명.「ArrayName%Index%」(와)과 같이, 변수의 참조를 포함하면, 변수의 내용을 전개한 변수명이 사용된다.
+</td></tr>
+<tr><td>op</td><td>
+「+」 「-」 「*」 「/」 「//」 「.」 「|」 「&」 「^」 「>>」 「<<」의 어느 쪽인가의 연산자.
+</td></tr>
+<tr><td>Expression</td><td>식.<a target=_top href='../Expression.html'>식의 설명</a>참조.</td></tr>
+</table>
+
+<h2>Remarks</h2>
+<p>
+「:=」에서는,Expression(을)를 평가한 결과의 값이Var그리고 지정한 변수에 대입된다.
+</p>
+<pre>
+var:=x+y+z
+</pre>
+
+<p>
+「+=」(이)나 「*=」(와)과 같은 형식에서는,Var그리고 지정한 변수와Expression(을)를op그리고 지정한 연산자로 연산한 결과가Var자신에게 대입된다.<br>
+상기의 예에서는,x의 값은11(이)가 된다.<br>
+대입식 전체의 값은, 대입 후의 변수의 값이 된다.</p>
+<pre>
+x:=1
+MsgBox,% x+=1
+</pre>
+
+
+
+<p>
+대입 연산자가 연속하고 있는 경우, 제일 오른쪽의 것으로부터 순서에 계산된다.<br>
+아래와 같은 예에서는, 우선c에1하지만 다리 되어4(이)가 되어,b에c하지만 다리 되어6(이)가 되어,a에b하지만 더해져7(이)가 된다.
+</p>
+<pre>
+a:=1,b:=2,c:=3
+a+=b+=c+=1
+MsgBox,%a%,%b%,%c%
+</pre>
+
+
+
+<p>대입식 자체는, 대입처의 변수를 나타내는 것이라고 해도 다루어지기 위해, 그것을 더욱 대입식의 좌변에 사용하거나 「<a target=_top href='../commands/__Addr.html'>&</a>」연산자로 주소를 참조하거나<a target=_top href='../Function.html'>함수의</a>ByRef부착 인수에 사용할 수도 있다.<br>
+아래와 같은 예에서는, 우선x에1하지만 가산해, 더욱2(을)를 걸어func()함수에 참조 인수로서 건네주어, 함수내에서10(을)를 가산한다.
+</p>
+<pre>
+func(ByRef arg){
+    arg+=10
+}
+x:=1
+func((x+=1)*=2)
+MsgBox,% x
+</pre>
+
+<p>「+=」 「-=」 「*=」 「/=」(이)가 제일 왼쪽의 연산자였던 경우, 각각<a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='../commands/EnvSub.html'>EnvSub</a>, <a target=_top href='../commands/EnvMult.html'>EnvMult</a>, <a target=_top href='../commands/EnvDiv.html'>EnvDiv</a>커멘드의 별표기로 간주해지기 위해, 다른 경우와 다른 동작이 된다.<br>
+Var(이)나Expression하지만 수치로서 올바르지 않았던 경우, 「0」이다고 보인다.(통상은, 연산 결과가 하늘의 문자열이 된다)<br>
+「+=」 「-=」에서는,<a target=_top href='../misc/Time.html'>일자 시각</a>의 연산이 가능하게 된다.<br>
+「/=」에서는,Var(와)과Expression하지만 모두 정수치의 경우, 결과의 소수점 이하를 잘라 버릴 수 있어 정수치가 되어 버린다.(통상의 「/」연산자는, 소수점 이하를 잘라 버리지 않는다)
+</p>
+
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../Expression.html'>식의 설명</a>, <a target=_top href='../commands/IfExpression.html'>IF (식)</a>, <a target=_top href='../commands/SetEnv.html'>SetEnv</a>, <a target=_top href='../commands/EnvSet.html'>EnvSet</a>, <a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='../commands/EnvSub.html'>EnvSub</a>, <a target=_top href='../commands/EnvMult.html'>EnvMult</a>, <a target=_top href='../commands/EnvDiv.html'>EnvDiv</a>, <a target=_top href='../commands/IfEqual.html'>If</a>, <a target=_top href='../misc/Arrays.html'>배열</a></p>
+
+<h2>Example(s)</h2>
+<pre>Var := 3
+Var := &quot;literal string&quot;
+Var := Price * (1 - Discount/100)
+
+Finished := not Done or A_Index &gt; 100
+if not Finished
+{
+	FileAppend, %NewText%`n, %TargetFile%
+	return
+}
+else
+	ExitApp</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__Assign.html'>대입 연산자</a></div>
+</body>
+</html>

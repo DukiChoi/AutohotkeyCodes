@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Process</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Process.html'>Process</a></div>
+<h1>Process</h1>
+<p>특정의 프로세스가 존재하는지 체크하거나 우선도를 변경하거나 종료시키거나 한다</p>
+<pre>
+Process, Exist, PID-or-Name
+Process, Close, PID-or-Name
+Process, Priority, PID-or-Name, NewPriority
+Process, Wait, PID-or-Name, Seconds
+Process, WaitClose, PID-or-Name, Seconds
+</pre>
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Cmd</td>
+<td>
+<p>이하의 커멘드명의 어떤 것인지를 지정</p>
+<dl>
+<dt>Exist</dt><dd>
+PID-or-Name그리고 지정한 프로세스가 존재하면,<a target=_top href='../misc/ErrorLevel.html'>ErrorLevel</a> 에PID하지만 격납된다.<br>
+PID-or-Name하지만 생략 되었을 경우는, 스크립트 자신의PID하지만 격납된다.
+</dd>
+<dt>Close</dt><dd>
+프로세스를 강제 종료한다.<br>
+</dd>
+<dt>Priority</dt><dd>
+프로세스의 우선도를 변경한다.<br>
+제2인수를 생략 하는 것으로,AutoHotkey자신의 프로세스 우선도를 변경할 수 있다.<br>
+제3인수에 설정하고 싶은 우선도를 지정한다.<br>
+우선도는 이하의 어떤 것인가.머리 글자 한 글자의 생략형이라도 좋다.
+<ul>
+<li>Realtime</li>
+<li>High</li>
+<li>AboveNormal</li>
+<li>Normal</li>
+<li>BelowNormal</li>
+<li>Low</li>
+</ul>
+</dd>
+<dt>Wait</dt><dd>
+제3당겨 수로 지정한 초수(소수도 가능)까지, 일치하는 프로세스가 존재하게 되는 것을 기다린다.<br>
+제3당겨 수가 생략 되었을 경우, 프로세스가 존재하게 될 때까지 무한하게 기다린다.<br>
+프로세스가 발견되었을 경우는,<a target=_top href='../misc/ErrorLevel.html'>ErrorLevel</a> 에PID하지만 격납된다.<br>
+지정 시간이 경과했을 경우는, 「0」(이)가 된다.
+</dd>
+<dt>WaitClose</dt><dd>
+제3당겨 수로 지정한 초수(소수도 가능)까지, 일치하는 프로세스가 하나도 존재하지 않게 되는 것을 기다린다.<br>
+제3당겨 수가 생략 되었을 경우, 프로세스가 존재하게 될 때까지 무한하게 기다린다.<br>
+지정 시간이 경과해도 일치하는 프로세스가 남아 있었을 경우,ErrorLevel에 일치하는 최초의 프로세스의PID하지만 들어간다.<br>
+프로세스가 존재하지 않게 되었을 경우,ErrorLevel(은)는 「0」(이)가 된다.
+</dd>
+</dl>
+</td>
+</tr>
+<tr> 
+<td>PID-or-Name </td>
+<td>
+프로세스ID인가 프로세스명을 지정한다.
+<dl>
+<dt>프로세스ID</dt>
+<dd>
+프로세스 기동시에 할당해지는 고유의 번호.<br>
+<a target=_top href='../commands/Run.html'>Run</a>(이)나<a target=_top href='../commands/WinGet.html'>WinGet</a>,Process커멘드로 취득할 수 있다.
+</dd>
+<dt>프로세스명</dt>
+<dd>
+많은 경우, 프로세스명은 실행 파일명과 같게 된다.<br>
+복수의 이름이 일치하는 프로세스가 있었을 경우, 최초의 하나가 대상이 된다.
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<h2>ErrorLevel</h2>
+<p>
+PID-or-Name에 매치하는 프로세스가 발견되어, 처리에 성공했을 경우는, 그 프로세스의PID(이)가 된다.<br>
+프로세스가 발견되지 않거나, 처리에 실패했을 경우는, 「0」(이)가 된다.<br>
+커멘드가WaitClose의 경우만, 지정 시간이 경과해도 일치하는 프로세스가 남아 있었을 경우 그 프로세스의PID(이)가 되어, 프로세스가 존재하지 않게 되었을 경우, 「0」(이)가 된다.
+</p>
+
+<h2>Remarks</h2>
+<p>
+Wait(와)과WaitClose(은)는,100밀리 세컨드 마다 지정 프로세스의 존재를 체크한다.<br>
+조건을 채우면 즉석에서 대기를 종료해,ErrorLevel(을)를 변경해, 스크립트의 다음의 행의 실행으로 옮긴다.<br>
+대기하고 있는 동안은, 다른<a target=_top href='../misc/Threads.html'>스렛드</a>하지만 끼어들 수 있다.
+</p>
+<p>
+WindowsNT4.0그리고 이 커멘드를 실행하려면 ,PSAPI.DLL(AutoHotkey에 동고)하지만 필요.
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/Run.html'>Run</a>, <a target=_top href='../commands/WinGet.html'>WinGet</a>, <a target=_top href='../commands/WinClose.html'>WinClose</a>, <a target=_top href='../commands/WinKill.html'>WinKill</a>, <a target=_top href='../commands/WinWait.html'>WinWait</a>, <a target=_top href='../commands/WinWaitClose.html'>WinWaitClose</a>, <a target=_top href='../commands/IfWinExist.html'>IfWinExist</a></p>
+<h2>Example(s)</h2>
+<pre>; Example #1:
+Run Notepad.exe, , , NewPID
+Process, priority, %NewPID%, High
+MsgBox The newly launched notepad's PID is %NewPID%.
+</pre>
+
+<pre>; Example #2:
+Process, wait, Notepad.exe, 5.5
+NewPID = %ErrorLevel%  ; Save the value immediately since ErrorLevel is often changed.
+if NewPID = 0
+{
+	MsgBox The specified process did not appear within 5.5 seconds.
+	return
+}
+; Otherwise:
+MsgBox A matching process has appeared (Process ID is %NewPID%).
+Process, priority, %NewPID%, Low
+Process, priority, , High  ; Have the script set itself to high priority.
+WinClose Untitled - Notepad
+Process, WaitClose, %NewPID%, 5
+if ErrorLevel <> 0 ; The PID still exists.
+	MsgBox The process did not close within 5 seconds.
+
+</pre>
+<pre>; Example #3: A hotkey to change the priority of the active window's process:
+#z:: ; Win+Z hotkey
+WinGet, active_pid, PID, A
+WinGetTitle, active_title, A
+Gui, 5:Add, Text,, Press ESCAPE to cancel, or double-click a new`npriority level for the following window:`n%active_title%
+Gui, 5:Add, ListBox, vMyListBox gMyListBox r5, Normal|High|Low|BelowNormal|AboveNormal
+Gui, 5:Add, Button, default, OK
+Gui, 5:Show,, Set Priority
+return
+
+5GuiEscape:
+5GuiClose:
+Gui, Destroy
+return
+
+MyListBox:
+if A_GuiControlEvent <> DoubleClick
+	return
+; else fall through to the next label:
+5ButtonOK:
+GuiControlGet, MyListBox
+Gui, Destroy
+Process, Priority, %active_pid%, %MyListBox%
+if ErrorLevel = 0
+	MsgBox Error: Its priority could not be changed to "%MyListBox%".
+else
+	MsgBox Success: Its priority was changed to "%MyListBox%".
+return
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Process.html'>Process</a></div>
+</body>
+</html>

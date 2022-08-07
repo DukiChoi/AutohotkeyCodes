@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Suspend</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Suspend.html'>Suspend</a></div>
+<h1>Suspend</h1>
+<p>hot key를 정리해 무효화한다</p>
+
+<pre>Suspend [, Mode]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Mode
+</td>
+<td>
+<dl>
+<dt>Toggle|생략시</dt><dd>유효·무효를 바꾼다</dd>
+<dt>On</dt><dd>일부의 예외(Remarks참조)(을)를 제외해 모든 hot key를 무효화한다.</dd>
+<dt>Off</dt><dd>Suspend그리고 정지된 hot key를 재차 유효하게 한다.</dd>
+<dt>Permit</dt><dd>hot key를Suspend의 대상으로부터 떼어내기 위해서 기술한다.</dd>
+</dl>
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+써브루틴의 최초의 행이 「Suspend,On」이외의Suspend커멘드가 되어 있는 hot key는,Suspend,On하지만 실행되어도 무효화되지 않는다.<br>
+「Suspend,Toggle」(이)나 「Suspend,Off」(이)가 할당할 수 있었던 hot key를 누르는 것으로, 중지가 해제된다.
+</p>
+
+<p>Suspend(을)를 실행해도, 실행중의 스렛드는 정지하지 않는다.
+</p>
+
+<p>hot key가 중지 되고 있는 동안, task tray 아이콘은 「S」의 글자의 것이 된다.<br>
+이 동작은, 「<code><a target=_top href='../commands/Menu.html'>Menu</a>,Tray,Icon,,,1</code>」라고 하는 것으로 억제할 수 있다.</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Pause.html'>Pause</a>, <a target=_top href='../commands/Menu.html'>Menu</a>, <a target=_top href='../commands/ExitApp.html'>ExitApp</a></p>
+
+<h2>Example(s)</h2>
+<pre>^!s::Suspend ; Assign the toggle-suspend function to a hotkey.</pre>
+
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Suspend.html'>Suspend</a></div>
+</body>
+</html>

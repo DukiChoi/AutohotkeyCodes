@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Clipboard</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Clipboard.html'>Clipboard</a></div>
+<h1>Clipboard</h1>
+
+<h2>Clipboard변수</h2>
+<p>
+Windows의 클립보드의 내용을 텍스트로서 읽어낼 수 있는 경우, 편입 변수Clipboard그리고 액세스 할 수 있다.<br>
+텍스트의 각 행은CR+LF(`r`n)단락으로 격납된다.
+</p>
+<p>
+Explorer등에서 파일을 클립보드에 격납했을 경우, 풀 패스가 개행(`r`n)단락으로Clipboard에 격납된다.<br>
+<a target=_top href='../commands/LoopParse.html'>parsing loop</a>의 예의 같게 하면,1파일씩 처리할 수 있다.<br>
+<a target=_top href='../commands/Sort.html'>Sort</a>커멘드로 파일명을 이름순에 늘어놓을 수 있다.<br>
+</p>
+<h3>Examples</h3>
+<pre>
+clipboard = my text  ; 클립보드의 텍스트를 변경
+clipboard =  ; 클립보드를 비운다
+clipboard = %clipboard%  ;텍스트 이외의 형식을 텍스트에 변환
+clipboard = %clipboard% Text to append.  ;클립보드에 텍스트를 추가
+StringReplace, clipboard, clipboard, ABC, DEF, All  ; 클립보드의 내용을 치환
+
+; Ctrl+C(을)를 송신해 카피된 내용을 표시
+clipboard =
+Send, ^c
+<a target=_top href='../commands/ClipWait.html'>ClipWait</a>
+MsgBox, Control-C copied the following contents to the clipboard:`n`n%clipboard%</pre>
+
+
+
+<h2>ClipboardAll변수</h2>
+<p>편입 변수ClipboardAll(을)를 사용하면, 클립보드에 격납되는 전데이터를 정리해 다른 변수에 카피할 수 있다.<br>
+주로, 클립보드를 경유하는 처리를 실시할 때, 처리전의 내용을 보존해 두어 복원하기 위해서 사용한다.<br>
+써 되돌릴 때는,ClipboardAll(은)는 아니고Clipboard변수에 대입한다.
+</p>
+<p>
+<a target=_top href='../commands/FileAppend.html'>FileAppend</a>,<a target=_top href='../commands/FileRead.html'>FileRead</a>커멘드를 사용하면, 내용을 파일에 보존해 두는 일도 가능.
+</p>
+<p>
+카피된 변수는, 더욱 다른 변수에 카피할 수 있다.<br>
+카피된 변수끼리는,<a target=_top href='../commands/IfEqual.html'>If</a>커멘드의 「<>」(이)나 「=」(으)로 비교할 수 있다.<br>
+<a target=_top href='../commands/StringLen.html'>StringLen</a>커멘드로, 카피된 데이터의 사이즈를 취득할 수도 있다.
+</p>
+<p>
+ClipboardAll변수로부터 다른 변수에 카피할 때는, 「<a target=_top href='../commands/_MaxMem.html'>#MaxMem</a>」지령에 의한 변수 사이즈의 상한 설정은 무시된다.
+</p>
+
+
+
+
+<p>
+ClipboardAll변수는, 다른 변수에의 카피와FileAppend커멘드 이외로 참조했을 경우는, 항상 비운다.<br>
+또,ClipboardAll(을)를 카피한 변수는, 통상의 변수와는 달라 바이너리 데이터를 격납한 상태가 되므로, 정상적으로 처리할 수 없다.<br>
+</p>
+
+
+<p>액세스 할 수 없는 데이터가 있는 경우, 그 데이터는 무시해 다른 데이터만이 처리된다.
+</p>
+
+
+<p>
+데이터는, 데이터 본체의 전에 포맷 타입과 데이터 사이즈가 각각4아르바이트의 little endian(하위 바이트가 앞)의 아르바이트열로 부가된 것이 된다.<br>
+복수의 데이터를 포함한 경우는, 이것이 반복한다.<br>
+또, 마지막에0x00하지만4아르바이트 뒤따른다.
+</p>
+
+<h3>Examples</h3>
+<pre>ClipSaved := ClipboardAll   ; 클립보드의 전내용을 보존
+
+;클립보드를 경유한 처리(례)
+Send,^c
+Run,http://www.google.co.jp/search?q=%Clipboard%
+
+
+Clipboard := ClipSaved   ; 클립보드의 내용을 복원
+ClipSaved =   ;보존용 변수에 사용한 메모리를 개방</pre>
+<pre>
+<a target=_top href='../commands/FileAppend.html'>FileAppend</a>, %ClipboardAll%, C:\clip.dat ;보존
+<a target=_top href='../commands/FileRead.html'>FileRead</a>, Clipboard, *c C:\clip.dat ;읽기(클립보드 데이터의 경우, 파일명의 전에 「*c」(을)를 붙인다)
+</pre>
+
+
+<h2><a name="OnClipboardChange">OnClipboardChange</a>써브루틴</h2>
+<p>「OnClipboardChange」라고 하는 이름의 라벨을 작성해 두면, 어떠한 어플리케이션에 의해서Windows의 클립보드가 변경되었을 때에 그 라벨이 실행되게 된다.<br>
+이 라벨은, 스크립트가 개시된 직후에도 실행된다.<br>
+이 라벨이 존재하는 것 만으로는, 스크립트는 상주 상태가 되지 않기 때문에, hot key나GUI(을)를 사용하지 않는 스크립트에서는 「<a target=_top href='../commands/_Persistent.html'>#Persistent</a>」지령으로 명시적으로 상주를 지정할 필요가 있다.
+</p>
+<p>이 라벨이 벌써 실행되고 있을 때 다시 클립보드의 내용이 변경되었을 경우는, 이 라벨은 새롭게 실행되지 않는다.<br>
+클립보드의 변경이 무시되어 버리는 것을 피하고 싶은 경우는,<a target=_top href='../commands/SetTimer.html'>SetTimer</a>커멘드를 개입시켜 별스렛드를 기동해,OnClipboardChange자체는 즉석에서 종료해 버리면 된다.
+</p>
+
+<p>
+라벨이 실행되었을 때, 편입 변수 「<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>」에 이하의 값이 격납된다.
+</p>
+<dl>
+<dt>0</dt>
+<dd>클립보드가 비웠다
+</dd>
+<dt>1</dt>
+<dd>텍스트로서 사용할 수 있는 데이터가 격납되고 있다
+</dd>
+<dt>2</dt>
+<dd>텍스트로서 사용할 수 없는 데이터만이 격납되고 있다
+</dd>
+</dl>
+
+<h3>Examples</h3>
+<pre>
+;클립보드의 내용이 변경될 때마다, 데이터의 종별을 툴 팁 표시한다
+#Persistent
+return
+
+<strong>OnClipboardChange:</strong>
+ToolTip Clipboard data type: %A_EventInfo%
+Sleep 1000
+ToolTip  ; Turn off the tip.
+return
+</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Clipboard.html'>Clipboard</a></div>
+</body>
+</html>

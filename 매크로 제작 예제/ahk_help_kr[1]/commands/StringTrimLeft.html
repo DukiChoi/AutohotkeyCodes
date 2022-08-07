@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>StringTrimLeft / StringTrimRight</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringTrimLeft.html'>StringTrimLeft / StringTrimRight</a></div>
+<h1>StringTrimLeft / StringTrimRight</h1>
+<p>문자열의 초나 마지막의 지정 문자수를 없앤다</p>
+
+<pre>StringTrimLeft, OutputVar, InputVar, Count
+StringTrimRight, OutputVar, InputVar, Count</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>처리 후의 문자열을 격납하는 변수명.<br>
+InputVar(와)과 같은 변수라도 좋다
+
+</td>
+</tr>
+<tr> 
+<td>InputVar
+</td>
+<td>
+대상으로 하는 문자열이 들어간 변수의 이름
+</td>
+</tr>
+<tr>
+<td>Count
+</td>
+<td>
+
+없앤다.<br>
+「0」이하를 지정하면,InputVar의 내용이OutputVar에 카피된다.(InputVar의 변수 나우치에 변수를 사용하는 것으로, 동적인 변수명을 전개할 수 있다)<br>
+InputVar하지만 여기서 지정한 문자수보다 짧은 경우,OutputVar(은)는 비운다.
+</td>
+</tr>
+</table>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/IfInString.html'>IfInString</a>, <a target=_top href='../commands/StringGetPos.html'>StringGetPos</a>, <a target=_top href='../commands/StringMid.html'>StringMid</a>, <a target=_top href='../commands/StringLeft.html'>StringLeft</a>, <a target=_top href='../commands/StringLeft.html'>StringRight</a>, <a target=_top href='../commands/StringLen.html'>StringLen</a>, <a target=_top href='../commands/StringLower.html'>StringLower</a>, <a target=_top href='../commands/StringLower.html'>StringUpper</a>, <a target=_top href='../commands/StringReplace.html'>StringReplace</a></p>
+
+<h2>Example(s)</h2>
+<pre>
+aBC=aaaa
+xxx=BC
+StringTrimLeft,yyy,a%xxx%,0
+MsgBox,%yyy%
+</pre>
+
+<pre>String = This is a test.
+StringTrimLeft, OutputVar, String, 5 ; Stores the string &quot;is a test.&quot; in OutputVar.
+StringTrimRight, OutputVar, String, 6 ; Stores the string &quot;This is a&quot; in OutputVar.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringTrimLeft.html'>StringTrimLeft / StringTrimRight</a></div>
+</body>
+</html>

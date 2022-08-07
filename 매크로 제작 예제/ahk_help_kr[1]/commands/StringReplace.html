@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>StringReplace</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringReplace.html'>StringReplace</a></div>
+<h1>StringReplace </h1>
+<p>문자열중의 특정의 문자열을 다른 문자열에 치환한다</p>
+
+<pre>StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, ReplaceAll?] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>OutputVar
+</td>
+<td>치환 결과의 문자열을 격납하는 변수명 
+</td>
+</tr>
+<tr>
+<td>InputVar
+</td>
+<td>
+치환전의 문자열을 격납하고 있는 변수명.<br>
+OutputVar(와)과 같은 것을 지정해도 괜찮다.
+</td>
+</tr>
+<tr>
+<td>SearchText
+</td>
+<td>
+검색 문자열.<a target=_top href='../commands/StringCaseSense.html'>StringCaseSense</a>그리고 설정하지 않는 한, 대문자 소문자는 무시된다.
+</td>
+</tr>
+<tr> 
+<td>ReplaceText
+</td>
+<td>
+SearchText하지만 옮겨놓을 수 있는 앞의 문자열.<br>
+생략시는,SearchText하지만 삭제된다(하늘에 치환된다).
+</td>
+</tr>
+<tr> 
+<td>ReplaceAll?
+</td>
+<td>
+이하의 것을 반각 스페이스 단락으로 지정한다.
+<dl>
+<dt>All</dt><dd>SearchText에 일치하는 모든 부분을 치환한다.「1」(이)나 「A」에서도 같다.</dd>
+<dt>UseErrorLevel</dt><dd>모든 부분을 치환하면서,ErrorLevel에 치환된 수를 격납한다.</dd>
+<dt>AllSlow</dt><dd>후술의 고속화를 위한 처리 방법을 사용하지 않는다.(메모리 소비가 적다)</dd>
+</dl>
+</td>
+</tr>
+</table>
+<h2>ErrorLevel</h2>
+<p>SearchText하지만 발견되지 않았던 경우 「1」, 치환에 성공했을 경우 「0」.<br>
+다만,UseErrorLevel하지만 지정되어 있는 경우, 치환된 수가 된다.</p>
+
+<h2>Remarks</h2>
+<p>
+SearchText(이)나ReplaceText에 반각 스페이스나Tab문자를 지정하고 싶은 경우, 편입 변수<a target=_top href='../Variables.html'>%A_Space%</a>(이)나<a target=_top href='../Variables.html'>%A_Tab%</a>(을)를 사용한다.
+</p>
+<p>ReplaceAll(을)를 유효하게 해,SearchText(와)과ReplaceText에 다른 길이의 문자열을 지정해,InputVar하지만5000아르바이트 이상 있어,SearchText하지만20개이상 발견되었을 경우, 고속화를 위해 통상과는 다른 방법으로 처리를 실시한다.<br>
+이 처리동안, 통상보다 많은 메모리를 사용한다.<br>
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/IfInString.html'>IfInString</a>, <a target=_top href='../commands/StringLeft.html'>StringLeft</a>, <a target=_top href='../commands/StringLeft.html'>StringRight</a>, <a target=_top href='../commands/StringMid.html'>StringMid</a>, <a target=_top href='../commands/StringTrimLeft.html'>StringTrimLeft</a>, <a target=_top href='../commands/StringTrimLeft.html'>StringTrimRight</a>, <a target=_top href='../commands/StringCaseSense.html'>StringCaseSense</a>, <a target=_top href='../commands/StringLen.html'>StringLen</a>, <a target=_top href='../commands/StringLower.html'>StringLower</a>, <a target=_top href='../commands/StringLower.html'>StringUpper</a>, <a target=_top href='../commands/StringGetPos.html'>StringGetPos</a>,  <a target=_top href='../commands/IfIs.html'>if var is type</a></p>
+
+<h2>Example(s)</h2>
+<pre>; Remove all CR+LF's from the clipboard contents:
+StringReplace, clipboard, clipboard, `r`n, , All
+</pre><pre>
+; Replace all spaces with pluses:
+StringReplace, NewStr, OldStr, %A_SPACE%, +, All
+</pre><pre>
+
+; Remove all blank lines from the text in a variable:
+Loop
+{
+    StringReplace, MyString, MyString, `r`n`r`n, `r`n, UseErrorLevel
+    if ErrorLevel = 0  ; No more replacements needed.
+        break
+}</pre><div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringReplace.html'>StringReplace</a></div>
+</body>
+</html>

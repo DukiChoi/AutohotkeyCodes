@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SoundPlay</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundPlay.html'>SoundPlay</a></div>
+<h1>SoundPlay </h1>
+<p>OS하지만 서포트하는 미디어 파일을 재생한다</p>
+
+<pre>SoundPlay, Filename [, wait] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Filename
+</td>
+<td>재생하는 파일의 패스.<br>
+상대 패스로 지정했을 경우,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(으)로부터의 패스로 간주해진다.<br>
+시스템으로 준비되어 있는 사운드를 재생하려면 , 이하의 문자열을 지정한다.<br>
+<dl>
+<dt>*-1</dt><dd>Beep음</dd>
+<dt>*16</dt><dd>일반의 경고</dd>
+<dt>*32</dt><dd>문의</dd>
+<dt>*48</dt><dd>경고</dd>
+<dt>*64</dt><dd>정보</dd>
+</dl>
+</td>
+</tr>
+<tr> 
+<td>wait
+</td>
+<td>
+「1」(이)나 「WAIT」라고 지정하면, 재생이 종료할 때까지 현재의 스렛드는 정지한다.<br>
+정지중은,<a target=_top href='../misc/Threads.html'>새로운 스렛드가 끼어든다</a>일이 가능.<br>
+생략시는, 재생하면서 다음의 처리로 옮긴다.
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+
+<p>문제가 발생하면 「1」, 문제가 없으면 「0」</p>
+
+
+
+
+<h2>Remarks</h2>
+<p>
+Filename에는 확장자(extension) 「.wav」의 파일등을 지정한다.<br>
+OS하지만 서포트하고 있으면,MP3파일등도 재생할 수 있다.<br>
+동영상 파일도 재생할 수 있지만, 재생의 컨트롤을 할 수 없기 때문에 별로 의미는 없다.<br>
+동영상 파일을 표시하는 윈도우의 클래스명은 「MCIQTZ_Window」
+</p>
+
+<p>
+파일은 동시에1개 밖에 재생하지 못하고, 재생중에 새롭게 재생하려고 하면, 그것까지 재생되고 있던 것은 종료한다.
+</p>
+<p>
+재생을 중지하려면 , 존재하지 않는 파일을 재생하려고 하면 좋다.
+</p>
+<p>
+스크립트가 종료할 경우에는, 동시에 재생도 종료한다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SoundBeep.html'>SoundBeep</a>,<a target=_top href='../commands/SoundGet.html'>SoundGet</a>, <a target=_top href='../commands/SoundSet.html'>SoundSet</a>, <a target=_top href='../commands/SoundGetWaveVolume.html'>SoundGetWaveVolume</a>, <a target=_top href='../commands/SoundSetWaveVolume.html'>SoundSetWaveVolume</a>, <a target=_top href='../misc/Threads.html'>Threads</a></p>
+
+<h2>Example(s)</h2>
+
+
+
+<pre>
+;키 타입시에 소리를 울린다
+*a::SoundPlay, a.wav</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundPlay.html'>SoundPlay</a></div>
+</body>
+</html>

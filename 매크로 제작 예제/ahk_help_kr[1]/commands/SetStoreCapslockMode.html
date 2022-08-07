@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SetStoreCapslockMode</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetStoreCapslockMode.html'>SetStoreCapslockMode</a></div>
+<h1>SetStoreCapslockMode</h1>
+<p><a target=_top href='../commands/Send.html'>Send</a>커멘드 실행시에CapsLock상태를 자동적으로 변경할지를 설정</p>
+
+<pre>SetStoreCapslockMode, On|Off</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>On|Off
+</td>
+<td>
+자동 변경을On(으)로 할까Off(으)로 할까.초기설정은On.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+이 설정이On(이)가 되어 있으면,<a target=_top href='../commands/Send.html'>Send</a>커멘드가 실행될 때,CapsLock하지만On(이)가 되어 있으면CapsLock(을)를Off(으)로 해, 종료시에On에 되돌려진다.<br>
+이것에 의해,CapsLock상태에 관계없이, 인수에 기술된 대로 알파벳열을 입력할 수 있다.<br>
+그러나, 종료시에 유무를 말하게 하지 않고On(으)로 되어 버리므로,CapsLock하지만On때에Send안으로{CapsLock}(을)를 송신해도,CapsLock(을)를Off(으)로 할 수 없다.
+</p>
+<p>
+이 설정을Off(으)로 하면,Send커멘드 실행시의CapsLock의 자동 변환은 일절 행해지지 않게 된다.<br>
+CapsLock의 변환을 다른 키에 할당하고 싶은 경우 등은, 미리Off(으)로 해 두면 좋다.
+</p>
+
+<p>
+Windows95/98/Me그럼, 이 기능은 정확하게 동작하지 않는 것이 있다.
+</p>
+
+<p>
+이 설정의 기본치는, 스크립트의 최초의<a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>그리고 설정한다.<br>
+hot key등에서 새롭게 기동되었다<a target=_top href='../misc/Threads.html'>스렛드</a>그럼, 설정은 기본치로 설정된다.
+</p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SetNumScrollCapsLockState.html'>SetCaps/Num/ScrollLockState</a>, <a target=_top href='../commands/Send.html'>Send</a>, <a target=_top href='../commands/ControlSend.html'>ControlSend</a></p>
+
+<h2>Example(s)</h2>
+<pre>SetStoreCapslockMode, off</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SetStoreCapslockMode.html'>SetStoreCapslockMode</a></div>
+</body>
+</html>

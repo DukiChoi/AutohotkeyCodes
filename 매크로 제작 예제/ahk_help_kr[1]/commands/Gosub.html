@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gosub</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gosub.html'>Gosub</a></div>
+<h1>Gosub</h1>
+<p>지정 라벨에 점프 해,<a target=_top href='../commands/Return.html'>Return</a>하지만 실행되면 돌아온다</p>
+
+<pre>Gosub, Label</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Label
+</td>
+<td>
+라벨명.hot key 라벨이나 핫 스트링 라벨도 가능.<br>
+「%LabelName%」(와)과 같은 변수 참조여도 괜찮다.<br>
+다만, 실행시에 라벨명을 해결하기 위해(때문에), 퍼포먼스는 약간 내린다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+<p>
+Gosub(을)를 실행하면, 지정 라벨의 다음의 행에 처리가 이동해, 이하의 처리를 실행한다.<br>
+<a target=_top href='../commands/Return.html'>Return</a>커멘드가 실행되면, 호출 원래의Gosub의 다음의 행에 처리가 돌아온다.
+</p>
+
+<p>
+Label에 존재하지 않는 라벨을 지정하면, 실행시에 에러 다이얼로그가 표시된다.<br>
+라벨명을 설정 파일로부터 읽어들이는 등, 존재하지 않는 라벨이 지정될 우려가 있는 경우는, 아래와 같은 예의 같게 「IsLabel()」함수로 라벨이 존재할까를 조사하고 나서 실행하면 좋다.
+</p>
+<pre>
+IniRead,label,%ini%,%sec%,%key%
+If(IsLabel(label))
+{
+	GoSub,%label%
+}
+</pre>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Return.html'>Return</a>, <a target=_top href='../commands/__Block.html'>Blocks</a>, <a target=_top href='../commands/Loop.html'>Loop</a>, <a target=_top href='../commands/Goto.html'>Goto</a> </p>
+
+<h2>Example(s)</h2>
+<pre>Gosub, Label1 
+MsgBox, The Label1 subroutine has returned (it is finished).
+return
+
+Label1:
+MsgBox, The Label1 subroutine is now running.
+return
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gosub.html'>Gosub</a></div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>ControlGetPos</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/ControlGetPos.html'>ControlGetPos</a></div>
+<h1>ControlGetPos</h1>
+<p>컨트롤의 위치와 사이즈를 취득</p>
+
+<pre>ControlGetPos [, X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>X, Y
+</td>
+<td>
+X좌표와Y좌표를 격납하는 변수명.<br>
+친윈도우의 좌상으로부터의 위치가 된다.<br>
+취득 실패시는 비운다.
+</td>
+</tr>
+<tr>
+<td>Width/Height
+</td>
+<td>가로폭과 높이를 격납하는 변수명
+</td>
+</tr>
+<tr>
+<td>Control
+</td>
+<td>컨트롤을 지정.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr>
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/ControlMove.html'>ControlMove</a>, <a target=_top href='../commands/WinGetPos.html'>WinGetPos</a>, <a target=_top href='../commands/Control.html'>Control</a>, <a target=_top href='../commands/ControlGet.html'>ControlGet</a>, <a target=_top href='../commands/ControlGetText.html'>ControlGetText</a>, <a target=_top href='../commands/ControlSetText.html'>ControlSetText</a>, <a target=_top href='../commands/Control.html'></a><a target=_top href='../commands/ControlClick.html'>ControlClick</a>, <a target=_top href='../commands/ControlFocus.html'>ControlFocus</a>, <a target=_top href='../commands/ControlSend.html'>ControlSend</a></p>
+
+<h2>Example(s)</h2>
+<pre>; This working example will continuously update and display the
+; name and position of the control currently under the mouse cursor:
+Loop
+{
+	Sleep, 100
+	MouseGetPos, , , WhichWindow, WhichControl
+	ControlGetPos, x, y, w, h, %WhichControl%, ahk_id %WhichWindow%
+	ToolTip, %WhichControl%`nX%X%`tY%Y%`nW%W%`t%H%
+}
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/ControlGetPos.html'>ControlGetPos</a></div>
+</body>
+</html>

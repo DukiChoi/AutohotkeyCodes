@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinGetPos</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinGetPos.html'>WinGetPos</a></div>
+<h1>WinGetPos</h1>
+<p>지정된 윈도우의 위치와 사이즈를 취득</p>
+
+<pre>WinGetPos [, X, Y, Width, Height, WinTitle, WinText, ExcludeTitle, ExcludeText] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>X, Y
+</td>
+<td>윈도우의 수평 좌표와 수직 좌표를 격납하는 변수명.<br>
+생략시는 그 항목은 취득되지 않는다.
+</td>
+</tr>
+<tr>
+<td>Width/Height
+</td>
+<td>
+윈도우의 폭과 높이를 취득하는 변수명.<br>
+생략시는 그 항목은 취득되지 않는다.
+</td>
+<tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+
+<p>조건에 일치하는 윈도우가 존재하지 않는 경우, 각 변수는 모두 비운다.
+</p>
+
+<p>
+WinTitle에 「Program Manager」(을)를 지정하면, 데스크탑의 사이즈를 취득할 수 있다.<br>
+이것은 스크린의 사이즈와 같게 된다.<br>
+(쉘이Explorer의 경우)
+</p>
+<p>
+윈도우가 최소화되고 있는 경우,X(와)과Y(은)는 「-32000」 등(OS에 따라서는 다를 가능성 있어)(이)가 된다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinMove.html'>WinMove</a>, <a target=_top href='../commands/ControlGetPos.html'>ControlGetPos</a>, <a target=_top href='../commands/WinGetActiveStats.html'>WinGetActiveStats</a>, <a target=_top href='../commands/WinGetActiveTitle.html'>WinGetActiveTitle</a>, <a target=_top href='../commands/WinGetTitle.html'>WinGetTitle</a>, <a target=_top href='../commands/WinGetText.html'>WinGetText</a>, <a target=_top href='../commands/ControlGetText.html'>ControlGetText</a></p>
+
+<h2>Example(s)</h2>
+<pre>WinGetPos, X, Y, Width, Height, Calculator
+MsgBox, Calculator is at %X%`,%Y%
+
+WinGetPos, X, Y, , , A  ; &quot;A&quot; to get the active window's pos.
+MsgBox, The active window is at %X%`,%Y%
+
+IfWinExist, Untitled - Notepad
+{
+	WinGetPos, Xpos, Ypos  ; Uses the window found above.
+	MsgBox, Notepad is at %Xpos%`,%Ypos%
+}
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinGetPos.html'>WinGetPos</a></div>
+</body>
+</html>

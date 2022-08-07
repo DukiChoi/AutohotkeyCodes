@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinGet</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinGet.html'>WinGet</a></div>
+<h1>WinGet</h1>
+<p>윈도우 핸들(고유의ID)(이)나 일람, 프로세스ID등을 취득</p>
+
+<pre>WinGet, OutputVar [, Cmd, WinTitle, WinText, ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>OutputVar
+</td>
+<td>
+결과를 격납하는 변수명
+</td>
+</tr>
+<tr>
+<td>Cmd
+</td>
+<td>
+무엇을 취득하는지를 지정.생략시는 「ID」.자세한 것은 아래와 같이 참조.
+</td>
+
+</tr>
+<tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+<h3>Cmd(으)로 지정하는 커멘드</h3>
+<dl>
+<dt>ID</dt><dd>
+조건에 일치하는 제일 최초(전면)의 윈도우의 윈도우 핸들(고유의ID)
+</dd>
+<dt>IDLast</dt><dd>
+조건에 일치하는 제일 최후(배면)의 윈도우의 윈도우 핸들(고유의ID)<br>
+윈도우가 하나 밖에 성냥 하지 않는 경우는 「ID」라고 변하지 않다.<br>
+<a target=_top href='../commands/WinActivateBottom.html'>WinActivateBottom</a>의 매치 동작과 동등.
+</dd>
+<dt>PID</dt><dd>
+조건에 일치하는 제일 최초(전면)의 윈도우의PID(프로세스ID).
+<a target=_top href='../commands/Process.html'>Process</a>커멘드로 사용한다.
+
+</dd>
+<dt>ProcessName</dt><dd>
+조건에 일치하는 제일 최초(전면)의 윈도우의 프로세스의 실행 파일명.
+
+</dd>
+<dt>ControlList</dt><dd>
+조건에 일치하는 최초의 윈도우상의 컨트롤의ClassNN의 일람을 개행 단락으로 얻는다.<br>
+줄 순서는 컨트롤의Z순위의 순서가 되어 있다.<br>
+<a target=_top href='../commands/LoopParse.html'>parsing loop</a>그리고 하나씩 처리할 수 있다.<br>
+윈도우가 컨트롤을 포함하지 않는 경우는, 비운다.
+</dd>
+<dt>ControlListHWND</dt><dd>
+ControlList(와)과 같지만,ClassNN대신에 컨트롤의 윈도우 핸들의 일람을 취득한다.
+</dd>
+<dt>Count</dt><dd>
+조건에 일치하는 윈도우의 수</dd>
+<dt>List</dt><dd>
+조건에 일치하는 윈도우를 모두 열거한다.<br>
+OutputVar그리고 지정한 변수에는 윈도우의 수가 대입되어 「OutputVar번호(1...)」라고 하는 이름의 변수(례:OutputVar1)에 차례로 윈도우 핸들이 격납된다.<br>
+존재하는 모든 윈도우를 열거하려면 ,WinTitle(와)과WinText(을)를 비워,ExcludeTitle에 존재 할 수 없는 타이틀을 지정한다.
+</dd>
+<dt>MinMax</dt><dd>
+조건에 일치하는 제일 최초(전면)의 윈도우 상태를 취득한다.<br>
+최소화되고 있으면 「-1」, 최대화되고 있으면 「1」, 통상 상태라면 「0」(이)가 취득된다.</dd>
+<dt>Transparent</dt><dd>
+윈도우의 불투명도.<br>
+0하지만 완전하게 불가시,255하지만 완전하게 불투명.<br>
+반투명이 아닐 때는 비운다.
+</dd>
+<dt>TransColor</dt><dd>
+반투명화 되고 있는 색.<br>
+특정의 색이 반투명이 되어 있는 윈도우에서는 「0x00CC99」(와)과 같은 형식에서 그 색이 취득된다.그 이외의 경우는 비운다.
+</dd>
+
+<dt>Style</dt>
+<dt>ExStyle</dt>
+<dd>윈도우의 스타일, 확장 스타일을8자리수의16진수로 얻는다.<br>
+스타일에 대해서는,<a target=_top href='../misc/Styles.html'>윈도우 스타일 일람</a>(을)를 참조.<br>
+특정의 스타일이 포함되어 있을까를 조사하려면 ,<a target=_top href='../commands/Transform.html'>Transform</a>커멘드의BitAnd(을)를 사용한다.(조사하고 싶은 스타일의 수치와의BitAnd하지만0(이)가 아니면, 포함되어 있다)
+</dd>
+</dl>
+<h2>Remarks</h2>
+
+<p>
+윈도우 핸들은16진수의 형식에서 취득된다.<br>
+취득한 핸들은, 윈도우 관련 커멘드의WinTitle(을)를 지정하는 (곳)중에 「ahk_id %OutputVar%」라고 하도록(듯이) 해 사용할 수 있다.
+</p>
+
+
+<p>
+마우스 커서아래의 윈도우의 핸들을 취득하려면 ,<a target=_top href='../commands/MouseGetPos.html'>MouseGetPos</a>커멘드를 사용한다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinGetClass.html'>WinGetClass</a>, <a target=_top href='../commands/WinGetTitle.html'>WinGetTitle</a>, <a target=_top href='../commands/MouseGetPos.html'>MouseGetPos</a>, <a target=_top href='../commands/GroupAdd.html'>GroupAdd</a></p>
+
+<h2>Example(s)</h2>
+<pre>WinGet, active_id, ID, A
+WinMaximize, ahk_id %active_id%
+MsgBox, The active window's ID is &quot;%active_id%&quot;.
+</pre>
+<pre>
+; This next example will visit all open windows and display info
+; about each of them:
+WinGet, id, list, , , Program Manager
+Loop, %id%
+{
+	StringTrimRight, this_id, id%a_index%, 0
+	WinActivate, ahk_id %this_id%
+	WinGetClass, this_class, ahk_id %this_id%
+	WinGetTitle, this_title, ahk_id %this_id%
+	MsgBox, 4, , Visiting All Windows`n%a_index% of %id%`nahk_id %this_id%`nahk_class %this_class%`n%this_title%`n`nContinue?
+	IfMsgBox, NO, break
+}
+</pre>
+
+<pre>
+Example #3: Extract the individual control names from a ControlList:
+WinGet, ActiveControlList, ControlList, A
+Loop, Parse, ActiveControlList, `n
+{
+	MsgBox, 4,, Control #%a_index% is &quot;%A_LoopField%&quot;. Continue?
+	IfMsgBox, No
+		break
+}
+
+Example #4: Display in real time the active window's control list:
+#Persistent
+SetTimer, WatchActiveWindow, 200
+return
+WatchActiveWindow:
+WinGet, ControlList, ControlList, A
+ToolTip, %ControlList%
+return</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinGet.html'>WinGet</a></div>
+</body>
+</html>

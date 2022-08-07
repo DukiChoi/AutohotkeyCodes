@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FileAppend</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileAppend.html'>FileAppend</a></div>
+<h1>FileAppend</h1>
+<p>텍스트 파일에 추가 기입.파일이 존재하지 않으면 작성된다.</p>
+
+<pre>FileAppend [, Text, Filename]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Text
+</td>
+<td>추가 기입텍스트.
+하늘의 신규 파일을 작성하고 싶은 경우는, 이 인수를 비운다.
+</td>
+</tr>
+<tr>
+<td>Filename
+</td>
+<td>
+추가 기입처의 파일명.<br>
+상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.<br>
+선두에 「*」(을)를 붙이면, 바이너리 모드로의 처리가 되어, 개행 코드의 자동변역을 하지 않는다.<br>
+파일명 대신에 「*」(을)를 지정하면, 표준 출력에 텍스트를 써낼 수 있다.
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+<p>성공시는 「0」, 실패시는 「1」.</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/FileRead.html'>FileRead</a>, <a target=_top href='../commands/LoopReadFile.html'>file-reading loop</a>, <a target=_top href='../commands/FileReadLine.html'>FileReadLine</a>, <a target=_top href='../commands/IniWrite.html'>IniWrite</a>, <a target=_top href='../commands/FileDelete.html'>FileDelete</a></p>
+
+<h2>Example(s)</h2>
+<pre>FileAppend, Another line.`n, C:\My Documents\Test.txt
+
+; The following example uses a continuation section to enhance readability and maintainability:
+FileAppend,
+(
+A line of text.
+By default, the hard carriage return (Enter) between the previous line and this one will be written to the file.
+	This line is indented with a tab; by default, that tab will also be written to the file.
+Variable references such as %Var% are expanded by default.
+), C:\My File.txt
+
+</pre><pre>
+
+<a name="FTP"></a>; The following example demonstrates how to automate FTP uploading using the operating 
+; system's built-in FTP command. This script has been tested on Windows XP and 98se.
+
+FTPCommandFile = %A_ScriptDir%\FTPCommands.txt
+FTPLogFile = %A_ScriptDir%\FTPLog.txt
+FileDelete %FTPCommandFile%  ; In case previous run was terminated prematurely.
+
+FileAppend,
+(
+open host.domain.com
+username
+password
+binary
+cd htdocs
+put %VarContainingNameOfTargetFile%
+delete SomeOtherFile.html
+rename OldFileName.html NewFileName.html
+ls -l
+quit
+), %FTPCommandFile%
+
+RunWait %comspec% /c ftp.exe -s:&quot;%FTPCommandFile%&quot; &gt;&quot;%FTPLogFile%&quot;
+FileDelete %FTPCommandFile%  ; Delete for security reasons.
+Run %FTPLogFile%  ; Display the log for review.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileAppend.html'>FileAppend</a></div>
+</body>
+</html>

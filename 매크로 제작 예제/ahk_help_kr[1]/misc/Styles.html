@@ -1,0 +1,1115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>윈도우 스타일 일람</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Styles.html'>윈도우 스타일 일람</a></div>
+<h1>윈도우 스타일 일람</h1>
+<p>
+윈도우나 컨트롤로 사용하는 스타일.<br>
+스타일은32비트의 정수치로,2진수로 했을 때의 각 형이1(이)라면, 그 자리수에 대응하는 스타일이 설정되어 있다고 하게 된다.<br>
+「(style & 0x00400000)!=0」(와)과 같은 식에서, 「style」변수에 격납된 스타일치에 특정의 스타일이 설정되어 있는지를 판정할 수 있다.
+</p>
+<h2><a name="common">윈도우용 스타일</a></h2>
+
+<table>
+<caption>Common styles</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default for gui creation</td>
+<td>&nbsp;</td>
+<td>WS_POPUP, WS_CAPTION, WS_SYSMENU, WS_MINIMIZEBOX</td>
+</tr>
+<tr>
+<td>forced for gui creation</td>
+<td>&nbsp;</td>
+<td>WS_CLIPSIBLINGS</td>
+</tr>
+<tr>
+<td>WS_BORDER</td><td>0x00800000</td><td>경계를 가지는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_POPUP</td><td>0x80000000</td><td>팝업 윈도우를 작성합니다.WS_CHILD 스타일과 함께 사용할 수 없습니다.</td>
+</tr>
+<tr>
+<td>WS_CAPTION</td><td>0x00C00000</td><td>타이틀 바를 가지는 윈도우를 작성합니다 (암묵에 WS_BORDER 스타일을 가집니다).WS_DLGFRAME 스타일과 함께 사용할 수 없습니다.</td>
+</tr>
+<tr>
+<td>WS_DISABLED</td><td>0x08000000</td><td>초기 상태로 사용 금지의 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_DLGFRAME</td><td>0x00400000</td><td>이중 경계를 가져, 타이틀을 가지지 않는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_HSCROLL</td><td>0x00100000</td><td>수평 스크롤 바를 가지는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_MAXIMIZE</td><td>0x01000000</td><td>최대 표시된 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_MAXIMIZEBOX</td><td>0x00010000</td><td>최대 표시 버튼을 가지는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_MINIMIZE</td><td>0x20000000</td><td>초기 상태로 아이콘화 된 윈도우를 작성합니다.반드시 WS_OVERLAPPED 스타일과 함께 사용합니다.</td>
+</tr>
+<tr>
+<td>WS_MINIMIZEBOX</td><td>0x00020000</td><td>아이콘화 버튼을 가지는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_OVERLAPPED</td><td>0</td><td>오버랩 윈도우를 작성합니다.오버랩 윈도우는, 통상 캡션과 경계를 가집니다.</td>
+</tr>
+<tr>
+<td>WS_OVERLAPPEDWINDOW</td><td>0x00CF0000</td><td>WS_OVERLAPPED,WS_CAPTION,WS_SYSMENU,WS_THICKFRAME,WS_MINIMIZEBOX,WS_MAXIMIZEBOX 스타일을 가지는 오버랩 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_POPUPWINDOW</td><td>0x80880000</td><td>WS_BORDER,WS_POPUP,WS_SYSMENU 스타일을 가지는 팝업 윈도우를 작성합니다.컨트롤 메뉴를 가시로 하려면 ,WS_CAPTION 스타일과 WS_POPUPWINDOW (을)를 조합하지 않으면 안됩니다.</td>
+</tr>
+<tr>
+<td>WS_SIZEBOX</td>
+<td>0x0000F2C0</td>
+<td>+/-Resize. Creates a window that has a sizing border. Same as the WS_THICKFRAME 
+style.</td>
+</tr>
+<tr>
+<td>WS_SYSMENU</td><td>0x00080000</td><td>타이틀 바에 컨트롤 메뉴 박스를 가지는 윈도우를 작성합니다.타이틀 바를 가지는 윈도우에만 사용합니다.</td>
+</tr>
+<tr>
+<td>WS_THICKFRAME</td><td>0x00040000</td><td>윈도우의 사이즈 변경에 사용할 수 있는, 굵은 테두리를 가지는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_VSCROLL</td><td>0x00200000</td><td>수직 스크롤 바를 가지는 윈도우를 작성합니다. </td>
+</tr>
+<tr>
+<td>WS_VISIBLE</td><td>0x10000000</td><td>초기 상태로 가시의 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_CHILD</td><td>0x40000000</td><td>아이 윈도우를 작성합니다.WS_POPUP 스타일과 함께 사용할 수 없습니다.</td>
+</tr>
+<tr>
+<td>WS_GROUP</td><td>0x00020000</td><td>유저가 방향 키를 사용해 다음의 컨트롤로 이동할 수 있는 컨트롤의 그룹의, 최초의 컨트롤을 지정합니다.최초의 컨트롤의 다음에 WS_GROUP 스타일을 FALSE (와)과 지정해 정의한 컨트롤은, 모두 같은 그룹에 속합니다.다음의 WS_GROUP 스타일을 가지는 컨트롤은, 다음의 그룹을 개시합니다 (즉, 다음의 그룹의 시작이, 전의 그룹이 끝나게 됩니다).</td>
+</tr>
+</table>
+
+
+<h2><a name="control">컨트롤용 스타일</a></h2>
+
+<table>
+<caption>Checkbox, Radio, GroupBox, Button</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>BS_MULTILINE<br>
+WS_TABSTOP (except for GroupBox) -- however, radio buttons other than the first of each radio group lack this style by default. In addition, radio buttons have BS_NOTIFY so that double clicks can be detected.</td>
+</tr>
+<tr>
+<td>forced</td>
+<td>&nbsp;</td>
+<td>Button: BS_PUSHBUTTON or BS_DEFPUSHBUTTON<br>
+Radio: BS_AUTORADIOBUTTON<br>
+Checkbox: BS_AUTOCHECKBOX or BS_AUTO3STATE<br>
+GroupBox: BS_GROUPBOX</td>
+</tr>
+<tr>
+<td>BS_LEFT</td>
+<td>0x0100</td>
+<td>+/-Left. Left-aligns the text in the button rectangle on the right side 
+of the check box.</td>
+</tr>
+<tr>
+<td>BS_PUSHLIKE</td>
+<td>0x1000</td>
+<td>Makes a button (such as a check box, three-state check box, or 
+radio button) look and act like a push button. The button looks raised when it 
+isn't pushed or checked, and sunken when it is pushed or checked.</td>
+</tr>
+<tr>
+<td>BS_RIGHT</td>
+<td>0x0200</td>
+<td>+/-Right. Right-aligns text in the button rectangle on the right side of 
+the check box.</td>
+</tr>
+<tr>
+<td>BS_RIGHTBUTTON</td>
+<td>0x0020</td>
+<td>+Right (i.e. +Right includes both BS_RIGHT and BS_RIGHTBUTTON, but -Right removes only BS_RIGHT, not BS_RIGHTBUTTON). Positions a check box square or radio button circle on the right side of the control's available width.</td>
+</tr>
+<tr>
+<td>BS_BOTTOM </td>
+<td>0x0800</td>
+<td>Places the text at the bottom of the button rectangle.</td>
+</tr>
+<tr>
+<td>BS_CENTER </td>
+<td>0x0300</td>
+<td>+/-Center. Centers the text horizontally in the button rectangle.</td>
+</tr>
+<tr>
+<td>BS_DEFPUSHBUTTON </td>
+<td>0x0001</td>
+<td>+/-Default. Creates a push button with a heavy black border. If the button 
+is in a dialog box, the user can select the button by pressing the ENTER key, 
+even when the button does not have the input focus. This style is useful for 
+enabling the user to quickly select the most likely option, or default.</td>
+</tr>
+<tr>
+<td>BS_MULTILINE </td>
+<td>0x2000</td>
+<td>+/-Wrap. Wraps the button text to multiple lines if the text string is 
+too long to fit on a single line in the button rectangle.</td>
+</tr>
+<tr>
+<td>BS_TOP </td>
+<td>0x0400</td>
+<td>Places text at the top of the button rectangle.</td>
+</tr>
+<tr>
+<td>BS_VCENTER </td>
+<td>0x0C00</td>
+<td>Vertically centers text in the button rectangle.</td>
+</tr>
+<tr>
+<td>BS_FLAT </td>
+<td>0x8000</td>
+<td>Specifies that the button is two-dimensional; it does not use 
+the default shading to create a 3-D image.</td>
+</tr>
+</table>
+
+<table>
+<caption>DropDownList, ComboBox</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>WS_TABSTOP<br>
+DropDownList: WS_VSCROLL<br>
+ComboBox: WS_VSCROLL, CBS_AUTOHSCROLL</td>
+</tr>
+<tr>
+<td>forced</td>
+<td>&nbsp;</td>
+<td>DropDownList: CBS_DROPDOWNLIST<br>
+ComboBox: Either CBS_DROPDOWN or CBS_SIMPLE</td>
+</tr>
+<tr>
+<td>CBS_AUTOHSCROLL</td><td>0x0040</td><td>유저가 줄 끝을 넘어 문자를 입력하면, 에디트 컨트롤내의 텍스트를 자동적으로 오른쪽으로 스크롤 합니다.이 스타일이 설정되어 있지 않으면 사각형 경계내에 들어가는 텍스트 밖에 받아들일 수 없습니다.</td>
+</tr>
+<tr>
+<td>CBS_DISABLENOSCROLL</td><td>0x0800</td><td>리스트 박스가 스크롤 하는 만큼 항목을 가지고 있지 않을 때에, 수직 스크롤 바를 사용할 수 없는 상태로 표시합니다.이 스타일을 지정하지 않으면 스크롤 하는 만큼 항목을 가지고 있지 않은 경우, 스크롤 바는 표시되지 않습니다.</td>
+</tr>
+<tr>
+<td>CBS_LOWERCASE</td>
+<td>0x4000</td>
+<td>+/-Lowercase. Converts to lowercase any uppercase characters 
+that are typed into the edit control of a combo box. </td>
+</tr>
+<tr>
+<td>CBS_NOINTEGRALHEIGHT</td><td>0x0400</td><td>재즈 악단 박스의 사이즈는, 재즈 악단 박스를 작성할 경우에 어플리케이션이 지정한 사이즈와 같게 됩니다.통상은, 일부 밖에 표시할 수 없는 항목을 표시하지 않게,Windows (은)는 재즈 악단 박스의 사이즈를 변경합니다. </td>
+</tr>
+<tr>
+<td>CBS_OEMCONVERT</td><td>0x0080</td><td>재즈 악단 박스의 에디트 컨트롤에 입력된 텍스트는,ANSI 캐릭터 세트로부터 OEM 캐릭터 세트에 변환되어 그 후,ANSI 캐릭터 세트에 되돌려집니다.이것에 의해, 어플리케이션이 재즈 악단 박스내의 ANSI 문자열을 OEM 문자로 변환하기 위해서 Windows 함수 AnsiToOem (을)를 호출했을 때, 올바른 문자 변환이 확실히 행해집니다.이 스타일은 파일명을 보관 유지하는 재즈 악단 박스로 가장 유용합니다.CBS_SIMPLE 또는 CBS_DROPDOWN 스타일로 작성된 재즈 악단 박스에서만 지정할 수 있습니다.</td>
+</tr>
+<tr>
+<td>CBS_SIMPLE</td><td>0x0001</td><td>리스트 박스를 항상 표시합니다.리스트 박스의 현재의 선택 항목이 에디트 컨트롤에 표시됩니다.</td>
+</tr>
+<tr>
+<td>CBS_SORT</td><td>0x0100</td><td>리스트 박스내에 표시되는 문자열을 자동적으로 소트 합니다.</td>
+</tr>
+<tr>
+<td>CBS_UPPERCASE </td>
+<td>0x2000</td>
+<td>+/-Uppercase. Converts to uppercase any lowercase characters 
+that are typed into the edit control of a combo box.</td>
+</tr>
+</table>
+
+
+
+
+<table>
+<caption>ListBox</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>WS_TABSTOP, LBS_USETABSTOPS, WS_VSCROLL, and WS_EX_CLIENTEDGE (extended style E0x200).</td>
+</tr>
+<tr>
+<td>forced</td>
+<td>&nbsp;</td>
+<td>LBS_NOTIFY (supports detection of double-clicks)</td>
+</tr>
+<tr>
+<td>LBS_DISABLENOSCROLL</td><td>0x1000</td><td>리스트 박스가 스크롤 하는 만큼 항목을 가지고 있지 않을 때에, 수직 스크롤 바를 사용 금지 상태로 표시합니다.이 스타일을 지정하지 않을 때에 스크롤 하는 만큼 항목을 가지고 있지 않으면 스크롤 바는 표시되지 않습니다. </td>
+</tr>
+<tr>
+<td>LBS_NOINTEGRALHEIGHT</td><td>0x0100</td><td>리스트 박스를 작성했을 때, 그 사이즈가 어플리케이션으로 지정한 사이즈와 정확하게 같게 되는 것을 지정합니다.통상, 일부 밖에 표시할 수 없는 항목을 표시하지 않게,Windows 하지만 리스트 박스의 사이즈를 변경합니다.</td>
+</tr>
+<tr>
+<td>LBS_EXTENDEDSEL</td><td>0x0800</td><td> Shift 키와 마우스, 또는 특수한 키의 편성을 사용하고, 유저가 복수의 항목을 선택할 수 있도록 합니다.</td>
+</tr>
+<tr>
+<td>LBS_MULTIPLESEL</td><td>0x0008</td><td>유저가 문자열을 클릭 또는 더블 클릭 할 때마다, 문자열의 선택이 교체됩니다.문자열은 몇 개에서도 선택할 수 있습니다.</td>
+</tr>
+<tr>
+<td>LBS_NOSEL </td>
+<td>0x4000</td>
+<td>+/-ReadOnly. Specifies that the user can view list box strings 
+but cannot select them.</td>
+</tr>
+<tr>
+<td>LBS_SORT</td><td>0x0002</td><td>리스트 박스내의 문자열을 알파벳순서에 소트 합니다.</td>
+</tr>
+<tr>
+<td>LBS_USETABSTOPS</td><td>0x0080</td><td>리스트 박스가 문자열을 묘화 할 경우에, 탭 문자를 인식해, 전개합니다.디폴트의 탭 위치는 32 다이얼로그 단위입니다 (다이얼로그 단위란, 수평 또는 수직의 길이입니다.1 수평 다이얼로그 단위는, 현재의 다이얼로그의 기본폭단위의 4 분 1 입니다.다이얼로그의 기본 단위는, 현재의 시스템 폰트의 높이와 폭을 기준에 계산됩니다.Windows 함수 GetDialogBaseUnits (은)는, 현재의 다이얼로그의 기본 단위를 피크셀로 돌려줍니다).</td>
+</tr>
+</table>
+
+
+
+
+<table>
+<caption>ListView</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>WS_TABSTOP, LVS_REPORT, LVS_SHOWSELALWAYS, LVS_EX_FULLROWSELECT, LVS_EX_HEADERDRAGDROP, WS_EX_CLIENTEDGE (E0x200)</td>
+</tr>
+<tr><td>LVS_ALIGNLEFT</td><td> 0x800</td><td>아이콘 뷰 및 작은 아이콘 뷰로, 컨트롤의 좌단에 따라서 아이템이 배치됩니다.</td></tr>
+<tr><td>LVS_ALIGNTOP</td><td> 0</td><td>아이콘 뷰 및 작은 아이콘 뷰로, 컨트롤의 상단을 따라서 아이템이 배치됩니다.</td></tr>
+<tr><td>LVS_AUTOARRANGE</td><td> 0x100</td><td>아이콘 뷰 및 작은 아이콘 뷰로, 아이콘이 자동적으로 정렬합니다</td></tr>
+<tr><td>LVS_EDITLABELS</td><td> 0x200</td><td>아이템의 텍스트를 인플레이션 의자로 편집할 수 있도록 합니다.친윈도우는, 반드시 LVN_ENDLABELEDIT 통지 메세지를 처리합니다.</td></tr>
+<tr><td>LVS_ICON</td><td> 0</td><td>아이콘 뷰를 지정합니다.</td></tr>
+<tr><td>LVS_LIST</td><td> 0x3</td><td>리스트 뷰를 지정합니다.</td></tr>
+<tr><td>LVS_NOCOLUMNHEADER</td><td> 0x4000</td><td>열헤더가 리포트 뷰에 표시되지 않게 합니다.디폴트에서는, 리포트 뷰의 열은 헤더를 가집니다.</td></tr>
+<tr><td>LVS_NOLABELWRAP</td><td> 0x80</td><td>아이콘 뷰의 1 행에 아이템 텍스트를 표시합니다.디폴트에서는, 아이템 텍스트는 아이콘 뷰내에서 랩 됩니다.</td></tr>
+<tr><td>LVS_NOSCROLL</td><td> 0x2000</td><td>스크롤을 금지합니다.모든 아이템이 클라이언트 영역내에 없으면 안됩니다.</td></tr>
+<tr><td>LVS_NOSORTHEADER</td><td> 0x8000</td><td>버튼과 같이 동작하지 않는 열헤더를 지정합니다.리포트 뷰의 열헤더를 클릭해도 소트와 같은 동작을 실행하지 않을 때에, 이 스타일이 유용합니다.</td></tr>
+<tr><td>LVS_OWNERDATA</td><td>0x1000</td><td>This style specifies a virtual list-view control (not directly supported by AutoHotkey).</td></tr>
+
+<tr><td>LVS_OWNERDRAWFIXED</td><td> 0x400</td><td>리포트 뷰의 아이템을 오너 윈도우를 묘화 할 수 있도록(듯이) 합니다.각 아이템을 묘화 하기 위해서, 리스트 뷰 컨트롤은 WM_DRAWITEM 메세지를 보냅니다.각 서브 아이템에 다른 메세지를 보낼 것은 없습니다.지정한 리스트 뷰 아이템의 아이템 데이터는DRAWITEMSTRUCT 구조체의 itemData 멤버가 보관 유지하고 있습니다.</td></tr>
+<tr><td>LVS_REPORT</td><td> 0x1</td><td>리포트 뷰를 지정합니다.</td></tr>
+<tr><td>LVS_SHAREIMAGELISTS</td><td> 0x40</td><td>컨트롤이, 할당할 수 있었던 이미지 리스트의 소유권을 가지지 않는 것을 나타내 보입니다 (즉, 컨트롤이 파기될 때도 이미지 리스트는 파기되지 않습니다).이 스타일을 사용하고, 같은 이미지 리스트를 복수의 리스트 뷰 컨트롤에 할당할 수 있습니다.</td></tr>
+<tr><td>LVS_SHOWSELALWAYS</td><td> 0x8</td><td>컨트롤에 포커스가 없어도, 선택되고 있으면 항상 선택 상태로 표시합니다.</td></tr>
+<tr><td>LVS_SINGLESEL</td><td> 0x4</td><td>한 번에 1 개의 아이템만을 선택할 수 있도록 합니다.디폴트에서는, 복수의 아이템을 선택할 수 있습니다.</td></tr>
+<tr><td>LVS_SMALLICON</td><td> 0x2</td><td>작은 아이콘 뷰를 지정합니다.</td></tr>
+<tr><td>LVS_SORTASCENDING</td><td> 0x10</td><td>아이템 텍스트를 기초로 해서, 아이템을 승순에 소트 합니다.</td></tr>
+<tr><td>LVS_SORTDESCENDING</td><td> 0x20</td><td>아이템 텍스트를 기초로 해서, 아이템을 내림차순에 소트 합니다. </td></tr>
+</table>
+
+<table>
+<caption>ListView확장 스타일</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+  <td>LVS_EX_BORDERSELECT</td>
+  <td>LV0x8000</td>
+  <td>When an item is selected the border color of the item changes rather than the item being highlighted (might be non-functional in recent operating systems). </td>
+</tr>
+<tr>
+  <td>LVS_EX_CHECKBOXES</td>
+  <td>LV0x4</td>
+  <td><p>+/-Checked. Displays a checkbox with each item. When set to this style, the control creates and sets a state image list with two images using DrawFrameControl. State image 1 is the unchecked box, and state image 2 is the checked box. Setting the state image to zero removes the check box altogether.</p>
+    <p>Windows XP or later: Checkboxes are visible and functional with all list-view modes except the tile view mode introduced in Windows XP. Clicking a checkbox in tile view mode only selects the item; the state does not change.</p>    </td>
+</tr>
+<tr>
+  <td>LVS_EX_FLATSB</td>
+  <td>LV0x100</td>
+  <td>Enables flat scroll bars in the list view.</td>
+</tr>
+<tr>
+  <td>LVS_EX_FULLROWSELECT</td>
+  <td>LV0x20</td>
+  <td>When a row is selected, all its fields are highlighted. This style is available only in conjunction with the LVS_REPORT style.</td>
+</tr>
+<tr>
+  <td>LVS_EX_GRIDLINES</td>
+  <td>LV0x1</td>
+  <td>+/-Grid. Displays gridlines around rows and columns. This style is available only in conjunction with the LVS_REPORT style.</td>
+</tr>
+<tr>
+  <td>LVS_EX_HEADERDRAGDROP</td>
+  <td>LV0x10</td>
+  <td>Enables drag-and-drop reordering of columns in a list-view control. This style is only available to list-view controls that use the LVS_REPORT style.</td>
+</tr>
+<tr>
+  <td>LVS_EX_INFOTIP</td>
+  <td>LV0x400</td>
+  <td>When a list-view control uses the LVS_EX_INFOTIP style, the LVN_GETINFOTIP notification message is sent to the parent window before displaying an item's ToolTip.</td>
+</tr>
+<tr>
+  <td>LVS_EX_LABELTIP</td>
+  <td>LV0x4000</td>
+  <td> If a partially hidden label in any list-view mode lacks ToolTip text, the list-view control will unfold the label. If this style is not set, the list-view control will unfold partly hidden labels only for the large icon mode. Requires Windows XP or later, or the DLLs distributed with Internet Explorer 5.0 or later.</td>
+</tr>
+<tr>
+  <td>LVS_EX_MULTIWORKAREAS</td>
+  <td>LV0x2000</td>
+  <td>If the list-view control has the LVS_AUTOARRANGE style, the control will not autoarrange its icons until one or more work areas are defined (see LVM_SETWORKAREAS). To be effective, this style must be set before any work areas are defined and any items have been added to the control.</td>
+</tr>
+<tr>
+  <td>LVS_EX_ONECLICKACTIVATE</td>
+  <td>LV0x40</td>
+  <td>The list-view control sends an LVN_ITEMACTIVATE notification message to the parent window when the user clicks an item. This style also enables hot tracking in the list-view control. Hot tracking means that when the cursor moves over an item, it is highlighted but not selected. See the Extended List-View Styles Remarks section for a discussion of item activation.</td>
+</tr>
+<tr>
+  <td>LVS_EX_REGIONAL</td>
+  <td>LV0x200</td>
+  <td>Sets the list-view window region to include only the item icons and text using SetWindowRgn. Any area that is not part of an item is excluded from the window region. This style is only available to list-view controls that use the LVS_ICON style.</td>
+</tr>
+<tr>
+  <td>LVS_EX_SIMPLESELECT</td>
+  <td>LV0x100000</td>
+  <td>In icon view, moves the state image of the control to the top right of the large icon rendering. In views other than icon view there is no change. When the user changes the state by using the space bar, all selected items cycle over, not the item with the focus. Requires Windows XP or later. </td>
+</tr>
+<tr>
+  <td>LVS_EX_SUBITEMIMAGES</td>
+  <td>LV0x2</td>
+  <td>Allows images to be displayed for fields beyond the first. This style is available only in conjunction with the LVS_REPORT style.</td>
+</tr>
+<tr>
+  <td>LVS_EX_TRACKSELECT</td>
+  <td>LV0x8</td>
+  <td>Enables hot-track selection in a list-view control. Hot track selection means that an item is automatically selected when the cursor remains over the item for a certain period of time. The delay can be changed from the default system setting with a LVM_SETHOVERTIME message. This style applies to all styles of list-view control. You can check whether hot-track selection is enabled by calling SystemParametersInfo.</td>
+</tr>
+<tr>
+  <td>LVS_EX_TWOCLICKACTIVATE</td>
+  <td>LV0x80</td>
+  <td>The list-view control sends an LVN_ITEMACTIVATE notification message to the parent window when the user double-clicks an item. This style also enables hot tracking in the list-view control. Hot tracking means that when the cursor moves over an item, it is highlighted but not selected.</td>
+</tr>
+<tr>
+  <td>LVS_EX_UNDERLINECOLD</td>
+  <td>LV0x1000</td>
+  <td>Causes those non-hot items that may be activated to be displayed with underlined text. This style requires that LVS_EX_TWOCLICKACTIVATE be set also.</td>
+</tr>
+<tr>
+  <td>LVS_EX_UNDERLINEHOT</td>
+  <td>LV0x800</td>
+  <td>Causes those hot items that may be activated to be displayed with underlined text. This style requires that LVS_EX_ONECLICKACTIVATE or LVS_EX_TWOCLICKACTIVATE also be set.</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+
+
+<table>
+<caption>TreeView</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td></td>
+<td>WS_TABSTOP, TVS_SHOWSELALWAYS, TVS_HASLINES, TVS_LINESATROOT, TVS_HASBUTTONS, WS_EX_CLIENTEDGE (E0x200)</td>
+</tr>
+<tr>
+<td>TVS_CHECKBOXES</td>
+<td>0x100</td>
+<td>아이템에 체크 박스를 붙입니다.일단 이 스타일이 설정되면, 체크 박스를 없앨 수 없습니다.</td>
+</tr>
+<tr>
+<td>TVS_DISABLEDRAGDROP</td>
+<td>0x10</td>
+<td>트리뷰가 친윈도우에 TVN_BEGINDRAG 통지 메세지를 보내지 않게 합니다.
+</td>
+</tr>
+<tr>
+<td>TVS_EDITLABELS</td>
+<td>0x8</td>
+<td>유저가 트리뷰의 아이템의 텍스트를 편집할 수 있도록 합니다.
+</td>
+</tr>
+<tr>
+<td>TVS_FULLROWSELECT</td>
+<td>0x1000</td>
+<td>아이템을 그 열전체로 선택할 수 있도록 합니다.아이템이 있는 열의 어느 부분을 클릭해도 그 아이템이 선택됩니다.선택되면 열전체가 강조 표시됩니다.TVS_HASLINES 스타일과 조합해 지정할 수 없습니다.</td>
+</tr>
+<tr>
+<td>TVS_HASBUTTONS</td>
+<td>0x1</td>
+<td>아이 아이템을 가질 때 친아이템의 옆에 + (이)나 - 의 버튼을 표시합니다.
+</td>
+</tr>
+<tr>
+<td>TVS_HASLINES</td>
+<td>0x2</td>
+<td>아이템을 선으로 잇습니다.
+</td>
+</tr>
+<tr>
+<td>TVS_INFOTIP</td>
+<td>0x800</td>
+<td>트리뷰는 툴 팁 정보를 얻기 위해서 친윈도우에 TVN_GETINFOTIP 통지 메세지를 보냅니다.</td>
+</tr>
+<tr>
+<td>TVS_LINESATROOT</td>
+<td>0x4</td>
+<td>맨 위의 아이템에 선을 붙입니다.TVS_HASLINES 스타일이 지정되어 있지 않은 경우는 무시됩니다.
+</td>
+</tr>
+<tr>
+<td>TVS_NOHSCROLL</td>
+<td>0x8000</td>
+<td>+/-HScroll. Disables horizontal scrolling in the control. The control will not display any horizontal scroll bars.</td>
+</tr>
+<tr>
+<td>TVS_NONEVENHEIGHT</td>
+<td>0x4000</td>
+<td>트리뷰에 TVM_SETITEMHEIGHT 메세지를 보내는 것으로, 아이템의 높이를 설정할 수 있도록 합니다.(디폴트에서는 아이템의 높이는 균등입니다.)</td>
+</tr>
+<tr>
+<td>TVS_NOSCROLL</td>
+<td>0x2000</td>
+<td>트리뷰가 스크롤 하지 않게 합니다.스크롤 바도 표시하지 않습니다.</td>
+</tr>
+<tr>
+<td>TVS_NOTOOLTIPS</td>
+<td>0x80</td>
+<td>아이템이 트리뷰 에서 비어져 나오고 있을 때 툴 팁이 붙지 않게 합니다.</td>
+</tr>
+<tr>
+<td>TVS_RTLREADING</td>
+<td>0x40</td>
+<td>아라비아어나 헤브라이어등의 시스템에 대하고, 오른쪽에서 좌향에 표시합니다.일본어의 시스템에서는 지정할 수 없습니다.</td>
+</tr>
+<tr>
+<td>TVS_SHOWSELALWAYS</td>
+<td>0x20</td>
+<td>트리뷰가 포커스를 가지고 있지 않은 상태에서도, 아이템 선택 상태가 표시되도록(듯이) 합니다.
+</td>
+</tr>
+<tr>
+<td>TVS_SINGLEEXPAND</td>
+<td>0x400</td>
+<td>선택된 아이템만이 전개되도록(듯이) 합니다.</td>
+</tr>
+<tr>
+<td>TVS_TRACKSELECT</td>
+<td>0x200</td>
+<td>마우스 커서가 아이템 위에 왔을 때에 밑줄이 붙습니다.</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+<table>
+<caption>Edit</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>WS_TABSTOP and WS_EX_CLIENTEDGE (extended style E0x200)
+If an Edit is auto-detected as multi-line due to its starting contents containing multiple lines, its height being taller than 1 row, or its row-count having been explicitly specified as greater than 1, the following styles will be applied by default: WS_VSCROLL, ES_WANTRETURN, and ES_AUTOVSCROLL
+If an Edit is auto-detected as a single line, it defaults to having ES_AUTOHSCROLL.</td>
+</tr>
+<tr>
+<td>forced</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>ES_AUTOHSCROLL</td><td>0x0080</td><td>유저가 줄 끝에 문자를 입력했을 때에, 텍스트를 자동적으로 10 문자분우에 스크롤 합니다.유저가 Enter 키를 누르면, 컨트롤은, 위치 0 에 되돌리도록(듯이) 텍스트 전체를 스크롤 합니다.</td>
+</tr>
+<tr>
+<td>ES_AUTOVSCROLL</td><td>0x0040</td><td>유저가 맨 마지막 줄로 Enter 키를 눌렀을 때, 자동적으로 1 페이지 분죠에 텍스트를 스크롤 합니다.</td>
+</tr>
+<tr>
+<td>ES_CENTER</td><td>0x0001</td><td>1 행 또는 복수행의 에디트 컨트롤로, 텍스트를 centering로 표시합니다.</td>
+</tr>
+<tr>
+<td>ES_LOWERCASE</td><td>0x0010</td><td>에디트 컨트롤에 입력된 문자를 모두 소문자로 변환합니다.</td>
+</tr>
+<tr>
+<td>ES_NOHIDESEL</td><td>0x0100</td><td>통상, 에디트 컨트롤이 입력초점을 잃으면 선택이 통상의 표시로 돌아와, 입력초점을 받았을 때에 선택을 강조 표시합니다.ES_NOHIDESEL (은)는, 이 디폴트의 동작을 실시하지 않게 합니다.</td>
+</tr>
+<tr>
+<td>ES_NUMBER</td>
+<td>0x2000</td>
+<td>+/-Number. Accepts into the edit control only digits to be 
+typed.</td>
+</tr>
+<tr>
+<td>ES_OEMCONVERT</td><td>0x0400</td><td>에디트 컨트롤에 입력된 텍스트를,ANSI 캐릭터 세트로부터 OEM 캐릭터 세트로 변환해, 그 후 ANSI 캐릭터 세트에 되돌립니다.이것에 의해, 어플리케이션이 재즈 악단 박스내의 ANSI 문자열을 OEM 문자열로 변환하기 위해서 Windows 함수 AnsiToOem (을)를 호출할 때, 올바른 변환이 확실히 행해집니다.이 스타일은, 파일명을 보관 유지하는 에디트 컨트롤에서는 가장 유용합니다.</td>
+</tr>
+<tr>
+<td>ES_MULTILINE</td><td>0x0004</td><td>복수행의 에디트 컨트롤을 지정합니다 (디폴트는 1 행의 에디트 컨트롤입니다).ES_AUTOVSCROLL 스타일이 지정되어 있으면, 에디트 컨트롤은 가능한 한 많은 행을 표시해, 유저가 Enter 키를 눌렀을 때에 수직 방향으로 스크롤 합니다.ES_AUTOVSCROLL 하지만 지정되어 있지 않으면 에디트 컨트롤은 가능한 한 많은 행을 표시해, 그 이상 표시할 수 없게 되었을 때에 유저가 Enter 키를 누르면 beep음을 울립니다.ES_AUTOHSCROLL 스타일이 지정되면, 복수행의 에디트 컨트롤은, 카렛트가 컨트롤의 우단을 넘었을 때에 자동적으로 수평 방향으로 스크롤 합니다.새로운 행을 개시할 때는, 유저는 Enter 키를 누르지 않으면 안됩니다.ES_AUTOHSCROLL 하지만 지정되지 않으면 필요에 따라서 자동적으로 다음의 행의 초에 단어를 되풀이합니다.Enter 키를 눌러도 새로운 행이 시작됩니다.단어의 즉시 위치는, 윈도우의 사이즈에 의해서 정해집니다.윈도우의 사이즈가 변경되면, 즉시 위치도 변경되어 텍스트가 재표시됩니다.복수행의 에디트 컨트롤에는, 스크롤 바를 갖게할 수 있습니다.스크롤 바를 가지는 에디트 컨트롤은 자기 자신으로 스크롤 바 메세지를 처리합니다.스크롤 바를 가지지 않는 에디트 컨트롤에서는, 위에서 설명한 것처럼 스크롤을 해 친윈도우로부터 보내진 임의의 스크롤 메세지를 처리합니다.</td>
+</tr>
+<tr>
+<td>ES_PASSWORD</td><td>0x0020</td><td>에디트 컨트롤에 입력된 모든 문자를 asterisk (*) 그리고 표시합니다.어플리케이션은 SetPasswordChar 멤버 함수를 사용하고, 표시하는 문자를 변경할 수 있습니다.</td>
+</tr>
+<tr>
+<td>ES_READONLY</td><td>0x0800</td><td>에디트 컨트롤내에서 텍스트의 입력이나 편집을 할 수 없게 합니다.</td>
+</tr>
+<tr>
+<td>ES_RIGHT</td><td>0x0002</td><td>1 행 또는 복수행의 에디트 컨트롤로, 텍스트를 오른쪽맞춤으로 표시합니다.</td>
+</tr>
+<tr>
+<td>ES_UPPERCASE</td><td>0x0008</td><td>에디트 컨트롤에 입력된 모든 문자를 대문자로 변환합니다.</td>
+</tr>
+<tr>
+<td>ES_WANTRETURN</td><td>0x1000</td><td>유저가 다이얼로그 박스의 복수행의 에디트 컨트롤에 텍스트를 입력하고 있을 때 Enter 키를 누르면 왕복대 리턴이 삽입되는 것을 나타냅니다.이 스타일이 지정되어 있지 않을 때에 Enter 키를 누르면, 다이얼로그 박스의 디폴트의 푸쉬 버튼을 누른 것 것과 같게 됩니다.이 스타일은,1 행의 에디트 컨트롤에서는 효과가 없습니다. </td>
+</tr>
+</table>
+
+
+
+
+
+<table>
+<caption>Text,Picture</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>forced</td>
+<td>&nbsp;</td>
+<td>Picture: SS_BITMAP</td>
+</tr>
+<tr>
+<td>SS_BLACKFRAME</td><td>0x07</td><td>윈도우의 테두리와 같은 색으로 묘화 되는 테두리를 가지는 박스를 지정합니다.디폴트는 흑입니다.</td>
+</tr>
+<tr>
+<td>SS_BLACKRECT</td><td>0x04</td><td>윈도우의 테두리의 묘화에 사용되는 색으로 전부 칠해진 사각형을 지정합니다.디폴트는 흑입니다.</td>
+</tr>
+<tr>
+<td>SS_CENTER</td><td>0x01</td><td>단순한 사각형을 지정해, 그 중으로 지정된 텍스트를 centering로 표시합니다.텍스트는 표시되기 전에 서식화 됩니다.줄 끝을 넘는 단어는 자동적으로 다음의 행에 되접어 꺾이고 중앙에 가지런히 할 수 있습니다.</td>
+</tr>
+<tr>
+<td>SS_ETCHEDFRAME </td>
+<td>0x12</td>
+<td>Draws the frame of the static control using the EDGE_ETCHED edge style.</td>
+</tr>
+<tr>
+<td>SS_ETCHEDHORZ </td>
+<td>0x10</td>
+<td>Draws the top and bottom edges of the static 
+control using the EDGE_ETCHED edge style.</td>
+</tr>
+<tr>
+<td>SS_ETCHEDVERT </td>
+<td>0x11</td>
+<td>Draws the left and right edges of the static 
+control using the EDGE_ETCHED edge style.</td>
+</tr>
+<tr>
+<td>SS_GRAYFRAME</td><td>0x08</td><td>화면의 배경색 (데스크탑) (와)과 같은 색으로 묘화 되는 테두리의 박스를 지정합니다.디폴트는 회색입니다.</td>
+</tr>
+<tr>
+<td>SS_GRAYRECT</td><td>0x05</td><td>화면의 백그라운드를 전부 칠하는데 사용하는 색으로 전부 칠해진 사각형을 지정합니다.디폴트는 회색입니다.</td>
+</tr>
+<tr>
+<td>SS_LEFT</td><td>0x0000</td><td>단순한 사각형을 지정해, 그 중으로 지정된 텍스트를 왼쪽 가지런히 해로 표시합니다.텍스트는 표시되기 전에 서식화 됩니다.줄 끝을 넘는 단어는 자동적으로 다음의 행에 되접어 꺾이고 왼쪽으로 가지런히 할 수 있습니다.</td>
+</tr>
+<tr>
+<td>SS_LEFTNOWORDWRAP</td><td>0x0C</td><td>단순한 사각형을 지정해, 그 중으로 지정된 텍스트를 왼쪽 가지런히 해로 표시합니다.텍스트는 표시되기 전에 서식화 됩니다.탭은 전개됩니다만, 단어는 되접어 꺾이지 않습니다.줄 끝을 넘는 텍스트는 클립 됩니다.</td>
+</tr>
+<tr>
+<td>SS_NOPREFIX</td><td>0x80</td><td>이 스타일을 지정하지 않는 한,Windows (은)는 컨트롤의 텍스트내의 ampersand(&) (&) 문자를 가속기의 프레픽스 문자로서 해석합니다.이 경우, ampersand(&) (&) (은)는 제거되어 문자열중의 그 다음의 문자에 밑줄을 붙일 수 있습니다.스태틱 컨트롤이 이 기능을 필요로 하지 않는 텍스트를 가지고 있을 때는,SS_NOPREFIX (을)를 추가합니다.이 스태틱 컨트롤의 스타일은, 정의 떠날 수 있어 모든 스태틱 컨트롤에 포함할 수 있습니다.비트마다의 OR 연산자를 사용하고, 다른 스타일과 SS_NOPREFIX (을)를 조합해 지정할 수 있습니다.이 스타일은, 다이얼로그 박스의 스태틱 컨트롤에 파일명이나 ampersand(&) (&) (을)를 가지는 그 외의 문자열을 표시할 필요가 있을 때 등에 사용합니다.</td>
+</tr>
+<tr>
+<td>SS_NOTIFY</td>
+<td>0x0100</td>
+<td>Sends the parent window the STN_CLICKED 
+notification when the user clicks the control.</td>
+</tr>
+<tr>
+<td>SS_RIGHT</td><td>0x0002</td><td>단순한 사각형을 지정해, 그 중으로 지정된 텍스트를 오른쪽맞춤으로 표시합니다.텍스트는 표시되기 전에 서식화 됩니다.줄 끝을 넘는 단어는 자동적으로 다음의 행에 되접어 꺾이고 오른쪽으로 가지런히 할 수 있습니다.</td>
+</tr>
+<tr>
+<td>SS_SUNKEN </td>
+<td>0x1000</td>
+<td>Draws a half-sunken border around a static 
+control.</td>
+</tr>
+<tr>
+<td>SS_WHITEFRAME</td><td>0x09</td><td>윈도우의 배경색과 같은 색으로 묘화 되는 테두리를 가지는 박스를 지정합니다.디폴트는 흰색입니다.</td>
+</tr>
+<tr>
+<td>SS_WHITERECT</td><td>0x06</td><td>윈도우의 백그라운드를 전부 칠하는데 사용되는 색으로 전부 칠해진 사각형을 지정합니다.디폴트는 흰색입니다. </td>
+</tr>
+</table>
+
+<table>
+<caption>Picture</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>forced</td>
+<td>&nbsp;</td>
+<td>아이콘과 커서에서는 「SS_ICON」, 그 외에서는 「SS_BITMAP」</td>
+</tr>
+<tr>
+<td>SS_REALSIZECONTROL</td><td>0x40</td><td>[Windows XP or later] Adjusts the bitmap to fit the size of the control. </td>
+</tr>
+<tr>
+<td>SS_CENTERIMAGE</td><td>0x200</td><td>Centers the bitmap in the control. If the bitmap is too large, it will be clipped. For text controls If the control contains a single line of text, the text is centered vertically within the available height of the control <br>
+Microsoft Windows XP: This style bit no longer results in unused portions of the control being filled with the color of the top left pixel of the bitmap or icon. Unused portions of the control will remain the background color.
+</td>
+</tr>
+</table>
+
+
+
+<table>
+<caption>UpDonw</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>UDS_ARROWKEYS, UDS_ALIGNRIGHT, UDS_SETBUDDYINT, and UDS_AUTOBUDDY.</td>
+</tr>
+
+<tr><td>UDS_WRAP</td><td>0x1</td><td>범위의 시점 또는 종점을 넘어 증감되었을 때에 위치를 "랩" 합니다.</td></tr>
+<tr><td>UDS_SETBUDDYINT</td><td>0x2</td><td>위치가 변경되었을 때에,WM_SETTEXT 메세지를 사용하고, 바디 윈도우의 텍스트를 컨트롤이 설정합니다.텍스트는,10 진문자열 또는 16 진문자열로서 서식화 된 위치로부터 완성됩니다.</td></tr>
+<tr><td>UDS_ALIGNRIGHT</td><td>0x4</td><td>바디 윈도우의 우단의 근처에 스핀 버튼 컨트롤을 배치합니다.바디 윈도우의 폭은, 컨트롤의 폭에 따라 감소합니다.</td></tr>
+<tr><td>UDS_ALIGNLEFT</td><td>0x8</td><td>바디 윈도우의 좌단의 근처에 스핀 버튼 컨트롤을 배치합니다.바디 윈도우의 폭은, 컨트롤의 폭에 따라 감소합니다. </td></tr>
+<tr><td>UDS_AUTOBUDDY</td><td>0x10</td><td>컨트롤의 바디 윈도우로서Z 순서로 직전의 윈도우를 자동적으로 선택합니다.</td></tr>
+<tr><td>UDS_ARROWKEYS</td><td>0x20</td><td>오름새의 화살표 또는 아래로 향한 커서 키가 밀렸을 때에, 컨트롤이 위치를 증감합니다.</td></tr>
+
+<tr><td>UDS_HORZ</td><td>0x40</td><td>컨트롤의 화살표를 상하가 아니고, 좌우를 가리키도록(듯이) 합니다.</td></tr>
+<tr><td>UDS_NOTHOUSANDS</td><td>0x80</td><td>10 진 3 자리수 마다 1000 단위의 단락을 삽입하지 않습니다.</td></tr>
+<tr><td>UDS_HOTTRACK</td><td>0x100</td><td>Causes the control to exhibit "hot tracking" behavior. That is, it highlights the control's buttons as the mouse passes over them. This style requires Microsoft Windows 98 or Windows 2000. If the system is running Windows 95 NT4, the flag is ignored. The flag is also ignored on Windows XP when the desktop theme overrides it.</td></tr>
+</table>
+
+
+<table>
+<caption>DateTime</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>DTS_SHORTDATECENTURYFORMAT and WS_TABSTOP (+/-Tabstop)</td>
+</tr>
+<tr>
+  <td>DTS_UPDOWN</td>
+  <td>0x1</td>
+  <td> Provides an up-down control to the right of the control to modify date-time values, which replaces the of the drop-down month calendar that would otherwise be available.</td>
+</tr>
+<tr>
+  <td>DTS_SHOWNONE</td>
+  <td>0x2</td>
+  <td> Displays a checkbox inside the control that users can uncheck to make the control have no date/time selected. Whenever the control has no date/time, <a target=_top href='../commands/Gui_Submit.html'>Gui Submit</a> and <a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a> will retrieve a blank value (empty string).</td>
+</tr>
+<tr>
+  <td>DTS_SHORTDATEFORMAT</td>
+  <td>0x0</td>
+  <td> Displays the date in short format. In some locales, it looks like 6/1/05 or 6/1/2005. On older operating systems, a two-digit year might be displayed. This is why DTS_SHORTDATECENTURYFORMAT is the default and not DTS_SHORTDATEFORMAT.</td>
+</tr>
+<tr>
+  <td>DTS_LONGDATEFORMAT</td>
+  <td>0x4</td>
+  <td> <a target=_top href='../commands/Gui_Add_DateTime.html'>Format word</a> &quot;LongDate&quot;. Displays the date in long format. In some locales, it looks like Wednesday, June 01, 2005.</td>
+</tr>
+<tr>
+  <td>DTS_SHORTDATECENTURYFORMAT</td>
+  <td>0xC</td>
+  <td> <a target=_top href='../commands/Gui_Add_DateTime.html'>Format word</a> blank/omitted. Displays the date in short format with four-digit year. In some locales, it looks like 6/1/2005. If the system's version of 
+ Comctl32.dll is older than 5.8, this style is not supported and DTS_SHORTDATEFORMAT is automatically substituted. </td>
+</tr>
+<tr>
+  <td>DTS_TIMEFORMAT</td>
+  <td>0x9</td>
+  <td> <a target=_top href='../commands/Gui_Add_DateTime.html'>Format word</a> &quot;Time&quot;. Displays only the time, which in some locales looks like 5:31:42 PM.</td>
+</tr>
+<tr>
+  <td>DTS_APPCANPARSE</td>
+  <td>0x10</td>
+  <td>  Not yet supported. Allows the owner to parse user input and take necessary action. It enables users to edit within the client area of the control when they press the F2 key. The control sends DTN_USERSTRING  notification messages when users are finished.</td>
+</tr>
+<tr>
+  <td>DTS_RIGHTALIGN</td>
+  <td>0x20</td>
+  <td> +/-Right. The calendar will drop down on the right side of the control instead of the left.</td>
+</tr>
+<tr>
+  <td>(colors inside the drop-down calendar) </td>
+  <td>&nbsp;</td>
+  <td>The colors of the day numbers inside the drop-down calendar obey that set by the <a target=_top href='../commands/Gui_Font.html'>Gui Font</a> command or the <a target=_top href='../commands/Gui_Option.html'>c (Color)</a> option. To change the colors of other parts of the calendar, follow this example:<br>
+Gui +LastFound<br>
+<a target=_top href='../commands/PostMessage.html'>SendMessage</a>, 0x1006, 4, 0xFFAA99, SysDateTimePick321 ; 0x1006 is DTM_SETMCCOLOR. 4 is MCSC_MONTHBK (background color). The color must be specified in BGR vs. RGB format (red and blue components swapped). </td>
+</tr>
+</table>
+<table>
+<caption>MonthCal</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>UDS_ARROWKEYS, UDS_ALIGNRIGHT, UDS_SETBUDDYINT, and UDS_AUTOBUDDY.</td>
+</tr>
+<tr>
+  <td>MCS_DAYSTATE</td>
+  <td>0x1</td>
+  <td> Makes the control send MCN_GETDAYSTATE  notifications to request information about which days should be displayed in bold. [Not yet supported]</td>
+</tr>
+<tr>
+  <td>MCS_MULTISELECT</td>
+  <td>0x2</td>
+  <td>Named option &quot;Multi&quot;. 
+
+
+ Allows the user to select a range of dates rather than being limited to a single date. By default, the maximum range is 366 days, which can be changed by sending the MCM_SETMAXSELCOUNT  message to the control. For example:<br>
+ Gui +LastFound <br>
+ <a target=_top href='../commands/PostMessage.html'>SendMessage</a>, 0x1004, 7, 0, SysMonthCal321 ; 7 days. 0x1004 is MCM_SETMAXSELCOUNT.</td>
+</tr>
+<tr>
+  <td>MCS_WEEKNUMBERS</td>
+  <td>0x4</td>
+  <td> Displays week numbers (1-52) to the left of each row of days. Week 1 is defined as the first week that contains at least four days.</td>
+</tr>
+<tr>
+  <td>MCS_NOTODAYCIRCLE</td>
+  <td>0x8</td>
+  <td>Prevents the circling of today's date within the control.</td>
+</tr>
+<tr>
+  <td>MCS_NOTODAY</td>
+  <td>0x10</td>
+  <td>Prevents the display of today's date at the bottom of the control.</td>
+</tr>
+<tr>
+  <td>(colors) </td>
+  <td>&nbsp;</td>
+  <td>The colors of the day numbers inside the calendar obey that set by the <a target=_top href='../commands/Gui_Font.html'>Gui Font</a> command or the <a target=_top href='../commands/Gui_Option.html'>c (Color)</a> option. To change the colors of other parts of the calendar, follow this example:<br>
+    Gui +LastFound<br>
+    <a target=_top href='../commands/PostMessage.html'>SendMessage</a>, 0x100A, 5, 0xFFAA99, SysMonthCal321 ; 0x100A is MCM_SETCOLOR. 5 is 
+
+
+ MCSC_TITLETEXT (color of title text). The color must be specified in BGR vs. RGB format (red and blue components swapped).</td>
+</tr>
+</table>
+
+
+
+<table>
+<caption>Tab</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>default</td>
+<td>&nbsp;</td>
+<td>WS_TABSTOP and TCS_MULTILINE</td>
+</tr>
+<tr>
+<td>forced</td>
+<td>&nbsp;</td>
+<td>WS_CLIPSIBLINGS<br>
+TCS_OWNERDRAWFIXED: forced on or off as required by the control's background color and/or text color. </td>
+</tr>
+<tr>
+<td>TCS_SCROLLOPPOSITE</td>
+<td>0x0001</td>
+<td>Unneeded tabs scroll to the opposite side of the 
+control when a tab is selected.</td>
+</tr>
+<tr>
+<td>TCS_BOTTOM </td>
+<td>0x0002</td>
+<td>+/-Bottom. Tabs appear at the bottom of the control instead of the top. </td>
+</tr>
+<tr>
+<td>TCS_RIGHT </td>
+<td>0x0002</td>
+<td>Tabs appear vertically on the right side of 
+controls that use the TCS_VERTICAL style.</td>
+</tr>
+<tr>
+<td>TCS_MULTISELECT </td>
+<td>0x0004 </td>
+<td>Multiple tabs can be selected by holding down
+<small>CTRL</small> when clicking. This style must be used with the 
+TCS_BUTTONS style.</td>
+</tr>
+<tr>
+<td>TCS_FLATBUTTONS </td>
+<td>0x0008</td>
+<td>Selected tabs appear as being indented into the 
+background while other tabs appear as being on the same plane as the 
+background. This style only affects tab controls with the TCS_BUTTONS style.</td>
+</tr>
+<tr>
+<td>TCS_FORCEICONLEFT </td>
+<td>0x0010</td>
+<td>Icons are aligned with the left edge of each 
+fixed-width tab. This style can only be used with the TCS_FIXEDWIDTH style.</td>
+</tr>
+<tr>
+<td>TCS_FORCELABELLEFT </td>
+<td>0x0020</td>
+<td>Labels are aligned with the left edge of each 
+fixed-width tab; that is, the label is displayed immediately to the right of 
+the icon instead of being centered.
+This style can only be used with the TCS_FIXEDWIDTH style, and it implies 
+the TCS_FORCEICONLEFT style.</td>
+</tr>
+<tr>
+<td>TCS_HOTTRACK </td>
+<td>0x0040</td>
+<td>Items under the pointer are automatically 
+highlighted</td>
+</tr>
+<tr>
+<td>TCS_VERTICAL </td>
+<td>0x0080</td>
+<td><a name="tcs_vertical"></a>+/-Left or +/-Right. Tabs appear at the left side of the control, with 
+tab text displayed vertically. This style is valid only when used with the 
+TCS_MULTILINE style. To make tabs appear on the right side of the control, 
+also use the TCS_RIGHT style.
+This style might not function correctly on Windows XP and beyond if a visual theme is in effect. A possible workaround to also specify the &quot;buttons&quot; style; or use &quot;Gui, -theme&quot; prior to adding the tab control, and &quot;Gui, +theme&quot; afterward.        This style will not correctly display the tabs if a custom background color or text color is in effect. To workaround this, specify -Background and/or cDefault in the tab control's options.</td>
+</tr>
+<tr>
+<td>TCS_BUTTONS </td>
+<td>0x0100</td>
+<td>+/-Buttons. Tabs appear as buttons, and no border is drawn 
+around the display area.</td>
+</tr>
+<tr>
+<td>TCS_SINGLELINE </td>
+<td>0x0000</td>
+<td>+/-Wrap. Only one row of tabs is displayed. The user can 
+scroll to see more tabs, if necessary. This style is the default.</td>
+</tr>
+<tr>
+<td>TCS_MULTILINE </td>
+<td>0x0200</td>
+<td>+/-Wrap. Multiple rows of tabs are displayed, if necessary, 
+so all tabs are visible at once.</td>
+</tr>
+<tr>
+<td>TCS_RIGHTJUSTIFY </td>
+<td>0x0000</td>
+<td>The width of each tab is increased, if necessary, 
+so that each row of tabs fills the entire width of the tab control.
+This window style is ignored unless the TCS_MULTILINE style is also 
+specified.</td>
+</tr>
+<tr>
+<td>TCS_FIXEDWIDTH </td>
+<td>0x0400</td>
+<td>All tabs are the same width. This style cannot be 
+combined with the TCS_RIGHTJUSTIFY style.</td>
+</tr>
+<tr>
+<td>TCS_RAGGEDRIGHT </td>
+<td>0x0800</td>
+<td>Rows of tabs will not be stretched to fill the 
+entire width of the control. This style is the default.</td>
+</tr>
+<tr>
+<td>TCS_FOCUSONBUTTONDOWN </td>
+<td>0x1000</td>
+<td>The tab control receives the input focus when 
+clicked.</td>
+</tr>
+<tr>
+<td>TCS_OWNERDRAWFIXED </td>
+<td>0x2000</td>
+<td>The parent window is responsible for drawing tabs.</td>
+</tr>
+<tr>
+<td>TCS_TOOLTIPS </td>
+<td>0x4000</td>
+<td>The tab control has a tooltip control associated 
+with it.</td>
+</tr>
+<tr>
+<td>TCS_FOCUSNEVER </td>
+<td>0x8000</td>
+<td>The tab control does not receive the input focus 
+when clicked.</td>
+</tr>
+</table>
+
+
+
+<h2><a name="exstyle">확장 윈도우 스타일</a></h2>
+
+<table>
+<caption>ExStyle</caption>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>WS_EX_DLGMODALFRAME</td>
+<td>0x00000001</td>
+<td>이중의 경계선을 가지는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_EX_NOPARENTNOTIFY</td>
+<td>0x00000004</td>
+<td>이 스타일로 작성된 아이 윈도우가 작성되거나 파기 되거나 할 때, 그 친윈도우에 <dfn class="msg">WM_PARENTNOTIFY</dfn> 메세지를 보내지 않게 지정합니다.</td>
+</tr>
+<tr>
+<td>WS_EX_TOPMOST</td>
+<td>0x00000008</td>
+<td>맨 앞면윈도우를 작성합니다.윈도우가 비액티브한 상태에서도, 다른 윈도우의 전면에 표시됩니다. <dfn class="api">SetWindowPos</dfn> 함수를 사용하면, 비맨 앞면윈도우로 변경할 수 있습니다.</td>
+</tr>
+<tr>
+<td>WS_EX_ACCEPTFILES</td>
+<td>0x00000010</td>
+<td>드래그 앤드 드롭으로, 파일을 받아 들입니다.</td>
+</tr>
+<tr>
+<td>WS_EX_TRANSPARENT</td>
+<td>0x00000020</td>
+<td>투과 윈도우를 작성합니다.이 윈도우아래에 있는 어떠한 윈도우도, 차단해지는 일 없이 표시됩니다.</td>
+</tr>
+<tr>
+<td>WS_EX_MDICHILD</td>
+<td>0x00000040</td>
+<td>MDI 아이 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_EX_TOOLWINDOW</td>
+<td>0x00000080</td>
+<td>툴 윈도우를 작성합니다.툴 윈도우는 통상의 타이틀 바보다 작은 타이틀 바를 가집니다.태스크바에는 표시되지 않습니다.유저가［Alt］키와［Tab］키를 동시에 누르면 나타나는 다이얼로그내에도, 표시되지 않습니다.</td>
+</tr>
+<tr>
+<td>WS_EX_WINDOWEDGE</td>
+<td>0x00000100</td>
+<td>윈도우가 분위기가  산 인연의 경계선을 가지도록(듯이) 지정합니다.</td>
+</tr>
+<tr>
+<td>WS_EX_CLIENTEDGE</td>
+<td>0x00000200</td>
+<td>인연이 가라앉아 보이는 경계선을 가지는 윈도우를 지정합니다.</td>
+</tr>
+<tr>
+<td>WS_EX_CONTEXTHELP</td>
+<td>0x00000400</td>
+<td>다이알로그 박스의 타이틀 바에［?］버튼을 추가합니다.
+유저가 이 버튼을 클릭하면, 마우스 포인터에 물음표가 붙습니다.그 후, 유저가 다이알로그 박스내의 컨트롤을 클릭하면, 컨트롤은 <dfn class="msg">WM_HELP</dfn> 메세지를 받아들입니다.컨트롤은 다이얼로그의 처리에 그 메세지를 보냅니다.</td>
+</tr>
+<tr>
+<td>WS_EX_RIGHT</td>
+<td>0x00001000</td>
+<td>오른쪽맞춤 된 프롭퍼티를 가지는 윈도우를 작성합니다.헤브라이어나 아라비아어를 서포트하고 있는 시스템으로 유효합니다.다른 언어로 이 스타일을 지정하면 에러가 됩니다.</td>
+</tr>
+<tr>
+<td>WS_EX_LEFT</td>
+<td>0x00000000</td>
+<td>왼쪽 가지런히 해 된 프롭퍼티를 가지는 윈도우를 작성합니다.(디폴트)</td>
+</tr>
+<tr>
+<td>WS_EX_RTLREADING</td>
+<td>0x00002000</td>
+<td>금방 다른 곳으로의 독해 순서를 가지는 프롭퍼티를 가진 윈도우를 작성합니다.헤브라이어나 아라비아어를 서포트하고 있는 시스템으로 유효합니다.다른 언어로 이 스타일을 지정하면 에러가 됩니다.</td>
+</tr>
+<tr>
+<td>WS_EX_LTRREADING</td>
+<td>0x00000000</td>
+<td>왼쪽에서 오른쪽에의 읽어내 순서를 가지는 프롭퍼티를 가진 윈도우를 작성합니다.(디폴트)</td>
+</tr>
+<tr>
+<td>WS_EX_LEFTSCROLLBAR</td>
+<td>0x00004000</td>
+<td>수직 스크롤 바가 클라이언트 영역의 좌측으로 놓여집니다.헤브라이어나 아라비아어를 서포트하고 있는 시스템으로 유효합니다.다른 언어로 이 스타일을 지정하면 에러가 됩니다.</td>
+</tr>
+<tr>
+<td>WS_EX_RIGHTSCROLLBAR</td>
+<td>0x00000000</td>
+<td>수직 스크롤 바가 클라이언트 영역의 우측으로 놓여집니다.(디폴트)</td>
+</tr>
+<tr>
+<td>WS_EX_CONTROLPARENT</td>
+<td>0x00010000</td>
+<td>유저가［Tab］키를 사용해 아이 윈도우간을 이동할 수 있도록 합니다.</td>
+</tr>
+<tr>
+<td>WS_EX_STATICEDGE</td>
+<td>0x00020000</td>
+<td>유저의 입력을 받아들이지 않는 항목용의, 입체적으로 보이는 경계 스타일을 가지는 윈도우를 작성합니다.</td>
+</tr>
+<tr>
+<td>WS_EX_APPWINDOW</td>
+<td>0x00040000</td>
+<td>윈도우가 최소화되면, 톱 레벨 윈도우가 태스크바상에 놓여집니다.</td>
+</tr>
+<tr>
+<td>WS_EX_OVERLAPPEDWINDOW</td>
+<td>0x00000300</td>
+<td>WS_EX_WINDOWEDGE (와)과 WS_EX_CLIENTEDGE 의 편성입니다.</td>
+</tr>
+<tr>
+<td>WS_EX_PALETTEWINDOW</td>
+<td>0x00000188</td>
+<td>WS_EX_WINDOWEDGE (와)과 WS_EX_TOOLWINDOW (와)과 WS_EX_TOPMOST 의 편성입니다.</td>
+</tr>
+</table>
+
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Styles.html'>윈도우 스타일 일람</a></div>
+</body>
+</html>

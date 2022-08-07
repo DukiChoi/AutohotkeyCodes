@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#MaxThreadsBuffer</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_MaxThreadsBuffer.html'>#MaxThreadsBuffer</a></div>
+<h1>#MaxThreadsBuffer</h1>
+<p>해당 hot key의 스렛드의 실행수가<a target=_top href='../commands/_MaxThreadsPerHotkey.html'>#MaxThreadsPerHotkey</a>그리고 지정한 상한에 이르고 있을 때 새롭게 hot key가 밀렸을 때, 실행 가능하게 될 때까지 뒷전으로 하는지, hot key를 무시하는지를 설정.</p>
+
+<pre>#MaxThreadsBuffer On|Off</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>On|Off
+</td>
+<td>
+<dl>
+<dt>On</dt><dd>
+뒷전으로 한다
+</dd>
+<dt>Off</dt><dd>
+무시한다
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+<p>디폴트 설정은 「Off」</p>
+<p>이 지령으로의 설정은, 기술된 장소로부터 다음에 이 지령이 기술되는 동안에 선언되고 있는 hot key에게만 영향을 준다.</p>
+<p>
+벌써 하나 뒷전으로 하고 있는 경우는, 그 이상은 뒷전으로 되지 않고 무시된다.<br>
+뒷전으로 하고 있을 수 있는 시간은1초까지로, 그 이상 경과하면 파기된다.
+</p>
+<p>
+이 기능은 주로, 키보드의 오토매틱으로 고속으로 연속 실행되는 기능을 할당할 때에 사용한다.<br>
+예를 들어, 키 반복 간격이50밀리 세컨드였던 경우, 실행되는 동작이60밀리 세컨드 걸려 버리면, 동작 종료후에 다음에 hot key가 밀려 실행 될 때까지40밀리 세컨드 걸려 버리지만, 이 기능을 유효하게 해 두기 전의 실행이 종료하자마자 다음의 동작이 실행된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/_MaxThreads.html'>#MaxThreads</a>, <a target=_top href='../commands/_MaxThreadsPerHotkey.html'>#MaxThreadsPerHotkey</a><a target=_top href='../misc/Threads.html'>, Threads</a>, <a target=_top href='../commands/Hotkey.html'>Hotkey</a>, <a target=_top href='../commands/_MaxHotkeysPerInterval.html'>#MaxHotkeysPerInterval</a>, <a target=_top href='../commands/_HotkeyInterval.html'>#HotkeyInterval</a>, <a target=_top href='../commands/ListHotkeys.html'>ListHotkeys</a></p>
+
+<h2>Example(s)</h2>
+<pre>#MaxThreadsBuffer on
+#x::MsgBox, This hotkey will use this type of buffering.
+#y::MsgBox, And this one too.
+#MaxThreadsBuffer off
+#z::MsgBox, But not this one. </pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_MaxThreadsBuffer.html'>#MaxThreadsBuffer</a></div>
+</body>
+</html>

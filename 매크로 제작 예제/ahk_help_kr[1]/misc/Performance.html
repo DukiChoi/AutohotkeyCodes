@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Performance</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Performance.html'>Performance</a></div>
+<h1>Script &amp; Hotkey Performance </h1>
+
+
+
+<p>Scripts are semi-compiled while they're being loaded and syntax-checked. In addition to reducing the memory consumed by the script, this process also enhances  runtime performance (by orders of magnitude in some cases). The performance boost is greatest when <a target=_top href='../commands/SetBatchLines.html'>SetBatchLines</a> is -1, meaning that the script is running at maximum speed.</p>
+<p>In addition to <a target=_top href='../commands/SetBatchLines.html'>SetBatchLines</a>, the following commands may also affect performance depending on the nature of the script: <a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>, <a target=_top href='../commands/SetMouseDelay.html'>SetMouseDelay</a>, <a target=_top href='../commands/SetWinDelay.html'>SetWinDelay</a>, <a target=_top href='../commands/SetControlDelay.html'>SetControlDelay</a>, and <a target=_top href='../commands/SetDefaultMouseSpeed.html'>SetDefaultMouseSpeed</a>.</p>
+
+<p>Here are the technical details of the semi-compiling process:</p>
+<ul>
+  <li>Input and output variables (when their names don't contain references to other variables) and <a target=_top href='../commands/GroupAdd.html'>group</a> names are resolved to memory addresses.</li>
+  <li><a target=_top href='../commands/Loop.html'>Loops</a>, <a target=_top href='../commands/__Block.html'>blocks</a>, <a target=_top href='../commands/IfEqual.html'>IFs</a>, and <a target=_top href='../commands/Else.html'>ELSEs</a> are given the memory addresses of their related jump-points in the script.</li>
+  <li>The destination  of each <a target=_top href='../Hotkeys.html'>Hotkey</a>,<a target=_top href='../commands/Gosub.html'> Gosub</a>, and <a target=_top href='../commands/Goto.html'>Goto</a> is resolved to a memory address unless it's a variable. </li>
+  <li>Command names are replaced with their addresses in a jump table.</li>
+  <li>Each line is parsed into a list of parameters.</li>
+  <li>Each parameter is parsed into a list of variable references (if any).</li>
+  <li>Each variable reference is resolved to a memory address.</li>
+</ul>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Performance.html'>Performance</a></div>
+</body>
+</html>

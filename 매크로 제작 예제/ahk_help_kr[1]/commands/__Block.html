@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Blocks</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__Block.html'>Blocks</a></div>
+<h1>{...} (block) </h1>
+<p>조건 분기나 루프내에서 복수의 커멘드를 실행하기 위해서 블록화한다</p>
+
+<pre>
+{
+zero or more commands
+}</pre>
+<h2>Remarks</h2>
+<p>블록내에는1개도 커멘드가 없어도 좋다.</p>
+
+
+<p>「<a target=_top href='../commands/IfExpression.html'>If(식)</a>」, 「<a target=_top href='../commands/Loop.html'>Loop,회수</a>」, 「<a target=_top href='../commands/Else.html'>else</a>」,<a target=_top href='../Function.html'>함수 정의</a>그럼, 행의 마지막에 「{」(을)를 정리하고 쓸 수 있다.<br>
+또, 「}」의 후에 「else」(을)를 정리하고 쓸 수 있다.<br>
+상기 이외의If계,Loop계 커멘드에서는, 「{」(은)는 커멘드행의 다음의 행에 쓸 필요가 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Loop.html'>Loop</a>, <a target=_top href='../commands/Else.html'>Else</a>, <a target=_top href='../commands/IfEqual.html'>If</a> </p>
+
+<h2>Example(s)</h2>
+<pre>if (x &lt; y) {
+	MsgBox,x&lt;y
+}else{
+	MsgBox,x&gt;=y
+}
+
+Loop 3 {
+	MsgBox,%A_Index%번째
+}
+
+Add(x, y) {
+	return x + y
+}
+
+
+if x = 1
+{
+	MsgBox, x하……
+	MsgBox, 1입니다
+}else
+	MsgBox, x하1이외입니다
+
+Loop,Parse,%Lines%
+{
+	MsgBox,%A_Index%행목=%A_LoopField%
+}
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__Block.html'>Blocks</a></div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>GroupClose</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GroupClose.html'>GroupClose</a></div>
+<h1>GroupClose</h1>
+<p>액티브 윈도우가<a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>(이)나<a target=_top href='../commands/GroupDeactivate.html'>GroupDeactivate</a>그리고 액티브화 된 것이면, 그것을 닫아 그룹의 다음의 윈도우를 액티브화한다.그룹에 속하는 모든 윈도우를 닫을 수도 있다.</p>
+
+<pre>GroupClose, GroupName [, A|R] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>GroupName
+</td>
+<td><a target=_top href='../commands/GroupAdd.html'>GroupAdd</a>그리고 정의한 그룹명
+</td>
+</tr>
+<tr>
+<td>A|R
+</td>
+<td>
+「A」의 경우, 그룹에 속하는 모든 윈도우를 닫는다.<br>
+「R」(을)를 지정하면, 다음에 액티브하게 되는 윈도우가 제일 최근 액티브했던 윈도우가 된다.<br>
+아무것도 지정하지 않으면 다음에 액티브하게 되는 윈도우는, 제일 옛날에 액티브했던 윈도우가 된다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+제2인수가 생략인가 「R」의 경우, 그룹에 대한 직전의 조작이<a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>인가<a target=_top href='../commands/GroupDeactivate.html'>GroupDeactivate</a>인가로 동작이 바뀐다.<br>
+직전의 조작이<a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>(이었)였던 경우, 액티브 윈도우가 그룹에 속하는 윈도우라면 윈도우를 닫아 그 이외의 윈도우라면 그룹에 속하는 윈도우를을 액티브화한다.<br>
+직전의 조작이<a target=_top href='../commands/GroupDeactivate.html'>GroupDeactivate</a>(이었)였던 경우, 그룹에 속하는 윈도우와 속하지 않는 윈도우가 역전한다.
+</p>
+<p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/GroupAdd.html'>GroupAdd</a>, <a target=_top href='../commands/GroupActivate.html'>GroupActivate</a>, <a target=_top href='../commands/GroupDeactivate.html'>GroupDeactivate</a></p>
+
+<h2>Example(s)</h2>
+<pre>GroupClose, MyGroup, R</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GroupClose.html'>GroupClose</a></div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinGetClass</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinGetClass.html'>WinGetClass</a></div>
+<h1>WinGetClass</h1>
+<p>지정된 윈도우의 클래스명을 취득</p>
+
+<pre>WinGetClass, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>OutputVar
+</td>
+<td>
+클래스명을 격납하는 변수명
+</td>
+</tr>
+<tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+
+<p>
+윈도우의 종류를 나타내는 클래스명을 취득할 수 있다.
+</p>
+<p>
+취득한 클래스명은, 윈도우 관련 커멘드의WinTitle(을)를 지정하는 (곳)중에 「ahk_class %OutputVar%」(와)과 같이 해 사용할 수 있다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinGet.html'>WinGet</a>, <a target=_top href='../commands/WinGetTitle.html'>WinGetTitle</a></p>
+
+<h2>Example(s)</h2>
+<pre>WinGetClass, class, A
+MsgBox, The active window's class is &quot;%class%&quot;.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinGetClass.html'>WinGetClass</a></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#Hotstring</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_Hotstring.html'>#Hotstring</a></div>
+
+<h1>#Hotstring</h1>
+<p><a target=_top href='../Hotstrings.html'>핫 스트링</a>의 옵션의 변경, 종료 문자의 지정</p>
+
+<pre>#Hotstring EndChars NewChars</pre>
+<pre>#Hotstring NewOptions</pre>
+<pre>#Hotstring NoMouse</pre>
+<h2>Parameters</strong></h2>
+<table>
+<tr>
+<td>EndChars NewChars
+</td>
+<td>
+그 스크립트내에서 사용하는 종료 문자를 설정한다.<br>
+스크립트내에서1회만 사용할 수 있어 스크립트 전체에 영향을 준다.<br>
+최대로100문자까지 지정할 수 있다.
+</td>
+</tr>
+<tr>
+<td>NewOptions
+</td>
+<td>
+옵션의 초기치를 변경한다.<br>
+이 지령은, 기술된 장소 이후에서만 유효하게 되어, 재차 변경할 수도 있다.<br>
+지정할 수 있는 옵션에 대해서는,<a target=_top href='../Hotstrings.html#option'>핫 스트링의 옵션</a>(을)를 참조.
+</td>
+</tr>
+
+
+<tr><td>NoMouse</td><td>
+mouse button가 밀렸을 때에 감시 내용이 리셋트 되지 않게 한다.<br>
+스크립트내에서1회만 사용할 수 있어 스크립트 전체에 영향을 준다.
+</td></tr>
+
+</table>
+<h2>Related</strong></h2>
+<p><a target=_top href='../Hotstrings.html'>Hotstrings</a></p>
+
+<h2>Example(s)</h2>
+<pre>#Hotstring EndChars -()[]{}':;&quot;/\,.?!`n `t</pre>
+<pre>::btw::by the way
+#Hotstring r c  ; All the below hotstrings will use &quot;send raw&quot; and will be case sensitive by default.
+::al::airline
+::CEO::Chief Executive Officer
+#Hotstring c0 ; Make all hotstrings below this point case insensitive.</pre>
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_Hotstring.html'>#Hotstring</a></div>
+</body>
+</html>

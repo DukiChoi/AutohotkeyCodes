@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Critical </title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Critical.html'>Critical </a></div>
+<h1>Critical</h1>
+<p>현재의 스렛드에의 세치기를 금지한다</p>
+
+<pre>
+Critical[,MessageCheckInterval]
+Critical,Off
+Critical
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>
+<tr><td>MessageCheckInterval</td><td>
+Critical상태의 사이의 윈도우 메세지의 체크 간격을 밀리 세컨드로 지정한다.<br>
+디폴트는16밀리 세컨드.<br>
+비Critical상태에서는,5밀리 세컨드 간격으로 체크된다.<br>
+큰 값을 지정하고, 메세지의 체크를 행해지지 않게 해도, 실행 속도는 극히 불과 밖에 향상하지 않는다.
+</td></tr>
+<tr><td>Off</td><td>
+제1인수에 「Off」(을)를 지정하면,Critical상태를 해제해, 세치기를 받아들이도록(듯이) 한다
+</td></tr>
+</table>
+
+<h2>Remarks</h2>
+
+
+<p>
+스렛드의 우선 순위에 의한 세치기 방지와 달라, 스렛드가Critical상태때에 끼어들려고 한 이벤트는, 일시적으로 보존되어 스렛드가Critical(이)가 아니게 되었을 때에 세치기가 발생한다.
+</p>
+<p>
+보존된 스렛드가 있을 때 「Critical,Off」(을)를 실행했을 경우, 세치기를 하는 것은 약5밀리 세컨드 나중이 된다.<br>
+많은 경우, 이전에 스크립트의 다음이 몇 줄기 실행된다.<br>
+「Critical,Off」한 직후에 확실히 세치기를 발생시키고 싶은 경우, 「<a target=_top href='../commands/Sleep.html'>Sleep,-1</a>」(을)를 실행하도록 하면 된다.
+</p>
+
+<p>
+GUI윈도우의 이벤트나,<a target=_top href='../commands/OnMessage.html'>OnMessage()</a>그리고 할당할 수 있었던 메세지 이벤트를 위한 메세지 체크는,MessageCheckInterval그리고 지정한 간격으로 행해진다.<br>
+메세지 이벤트의 실행중에 같은 메세지를 받아들였을 경우등에는, 실행되지 않고 무시되어 버린다.<br>
+Critical그리고MessageCheckInterval(을)를 크게 하고, 메세지의 체크를 하기 전에 스렛드를 종료시키면, 스렛드가 종료하고 나서 메세지가 체크되므로, 메세지가 무시되는 것을 막을 수 있다.
+</p>
+
+<p>
+MessageCheckInterval의 지정에 관계없이,<a target=_top href='../commands/Sleep.html'>Sleep</a>커멘드나<a target=_top href='../commands/WinWait.html'>WinWait</a>커멘드등의 처리를 정지하는 커멘드를 실행했을 경우, 메세지의 체크를 한다.<br>
+메세지를 체크시키지 않고 정지시키고 싶은 경우, 「DllCall("kernel32.dll\Sleep", "UInt", 500))」(와)과 같이 하면 좋다.
+</p>
+
+
+
+
+
+<p>
+<a target=_top href='../commands/OnExit.html'>OnExit</a>그리고 설정된 프로그램 종료 이벤트 및<a target=_top href='../commands/OnMessage.html'>OnMessage()</a>그리고0x312차례 미만의 메세지에 할당할 수 있었던 이벤트, 이러한 메세지나Critical상태의 스렛드로부터 불려 갔다<a target=_top href='../commands/RegisterCallback.html'>콜백 함수</a>(은)는,Critical상태에서도 세치기를 한다.<br>
+이러한 세치기도 금지하고 싶은 경우는, 일시적으로 이벤트의 할당을 해제한다.
+</p>
+<p>
+MsgBox등에서 다이얼로그가 표시되고 있는 동안은,Critical상태에서도 모든 세치기를 한다.<br>
+다이얼로그가 닫혀진 다음은, 다시 끼어들어 금지 상태가 된다.
+</p>
+
+<p>
+Critical상태는 스렛드 마다 보관 유지된다.<br>
+현재의 스렛드가Critical상태인 채 끝났을 때, 현재의 스렛드에 끼어들어져 정지하고 있던 스렛드는Critical(이)가 아닌 상태로 속행된다.
+</p>
+<p>Critical하지만 실행된 시점에서, 그 스렛드의<a target=_top href='../commands/SetBatchLines.html'>SetBatchLines</a>설정은 「-1」(이)가 된다</p>
+
+<p>
+<a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>하지만Critical상태인 채 종료했을 경우, 그 스크립트에서는 모든 스렛드가Critical상태로 개시되게 된다.
+</p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Thread.html'>Thread (command), </a><a target=_top href='../misc/Threads.html'>Threads</a>, <a target=_top href='../commands/_MaxThreadsPerHotkey.html'>#MaxThreadsPerHotkey</a>, <a target=_top href='../commands/_MaxThreadsBuffer.html'>#MaxThreadsBuffer</a>, <a target=_top href='../commands/OnMessage.html'>OnMessage</a>, <a target=_top href='../commands/RegisterCallback.html'>RegisterCallback()</a>, <a target=_top href='../commands/Hotkey.html'>Hotkey</a>, <a target=_top href='../commands/Menu.html'>Menu</a>, <a target=_top href='../commands/SetTimer.html'>SetTimer</a></p>
+
+<h2>Examples</h2>
+<pre>#space::  ; Win+Space hotkey.
+Critical
+ToolTip No new threads will launch until after this ToolTip disappears.
+Sleep 3000
+ToolTip  ; Turn off the tip.
+return</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Critical.html'>Critical </a></div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>WinSetTitle</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinSetTitle.html'>WinSetTitle</a></div>
+<h1>WinSetTitle</h1>
+<p>윈도우의 타이틀을 변경</p>
+
+<pre>WinSetTitle, NewTitle
+WinSetTitle, WinTitle, WinText, NewTitle [, ExcludeTitle, ExcludeText] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr><td>NewTitle
+</td>
+<td>새로운 타이틀을 지정
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+<p>당겨 수를 하나만 지정하면,<a target=_top href='../Window.html'>LastFoundWindow</a>의 윈도우가 당겨 수로 지정한 타이틀이 된다</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/WinMove.html'>WinMove</a>, <a target=_top href='../commands/WinGetActiveStats.html'>WinGetActiveStats</a>, <a target=_top href='../commands/WinGetActiveTitle.html'>WinGetActiveTitle</a>, <a target=_top href='../commands/WinGetText.html'>WinGetText</a>, <a target=_top href='../commands/ControlGetText.html'>ControlGetText</a>, <a target=_top href='../commands/WinGetPos.html'>WinGetPos</a>, <a target=_top href='../commands/WinSet.html'>WinSet</a></p>
+
+<h2>Example(s)</h2>
+<pre>WinSetTitle, Untitled - Notepad, , This is a new title</pre>
+<pre>; Alternate:
+Run, notepad.exe
+WinWaitActive, Untitled - Notepad
+WinSetTitle, This is a new title ; Uses the window found above by WinWaitActive
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/WinSetTitle.html'>WinSetTitle</a></div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>++/--연산자</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__IncDec.html'>++/--연산자</a></div>
+
+<h1>++/--연산자</h1>
+<p>변수의 값을1늘린다/1줄인다</p>
+<pre>
+Var++
+Var--
+++Var
+--Var
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>
+<tr><td>Var</td><td>대상이 되는 변수명</td></tr>
+</table>
+
+<h2>Remarks</h2>
+<p>「var++」(와)과 같이, 변수명의 뒤에 연산자가 오는 경우, 식 전체의 값은 연산전의 변수의 값이 된다.<br>
+「++var」(와)과 같이, 변수명의 전에 연산자가 오는 경우, 식 전체의 값은 연산 후의 변수의 값이 된다.<br>
+아래와 같은 예에서는, 순서에 「1」 「2」 「2/2」라고 표시된다.
+</p>
+<pre>
+x:=y:=1
+MsgBox,% x++
+MsgBox,% ++y
+MsgBox,%x%/%y%
+</pre>
+
+<p>「var++」(이)나 「var--」의 형식의 연산만의 행은,<a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>(이)나<a target=_top href='../commands/EnvSub.html'>EnvSub</a>커멘드의 별형식으로 간주해진다.<br>
+이 경우,var의 값이 수치로서 올바르지 않은 문자열에서도, 「0」에서 만났다고 간주라고 가산·감산된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../Expression.html'>식의 설명</a>, <a target=_top href='../commands/__Assign.html'>대입 연산자</a>, <a target=_top href='../commands/IfExpression.html'>if (식)</a>, <a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='../commands/EnvSub.html'>EnvSub</a>, </p>
+<!-- 
+<h2>Examples</h2>
+<pre>
+</pre>
+ -->
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/__IncDec.html'>++/--연산자</a></div>
+</body>
+</html>

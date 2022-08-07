@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Slider</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Slider.html'>Gui,Add,Slider</a></div>
+<h1>Gui,Add,Slider</h1>
+<p>GUI윈도우에 슬라이드 바를 추가한다</p>
+
+<pre>Gui, Add, Slider [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+V그리고 변수명을 지정하면, 현재의 위치를 수치로 취득할 수 있다.<br>
+G그리고 라벨명을 지정하면, 슬라이더의 이동을 완료했을 때(키나 mouse button를 떼어 놓았을 때)에 써브루틴이 실행되도록 할 수 있다.<br>
+써브루틴이 실행될 때는, 자동적으로V그리고 지정한 변수에 값이 취득된다.
+</td>
+</tr>
+<tr><td>Text</td><td>
+초기치를 수치로 지정한다.<br>
+생략시는 「0」(0하지만 범위외의 경우, 상한이나 하한의0에 가까운 편의 값)
+
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>AltSubmit</dt><dd>
+슬라이더가 조금이라도 이동하면G옵션으로 지정한 써브루틴을 실행한다.<br>
+이 때,<a target=_top href='../Variables.html#GuiControlEvent'>A_GuiControlEvent</a>변수에는 이하의 것이 격납된다.
+<dl compact="1">
+<dt>0</dt><dd>좌/상키로 값을 줄였다</dd>
+<dt>1</dt><dd>우/한 키로 값을 늘렸다</dd>
+<dt>2</dt><dd>PageUp키로 값을 크게 줄였다</dd>
+<dt>3</dt><dd>PageDown키로 값을 크게 늘렸다</dd>
+<dt>4</dt><dd>마우스로의 드러그가 종료했는지, 휠로 값을 변경했다</dd>
+<dt>5</dt><dd>마우스로의 드러그 도중</dd>
+<dt>6</dt><dd>Home키로 최소치로 이동했다</dd>
+<dt>7</dt><dd>End키로 최대치로 이동했다</dd>
+</dl>
+이것과는 별도로, 값의 변경이 끝났을 때에는A_GuiControlEvent하지만Normal의 이벤트도 실행된다.
+</dd>
+<dt>Invert</dt><dd>
+설정·취득되는 값의 대소의 방향을 반대로 한다.<br>
+통상은 왼쪽 혹은 위가 작은 측에 되지만,Invert옵션을 지정하면 오른쪽 혹은 아래가 작아진다.<br>
+ToolTip옵션으로 표시되는 툴 팁의 값은, 역전되지 않는다.
+</dd>
+<dt>Vertical</dt><dd>
+수직 슬라이드 바로 한다.<br>
+위 쪽이 작은 값이 된다.
+</dd>
+<dt>RangeL-H</dt><dd>
+최소치와 최대치를 설정한다.디폴트는 「0-100」<br>
+L에 최소치를,H에 최대치를 지정.(례:「Range0-100」)<br>
+부의 값을 지정하는 일도 가능(례:「Range-100--50」)<br>
+반드시L보다H쪽이 크지 않으면 안 된다.<br>
+바의 좌단이L, 우단이H에 상당하게 된다.
+</dd>
+<dt>LineN</dt><dd>
+N에 커서 키를 눌렀을 때에 변경되는 값의 양을 지정한다.(례:「Line10」)<br>
+지정이 없었던 경우는,1두개증감한다.
+</dd>
+<dt>PageN</dt><dd>
+N에PageUp/PageDown(을)를 눌렀을 때에 변경되는 값의 양을 지정한다.(례:「Page20」)<br>
+지정이 없었던 경우는,Range그리고 지정한 범위의1/5.
+</dd>
+
+<dt>Center</dt><dd>
+슬라이더아래를 화살표와 같이 날카롭게 할 수 없다.
+</dd>
+
+<dt>Left</dt><dd>
+슬라이더아래/오른쪽이 아니고, 위/왼쪽을 날카롭게 할 수 있다.
+</dd>
+<dt>TickIntervalN</dt><dd>
+N에 눈금의 간격을 지정한다.(례:「TickInterval10」)<br>
+지정하지 않았던 경우, 최대치와 최소치의 부분 밖에 눈금은 표시되지 않는다.
+</dd>
+<dt>NoTicks</dt><dd>
+눈금을 표시하지 않는다
+</dd>
+<dt>ThickN</dt><dd>
+N에 슬라이더의 크기를 지정한다.(례:「Thick20」)
+
+</dd>
+<dt>ToolTip</dt>
+<dt>ToolTipRight</dt>
+<dt>ToolTipBottom</dt>
+<dd>
+슬라이더를 드러그 하고 있을 때 현재의 값을 툴 팁 표시한다<br>
+Right/Bottom(을)를 붙이면, 표시 위치를 변경할 수 있다.<br>
+Right(은)는 수직 슬라이드 바용,Bottom(은)는 수평 슬라이드 바용.
+</dd>
+
+<dt>Buddy1N</dt><dd>
+지정한 컨트롤을 슬라이드 바의 좌단/상단에 재배치한다.<br>
+N에 다른 컨트롤에V옵션으로 할당할 수 있었던 변수명을 지정한다.
+</dd>
+<dt>Buddy2N</dt><dd>
+지정한 컨트롤을 슬라이드 바의 우단/하단에 재배치한다.<br>
+N에 다른 컨트롤에V옵션으로 할당할 수 있었던 변수명을 지정한다.
+</dd>
+
+</dl>
+
+<h2>Remarks</h2>
+<p>슬라이드 바는, 마우스외, 마우스 휠이나 커서 키,PageUp/PageDown/Home/End키에서도 조작할 수 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Slider.html'>Gui,Add,Slider</a></div>
+</body>
+</html>

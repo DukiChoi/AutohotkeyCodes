@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>CLSID일람</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/CLSID.html'>CLSID일람</a></div>
+<h1>CLSID일람</h1>
+
+
+<p>
+CLSID(은)는 특수 폴더를 나타내는 식별자이다.<br>
+<a target=_top href='../commands/FileSelectFile.html'>FileSelectFile</a>,<a target=_top href='../commands/FileSelectFolder.html'>FileSelectFolder</a>,<a target=_top href='../commands/Run.html'>Run/RunWait</a>커멘드로 폴더명 대신에 사용할 수 있다.</p>
+<pre>FileSelectFile, OutputVar,, ::{645ff040-5081-101b-9f08-00aa002f954e}  ; Select a file in the Recycle Bin.
+FileSelectFolder, OutputVar, ::{20d04fe0-3aea-1069-a2d8-08002b30309d}  ; Select a folder within My Computer.</pre>
+
+
+<table>
+<tr>
+  <th>CLSID</th>
+  <th>대응 폴더</th>
+</tr>
+<tr>
+  <td>::{20d04fe0-3aea-1069-a2d8-08002b30309d}</td>
+  <td>My Computer</td>
+</tr>
+<tr>
+  <td>::{450d8fba-ad25-11d0-98a8-0800361b1103}</td>
+  <td>My Documents</td>
+</tr>
+<tr>
+  <td>::{208d2c60-3aea-1069-a2d7-08002b30309d}</td>
+  <td>My Network</td>
+</tr>
+<tr>
+  <td>::{1f4de370-d627-11d1-ba4f-00a0c91eedba}</td>
+  <td>Network Computers</td>
+</tr>
+<tr>
+  <td>::{7007acc7-3202-11d1-aad2-00805fc1270e}</td>
+  <td>Network Connections</td>
+</tr>
+<tr>
+  <td>::{2227a280-3aea-1069-a2de-08002b30309d}</td>
+  <td>프린터와Fax</td>
+</tr>
+<tr>
+  <td>::{645ff040-5081-101b-9f08-00aa002f954e}</td>
+  <td>쓰레기통</td>
+</tr>
+<tr>
+  <td>::{d6277990-4c6a-11cf-8d87-00aa0060f5bf}</td>
+  <td>태스크</td>
+</tr>
+</table>
+
+<p>이하의 물건은Run커멘드에서는 사용할 수 없다</p>
+<table>
+<tr>
+  <td>::{d20ea4e1-3957-11d2-a40b-0c5020524153}</td>
+  <td>관리툴</td>
+</tr>
+<tr>
+  <td>::{85bbd92o-42a0-1o69-a2e4-08002b30309d}</td>
+  <td>briefcase</td>
+</tr>
+<tr>
+  <td>::{21ec2o2o-3aea-1o69-a2dd-08002b30309d}</td>
+  <td>컨트롤 패널</td>
+</tr>
+<tr>
+  <td>::{d20ea4e1-3957-11d2-a40b-0c5020524152}</td>
+  <td>폰트</td>
+</tr>
+<tr>
+  <td>::{ff393560-c2a7-11cf-bff4-444553540000}</td>
+  <td>이력</td>
+</tr>
+<tr>
+  <td>::{00020d75-0000-0000-c000-000000000046}</td>
+  <td>수신 폴더</td>
+</tr>
+<tr>
+  <td>::{00028b00-0000-0000-c000-000000000046}</td>
+  <td>Microsoft네트워크</td>
+</tr>
+<tr>
+  <td>::{7be9d83c-a729-4d97-b5a7-1b7313c39e0a}</td>
+  <td>Programs Folder</td>
+</tr>
+<tr>
+  <td>::{e211b736-43fd-11d1-9efb-0000f8757fcd}</td>
+  <td>스캐너와 카메라</td>
+</tr>
+<tr>
+  <td>::{48e7caab-b918-4e58-a94d-505519c795dc}</td>
+  <td>스타트 메뉴</td>
+</tr>
+<tr>
+  <td>::{7bd29e00-76c1-11cf-9dd0-00a0c9034933}</td>
+  <td>Temporary Internet Files</td>
+</tr>
+<tr>
+  <td>::{bdeadf00-c265-11d0-bced-00a0c90ab50f}</td>
+  <td>Web Folders</td>
+</tr>
+</table>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/CLSID.html'>CLSID일람</a></div>
+</body>
+</html>

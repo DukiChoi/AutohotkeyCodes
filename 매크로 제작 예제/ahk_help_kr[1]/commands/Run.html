@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Run / RunWait</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Run.html'>Run / RunWait</a></div>
+<h1>Run / RunWait </h1>
+<p>외부 프로그램을 기동한다.<br>
+RunWait그럼, 기동한 프로그램의 종료를 기다려,ErrorLevel에 종료 코드를 격납한다.</p>
+
+<pre>
+Run, Target [, WorkingDir, Max|Min|Hide/UseErrorLevel, OutputVarPID]
+Run, Target [, WorkingDir, Max|Min|Hide]
+</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Target
+</td>
+<td>
+파일명이나 커멘드 라인 문자열.<br>
+파일명의 전에 「open」 등과 쉘의 동작을 지정할 수 있다.자세한 것은Remarks참조.<br>
+패스가 생략 되었을 경우는, 최초로<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>의 디렉토리가 검색되어서 발견되지 않으면 패스가 다닌 디렉토리가 검색된다.<br>
+「,」(을)를 포함할 때는, 「`,」(와)과 같이 이스케이프 할 필요가 있으므로 주의.
+</td>
+</tr>
+<tr> 
+<td>WorkingDir
+</td>
+<td>기동하는 프로그램의 작업 디렉토리를 지정.생략시는<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>
+</td>
+</tr>
+<tr> 
+<td>Max|Min|Hide/UseErrorLevel
+</td>
+<td>
+Max|Min|Hide(은)는 윈도우 상태.<br>
+생략시는, 통상의 윈도우.<br>
+대응하고 있지 않는 어플리케이션도 있다.
+<dl>
+<dt>Max</dt><dd>최대화로 기동</dd>
+<dt>Min</dt><dd>최소화로 기동</dd>
+<dt>Hide</dt><dd>비표시로 기동.</dd>
+<dt>UseErrorLevel</dt><dd>
+프로그램 파일이 발견되지 않는등의 에러가 발생했을 때, 다이얼로그를 표시하지 않고,ErrorLevel에 「ERROR」(을)를 격납하도록(듯이) 한다.<br>
+이 옵션은, 다른 옵션과 동시에 지정할 수 있다.(반각 스페이스에서 단락지어 지정)
+</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>OutputVarPID</td>
+<td>
+기동한 프로그램의 프로세스ID(을)를 격납하는 변수명.<br>
+이ID(을)를 사용하고,<a target=_top href='../commands/Process.html'>Process</a>커멘드로, 프로세스를 종료하거나 종료하고 있을지를 확인하거나 할 수 있다.<br>
+취득에 실패했을 때는 비운다.<br>
+Target에 실행 파일명 이외의 것을 지정했을 경우는 취득에 실패한다.
+</td>
+</tr>
+</table>
+
+<h2>Remarks</h2>
+<p>지정한 파일이 발견되지 않고 기동에 실패하면, 에러 다이얼로그가 표시되어 현재의 스렛드를 종료한다.</p>
+<p>RunWait그리고 종료를 기다리고 있는 동안은, 다른<a target=_top href='../misc/Threads.html'>스렛드</a>하지만 끼어드는 것이 가능.</p>
+<p>
+<a target=_top href='../commands/EnvSet.html'>EnvSet</a>커멘드로 환경 변수에 대입하고 있으면, 기동된 프로그램내에서 그 환경 변수가 유효하게 된다.
+<p>
+파일명의 전으로 지정하는 동작으로서는, 이하의 것이 사용 가능.<br>
+동작을 지정하지 않고, 파일명만을 지정했을 경우, 디폴트의 동작이 된다.<br>
+</p>
+<table>
+<tr> 
+<td>properties
+</td>
+<td>파일의 프롭퍼티를 표시.
+</td>
+</tr>
+<tr>
+<td>find
+</td>
+<td>폴더의 검색 윈도우를 표시
+</tr>
+<tr>
+<td>explore
+</td>
+<td>익스플로러로 열린다
+</td>
+</tr>
+<tr>
+<td>edit
+</td>
+<td>편집한다
+</td>
+</tr>
+<tr>
+<td>open
+</td>
+<td>연다
+</td>
+</tr>
+<tr>
+<td>print
+</td>
+<td>인쇄한다
+</td>
+</tr>
+</table>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/RunAs.html'>RunAs</a>,<a target=_top href='../commands/Process.html'>Process</a>, <a target=_top href='../commands/Exit.html'>Exit</a></p>
+
+<h2>Example(s)</h2>
+<pre>Run, Notepad.exe, C:\My Documents, max
+RunWait, %comspec% /c dir c:\ &gt;&gt;c:\DirTest.txt, , min
+Run, c:\DirTest.txt
+Run, properties c:\DirTest.txt
+Run, www.autohotkey.com ; i.e. any URL can be launched.
+Run, mailto:support@autohotkey.com
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Run.html'>Run / RunWait</a></div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>인트러덕션</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Introduction.html'>인트러덕션</a></div>
+<h1>인트러덕션</h1>
+<p>
+여기에서는,AutoHotkey의 특징과 기능에 대해 소개한다.
+</p>
+
+
+
+<h2>스크립트 엔진</h2>
+
+<p>AutoHotkey그럼, 동작 설정을 스크립트로서 기술한다.<br>
+hot key에 동작을 할당하는 경우도, 단지 어떠한 처리를 실시하는 경우도, 텍스트 문자 편집기로 처리 내용을 기술해 실행하는 것만으로 좋다.
+</p>
+
+<p>변수에 값을 격납해 사용하거나 조건 분기나 반복해, 써브루틴 호출등의 커멘드에 의해, 복잡한 처리를 실시하게 하는 일도 가능.
+</p>
+<p>스크립트의 상세한 것에 대하여는,<a target=_top href='./Scripts.html'>스크립트</a>의 항을 참조.<br>
+또, 사용할 수 있는 커멘드에 대해서는<a target=_top href='./commands/index.html'>레퍼런스</a>(을)를 참조.
+</p>
+
+<h3>EXE파일화</h3>
+<p><a target=_top href='./Usage.html#ahk2exe'>ahk2exe.exe</a>(을)를 사용하는 것으로, 스크립트를 짜넣었다EXE파일을 작성할 수 있다.<br>
+이것에 의해,AutoHotkey하지만 인스톨 되어 있지 않은 환경에서도, 작성한 스크립트를 사용하기 쉬워지고 있다.
+</p>
+
+<h2>hot key 할당</h2>
+<p>
+스크립트를 상주시키고, 특정의 키가 밀렸을 때에 임의의 처리를 실시하게 할 수 있다.<br>
+「Ctrl+F1」(와)과 같은 키의 편성에도 할당할 수 있다.<br>
+또, 키보드 훅을 이용하는 것으로써, 「Win+E」(와)과 같은Windows하지만 미리 사용하고 있는 hot key를 덧쓰기해 버릴 수도 있다.
+</p>
+<p>키와 동작의 대응은, 미리 스크립트에 기술하는 것 외에<a target=_top href='./commands/Hotkey.html'>Hotkey</a>커멘드로 실행중에 할당/해제를 실시할 수도 있다.<br>
+또,<a target=_top href='./commands/Suspend.html'>Suspend</a>키로 일시적으로 무효화할 수도 있다.
+</p>
+<p>
+또,<a target=_top href='./commands/_IfWinActive.html'>＃IfWinActive</a>지령등에 의해, 윈도우의 종류에 따라 다른 처리를 할당하거나 하는 일도 가능.
+</p>
+<p>상세한 것에 대하여는<a target=_top href='./Hotkeys.html'>hot key</a>의 항을 참조.
+</p>
+
+<h3>마우스, 죠이스틱 대응</h3>
+<p>
+hot key에는, 다기능 키보드의 특수 키등을 포함해 대부분의 키를 사용할 수 있다.<br>
+또한, 마우스의 버튼(우, 왼쪽, 휠 버튼, 확장 버튼1,2,휠의 상하 회전)(이)나 죠이스틱의 각 버튼에도, 키보드와 같게 기능의 할당을 실시할 수 있다.
+</p>
+<p>
+사용할 수 있는 키명의 일람에 대해서는,<a target=_top href='./KeyList.html'>키 리스트</a>의 항을 참조.
+</p>
+<p>덧붙여 죠이스틱의 방향 키에의 할당 하행 없지만,<a target=_top href='./commands/GetKeyState.html'>GetKeyState</a>커멘드로 상태를 취득할 수 있다.<br>
+방향 키는, 아날로그로6축까지 대응하고 있다.
+</p>
+
+
+<h3>키보드/보탄리맙</h3>
+<p>키가 밀렸을 때에 다른 키를 누른 것과 같은 동작으로 하는 리맙은, 특별한 서식에서 간단하게 기술할 수 있다.<br>
+자세한 것은<a target=_top href='./remap.html'>리맙</a>의 항을 참조.
+</p>
+
+<h3>핫 스트링</h3>
+<p>키보드로 특정의 문자열이 타입 되었을 때에 임의의 처리를 실시하게 하는 「핫 스트링」이라고 하는 기능도 이용할 수 있다.<br>
+입력한 문자열을 삭제해 다른 문자열을 다시 놓는 자동 치환을 실시하게 하는 일도 가능.<br>
+자세한 것은<a target=_top href='./Hotstrings.html'>핫 스트링</a>의 항을 참조.
+</p>
+
+
+<h2>조작 자동화 기능</h2>
+<p>키보드나 마우스의 조작을 자동으로 가거나 윈도우 상태를 변화시키거나 하는 기능이 준비되어 있다.<br>
+이러한 기능은, hot key에 할당해 조작성의 개선에 사용해도 좋고, 귀찮은 작업을 자동화하는 스크립트의 작성에도 도움이 된다.
+</p>
+
+<h3>키보드·마우스의 조작</h3>
+<p><a target=_top href='./commands/Send.html'>Send</a>커멘드로 키보드 조작을 발생시킬 수 있다.<br>
+일련의 키 입력을 정리해 송신하거나 키를 눌러 내린 채로 하거나 하는 일도 가능.
+</p>
+<p><a target=_top href='./commands/Click.html'>Click</a>커멘드등에서는, 마우스 조작을 발생 당한다.
+</p>
+<p>그 외의 키보드 관련 커멘드에 대해서는<a target=_top href='./commands/index.html#key'>키보드 관련 커멘드</a>의 일람을, 마우스 관련 커멘드에 대해서는<a target=_top href='./commands/index.html#mouse'>마우스 관련 커멘드</a>의 일람을 참조.
+</p>
+
+<h3>윈도우, 컨트롤의 조작</h3>
+<p>윈도우를 닫거나 이동하는 등, 여러가지 윈도우 조작 커멘드가 준비되어 있다.<br>
+또, 윈도우상의 버튼을 누르거나 하는 컨트롤 조작 커멘드도 이용할 수 있다.<br>
+또한,<a target=_top href='./commands/PostMessage.html'>SendMessage</a>커멘드를 이용하면, 윈도우 메세지를 송신해 여러가지 조작을 실시할 수 있다.
+</p>
+<p><a target=_top href='./commands/WinGet.html'>WinGet</a>커멘드등에서는 윈도우의 각종 정보를 취득할 수 있는 것 외에<a target=_top href='./commands/IfWinActive.html'>IfWinActive</a>커멘드등에서 윈도우 상태에 따라 처리를 분기 시키는 일도 가능.
+</p>
+<p>그 외의 윈도우 관련 커멘드에 대해서는,<a target=_top href='./commands/index.html#window'>윈도우 관련 커멘드</a>의 일람을 참조.
+</p>
+
+
+
+<h2>상주 기능</h2>
+<p>hot key를 할당하는 것 외에도, 상주 유틸리티를 작성하는데 유용한 기능이 준비되어 있다.
+</p>
+<h3>타이머</h3>
+<p><a target=_top href='./commands/SetTimer.html'>SetTimer</a>커멘드에 의해, 정기적으로 임의의 처리를 실행시킬 수 있다.</p>
+<p>
+또,OS기동시부터의 시간이 격납된다<a target=_top href='./Variables.html#TickCount'>A_TickCount</a>(이)나 조작을 실시하지 않았던 시간을 격납한다<a target=_top href='./Variables.html#TimeIdle'>A_TimeIdle</a>등의 편입 변수를 이용해 시간 경과를 알 수도 있다.
+</p>
+
+<h3>task tray 아이콘</h3>
+<p>AutoHotkey의 스크립트가 실행되면, task tray에 아이콘이 표시된다.<br>
+아이콘 화상이나 오른쪽 클릭 메뉴, 더블 클릭 했을 때의 처리 등은<a target=_top href='./commands/Menu.html'>Menu</a>커멘드로 변경할 수 있다.<br>
+벌룬 메세지를 표시한다<a target=_top href='./commands/TrayTip.html'>TrayTip</a>커멘드도 있다.
+</p>
+
+
+
+<h2>다채로운 커멘드</h2>
+<h3>프로그램의 실행, 프로세스 조작</h3>
+<p><a target=_top href='./commands/Run.html'>Run/RunWait</a>커멘드로 임의의 프로그램을 기동할 수 있다.<br>
+RunWait커멘드에서는, 프로그램이 종료할 때까지 대기할 수 있다.
+</p>
+<p>실행중의 다른 프로세스는,<a target=_top href='./commands/Process.html'>Process</a>커멘드로 검출하거나 강제 종료나 우선도의 변경등의 조작을 실시할 수 있다.
+</p>
+
+<h3>파일 조작</h3>
+<p>파일의 카피나 삭제등의 조작을 실시하거나 사이즈나 속성등을 취득하거나 하는 커멘드가 준비되어 있다.<br>
+와일드 카드나 상대 패스를 사용할 수 있으므로, 대상 파일의 지정이 편하게 할 수 있다.
+</p>
+<p>또, 텍스트 파일의 읽고 쓰기도 가능<br>
+지정한 파일명 패턴에 일치하는 파일에 대해 같은 처리를 반복해 실시한다<a target=_top href='./commands/LoopFile.html'>파일Loop</a>(이)나, 텍스트 파일을1행씩 읽어들이면서 같은 처리를 반복한다<a target=_top href='./commands/LoopReadFile.html'>Loop,READ</a>등의 기능도 있다.<br>
+자세한 것은<a target=_top href='./commands/index.html#file'>파일 관련 커멘드</a>의 일람을 참조.
+</p>
+
+<h3>클립보드 처리</h3>
+<p>클립보드에 격납된 문자열은<a target=_top href='./Variables.html#Clipboard'>Clipboard</a>변수로서 읽어들일 수 있다.<br>
+또,Clipboard변수에 대입해 클립보드의 내용을 변경할 수도 있다.<br>
+<a target=_top href='./misc/Clipboard.html#OnClipboardChange'>OnClipboardChange</a>그렇다고 하는 라벨을 기술해 두면, 클립보드의 내용이 변경되었을 때에 임의의 처리가 실행되도록(듯이) 할 수도 있다.
+</p>
+<p>자세한 것은<a target=_top href='./misc/Clipboard.html'>클립보드</a>의 항을 참조.</p>
+
+
+
+<h3>ini파일, 레지스트리, 환경 변수의 취급</h3>
+<p>
+<a target=_top href='./commands/index.html#ini'>Ini파일의 읽고 쓰기를 실시하는 커멘드군</a>,<a target=_top href='./commands/index.html#reg'>레지스트리의 읽고 쓰기를 실시하는 커멘드군</a>,<a target=_top href='./commands/index.html#env'>환경 변수의 정보를 취득·설정하는 커멘드군</a>도 준비되어 있다.<br>
+<a target=_top href='./commands/EnvSet.html'>EnvSet</a>커멘드로 설정된 환경 변수는,<a target=_top href='./commands/Run.html'>Run</a>커멘드로 기동한 프로세스에 인계된다.
+</p>
+
+
+<h3>Windows슛다운</h3>
+<p><a target=_top href='./commands/Shutdown.html'>Shutdown</a>커멘드에 의해,Windows(을)를 종료시키거나 재기동시키거나 할 수 있다.</p>
+<p>덧붙여<a target=_top href='./commands/OnExit.html'>OnExit</a>커멘드를 사용하면,Windows하지만 슛다운 되려고 하고 있을 때에 임의의 처리가 실행되도록(듯이) 할 수도 있다.
+</p>
+
+<h3>화면상의 피크셀색이나 화상의 검출</h3>
+<p>
+<a target=_top href='./commands/PixelGetColor.html'>PixelGetColor</a>커멘드나<a target=_top href='./commands/PixelSearch.html'>PixelSearch</a>커멘드로 화면상의 피크셀의 색을 판별하거나
+<a target=_top href='./commands/ImageSearch.html'>ImageSearch</a>커멘드로 특정의 화상에 일치하는 부분이 있는지를 검출하거나 할 수 있다.<br>
+이러한 기능은, 게임등과 같이 다른 방법으로 상태를 취득할 수 없는 어플리케이션을 자동 조작하고 싶을 때 등에 도움이 된다.
+</p>
+
+
+<h3>유저 정의 함수</h3>
+<p>커멘드를 새롭게 정의하는 것은 할 수 없지만,<a target=_top href='./Function.html'>함수</a>(은)는 자유롭게 정의할 수 있다.<br>
+함수는, 커멘드와 같이 그 자리에서 단지 실행하는 일도,<a target=_top href='./Expression.html'>식</a>중(안)에서 사용할 수도 있다.
+</p>
+<h3>DLL호출</h3>
+<p>
+DLL하지만 제공하는 함수를 호출한다<a target=_top href='./commands/DllCall.html'>DllCall()</a>그렇다고 하는 함수가 준비되어 있다.<br>
+Windows에 표준으로 포함된다DLL(이)나, 공개되고 있는 라이브러리등을 이용하는 것으로,AutoHotkey의 커멘드만으로는 불가능한 기능도 실현될 수 있는 경우가 있다.
+</p>
+
+
+
+<h2>GUI기능</h2>
+<p>정보를 표시하거나 입력을 받아들이거나하기 위한GUI도 간단하게 표시할 수 있다.<br>
+준비되어 있는 커멘드에 대해서는,<a target=_top href='./commands/index.html#gui'>GUI관련 커멘드</a>의 일람을 참조.</p>
+<h3>다이얼로그등의 표시</h3>
+<p>
+<a target=_top href='./commands/MsgBox.html'>MsgBox</a>커멘드에서는, 메세지나 확인의 다이얼로그를 표시할 수 있다.<br>
+텍스트 입력을 요구하는 다이얼로그를 표시한다<a target=_top href='./commands/InputBox.html'>InputBox</a>커멘드, 파일이나 폴더를 선택하는 다이얼로그를 표시한다<a target=_top href='./commands/FileSelectFile.html'>FileSelectFile</a>,<a target=_top href='./commands/FileSelectFolder.html'>FileSelectFolder</a>커멘드 등도 있다.
+</p>
+<p>progress bar를 표시한다<a target=_top href='./commands/Progress.html'>Progress</a>커멘드, 툴 팁 텍스트를 표시한다<a target=_top href='./commands/ToolTip.html'>Tooltip</a>커멘드등에서도 정보를 표시할 수 있다.
+</p>
+
+
+<p><a target=_top href='./commands/Menu.html'>Menu</a>커멘드에서는 임의의 pop-up menu를 작성해 표시할 수 있다.<br>
+각 메뉴 항목에 임의의 처리를 할당할 수 있다.
+</p>
+
+<h3>GUI폼 작성</h3>
+
+<p><a target=_top href='./commands/Gui.html'>Gui</a>커멘드에서는, 윈도우를 작성해 자유롭게 컨트롤을 배치할 수 있다.<br>
+윈도우나 컨트롤의 사이즈·위치 등은, 지정하지 않으면 자동적으로 결정되므로, 적은 기술로 실용적인GUI하지만 작성할 수 있다.<br>
+버튼이 밀리거나 입력 내용이 변경되었을 때에 임의의 처리가 실행되도록(듯이) 설정할 수 있다.<br>
+컨트롤에 변수를 할당해 두면, 일괄해 입력 내용을 취득할 수 있다.
+</p>
+
+<h3>고도의GUI처리</h3>
+
+<p>타이틀 바 없음이나 반투명등의 윈도우 스타일을 가졌다GUI윈도우도 작성할 수 있다.<br>
+윈도우 스타일에 대해서는,<a target=_top href='./misc/Styles.html'>윈도우 스타일</a>의 항에 일람이 준비되어 있는 것 외에Web위에도 다수 해설이 있다.
+</p>
+
+<p><a target=_top href='./commands/OnMessage.html'>OnMessage()</a>함수에 의해,Gui윈도우가 특정의 메세지를 받아들였을 때에 임의의 함수가 불려 가도록(듯이) 설정할 수 있다.<br>
+
+</p>
+
+
+
+
+
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Introduction.html'>인트러덕션</a></div>
+</body>
+</html>

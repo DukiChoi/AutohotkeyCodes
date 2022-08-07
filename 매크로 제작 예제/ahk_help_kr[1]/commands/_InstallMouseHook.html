@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#InstallMouseHook</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_InstallMouseHook.html'>#InstallMouseHook</a></div>
+<h1>#InstallMouseHook</h1>
+<p>무조건 마우스 훅을 유효하게 한다</p>
+
+<pre>#InstallMouseHook [force] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>force
+</td>
+<td>
+1.0.08이전으로는, 다른 스크립트가 훅을 사용하고 있었을 때에 경고가 표시되는 것을 억제하는 설정이 있었지만, 현재는 경고가 표시될 것은 없기 때문에 필요없다.
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+<p>
+마우스 훅을 사용하면,500KB(정도)만큼(키보드 훅과 동시에 사용하는 경우는,50KB(정도)만큼)메모리 소비가 증가해 시스템 전체의 퍼포먼스가 조금 저하한다.<br>
+그 때문에, 통상은 필요한 때 이외는 마우스 훅은 유효화 되지 않는다.
+</p>
+<p>
+이 커멘드를 사용하면, 무조건 키보드 훅을 유효화할 수 있다.<br>
+이것에 의해,<a target=_top href='../commands/KeyHistory.html'>KeyHistory</a>커멘드로 mouse button의 이력을 조사할 수 있다.
+</p>
+<p>
+메인 윈도우의 메뉴나<a target=_top href='../commands/KeyHistory.html'>KeyHistory</a>커멘드로, 훅이 유효하게 되어 있을까를 알 수 있다.<br>
+메인 윈도우의 메뉴나<a target=_top href='../commands/ListHotkeys.html'>ListHotkeys</a>커멘드로, 어느 hot key가 훅으로 동작하고 있을까를 알 수 있다.
+</p>
+<p>
+이 커멘드를 사용하면, 스크립트는 무조건<a target=_top href='../commands/_Persistent.html'>상주 상태</a>(이)가 되어,<a target=_top href='../commands/ExitApp.html'>ExitApp</a>커멘드를 실행할 때까지 스크립트가 종료하지 않게 된다.
+</p>
+<p>
+현재로서는,Windows9x계에서는 마우스 훅은 사용할 수 없다.
+</p>
+<p>
+마우스 훅을 유효하게 하면, mouse button 조작외, 마우스 커서의 이동도AutoHotkey(을)를 통하고 나서 처리되게 된다.<br>
+이 때문에,CPU사용율이 높아지고 있을 때 등에 마우스의 응답이 나빠지는 경우가 있다.<br>
+「<code><a target=_top href='../commands/Process.html'>Process</a>, , Priority, High </code>」로서AutoHotkey의 프로세스의 우선도를 높이는 것으로, 이 상태를 완화할 수 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/_InstallKeybdHook.html'>#InstallKeybdHook</a>, <a target=_top href='../commands/_UseHook.html'>#UseHook</a>, <a target=_top href='../commands/Hotkey.html'>Hotkey</a>, <a target=_top href='../commands/_Persistent.html'>#Persistent</a>, <a target=_top href='../commands/KeyHistory.html'>KeyHistory</a> </p>
+
+<h2>Example(s)</h2>
+<pre>#InstallMouseHook</pre>
+<pre>#InstallMouseHook force</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_InstallMouseHook.html'>#InstallMouseHook</a></div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Reload</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Reload.html'>Reload</a></div>
+<h1>Reload</h1>
+<p>현재 실행중의 스크립트를 재독 봐</p>
+
+<pre>Reload </pre>
+
+<h2>Remarks</h2>
+
+<p>스크립트를 재독 봐.<br>
+스크립트 실행중에 스크립트에 수정을 더했을 때, 그것을 반영시킬 수 있다.</p>
+<p>
+스크립트의 동작을 확인하면서 조정을 실시하는 경우, hot key에 할당해 두면 편리.
+</p>
+
+<p>task tray 메뉴의 「Reload This Script」와 같다.</p>
+
+<p>
+Reload커멘드가 실행된 뒤도, 스크립트는 이후의 행의 실행을 계속해 새롭게 실행된 프로세스가 정상적으로 스크립트를 개시할 수 있던 시점에서, 원의 프로세스가 종료된다.<br>
+스크립트가 문법 에러등에서 리로드 불가능한 경우, 원의 프로세스는 그대로 실행된다.<br>
+따라서,Reload커멘드의 후에는Return커멘드를 쓰는 등, 불필요한 커멘드가 실행되어 버리는 것을 막을 필요가 있다.<br>
+또,Reload커멘드의 후에 리로드 실패시의 동작을 쓰는 것도 가능하다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Edit.html'>Edit</a></p>
+
+<h2>Example(s)</h2>
+<pre>#z::Reload</pre>
+
+<pre>
+;어떠한 이유로 리로드에 실패했을 때에 특정의 처리를 하는 예
+#z::
+Reload
+Sleep,500
+MsgBox,리로드 실패
+return
+</pre>
+
+<pre>
+;리로드 실행 후에, 문법 에러가 표시되면,<a href='http://homepage3.nifty.com/x-labo/' target="_blank">VxEditor</a>그리고 해당행을 표시하는 예.
+
+#z::
+Reload
+WinWait,ahk_class #32770,Error at line ,2
+If ErrorLevel=0
+{
+	ControlGetText,v,Static1
+	StringGetPos,p,v,.
+	p-=14
+	StringMid,line,v,15,%p%
+	Run,D:\app\Document\VxEditor\VxEditor.exe "%A_ScriptFullPath%" /j%line%
+	WinWaitNotActive
+	WinActivate
+}
+return
+
+</pre>
+
+
+
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Reload.html'>Reload</a></div>
+</body>
+</html>

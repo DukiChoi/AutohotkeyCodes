@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>PostMessage / SendMessage</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/PostMessage.html'>PostMessage / SendMessage</a></div>
+<h1>PostMessage / SendMessage</h1>
+<p>윈도우나GUI컨트롤에 윈도우 메세지를 송신한다.(SendMessage(은)는 응답을 기다려 결과를 취득할 수 있다)</p>
+
+<pre>PostMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>Msg
+</td>
+<td>
+윈도우 메세지 번호.<br>
+일반적인 메세지의 일람에 대해서는,<A href='http://www.winapi-database.com/' target="_blank">WinAPI Database for VB Programmer</A>의 알파벳순서 표시 「W」의 항근처를 참조.
+</td>
+</tr>
+<tr>
+<td>wParam
+</td>
+<td>메세지의 인수.0혹은 생략 때는0하지만 보내진다.
+</td>
+</tr>
+<tr>
+<td>lParam
+</td>
+<td>메세지의 인수
+</td>
+</tr>
+<tr>
+<td>Control
+</td>
+<td>
+생략 혹은 공백 때는, 윈도우에 직접 메세지가 보내진다.<br>
+그 이외의 지정 방법은<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinTitle
+</td>
+<td rowspan="4">
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+<h3>PostMessage</h3>
+<p>성공하면0, 윈도우가 발견되지 않는등의 문제가 발생하면1</p>
+<h3>SendMessage</h3>
+<p>
+윈도우가 발견되지 않는등의 문제가 발생하면 「FAIL」.<br>
+그 이외는, 메세지의 반환값(정수).<br>
+메세지의 종류야는은, 「reply」
+</p>
+
+<h2>Remarks</h2>
+<p>
+Msg,wParam,lParam인수에는0...4294967295의 수치를 지정한다.<br>
+0xFF(와)과 같이16진수로 지정하는 일도 가능.
+</p>
+<p>
+WM_SETTEXT등에서wParam,lParam에 문자열을 건네주고 싶은 경우는, 「SendMessage, 0xC, 0, "New Title"」(와)과 같이 인수를 「"」(으)로 둘러싼다.<br>
+변수의 문자열을 건네주고 싶은 경우는, 「SendMessage, 0xC, 0, &NewTitle」(와)과 같이 변수명의 전에 「&」(을)를 붙인 것을 지정한다.
+</p>
+
+
+<p>함부로 윈도우 메세지를 송신하면 불편이 발생하는 일이 있으므로 주의해 사용하는 것.
+</p>
+
+<p>SendMessage커멘드는, 메세지를 송신 후 최대5초간 응답을 기다린다.<br>
+5초이내에 응답이 없었던 경우,ErrorLevel(은)는 「FAIL」(이)가 된다.<br>
+PostMessage커멘드는 메세지를 윈도우의 메시지 큐에 추가해 즉석에서 종료한다.
+</p>
+<p>
+WinTitle에 「ahk_id 0xFFFF」(을)를 지정하면, 존재하는 모든 윈도우에 메세지를 송신한다.<br>
+Msg에 「0x1A」(WM_SETTINGCHANGE)등을 지정할 경우에 사용하면 좋다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../misc/SendMessageList.html'>Message List</a>, <a target=_top href='../misc/SendMessage.html'>Message Tutorial</a>, <a target=_top href='../misc/Winamp.html'>Automating Winamp</a>, <a target=_top href='../commands/ControlSend.html'>ControlSend</a>, <a target=_top href='../commands/WinMenuSelectItem.html'>WinMenuSelectItem</a></p>
+
+<h2>Example(s)</h2>
+<pre>; Turn Monitor Off:
+SendMessage, 0x112, 0xF170, 2,, Program Manager   ; 0x112 is WM_SYSCOMMAND, 0xF170 is SC_MONITORPOWER.
+; Note for the above: Use -1 in place of 2 to turn the monitor on.
+; Use 1 in place of 2 to activate the display's &quot;low power&quot; mode.
+</pre>
+<pre>
+; Start the user's chosen screen saver:
+SendMessage, 0x112, 0xF140, 0,, Program Manager   ; 0x112 is WM_SYSCOMMAND, and 0xF140 is SC_SCREENSAVE.
+</pre>
+<pre>
+; Scroll up by one line (for a control that has a vertical scroll bar):
+ControlGetFocus, control, A
+SendMessage, 0x115, 0, 0, %control%, A
+</pre>
+<pre>
+; Scroll down by one line:
+ControlGetFocus, control, A
+SendMessage, 0x115, 1, 0, %control%, A
+</pre>
+<pre>
+; This example asks Winamp which track number is currently active:
+SetTitleMatchMode, 2
+SendMessage, 1024, 0, 120, - Winamp
+if ErrorLevel &lt;&gt; FAIL
+{
+	ErrorLevel++  ; Winamp's count starts at &quot;0&quot;, so adjust by 1.
+	MsgBox, Track #%ErrorLevel% is active or playing.
+}
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/PostMessage.html'>PostMessage / SendMessage</a></div>
+</body>
+</html>

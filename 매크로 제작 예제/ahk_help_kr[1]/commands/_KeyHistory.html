@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title></title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_KeyHistory.html'>_KeyHistory</a></div>
+<h1>#KeyHistory</h1>
+<p>KeyHistory(을)를 위해서 기록되는 조작의 최대수를 설정한다</p>
+
+<pre>#KeyHistory MaxEvents</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><td>MaxEvents</td><td>기록되는 조작의 최대수.<br>
+디폴트는40.<br>
+최대500까지 설정 가능.<br>
+「0」(을)를 설정하면, 조작 이력을 완전하게 무효화할 수 있다.</tr>
+</table>
+
+<h2>Remarks</h2>
+<p>
+눌러 인하 이벤트와 밀어 올려 이벤트를 각각 기록되므로, 실제로 기록되는 키 조작은 여기서 지정한 값의 반이 된다.<br>
+예를 들어,MaxEvents에 「50」(을)를 지정했을 경우,25문자 타이프 친다고 기록은 가득 찬다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/KeyHistory.html'></a>
+<h2>Examples</h2>
+<pre>#KeyHistory 0      ; Disable key history.
+#KeyHistory 100  ; Store up to 100 events.</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_KeyHistory.html'>_KeyHistory</a></div>
+</body>
+</html>

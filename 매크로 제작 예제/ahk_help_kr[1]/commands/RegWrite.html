@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>RegWrite</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/RegWrite.html'>RegWrite</a></div>
+<h1>RegWrite</h1>
+<p>레지스트리에 값을 쓴다</p>
+
+<pre>RegWrite, ValueType, RootKey, SubKey [, ValueName, Value]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>ValueType
+</td>
+<td>값의 종류.<br>
+「REG_SZ」(문자열)「REG_EXPAND_SZ」REG_MULTI_SZ」 「REG_DWORD」(정수)「REG_BINARY」의 어떤 것인가.
+</td>
+</tr>
+<tr> 
+<td>RootKey
+</td>
+<td>
+「HKEY_LOCAL_MACHINE」 「HKEY_USERS」 「HKEY_CURRENT_USER」 「HKEY_CLASSES_ROOT」 「HKEY_CURRENT_CONFIG」의 어떤 것인가.「HKLM」(와)과 같은 단축명도 가능.<br>
+리모트의 레지스트리에 액세스 하고 싶은 경우, 「\\workstation01:HKEY_LOCAL_MACHINE」(와)과 같이 컴퓨터명과 「:」(을)를 붙인다.
+</td>
+</tr>
+<tr> 
+<td>SubKey
+</td>
+<td>서브 키의 이름
+</td>
+</tr>
+<tr>
+<td>ValueName
+</td>
+<td>값의 이름.<br>
+생략시는, 서브 키의 규정의 값이 된다.
+</td>
+</tr>
+<tr>
+<td>Value
+</td>
+<td>쓰는 값.<br>
+생략시는,ValueType에 의해서 하늘인가 「0」(이)가 된다.
+</td>
+</tr>
+</table>
+<h2>ErrorLevel</h2>
+<p>성공시는 「0」, 실패시는 「1」.</p>
+
+<h2>Remarks</h2>
+
+<p>레지스트리에의 기입은 위험을 수반하므로, 신중하게 실시하는 것.</p>
+<p>
+ValueType하지만REG_DWORD의 경우,Value(은)는 부호 없음 정수로 지정한다.16진수로의 지정도 가능.
+</p>
+<p>
+REG_BINARY의 경우,Value(은)는 「01A9FF77......」(와)과 같은16진수열로 지정한다.
+</p>
+<p>
+REG_MULTI_SZ의 경우,Value하LF(`n)단락의 문자열로 지정한다.<br>
+제일 마지막`n(은)는 무시된다.<br>
+하늘 항목은 용서되지 않기 때문에,`n(을)를 복수 계속해 포함해선 안 된다.
+
+</p>
+
+<p>
+Windows9x계에서는,64KB이상의 내용은 취급할 수 없다.<br>
+또,REG_BINARY(와)과Reg_MULTI_SZ그럼,OS에 관계없이64KB이상의 값은 취급할 수 없다.<br>
+이 상한을 넘었을 경우, 최초의64KB만이 써진다.
+</p>
+
+<p><a target=_top href='../commands/LoopReg.html'>registry-loop</a>(을)를 사용하면, 복수의 키에 같은 조작을 실시할 수 있다.</p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/RegDelete.html'>RegDelete</a>, <a target=_top href='../commands/RegRead.html'>RegRead</a>, <a target=_top href='../commands/LoopReg.html'>Registry-loop</a></p>
+
+<h2>Example(s)</h2>
+<pre>RegWrite, REG_SZ, HKEY_LOCAL_MACHINE, SOFTWARE\TestKey, MyValueName, Test Value
+</pre>
+<pre>RegWrite, REG_BINARY, HKEY_CURRENT_USER, Software\TEST_APP, TEST_NAME, 01A9FF77
+</pre>
+<pre>RegWrite, REG_MULTI_SZ, HKEY_CURRENT_USER, Software\TEST_APP, TEST_NAME, Line1`nLine2
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/RegWrite.html'>RegWrite</a></div>
+</body>
+</html>

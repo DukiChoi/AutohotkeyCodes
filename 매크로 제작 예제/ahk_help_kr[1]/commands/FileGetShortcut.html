@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FileGetShortcut</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileGetShortcut.html'>FileGetShortcut</a></div>
+<h1>FileGetShortcut</h1>
+<p>쇼트 컷(.lnk)의 각종 정보를 취득한다</p>
+
+<pre>FileGetShortcut, LinkFile [, OutTarget, OutDir, OutArgs, OutDescription, OutIcon, OutIconNum, OutRunState]</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr>
+<td>LinkFile
+</td>
+<td>
+정보를 취득하고 싶은 쇼트 컷의 파일명.<br>
+상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.
+
+</td>
+</tr>
+<tr>
+<td>OutTarget
+</td>
+<td>
+쇼트 컷의 링크 앞의 파일 패스가 격납되는 변수명을 지정.<br>
+</td>
+</tr>
+<tr>
+<td>OutDir
+</td>
+<td>
+쇼트 컷이 실행될 때의 작업 폴더가 격납되는 변수명을 지정.<br>
+</td>
+</tr>
+<tr>
+<td>OutArgs
+</td>
+<td>
+링크 앞 가운데, 인수의 부분이 격납되는 변수명을 지정.
+</td>
+</tr>
+<tr>
+<td>OutDescription
+</td>
+<td>코멘트가 격납되는 변수명을 지정
+</td>
+</tr>
+<tr>
+<td>OutIcon
+</td>
+<td>
+쇼트 컷 파일에 표시되는 아이콘을 포함한 파일의 풀 패스가 격납되는 변수명을 지정.<br>
+</td>
+</tr>
+<tr>
+<td>OutIconNum</td>
+<td>프로그램 파일중의 몇번째의 아이콘을 쇼트 컷의 아이콘으로 할지가 격납되는 변수명을 지정.
+</td>
+</tr>
+<tr>
+<td>OutRunState</td>
+<td>쇼트 컷의 프롭퍼티의 「실행시의 크기」의 부분이 격납되는 변수명을 지정.<br>
+이하의 어떤 것인가가 된다.
+<dl>
+<dt>1</dt><dd>통상의 윈도우(디폴트)</dd>
+<dt>3</dt><dd>최대화</dd>
+<dt>7</dt><dd>최소화</dd>
+</dl>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>성공시는 「0」, 실패시는 「1」.</p>
+
+<h2>Remarks</h2>
+
+<p>
+OutTarget이후의 생략 된 인수에 대응하는 정보는 취득되지 않는다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/FileCreateShortcut.html'>FileCreateShortcut</a>, <a target=_top href='../commands/SplitPath.html'>SplitPath</a></p>
+
+<h2>Example(s)</h2>
+<pre>FileSelectFile, file,,, Pick a shortcut to analyze., Shortcuts (*.lnk)
+if file =
+	return
+FileGetShortcut, %file%, OutTarget, OutDir, OutArgs, OutDesc, OutIcon, OutIconNum, OutRunState
+Transform, OutDir, Deref, %OutDir%  ; Resolve any environment variables, such as %WinDir%.
+MsgBox %OutTarget%`n%OutDir%`n%OutArgs%`n%OutDesc%`n%OutIcon%`n%OutIconNum%`n%OutRunState%
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileGetShortcut.html'>FileGetShortcut</a></div>
+</body>
+</html>

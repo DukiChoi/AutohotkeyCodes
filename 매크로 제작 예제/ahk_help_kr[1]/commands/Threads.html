@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Threads</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Threads.html'>Threads</a></div>
+<h1>스렛드</h1>
+
+
+<p>
+AutoHotkey(은)는 실제는 퍼포먼스 저하를 막기 위해, 의사적인 multi-thread를 채용하고 있다.<br>
+현재의 스렛드의 실행중에<a target=_top href='../Hotkeys.html'>hot key</a>,<a target=_top href='../commands/SetTimer.html'>타이머</a>,<a target=_top href='../commands/Menu.html'>메뉴 아이템 선택</a>에 의해 다른 스렛드가 불려 가면, 세치기에 의해 새로운 스렛드가 개시되어 현재의 스렛드는 새로운 스렛드가 종료할 때까지 정지한다.<br>
+세치기는 몇 겹이나 행해지는 것이 가능.<br>
+<a target=_top href='../misc/ErrorLevel.html'>ErrorLevel</a> and <a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>등의 변수나 설정은, 스렛드 마다 보관 유지되어 끼어들어 온 스렛드내에서 변경되어도, 끼어들어진 스렛드 측에는 영향을 주지 않는다.
+</p>
+<p>스렛드의 수에는 상한이 있어, 디폴트는10하지만,<a target=_top href='../commands/_MaxThreads.html'>#MaxThreads</a>지령으로1...20의 사이에 설정할 수 있다.<br>
+각 hot key로 불려 가는 스렛드의 수에도 상한이 있어, 디폴트는1하지만,<a target=_top href='../commands/_MaxThreadsPerHotkey.html'>#MaxThreadsPerHotkey</a>지령으로 최대20까지 설정할 수 있다.
+</p>
+
+<p>
+(비고)<a target=_top href='../commands/KeyHistory.html'>KeyHistory</a>커멘드등에서 키 이력을 표시하면, 실행중의 스렛드수를 표시할 수 있다.<br>
+<a target=_top href='../commands/ListHotkeys.html'>ListHotkeys</a>그럼, 어느 hot key가 스렛드를 실행하고 있을지를 알 수 있다.
+</p>
+
+
+<h2>스렛드 우선도</h2>
+
+<p>
+모든 스렛드의 우선도는 디폴트로0(이)가 된다.<br>
+<a target=_top href='../commands/Thread.html'>Thread</a>커멘드로, 현재의 스렛드의 우선도를 변경할 수 있다.<br>
+<a target=_top href='../commands/Hotkey.html'>Hotkey</a>커멘드의 인수로, hot key의 우선도를 지정할 수 있다.<br>
+<a target=_top href='../Hotstrings.html'>Hotstring</a>(은)는 정의시의 옵션에 의해 우선도를 지정할 수 있다.<br>
+<a target=_top href='../commands/SetTimer.html'>SetTimer</a>커멘드의 인수로, 타이머 기동의 우선도를 지정할 수 있다.<br>
+<a target=_top href='../commands/Menu.html'>Menu</a>커멘드의 인수로, 커스텀 메뉴 아이템의 우선도를 지정할 수 있다.<br>
+현재의 스렛드보다 우선도가 낮은 경우, 세치기는 행해지지 않고, 조작은 무시된다.<br>
+</p>
+<p>
+<a target=_top href='../commands/OnExit.html'>OnExit</a>에 의한 호출은, 현재 스렛드의 우선도에 관계없이 실행된다.
+</p>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Threads.html'>Threads</a></div>
+</body>
+</html>

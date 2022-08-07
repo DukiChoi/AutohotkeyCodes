@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Transform</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Transform.html'>Transform</a></div>
+<h1>Transform</h1>
+<p>각종의 수치계산,ASCII코드 변환, 비트 연산을 실시한다</p>
+
+<pre>Transform, OutputVar, Cmd, Value1 [, Value2]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>OutputVar
+</td>
+<td>
+결과를 격납하는 변수명.<br>
+결과의 수치의 표기 포맷은<a target=_top href='../commands/SetFormat.html'>SetFormat</a>그리고 설정할 수 있다.
+</td>
+</tr>
+<tr> 
+<td>Cmd, Value1, Value2
+</td>
+<td>아래와 같이 참조
+</td>
+</tr>
+</table>
+
+
+<h2>Cmd, Value1, Value2</h2>
+<p>커멘드명 및Value1,Value2의 역할의 설명은 이하</p>
+<h3>수치계산</h3>
+<dl>
+<dt>Mod, Dividend, Divisor</dt><dd>
+Dividend(을)를Divisor그리고 나눈 나머지를 얻는다.<br>
+Divisor의 값이 제로의 경우, 결과는 비운다.<br>
+Divisor의 값이 부의 경우, 절대치가 대신 사용된다.<br>
+Dividend의 값이 부의 경우, 결과는 제로가 된다.<br>
+Dividend,Divisor(은)는 함께 소수를 포함할 수 있다.
+</dd>
+<dt>Pow, Value1, N </dt><dd>
+Value1의N승을 얻는다.<br>
+N(은)는 소수나 부의 수라도 좋다.<br>
+N하지만 부의 수의 경우, 결과는 소수 표기가 된다.<br>
+Value1하지만 부의 수의 경우, 결과는 비운다.<br>
+</dd>
+<dt>Exp, N</dt><dd>
+e(≒2.71828182845905)의N승을 얻는다. <br>
+N(은)는 소수나 부의 수라도 좋다.<br>
+</dd>
+<dt>Sqrt, Value1</dt><dd>
+Value1의2승근(√)(을)를 얻는다.<br>
+Value1하지만 부의 수의 경우, 결과는 비운다.
+</dd>
+<dt>Log, Value1</dt><dd>
+10(을)를 바닥으로 했다Value1의 대수를 얻는다<br>
+Value1하지만 부의 수의 경우, 결과는 비운다.<br>
+임의의 바닥을 사용하고 싶은 경우, 바닥의 변환의 공식을 사용한다.
+</dd>
+<dt>Ln, Value1</dt><dd>
+Value1의 자연대수를 얻는다.<br>
+Value1하지만 부의 수의 경우, 결과는 비운다.
+</dd>
+<dt>Round, Value1 [, N]</dt><dd>
+Value1(을)를 소수점 이하N자리수로 사사오입 한다.<br>
+N(은)는 부의 수라도 좋다.<br>
+N(을)를 생략 했을 때는, 소수점 이하를 사사오입 한다.<br>
+소수점 이하가 사사오입 되어도, 소수점 이하의 자리수는 유지된다.
+</dd>
+<dt>Ceil, Value1</dt><dd>
+Value1이상의 제일 작은 정수를 얻는다
+</dd>
+<dt>Floor, Value1</dt><dd>
+Value1이하의 제일 큰 정수를 얻는다
+</dd>
+<dt>Abs, Value1</dt><dd>
+Value1의 절대치를 얻는다
+</dd>
+</dl>
+<p>
+Mod,Pow,Round,Abs그럼,Value1인가Value2의 어딘가에에서도 소수점이 포함되면, 결과는 소수가 된다.
+</p>
+
+<h3>삼각함수</h3>
+<dl>
+<dt>Sin, Value1</dt><dd>
+Value1의 값의 사인을 얻는다.<br>
+Value1(은)는 라디안으로 지정.
+</dd>
+<dt>Cos, Value1</dt><dd>
+Value1의 값의 코사인을 얻는다.<br>
+Value1(은)는 라디안으로 지정.
+</dd>
+<dt>Tan, Value1</dt><dd>
+Value1의 값의 탄젠트를 얻는다.<br>
+Value1(은)는 라디안으로 지정.
+</dd>
+<dt>ASin, Value1</dt><dd>
+Value1의 값의 아크사인을 라디안으로 얻는다.<br>
+Value1의 값이-1...1의 범위에 없는 경우, 결과는 비운다.
+</dd>
+<dt>ACos, Value1</dt><dd>
+Value1의 값의 아크 코사인을 라디안으로 얻는다.<br>
+Value1의 값이-1...1의 범위에 없는 경우, 결과는 비운다.
+</dd>
+<dt>ATan, Value1</dt><dd>
+Value1의 값의 arctangent를 라디안으로 얻는다.
+</dd>
+</dl>
+<p>
+아크사인이란,Sin하지만 원래의 수치가 되는 각도이다.
+</p>
+
+<p>
+라디안을 각도로 변환하려면 ,180/pi(≒57.29578)(을)를 걸면 좋다.<br>
+각도를 라디안으로 변환하려면 ,pi/180(≒0.01745329252)(을)를 걸면 좋다.<br>
+π(을)를 얻으려면 ,ATan,1(을)를4배가 되면 좋다.
+</p>
+
+<h3>비트 연산</h3>
+<p>
+값은, 부호 없음32비트 정수의 범위(0...4294967295)에 있는 경우, 값은 부호 없음32비트 정수로서 계산된다.<br>
+그 이외의 경우는, 부호 첨부64비트 정수로서 계산된다.
+</p>
+<dl>
+<dt>BitNot, Value1</dt><dd>
+Value1의 논리 부정을 얻는다
+</dd>
+<dt>BitAnd, Value1, Value2</dt><dd>
+Value1(와)과Value2의 논리적을 얻는다.
+</dd>
+<dt>BitOr, Value1, Value2</dt><dd>
+Value1(와)과Value2의 논리합을 얻는다.
+</dd>
+<dt>BitXOr, Value1, Value2</dt><dd>
+Value1(와)과Value2의 배타적 논리합을 얻는다.
+</dd>
+<dt>BitShiftLeft, Value1, Value2</dt><dd>
+Value1(을)를Value2의 수만큼 왼쪽으로 비트 시프트 한다.
+</dd>
+<dt>BitShiftRight, Value1, Value2</dt><dd>
+Value1(을)를Value2의 수만큼 오른쪽으로 비트 시프트 한다.
+</dd>
+</dl>
+
+<h3>문자 코드 처리</h3>
+<dl>
+<dt>Asc, String</dt><dd>
+String의1문자눈의ASCII코드(0...255)(을)를 얻는다.<br>
+String하지만 하늘의 경우는 결과도 비운다.
+</dd>
+<dt>Chr, Value1</dt><dd>
+Value1그리고 지정했다ASCII코드의 문자를 얻는다.<br>
+Value1에는 「0」(으)로부터 「255」까지의 수를 지정한다.<br>
+문제가 있는 경우는 결과가 비운다.
+</dd>
+<dt>Unicode</dt><dd>
+클립보드의ASCII문자열을Unicode문자열로 변환해 꺼낸다.
+</dd>
+<dt>Unicode, String</dt><dd>
+String그리고 지정했다Unicode문자열을ASCII문자열로 변환해 클립보드에 격납한다.OutputVar(은)는 「Clipboard」라고 할 필요가 있다.
+</dd>
+</dl>
+
+<h3>그 외</h3>
+<dl>
+<dt>Deref, String</dt><dd>
+String안의 변수 참조를, 참조처의 변수내의<a target=_top href='../commands/_EscapeChar.html'>이스케이프 문자</a>(와)과 변수 참조(「%VarName%」(와)과 같은 기술)(을)를 전개하면서 전개한다.<br>
+참조처의 변수내의, 존재하지 않는 변수 및OutputVar에의 참조는 하늘에 전개된다.참조처의 변수 지진에의 참조는, 그대로 전개된다.<br>
+<a target=_top href='../commands/IniRead.html'>INI파일</a>에 개행등을 포함한 문자열을 기술하고 싶은 경우, 이스케이프 문자를 사용해 기술해 두어, 이 커멘드로 전개한다.
+</dd>
+<dt>HTML, String</dt><dd>
+String의 문자열을HTML안에 그대로 표시할 수 있도록 치환한다.<br>
+ASCII코드로128이상의 문자와&quot;&amp;&lt;&gt;(을)를 실체 참조에, 개행은 「&lt;br&gt;」에 치환된다.
+</dd>
+</dl>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SetFormat.html'>SetFormat</a>, <a target=_top href='../commands/EnvMult.html'>EnvMult</a>, <a target=_top href='../commands/EnvDiv.html'>EnvDiv</a>, <a target=_top href='../commands/StringLower.html'>StringLower</a>, <a target=_top href='../commands/IfIs.html'>if var is type</a> </p>
+
+<h2>Example(s)</h2>
+<pre>Transform, OutputVar, Asc, A  ; Get the ASCII code of the letter A.</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Transform.html'>Transform</a></div>
+</body>
+</html>

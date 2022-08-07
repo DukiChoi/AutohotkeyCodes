@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>StringSplit</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringSplit.html'>StringSplit</a></div>
+<h1>StringSplit</h1>
+<p>문자열을 지정의 단락 문자로 분할한다</p>
+
+<pre>StringSplit, OutputArray, InputVar [, Delimiters, OmitChars, FutureUse]</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr>
+<td>OutputArray
+</td>
+<td>
+결과의 문자열군을 격납하는 변수명의 프리픽스.<br>
+여기서 지정한 문자열의 뒤로 「0」(을)를 붙인 이름의 변수에, 분할된 요소수가 격납되어 「1」이후의 숫자를 붙인 이름의 변수에, 각 요소가 격납된다.<br>
+예를 들어, 여기서 「array」(을)를 지정했을 경우, 「array0」에 요소수가, 「array1」 「array2」...에 각 요소가 격납된다.
+</td>
+</tr>
+<tr> 
+<td>InputVar
+</td>
+<td>분할하는 것도라는 문자열을 격납한 변수명
+</td>
+</tr>
+<tr>
+<td>Delimiters
+</td>
+<td>
+단락 문자로서 사용하고 싶은 문자를 열거.대문자 소문자는 구별된다.<br>
+생략시는,InputVar하지만1문자씩에 분해된다.<br>
+OutputArray에 격납되는 문자열에는, 단락 문자는 포함되지 않는다.<br>
+</td>
+</tr>
+<tr>
+<td>OmitChars
+</td>
+<td>
+분할된 각 요소의 최초와 최후로부터 없애는 문자를 열거.(대문자 소문자는 구별된다)<br>
+Delimiters하지만 하늘의 경우, 여기서 지정한 문자를 제외하고1문자씩에 분해된다.
+</td>
+</tr>
+<tr>
+<td>FutureUse
+</td>
+<td>장래의 확장을 위해서 예약되고 있다.이 인수는 항상 생략 한다.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+
+<p>
+InputVar안에 단락지어 문자가 두 개 이상 연속하고 있었을 경우, 하늘 요소가 생긴다.
+</p>
+<p>
+문자는 아니고 문자열을 단락으로 하고 싶은 경우, 우선<a target=_top href='../commands/StringReplace.html'>StringReplace</a>그리고 단락으로 하고 싶은 문자열을1문자의 문자에 치환하고 나서StringSplit(을)를 사용한다.
+</p>
+<p>
+벌써 결과가 대입되어야 할 변수와 같은 이름의 변수가 존재하는 경우, 내용은 덧쓰기된다.<br>
+그러나, 결과의 요소가 존재하지 않는 변수는, 덧쓰기되지 않는다.<br>
+예를 들어, 「a1」 「a2」 「a3」(이)가 존재하는 상태로,OutputArray에 「a」(을)를 지정하고 분할을 실시해,2개의 요소에 분할되었을 경우, 「a1」 「a2」(은)는 덧쓰기되지만, 「a3」(은)는 덧쓰기되지 않고 그대로 된다.
+</p>
+<p>
+<a target=_top href='../commands/LoopParse.html'>parsing loop</a>(을)를 사용하면, 분할 후의 요소를 메모리에 격납하지 않고 , 분할한 각 요소에 대해서 처리를 실시할 수 있다.<br>
+큰 문자열을 처리하고 싶을 때 등은, 이쪽의 편이 편리.
+</p>
+<p>
+<a target=_top href='../commands/LoopParse.html'>parsing loop</a>(을)를 사용하면, 표준적인CSV포맷에 따라서 문자열을 처리할 수도 있다.
+</p>
+<p>결과의 요소를 정렬하고 나서 분할하려면 ,<a target=_top href='../commands/Sort.html'>Sort</a>그리고 정렬하고 나서StringSplit한다.</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/LoopParse.html'>Parsing loop</a>, <a target=_top href='../misc/Arrays.html'>Arrays</a>, <a target=_top href='../commands/Sort.html'>Sort</a>, <a target=_top href='../commands/SplitPath.html'>SplitPath</a>, <a target=_top href='../commands/IfInString.html'>IfInString</a>, <a target=_top href='../commands/StringGetPos.html'>StringGetPos</a>, <a target=_top href='../commands/StringMid.html'>StringMid</a>, <a target=_top href='../commands/StringTrimLeft.html'>StringTrimLeft</a>, <a target=_top href='../commands/StringTrimLeft.html'>StringTrimRight</a>, <a target=_top href='../commands/StringLen.html'>StringLen</a>, <a target=_top href='../commands/StringLower.html'>StringLower</a>, <a target=_top href='../commands/StringLower.html'>StringUpper</a>, <a target=_top href='../commands/StringReplace.html'>StringReplace</a></p>
+
+<h2>Example(s)</h2>
+<pre>TestString = This is a test.
+StringSplit, word_array, TestString, %A_Space%, .  ; Omits periods.
+MsgBox, The 4th word is %word_array4%.
+
+Colors = red,green,blue
+StringSplit, ColorArray, Colors, `,
+Loop, %ColorArray0%
+{
+	StringTrimLeft, this_color, ColorArray%a_index%, 0
+	MsgBox, Color number %a_index% is %this_color%.
+}</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringSplit.html'>StringSplit</a></div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>TrayTip</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/TrayTip.html'>TrayTip</a></div>
+<h1>TrayTip</h1>
+<p>트레이 아이콘의 곳에 벌룬 메세지를 표시한다(Windows2000/XP이후 전용)</p>
+
+<pre>TrayTip [, Title, Text, Seconds, Options]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>Title
+</td>
+<td>
+벌룬 메세지의 타이틀을 지정.<br>
+63문자 이상은 잘라 버릴 수 있다.<br>
+이 인수를 생략 하면, 타이틀을 표시하는 부분이 없어져, 벌룬 메세지의 높이가 낮아진다.
+</td>
+</tr>
+<tr> 
+<td>Text
+</td>
+<td>
+표시하는 텍스트.<br>
+255문자 이상은 잘라 버릴 수 있다.<br>
+개행을 포함한 텍스트도 가능.<br>
+이 인수가 생략 되면, 벌룬 메세지는 소거된다.
+
+</td>
+</tr>
+<tr> 
+<td>Seconds
+</td>
+<td>
+윈도우가 자동 소거될 때까지의 대기 시간을 초수로 지정.<br>
+최소10, 최대30.<br>
+생략시는10.<br>
+메세지가 표시된 후, 최초로 어떠한 조작을 하고 나서, 이 초수만큼 대기된다.
+</td>
+</tr>
+<tr>
+<td>Options
+</td>
+<td>
+표시하는 아이콘을 지정.
+<dl>
+<dt>0|생략시</dt><dd>아이콘 없음</dd>
+<dt>1</dt><dd>인포메이션 아이콘</dd>
+<dt>2</dt><dd>경고 아이콘</dd>
+<dt>3</dt><dd>에러 아이콘</dd>
+</dl>
+16(을)를 더하면, 소리를 울리지 않고 표시한다.
+
+</p>
+</td>
+</tr>
+</table>
+
+
+
+<h2>Remarks</h2>
+
+<p>
+벌룬 메세지는, 스크립트의 task tray 아이콘이 비표시가 되어 있는 경우 표시할 수 없다.
+</p>
+<p>
+레지스트리의 설정으로 벌룬 메세지를 금지하게 되어 있는 경우도, 표시할 수 없다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/ToolTip.html'>ToolTip</a>, <a target=_top href='../commands/SetTimer.html'>SetTimer</a>, <a target=_top href='../commands/SplashTextOn.html'>SplashTextOn</a>, <a target=_top href='../commands/MsgBox.html'>MsgBox</a>, <a target=_top href='../commands/InputBox.html'>InputBox</a>, <a target=_top href='../commands/FileSelectFile.html'>FileSelectFile</a>, <a target=_top href='../commands/FileSelectFolder.html'>FileSelectFolder</a></p>
+
+<h2>Example(s)</h2>
+<pre>TrayTip, MyTitle, Multiline`nText, 20, 17
+
+; To have more precise control over the display time without
+; having to use Sleep (which stops the current thread):
+#Persistent
+TrayTip, Timed TrayTip, This will be displayed for 5 seconds.
+SetTimer, RemoveTrayTip, 5000
+return
+
+RemoveTrayTip:
+SetTimer, RemoveTrayTip, Off
+TrayTip
+return
+
+; To have a TrayTip permanently displayed, use a timer to refresh it
+; periodically:
+SetTimer, RefreshTrayTip, 1000
+Gosub, RefreshTrayTip  ; Call it once to get it started right away.
+return
+
+RefreshTrayTip:
+TrayTip, Refreshed TrayTip, This is a more permanent TrayTip., , 16
+return
+
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/TrayTip.html'>TrayTip</a></div>
+</body>
+</html>

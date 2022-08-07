@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,StatusBar</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_StatusBar.html'>Gui,Add,StatusBar</a></div>
+<h1>Gui,Add,StatusBar</h1>
+<p>GUI윈도우에 상태 바를 추가한다</p>
+
+<pre>Gui, Add, StatusBar [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+반드시 윈도우의 하단에 배치된다고 하는 특성상, 위치나 사이즈에 관한 옵션은 의미를 만들어내지 않는다.<br>
+G그리고 라벨명을 지정하면, 상태 바를 클릭했을 때에 써브루틴이 실행되도록 할 수 있다.
+</td>
+</tr>
+<tr><td>Text</td><td>
+최초로 표시되는 텍스트를 지정한다.
+
+</td>
+</tr>
+</table>
+
+<h2>고유의 옵션</h2>
+<dl>
+<dt>0x800</dt><dd>
+마우스 커서로 포인트 했을 때에 툴 팁 텍스트를 표시한다.
+</dd>
+<dt>0x100</dt><dd>
+우단에 윈도우를 리사이즈하기 위한 안주를 표시한다.<br>
+상태 바를 추가하기 전에 「Gui,+Resize」(으)로 리사이즈 가능하게 해 두면, 자동적으로 이 스타일이 추가된다.
+</dd>
+</dl>
+
+<h2>상태 바 조작 함수</h2>
+<p>상태 바의 텍스트나 아이콘을 변경하려면 , 이하의 함수를 사용한다.<br>
+이러한 함수에서는,<a target=_top href='../commands/Gui.html#multiwin'>디폴트GUI윈도우</a>위의 상태 바가 조작된다.<br>
+</p>
+<dl>
+<dt>SB_SetParts([Width1, Width2, ... Width255])</dt><dd>
+상태 바를 복수의 파트에 분할한다.<br>
+각 인수에는, 각 파트의 폭을 지정한다.<br>
+인수의 수+1의 파트가 만들어진다.마지막 파트에는, 우측의 나머지 스페이스 모두가 사용된다
+.<br>
+인수를 아무것도 지정하지 않으면 파트는 하나만으로 된다.<br>
+성공하면 상태 바의 윈도우 핸들이, 실패하면0하지만 돌려주어진다.
+</dd>
+<dt>SB_SetText(NewText [, PartNumber, Style])</dt><dd>
+표시하는 텍스트를 변경한다.<br>
+텍스트를2개의Tab문자로3개로 나누면, 각각 파트안의 좌단, 중앙, 우단에 표시된다.<br>
+NewText에 새롭게 표시되는 텍스트를 지정한다.<br>
+PartNumber(으)로 텍스트를 변경하는 파트의 번호(왼쪽에서1,2,3...)(을)를 지정한다.(생략시는1)<br>
+Style(을)를1(으)로 하면, 테두리가 평면적으로 된다.<br>
+Style(을)를2(으)로 하면, 테두리가 앞으로 밀어낸 것 같은 표시가 된다.<br>
+Style(을)를0(으)로 하면, 통상이 움푹 들어간 것 같은 테두리가 된다.(디폴트)<br>
+성공하면1하지만, 실패하면0하지만 돌려주어진다.
+</dd>
+<dt>SB_SetIcon(Filename [, IconNumber, PartNumber])</dt><dd>
+표시되는 아이콘을 변경한다.<br>
+FileName에 아이콘을 포함한 파일을 지정한다.<br>
+EXE(이)나DLL등 복수의 아이콘을 포함한 파일에서는,IconNumber에 아이콘의 번호를 지정한다.(생략시는1)<br>
+PartNumber(으)로 아이콘을 변경하는 파트의 번호(왼쪽에서1,2,3...)(을)를 지정한다.(생략시는1)<br>
+성공시는 아이콘의 핸들이, 실패시는0하지만 돌려주어진다.<br>
+덧붙여 설정된 아이콘이 다른 아이콘으로 변경될 때,AutoHotkey에 의해서 낡은 아이콘의 핸들은 해방된다.(SB_SETICON메세지(0x40F)(을)를 보내 직접 변경했을 경우는 해방되지 않는다)
+</dd>
+
+</dl>
+
+<h2><a name="Event">이벤트</a></h2>
+<p>「G」옵션으로 라벨명을 지정해 있으면, 아래와 같은 이벤트가 발생할 때마다 써브루틴이 실행된다.<br>
+이 때,<a target=_top href='../Variables.html#GuiEvent'>A_GuiEvent</a>변수에 이벤트명이,<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에 조작된 파트의 번호가 격납된다.
+</p>
+
+<dl>
+<dt>Normal</dt><dd>
+왼쪽 클릭되었다
+</dd>
+<dt>RightClick</dt><dd>
+오른쪽 클릭되었다
+</dd>
+<dt>DoubleClick</dt><dd>
+더블 클릭 되었다
+</dd>
+<dt>R</dt><dd>
+오른쪽 더블 클릭 되었다
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_StatusBar.html'>Gui,Add,StatusBar</a></div>
+</body>
+</html>

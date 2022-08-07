@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>GetKeyState()</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GetKeyStateFunction.html'>GetKeyState()</a></div>
+
+<h1>GetKeyState()</h1>
+<p>키가 눌러 내려지고 있는지 어떤지를 취득하는 함수</p>
+<pre>
+GetKeyState(KeyName [, "P|T"])
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>
+<tr><td>KeyName</td><td>눌러 내려지고 있는지 어떤지를 취득하고 싶은 키명</td></tr>
+<tr><td>"P|T"</td><td>「"P"」(을)를 지정했을 경우, 프로그램이 생성하는 가상적인 눌러 인하 상태를 무시해, 물리적인 눌러 인하 상태를 판정한다.<br>「"T"」(을)를 지정했을 경우,Capslock, Numlock, Scrolllock, Insert키의 타글 상태를 취득할 수 있다.</td></tr>
+</table>
+
+
+<h2>Remarks</h2>
+<p>지정한 키가 눌러 인하(타글의 경우는ON)상태의 경우 「1」, 밀리지 않은 경우는 「0」(이)가 돌아간다.<br>
+JoyX등을 지정했을 경우는, 스틱이 쓰러지는 상태가 돌아간다.<br>
+그 외의 상세한 것에 대하여는,<a target=_top href='../commands/GetKeyState.html'>GetKeyState</a>의 설명도 참조.
+</p>
+<h2>Related</h2>
+<p>
+<a target=_top href='../commands/GetKeyState.html'>GetKeyState</a>
+</p>
+
+
+<!-- 
+<h2>Examples</h2>
+<pre>
+</pre>
+ -->
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/GetKeyStateFunction.html'>GetKeyState()</a></div>
+</body>
+</html>

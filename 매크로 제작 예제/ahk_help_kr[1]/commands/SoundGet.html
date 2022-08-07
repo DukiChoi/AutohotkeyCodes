@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SoundGet</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundGet.html'>SoundGet</a></div>
+<h1>SoundGet</h1>
+<p>사운드 디바이스의 각종 설정을 취득</p>
+
+<pre>SoundGet, OutputVar [, ComponentType, ControlType, DeviceNumber]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>
+취득한 값을 격납하는 변수명.
+</td>
+</tr>
+<tr>
+<td>ComponentType
+</td>
+<td>
+
+
+이하의 어떤 것인가.<br>
+<ul>
+<li>MASTER(디폴트)</li>
+<li>DIGITAL</li>
+<li>LINE</li>
+<li>MICROPHONE</li>
+<li>SYNTH</li>
+<li>CD</li>
+<li>TELEPHONE</li>
+<li>PCSPEAKER</li>
+<li>WAVE</li>
+<li>AUX</li>
+<li>ANALOG</li>
+<li>HEADPHONES</li>
+<li>N/A</li>
+</ul>
+디바이스가 존재하지 않는 경우,ErrorLevel에 그 취지를 나타내는 문자열이 대입된다.<br>
+같은 종류의 것이 다수 있을 때는 「ANALOG:2」(와)과 같이 지정하는 것으로,2번째 이후의 디바이스를 지정할 수 있다.많은 경우,1번째가 출력,2번째가 입력용 디바이스이다.
+</td>
+</tr>
+<tr>
+<td>ControlType
+</td>
+<td>
+
+
+<ul>
+<li>VOLUME(디폴트)</li>
+<li>ONOFF</li>
+<li>MUTE</li>
+<li>MONO</li>
+<li>LOUDNESS</li>
+<li>STEREOENH</li>
+<li>BASSBOOST</li>
+<li>PAN</li>
+<li>QSOUNDPAN</li>
+<li>BASS</li>
+<li>TREBLE</li>
+<li>EQUALIZER</li>
+</ul>
+그 설정이 존재하지 않는 경우,ErrorLevel에 그 취지를 나타내는 문자열이 대입된다.<br>
+번호로 지정할 수도 있다.
+</td>
+</tr>
+<tr>
+<td>DeviceNumber
+</td>
+<td>
+디바이스 번호.<br>
+디폴트는 「1」
+</td>
+</tr>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>성공했을 경우, 「0」.<br>
+무엇인가 문제가 있으면, 이하와 같은 문장이 대입된다.
+</p>
+<ul>
+<li>Invalid Control Type or Component Type</li>
+<li>Can't Open Specified Mixer</li>
+<li>Mixer Doesn't Support This Component Type</li>
+<li>Mixer Doesn't Have That Many of That Component Type</li>
+<li>Component Doesn't Support This Control Type</li>
+<li>Can't Get Current Setting</li>
+</ul>
+
+<h2>Remarks</h2>
+
+<p>
+OutputVar에는,ControlType하지만 「ONOFF」 「MUTE」 「MONO」 「LOUDNESS」 「STEREOENH」 「BASSBOOST」의 경우 「ON」인가 「OFF」, 그 이외의 경우는0...100의 소수가 대입된다.<br>
+소수의 포맷은<a target=_top href='../commands/SetFormat.html'>SetFormat</a>그리고 설정할 수 있다.<br>
+취득에 실패하면 비운다.
+</p>
+<p>
+ComponentType(이)나ControlType(으)로 지정 가능한 값을 조사하는 방법은,<a target=_top href='../commands/SoundSet.html'>SoundSet</a>의Examples(을)를 참조.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SoundSet.html'>SoundSet</a>, <a target=_top href='../commands/SoundGetWaveVolume.html'>SoundGetWaveVolume</a>, <a target=_top href='../commands/SoundSetWaveVolume.html'>SoundSetWaveVolume</a>, <a target=_top href='../commands/SoundPlay.html'>SoundPlay</a></p>
+
+<h2>Example(s)</h2>
+<pre>SoundGet, master_volume
+MsgBox, Master volume is %master_volume% percent.
+
+SoundGet, master_mute, , mute
+MsgBox, Master Mute is currently %master_mute%.
+
+SoundGet, bass_level, Master, bass
+if ErrorLevel &lt;&gt; 0
+	MsgBox, Error Description: %ErrorLevel%
+else
+	MsgBox, The BASS level for MASTER is %bass_level% percent.
+
+SoundGet, microphone_mute, Microphone, mute
+if microphone_mute = Off
+	MsgBox, The microphone is not muted.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundGet.html'>SoundGet</a></div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Progress</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Progress.html'>Gui,Add,Progress</a></div>
+<h1>Gui,Add,Progress</h1>
+<p>GUI윈도우에 progress bar를 추가한다</p>
+
+<pre>Gui, Add, Progress [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+고유의 옵션은 아래와 같이 참조.
+</td>
+</tr>
+<tr><td>Text</td><td>
+초기치를 수치로 지정한다.<br>
+생략시는 「0」(0하지만 범위외의 경우, 상한이나 하한의0에 가까운 편의 값)
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>Vertical</dt><dd>
+수직 progress bar로 한다.
+</dd>
+<dt>Cn</dt><dd>
+바의 색을 지정.<br>
+n에는<a target=_top href='../misc/Color.html'>색의 이름</a>인가RRGGBB형식의16진수치를 지정한다.(례:「CRed」 「CFF0000」)
+</dd>
+<dt>BackgroundN</dt><dd>
+배경의 색을 지정.<br>
+N에는<a target=_top href='../misc/Color.html'>색의 이름</a>인가RRGGBB형식의16진수치를 지정한다
+</dd>
+<dt>RangeL-H</dt><dd>
+최소치와 최대치를 설정한다.디폴트는 「0-100」<br>
+L에 최소치를,H에 최대치를 지정.(례:「Range0-100」)<br>
+부의 값을 지정하는 일도 가능(례:「Range-100--50」)<br>
+반드시L보다H쪽이 크지 않으면 안 된다.<br>
+바의 좌단이L, 우단이H에 상당하게 된다.
+</dd>
+<dt>-Smooth</dt><dd>
+값을 연속치가 아니고, 네모진 블록의 연속으로 나타낸다.<br>
+1블록의 폭은11피크셀로, 그것보다 세세한 값은 절상할 수 있다.
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+<p>
+Windows(이)나IE의 버젼이 낡으면 일부의 옵션을 이용할 수 없다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Progress.html'>Gui,Add,Progress</a></div>
+</body>
+</html>

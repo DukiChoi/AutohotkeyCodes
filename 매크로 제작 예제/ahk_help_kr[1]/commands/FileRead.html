@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FileRead</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileRead.html'>FileRead</a></div>
+<h1>FileRead</h1>
+<p>텍스트 파일의 전내용을 변수에 읽어들인다</p>
+
+<pre>FileRead, OutputVar, Filename
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><td>OutputVar</td><td>
+읽어들인 내용을 격납하는 변수명.
+</td></tr>
+<tr><td>FileName</td><td>대상이 되는 파일명.<br>
+상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.<br>
+파일명의 전에 「*t 」(을)를 붙이면, 파일을 텍스트로서 읽어들인다.이 때,CR+LF의LF에의 자동변역을 한다.다만, 많은 경우CR+LF인 채에서도 문제는 없다.<br>
+파일명의 전에 「*m」에 이어 수치를 지정하면, 파일의 선두로부터 수치로 지정한 아르바이트수만큼이 읽힌다.(례:「*m1024 %filename%」)
+</td></tr>
+
+</table>
+
+<h2>ErrorLevel</h2>
+
+<p>정상 종료하면 「0」, 무엇인가 문제가 있으면 「1」</p>
+
+<h2>Remarks</h2>
+
+<p>파일이 존재하지 않는, 다른 어플리케이션이 읽어내 금지로 열려 있는, 메모리가 부족한, 파일 사이즈가1GB이상 있는 등의 경우, 읽어들여에 실패해ErrorLevel(은)는 「1」(이)가 된다.</p>
+<p>
+<a target=_top href='../commands/_MaxMem.html'>#MaxMem</a>그리고 설정한 사이즈보다 큰 파일도, 모두 메모리상에 읽힌다.
+</p>
+<p>
+null문자(0x00)(을)를 포함한 파일도, 모든 내용이 읽힌다.<br>
+변수의 내용 문자열로서 액세스 할 수 있는 것은 최초의null문자 이전의 부분만큼이지만,DllCall등을 사용하는 것으로 모든 내용에 액세스 할 수 있다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/LoopReadFile.html'>file-reading loop</a>, <a target=_top href='../commands/FileReadLine.html'>FileReadLine</a>, <a target=_top href='../commands/FileGetSize.html'>FileGetSize</a>, <a target=_top href='../commands/FileAppend.html'>FileAppend</a>, <a target=_top href='../commands/IniRead.html'>IniRead</a>, <a target=_top href='../commands/Sort.html'>Sort</a></p>
+
+<h2>Example(s)</h2>
+<pre>FileRead, OutputVar, C:\My Documents\My File.txt</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileRead.html'>FileRead</a></div>
+</body>
+</html>

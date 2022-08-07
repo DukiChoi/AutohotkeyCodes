@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Sort</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Sort.html'>Sort</a></div>
+<h1>Sort</h1>
+<p>변수의 내용을 특정의 차례로 줄서 바꾼다.문자열로서의 처리 외에, 수치로서의 처리도 가능.</p>
+
+<pre>Sort, VarName [, Options]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>VarName
+</td>
+<td>대상이 되는 데이터를 격납한 변수명.이 변수의 내용이 줄서 바꿀 수 있어 이 변수에 격납된다.
+</td>
+</tr>
+<tr>
+<td>Options
+</td>
+<td>후술 하는 옵션을 반각 스페이스 단락으로 열거.
+</td>
+</tr>
+</table>
+
+
+<h3>Options</h3>
+
+
+<dl>
+<dt>C</dt><dd>
+문자열로서 비교하는 경우에, 대문자 소문자를 구별한다
+</dd>
+<dt>CL</dt><dd>
+현재의 유저의 로케일 설정에 따라서 대문자 소문자의 차이를 무시한다.<br>
+일본어 환경의 경우, 전각의 알파벳등도 대상이 된다.
+</dd>
+<dt>Dx</dt><dd>
+x에 요소의 단락 문자를 지정한다.생략시는 개행 코드LF(`n).
+</dd>
+
+<dt>F FunctionName</dt><dd>
+지정한 함수를 사용하고 비교를 실시한다.<br>
+FunctionName에 비교를 실시하는 함수의 이름을 지정한다.<br>
+함수는,2개 혹은3개의 인수를 받아, 제1인수＞제2인수라면 정의 값을, 제1인수=제2인수라면0(을)를, 제1인수＜제2인수라면 부의 값을 돌려준다.<br>
+함수가 제3인수를 받는 경우, 제1인수의 문자열과 제2인수의 문자열의 출현 위치의 차이가 주어진다.<br>
+「D」 「Z」이외의 옵션은 무시된다.(다만, 「U」옵션에 의한 중복 판정에서는,N,C,CL옵션에 따른 비교를 한다)<br>
+함수가0(을)를 돌려준 항목끼리의 줄 순서는 부정이다.원래의 문자열내에서의 줄서 순서와 같을 차례로 하기 위해서는, 제1인수와 제2인수가 동일한 경우에 제3인수의 값의 부호를 반대로 해 돌려주도록 하면 된다.
+</dd>
+<dt>N</dt><dd>
+각 요소를 수치로서 비교한다.<br>
+16진수치나 소수치도 수치로서 다루어진다.<br>
+선두에 수치로서 취급할 수 있는 부분이 있으면, 그 문자열은 수치로서 다루어진다.<br>
+수치로 시작되지 않는 문자열은, 「0」로서 다루어진다.
+</dd>
+<dt>Pn</dt><dd>
+최초의 수몬지를 날리고,n번째의 문자 이후부터 비교에 사용한다.<br>
+생략시는,1문자눈으로부터 비교된다.<br>
+요소의 길이가 여기서 지정한 문자수보다 작은 경우, 그 요소는 하늘로 간주해진다.<br>
+N옵션과 함께 사용되었을 경우,n문자눈 이후의 수치로서 취급할 수 있는 부분에서 비교된다.
+</dd>
+<dt>R</dt><dd>
+내림차순으로 나란해져 바꾼다.(큰 순서)
+</dd>
+<dt>Random</dt><dd>줄 순서를 상훌 한다.<br>
+「D」 「Z」이외의 옵션은 무시된다.(다만, 「U」옵션에 의한 중복 판정에서는,N,C,CL옵션에 따른 비교를 한다)
+</dd>
+<dt>U</dt><dd>소트 결과로부터 중복을 없앤다.<br>
+<a target=_top href='../misc/ErrorLevel.html'>ErrorLevel</a>에 삭제된 항목수가 격납된다.<br><br>
+「N」옵션이 지정되었을 경우, 「2」와「2.0」(와)과 같이 수치적으로 같은 항목은 중복으로 간주해진다.<br>
+「Random」옵션이 지정되었을 경우, 상훌 후에 서로 이웃이 된 항목만이 제거된다.
+</dd>
+<dt>Z</dt><dd>
+문자열의 마지막에 단락지어 문자가 있었을 때, 그 후에 하늘 요소가 존재하는 것으로 간주한다.<br>
+예를 들어, 「aaa`nbbbb`nccccc`n」라고 하는 문자열을 줄서 바꿀 때, 통상은3개의 요소가 있다고 보이지만, 이 옵션을 지정하면4요소로 간주해진다.
+</dd>
+<dt>\</dt><dd>
+제일 마지막 「\」이후의 문자열로 비교된다.<br>
+파일의 풀 패스의 파일명 부분에서만 비교하고 싶을 때에 사용한다.<br>
+「\」(을)를 포함하지 않는 요소는, 요소 전체로 비교된다.<br>
+이 옵션을 사용했을 경우,N옵션과P옵션은 무시된다.
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+<p>
+VarName하지만 「Clipboard」(으)로, 클립보드의 내용이Explorer등에서 카피한 파일군이었던 경우,Sort실행 후의 클립보드의 내용은 파일명을 개행 단락으로 열거한 문자열이 되어 버린다.
+</p>
+
+<p>
+VarName(으)로 지정한 것이<a target=_top href='../Variables.html#env'>환경 변수</a>(이었)였던 경우, 새롭게 같은 이름의 스크립트측의 변수가 작성되어 거기에 결과가 격납된다.<br>
+그 후VarName에의 액세스는 스크립트측의 변수에의 액세스가 되어 버린다.<br>
+아래와 같은 예의 같게 하면, 결과를 환경 변수로 옮기고, 액세스처를 환경 변수에 되돌릴 수 있다.
+</p>
+<pre>
+VarSort, MyEnvVar
+EnvSet, MyEnvVar, %MyEnvVar%
+MyEnvVar = ;스크립트측의 변수를 비우면, 환경 변수 쪽이 우선되게 된다
+</pre>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/StringSplit.html'>StringSplit</a>, <a target=_top href='../commands/LoopParse.html'>parsing loop</a>, <a target=_top href='../misc/Clipboard.html'>clipboard</a> </p>
+
+<h2>Example(s)</h2>
+<pre>
+MyVar = 5,3,7,9,1,13,999,-4
+Sort MyVar, N D,  ; Sort numerically, use comma as delimiter.
+MsgBox %MyVar%   ; The result is -4,1,3,5,7,9,13,999
+
+; This example makes Win+C a hotkey to copy files from an open
+; Explorer window and put their sorted filenames onto the clipboard:
+#c::
+Clipboard = ; Must be blank for detection to work.
+Send ^c
+ClipWait 2
+if ErrorLevel &lt;&gt; 0
+	return
+Sort Clipboard
+MsgBox Ready to be pasted:`n%Clipboard%
+return</pre>
+<pre>
+<span class="CodeCom">; The following examples demonstrate custom sorting via a callback function.</span>
+MyVar = def`nabc`nmno`nFGH`nco-op`ncoop`ncop`ncon`n
+<strong>Sort</strong>, MyVar, F StringSort
+StringSort(a1, a2)
+{
+    return a1 &gt; a2 ? 1 : a1 &lt; a2 ? -1 : 0
+}
+
+MyVar = 5,3,7,9,1,13,999,-4
+<strong>Sort</strong>, MyVar, F IntegerSort D,
+IntegerSort(a1, a2)
+{
+    return a1 - a2  <span class="CodeCom">; This method works only if the result never overflows a signed 64-bit integer.</span>
+}
+
+MyVar = 1,2,3,4
+<strong>Sort</strong>, MyVar, F ReverseDirection D,  <span class="CodeCom">; Reverses the list so that it contains 4,3,2,1</span>
+ReverseDirection(a1, a2, offset)
+{
+    return offset  <span class="CodeCom">; Offset is positive if a2 came after a1 in the original list; negative otherwise.</span>
+}</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Sort.html'>Sort</a></div>
+</body>
+</html>

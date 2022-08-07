@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>리맙</title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./remap.html'>리맙</a></div>
+<h1>Remap</h1>
+<p>
+「키A::키B」라고 하는 행을 기술하면, 키A에 키B(을)를 할당할 수 있다.<br>
+예를 들면, 이하와 같이 하면, 「A」키를 눌렀을 때에 「b」(이)가 입력되게 된다.</p>
+<pre>
+a::b
+</pre>
+<p>
+이 때,Shift+A하Shift+B에,Ctrl+A하Ctrl+B에와 같이, 모든 상태로 키의 변환이 유효하게 된다.
+</p>
+<p>
+키A, 키B에는, 「^c」(와)과 같은 수식 키와의 편성이나, mouse button, 「vkXX」(이)나 「scYYY」(와)과 같은 키코드도 지정 가능.<br>
+다만,WheelUp/WheelDown(은)는 사용할 수 없다.<br>
+또, 「a & b」(와)과 같은 콤비네이션 키도 사용할 수 없다.<br>
+아래와 같은 예에서는,X2버튼을 누르면Ctrl+C하지만,Shift+X2버튼에서는Ctrl+Shift+C하지만 입력되게 된다.
+</p>
+<pre>
+XButton2::^c
+</pre>
+
+<p>이하의 예에서는,Shift(을)를 누르면서A(을)를 눌렀을 때는, 「B」(이)가 입력된다.
+</p>
+<pre>+a::b
+</pre>
+
+
+<p>
+키B에 「Return」라고 쓰면return커멘드라고 인식되므로,Enter키를 할당하고 싶은 경우는 「Enter」라고 쓰는 것.
+</p>
+<p>키B에 「%」(을)를 지정할 수 없다.「vk35」(으)로 대용할 수 있다.</p>
+
+
+<h2>Remarks</h2>
+<p>
+<a target=_top href='./commands/_IfWinActive.html'>#IfWin...</a>지령을 사용하는 것으로, 특정의 윈도우에서만 리맙을 유효화 당한다.
+</p>
+
+<p>키A(을)를 눌러 내리고 있는 마나카, 키B하지만 눌러 내려지고 있는 상태가 된다.<br>
+키A, 키B하지만 함께 키보드의 통상 키의 경우는, 키 반복에 의한 반복 입력이 발생한다.<br>
+키A하지만 mouse button의 경우, 키B하지만 통상 키여도 키 반복은 발생하지 않는다.
+</p>
+
+
+<p>
+리맙에 의해서 생성된 입력으로는, 훅을 사용하고 있는 hot key(「$^c」 등)(은)는 반응하지 않는다.
+</p>
+
+<p>
+키B의 이벤트의 생성에는,<a target=_top href='./Scripts.html#autoexecsection'>AutoExecute섹션</a>의 종료시점으로<a target=_top href='./commands/SendMode.html'>SendMode</a>그리고 설정되어 있던 방식이 사용된다.<br>
+다만,Play모드에서는 일부의 키가 정상적으로 동작하지 않기 때문에, 가능한 한Input모드인가Event모드(디폴트)(을)를 사용하는 것.
+</p>
+
+<p>「a::b」라고 하는 리맙을 기술했을 경우, 「*a::」와「*a up::」라고 하는 hot key의 조가 작성된다.<br>
+<a target=_top href='./commands/Suspend.html'>Suspend</a>커멘드를 실행했을 때는, 리맙도 통상의 hot key와 같게 무효가 된다.<br>
+또, 이하와 같이 하면 리맙을 개별적으로 무효화할 수도 있다.
+</p>
+<pre>
+Hotkey, *a, off
+Hotkey, *a up, off
+</pre>
+
+
+
+<p>이 리맙 기능은,Windows9x계에서는 사용할 수 없다.
+</p>
+
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./remap.html'>리맙</a></div>
+</body></html>

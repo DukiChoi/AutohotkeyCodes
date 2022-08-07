@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>My Scripts</title>
+<link rel="stylesheet" href="../css/default.css" type="text/css">
+
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../myscripts/index.html'>My Scripts</a></div>
+
+
+
+<h1>My Scripts</h1>
+<p>
+관리인이 작성한 스크립트를 공개하고 있습니다.<br>
+특히 거절이 없을 따름, 최신판의AutoHotkey+WindowsXP(으)로의 동작을 상정하고 있습니다.WindowsNT/2000그렇지만 동작할지도 모릅니다.<br>
+</p>
+<p>
+이러한 스크립트를 사용한 결과 어떠한 문제가 발생해도, 관리인은 일절의 책임을 지지 않습니다.<br>
+특히 기술이 없는 한, 라이센스는<a href='http://www.kmonos.net/nysl/' target="_blank">NYSL</a>입니다.
+</p>
+
+
+
+
+
+<h2>모듈류</h2>
+<dl>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/ActiveX.zip'>ActiveX</a></dt><dd>WSH등으로 사용된다ActiveXObject(을)를 취급할 수 있도록(듯이) 한다
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/BREGEXP.zip'>BREGEXP</a></dt><dd><A href='http://www.hi-ho.ne.jp/babaq/bregexp.html' target="_blank">BREGEXP.DLL</A>(을)를 이용해 정규 표현 검색·치환을 실시하는 함수군</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/migemo.zip'>migemo</a></dt><dd><a href='http://www.kaoriya.net/' target="_blank">migemo.dll</a>(와)과<A href='http://www.hi-ho.ne.jp/babaq/bregexp.html' target="_blank">BREGEXP.DLL</A>(을)를 이용해 로마자와 읽기의 매칭을 실시하는 함수군</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/ProcessMem.zip'>프로세스메모리 읽고 쓰기</a></dt><dd>
+PID그리고 지정한 프로세스의 지정 주소의 메모리 내용을 읽어내/쓰는 함수.<br>
+게임의 개조 코드의 실행등이 가능한 외 , 사용나름에 따라서는 통상에서는 불가능한 자동 처리를 실현될 수 있을지도 모른다.
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/StdIO.zip'>프로세스를 기동해 표준 출력을 읽고 쓰기</a></dt><dd>
+콘솔 프로그램을 비표시로 기동해, 표준 입력에 데이터를 쓰거나 표준 출력으로부터 읽어내거나 한다<br>
+대화적 프로그램에도 대응
+</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/GetStringFileInfo.zip'>프로그램 파일의 설명등을 취득</a></dt><dd>
+EXE파일등의 프롭퍼티에 표시되는 「설명」등의 정보를 취득하는 함수
+</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/TaskTrayIcon.zip'>task tray 아이콘 조작</a></dt><dd>
+task tray 아이콘에 관련 지을 수 있었던 윈도우나, 아이콘을 조작했을 때에 그 윈도우에 보내지는 메세지 번호등의 정보를 취득하는 함수와 아이콘의 차례 교체나 비표시를 실시하는 함수 등<br>
+이것에 의해, task tray 아이콘을 직접 조작하는 것이 가능하게 된다
+</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/SystemMonitor.zip'>시스템 모니터용 함수군</a></dt><dd>
+이하와 같은 님 들인 정보를 취득할 수 있다.<br>
+시스템 전체의CPU사용율<br>
+시스템 전체의 메모리총용량, 빈 용량<br>
+배터리 상태, 잔량<br>
+프로세스마다의CPU사용율<br>
+프로세스마다의 메모리 사용 상황<br>
+네트워크의 송수신 속도(B/s)<br>
+시스템 기동시부터의 네트워크총전송량(Bytes)<br>
+퍼포먼스 모니터로 취득할 수 있는 각종의 정보
+</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/CommonArc.zip'>통합 어카이버(archiver)DLL호출</a></dt><dd>
+통합 어카이버(archiver)DLL(을)를 이용해 archive파일의 해동, 압축, 격납 파일의 정보의 취득을 실시한다.
+</dd>
+
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/Clipboard.zip'>크리프보드 조작 함수군</a></dt><dd>
+텍스트 이외의 크리프보드 형식을 조작한다.<br />
+파일명의 리스트를 익스플로러에 붙여 가능한 형식에서 격납하는 예도 준비.
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/DragDrop.zip'>파일 드롭 함수</a></dt><dd>
+지정 윈도우에 개행 단락으로 지정된 파일을 드롭 한다
+</dd>
+
+</dl>
+
+
+
+
+
+
+
+
+
+<h2>툴</h2>
+<dl>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/FileLaunch.zip'>코만드라인란챠</a></dt>
+<dd>
+타이프 친 키워드로 인크리멘탈에 후보를 좁혀 아이템을 실행하는 란체.<br>
+임의의 폴더안의 파일을 열거하는 폴더 전개 기능이나, 지정 폴더안의 조건에 일치하는 파일을 일괄해 검색 후보에 추가하는 스캔 기능등이 있다.
+</dd>
+<dt><a target=_top href='../myscripts/mousegesture/index.html'>MouseGesture.ahk</a></dt><dd>마우스 제스 차를 실현한다.<br>
+좌·우·중앙· 제4· 제5버튼의 눌러 내려 밀어 올려 휠 상·하 회전, 마우스 커서의 이동을 조합한 모든 제스 차에 할당이 가능.<br>
+이동 인식은4방향 모드와8방향 모드로부터 선택.장거리 스트로크의 인식, 버튼 단독이나 더블~n회크리크등에의 할당도 가능.<br>
+어플리케이션 조건은, 윈도우 클래스, 컨트롤 클래스, 윈도우 타이틀, 프로세스의 실행 파일명의 외, 임의의AutoHotkey의 식을 사용 가능.<br>
+동작은AutoHotkey의 스크립트로 정의.<br>
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/ThumbRemap.zip'>ThumbRemap</a></dt><dd>
+터치 패드에 접하고 있을 때만 지정의 hot key/리맙을 유효화 시킨다.<br>
+키보드를 mouse button 대신에 하는 것으로, 홈 포지션인 채로 포인터 조작이 가능해진다.<br>
+Synaptics인가ALPS제의 드라이버로 동작하는 터치 패드가 필요.
+</dd>
+
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/TaskMenu.zip'>리스트형 태스크 변환</a></dt><dd>
+열려 있는 윈도우의 일람을ListView그리고 표시해, 크리크로 바꾼다.<br>
+상주판에서는, 마우스의 제4버튼을 눌렀을 때에 표시되어 제4버튼을 놓았을 때에 포인트 하고 있던 항목으로 결정한다고 하는 독특한 인터페이스를 채용하고 있다.<br>
+윈도우 아이콘의 핸들의 취득,ListView에 아이콘 핸들로 지정한 아이콘을 표시하는,ListView에 임의의 사이즈의 아이콘을 표시하는 등의 테크닉을 사용하고 있다.
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/MinimizeToTray.zip'>task tray에 최소화</a></dt><dd>
+타이틀 바를 호이르크리크 한 윈도우를 비표시로 해, 대신에 task tray에 아이콘을 표시한다.<br>
+아이콘을 크리크 하면 윈도우를 복원한다.<br>
+DllCall그리고Shell_NotifyIcon(을)를 부르는 곳으로, 복수의 task tray 아이콘의 사용을 실현하고 있다.
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/SmallWin.zip'>윈도우 축소</a></dt><dd>
+임의의 윈도우의 타이틀 바를 호이르크리크 하면, 그 윈도우를 축소했다GUI윈도우에 옮겨놓는다.<br>
+윈도우는D&D그리고 이동할 수 있어 더블 클릭으로 복원된다.<br>
+윈도우의 표시 내용의 변화는 축소 윈도우에도 반영된다.<br>
+DllCall그리고GetWindowDC(와)과StretchBlt등을 사용하고 있다
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/Kakudai.zip'>확대경</a></dt><dd>
+마우스 커서의 주변을 확대 표시한다.<br>
+마우스크리크는 확대 화면을 투과 하므로, 보통으로 마우스 조작이 가능.<br>
+DllCall그리고GetWindowDC(와)과StretchBlt등을 사용하고 있다
+</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/Mosaic.zip'>데스크탑 모자이크</a></dt><dd>
+데스크탑의 임의의 구형 영역(복수 지정 가능)에 모자이크를 건다<br>
+StretchBlt그리고 일단 축소한 후, 재차 확대하는 것으로 모자이크적인 화상으로 하고 있다.
+</dd>
+
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/WheelRedirect.zip'>휠 리디렉트</a></dt><dd>
+마우스 휠의 회전을 액티브 윈도우는 아니고 커서하의 컨트롤에 보낸다.<br>
+MouseGetPos그럼 올바른 컨트롤을 취득할 수 없는 것이 있지만,WM_NCHITTEST그리고 컨트롤이 올바른가를 확인하고 있기 때문에, 확실히 마우스 커서하의 컨트롤을 조작할 수 있다.
+</dd>
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/TrayIconList.zip'>트레이 아이콘 일람으로부터의 조작</a></dt><dd>
+task tray 아이콘을 리스트 표시해, 키보드로부터 크리크, 더블 클릭, 호이르크리크의 조작을 실시할 수 있다.
+</dd>
+
+
+
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/inspect_toolbar_ids.zip' name="tbid">Inspecting Toolbar IDs</a></dt><dd>WM_COMMAND(PostMessage,0x111,...)그리고 송신하는 커멘드ID(을)를 조사하려면<a target=_top href='../misc/SendMessage.html#cmdid'>Resource Hacker(을)를 사용한 방법</a>하지만 간단합니다만, 이것으로는 툴바의 커멘드ID(은)는 조사할 수 없다.<br>
+툴바 관련의 윈도우 메세지를 사용하는 것으로, 버튼에 대응하는 커멘드ID(을)를 조사할 수 있다.<br>
+마우스 커서아래의 컨트롤을 툴바로 간주해 조사한다.
+</dd>
+<dt><a target=_top href='http://lukewarm.s101.xrea.com/myscripts/sendconv.zip'>Send커멘드용 일본어 코드 변환</a></dt><dd>Send커멘드나 핫 스트링의 자동 입력에는, 일본어의 문자열을 직접 지정해 입력시키는 것은 할 수 없다.<br>
+그러나,<a target=_top href='../commands/Send.html#asc'>{ASC nnnnnn}</a>그리고 지정한다고 일본어 문자열도 입력 당한다.<br>
+이 스크립트를 실행하면, 크리프보드내의 텍스트를Send의 인수의 형식으로 변환한다.<br>
+별로 확실성은 없기 때문에, 보통으로 크리프보드를 경유해 붙이는 것이 좋다.</dd>
+
+
+
+
+</dl>
+
+
+
+<h2>샘플 코드류</h2>
+
+
+
+
+
+
+
+
+
+
+<h3><a name="2strokekey">2 stroke key</a></h3>
+<p>
+Emacs(와)과 같은2스트로크 키를 실현하는 예.<br>
+아래와 같은 예에서는<kbd>C-c x</kbd>(와)과<kbd>C-c s</kbd>(을)를 재현하고 있다.
+</p>
+<pre>
+^c::                                     ;first key
+    Input,InputChar,C I L1 T2,{Esc},x,s  ;second keys
+    if ErrorLevel=Match
+    {
+        if InputChar=x                   ;actions
+            Send,!{F4}
+        else
+        if InputChar=s
+            Send,^s
+    }
+    return
+</pre>
+
+<h3><a name="ctrldouble">Ctrl key double tap</a></h3>
+<p>
+Ctrl키를 마우스의 더블 클릭과 같이 재빠르게2회 누른다고 기술된 액션이 실행된다.
+</p>
+<pre>
+~Ctrl::
+if A_TickCount < %ctrldouble%
+{
+                                 ;some action
+    ctrldouble=0
+}
+else
+{
+    ctrldouble=%A_TickCount%
+    ctrldouble+=400
+}
+return
+</pre>
+
+
+<h3><a name="listviewthumbnail">ListView에 임의의 크기의 화상 엄지손가락을 표시</a></h3>
+<p>DllCall그리고 자기 부담의ImageList(을)를 생성하는 것으로써, 임의의 크기의 아이콘을 표시할 수 있다 
+</p>
+<pre>Gui,Add,ListView, w640 h480 r%w% vLv Icon,name
+himl:=DllCall("ImageList_Create",Int,256,Int,256,UInt,0x21,Int,w,Int,w,UInt)
+LV_SetImageList(himl,0)
+n:=IL_Add(himl,"F:\pictures\cats\c22.jpg",0,1)
+LV_Add("Icon" . n ,"aaaaaaaa")
+Gui,Show
+
+
+</pre>
+
+<h3><a name="AutoGUI">번호가 비어 있다GUI윈도우를 생성</a></h3>
+<p>다른 스크립트와 머지 할 경우에GUI윈도우의 번호가 충돌하지 않게, 비어 있다GUI윈도우의 번호를 검색해 생성하는 예 
+</p>
+<pre>newGui(){
+    Process,Exist
+    mypid:=ErrorLevel
+    DetectHiddenWindows,On
+    WinGet,h,list,ahk_pid %mypid% ahk_class AutoHotkeyGUI
+    DetectHiddenWindows,Off
+    Loop,99{
+        found=0
+        Gui,%A_Index%:+LastFound
+        WinGet,hwnd,id
+        Loop,%h%{
+            if(h%A_Index%=hwnd){
+                found=1
+                break
+            }
+        }
+        if(found=0){
+            return A_Index
+        }
+    }
+    return 0
+}
+
+/*
+Gui,Add,text,,MyGUI
+Gui,Show
+
+w1:=newGui()
+Gui,%w1%:Default
+Gui,add,text,,DynamicGUI 1
+Gui,Show
+
+w2:=newGui()
+Gui,%w2%:Default
+Gui,add,text,,DynamicGUI 2
+Gui,Show
+*/
+</pre>
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../myscripts/index.html'>My Scripts</a></div>
+</body>
+</html>

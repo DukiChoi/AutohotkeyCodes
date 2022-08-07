@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>ErrorLevel</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/ErrorLevel.html'>ErrorLevel</a></div>
+<h1>ErrorLevel</h1>
+<p>
+편입 변수ErrorLevel(은)는, 일부의 커멘드로 커멘드의 성공/실패등의 결과를 격납한다.<br>
+많은 경우,0(이)라면 성공, 그 이외라면 실패.<br>
+일부 커멘드에서는0(와)과1이외로도 되므로,1(이)라면 실패로 간주한다고 하는 기술은 좋지 않다.<br>
+ErrorLevel변수는 대입등에 의해 스크립트상으로부터 변경하는 일도 가능.
+</p>
+<p>
+<a target=_top href='../commands/Run.html'>RunWait</a>커멘드는 실행한 프로그램의 종료 코드를ErrorLevel에 대입한다.<br>
+많은 프로그램은, 정상적으로 종료했을 경우 종료 코드는0(이)가 된다.
+</p>
+<p>
+ErrorLevel하<a target=_top href='../misc/Threads.html'>스렛드</a>마다 보관 유지되므로, 도중에 세치기가 발생하고 값이 바뀌어 버리는 것은 없다.
+</p>
+
+<h2>Example</h2>
+<pre>WinWait, MyWindow, , 1
+if ErrorLevel &lt;&gt; 0
+	MsgBox, The window does not exist.
+else
+	MsgBox, The window exists.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/ErrorLevel.html'>ErrorLevel</a></div>
+</body>
+</html>

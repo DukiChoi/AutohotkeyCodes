@@ -1,0 +1,695 @@
+#SingleInstance Force
+#NoEnv
+SendMode Input
+Target1 = Legend of Darkness
+Target2 = Multi
+
+	CheckWebsite()
+
+IniRead, OP01, Save.ini, 보호설정, 01
+IniRead, OP02, Save.ini, 보호설정, 02
+IniRead, OP03, Save.ini, 보호설정, 03
+IniRead, OP04, Save.ini, 보호설정, 04
+IniRead, OP05, Save.ini, 보호설정, 05
+IniRead, OP06, Save.ini, 보호설정, 06
+IniRead, CH01, Save.ini, 힐설정, 01
+IniRead, CH02, Save.ini, 힐설정, 02
+IniRead, TeleportMove, Save.ini, 이동설정, 01
+IniRead, Hotkey01, Save.ini, 이동설정, 02
+IniRead, SP, Save.ini, 이동설정, 03
+IniRead, ST, Save.ini, 이동설정, 04
+IniRead, SM01, Save.ini, 공격설정, 01
+IniRead, Hotkey02, Save.ini, 공격설정, 02
+IniRead, SM02, Save.ini, 공격설정, 03
+IniRead, SM03, Save.ini, 공격설정, 04
+IniRead, SM04, Save.ini, 공격설정, 05
+IniRead, SM05, Save.ini, 공격설정, 06
+IniRead, SS, Save.ini, 공격설정, 07
+IniRead, DM01, Save.ini, 보호마법설정, 01
+IniRead, DM02, Save.ini, 보호마법설정, 02
+IniRead, DM03, Save.ini, 보호마법설정, 03
+IniRead, DM04, Save.ini, 보호마법설정, 04
+IniRead, DM05, Save.ini, 보호마법설정, 05
+IniRead, DM06, Save.ini, 보호마법설정, 06
+IniRead, DM07, Save.ini, 보호마법설정, 07
+IniRead, DM08, Save.ini, 보호마법설정, 08
+IniRead, DM09, Save.ini, 보호마법설정, 09
+IniRead, DM10, Save.ini, 보호마법설정, 10
+IniRead, DM11, Save.ini, 보호마법설정, 11
+IniRead, DM12, Save.ini, 보호마법설정, 12
+IniRead, DM13, Save.ini, 보호마법설정, 13
+IniRead, DM14, Save.ini, 보호마법설정, 14
+IniRead, DM15, Save.ini, 보호마법설정, 15
+IniRead, DM16, Save.ini, 보호마법설정, 16
+IniRead, DM17, Save.ini, 보호마법설정, 17
+IniRead, DM18, Save.ini, 보호마법설정, 18
+IniRead, DM19, Save.ini, 보호마법설정, 19
+IniRead, DM20, Save.ini, 보호마법설정, 20
+IniRead, NP01, Save.ini, 무인설정, 01
+IniRead, NP02, Save.ini, 무인설정, 02
+IniRead, NP03, Save.ini, 무인설정, 03
+IniRead, NP04, Save.ini, 무인설정, 04
+IniRead, NP05, Save.ini, 무인설정, 05
+IniRead, NP06, Save.ini, 무인설정, 06
+IniRead, NP07, Save.ini, 무인설정, 07
+IniRead, PosX1, Save.ini, 좌표설정, X01
+IniRead, PosX2, Save.ini, 좌표설정, X02
+IniRead, PosX3, Save.ini, 좌표설정, X03
+IniRead, PosX4, Save.ini, 좌표설정, X04
+IniRead, PosX5, Save.ini, 좌표설정, X05
+IniRead, PosX6, Save.ini, 좌표설정, X06
+IniRead, PosX7, Save.ini, 좌표설정, X07
+IniRead, PosX8, Save.ini, 좌표설정, X08
+IniRead, PosX9, Save.ini, 좌표설정, X09
+IniRead, PosX10, Save.ini, 좌표설정, X10
+IniRead, PosX11, Save.ini, 좌표설정, X11
+IniRead, PosX12, Save.ini, 좌표설정, X12
+IniRead, PosX13, Save.ini, 좌표설정, X13
+IniRead, PosX14, Save.ini, 좌표설정, X14
+IniRead, PosX15, Save.ini, 좌표설정, X15
+IniRead, PosX16, Save.ini, 좌표설정, X16
+IniRead, PosX17, Save.ini, 좌표설정, X17
+IniRead, PosX18, Save.ini, 좌표설정, X18
+IniRead, PosX19, Save.ini, 좌표설정, X19
+IniRead, PosX20, Save.ini, 좌표설정, X20
+IniRead, PosX21, Save.ini, 좌표설정, X21
+IniRead, PosX22, Save.ini, 좌표설정, X22
+IniRead, PosX23, Save.ini, 좌표설정, X23
+IniRead, PosX24, Save.ini, 좌표설정, X24
+IniRead, PosX25, Save.ini, 좌표설정, X25
+IniRead, PosX26, Save.ini, 좌표설정, X26
+IniRead, PosY1, Save.ini, 좌표설정, Y01
+IniRead, PosY2, Save.ini, 좌표설정, Y02
+IniRead, PosY3, Save.ini, 좌표설정, Y03
+IniRead, PosY4, Save.ini, 좌표설정, Y04
+IniRead, PosY5, Save.ini, 좌표설정, Y05
+IniRead, PosY6, Save.ini, 좌표설정, Y06
+IniRead, PosY7, Save.ini, 좌표설정, Y07
+IniRead, PosY8, Save.ini, 좌표설정, Y08
+IniRead, PosY9, Save.ini, 좌표설정, Y09
+IniRead, PosY10, Save.ini, 좌표설정, Y10
+IniRead, PosY11, Save.ini, 좌표설정, Y11
+IniRead, PosY12, Save.ini, 좌표설정, Y12
+IniRead, PosY13, Save.ini, 좌표설정, Y13
+IniRead, PosY14, Save.ini, 좌표설정, Y14
+IniRead, PosY15, Save.ini, 좌표설정, Y15
+IniRead, PosY16, Save.ini, 좌표설정, Y16
+IniRead, PosY17, Save.ini, 좌표설정, Y17
+IniRead, PosY18, Save.ini, 좌표설정, Y18
+IniRead, PosY19, Save.ini, 좌표설정, Y19
+IniRead, PosY20, Save.ini, 좌표설정, Y20
+IniRead, PosY21, Save.ini, 좌표설정, Y21
+IniRead, PosY22, Save.ini, 좌표설정, Y22
+IniRead, PosY23, Save.ini, 좌표설정, Y23
+IniRead, PosY24, Save.ini, 좌표설정, Y24
+IniRead, PosY25, Save.ini, 좌표설정, Y25
+IniRead, PosY26, Save.ini, 좌표설정, Y26
+IniRead, UserRepeat, Save.ini, 반복설정, Repeat
+Setting01 = 0
+Setting02 = 0
+Menu, Tray, NoStandard
+Menu, Tray, DeleteAll
+Menu, Tray, Tip, 긍설 야심작
+Menu, Option, Add, Single, Single
+Menu, Option, Add, Multi, Multi
+Menu, Option, Add, Double, Double
+Menu, Option, Add, Macro, Macro
+Menu, Menu1, Add, Licence, Licence
+Menu, Menu1, Add, Version, Version
+Menu, Menu1, Add, Option, :Option
+Menu, Menu, Add, [Menu], :Menu1
+Menu, Menu, Add, [Notice], Notice
+Gui, Menu, Menu
+Gui, 1:Color, FFCCCC
+Gui, 1:Add, GroupBox, x10 y10 w90 h200, 보호
+Gui, 1:Add, CheckBox, xp+10 yp+20 Checked%OP01% cRed vOP01, 자동보호
+Gui, 1:Add, CheckBox, xp yp+20 Checked%OP02% vOP02, 자동클릭
+Gui, 1:Add, CheckBox, xp yp+20 Checked%OP03% vOP03, 사냥모드
+Gui, 1:Add, CheckBox, xp yp+20 Checked%OP04% vOP04, 순직모드
+Gui, 1:Add, CheckBox, xp yp+20 Checked%OP05% vOP05, 그룹힐
+Gui, 1:Add, CheckBox, xp yp+20 Checked%OP06% vOP06, 그룹디펠
+Gui, 1:Add, Button, xp yp+20 w70 h20 gDetail, 세부설정
+Gui, 1:Add, Button, xp+5 yp+30 w60 h20 gApply, 적용
+Gui, 1:Add, GroupBox, x110 y10 w100 h65, 힐
+Gui, 1:Add, Radio, xp+10 yp+20 Group Checked%CH01% vCH01, 홀리쿠라노
+Gui, 1:Add, Radio, xp yp+20 Checked%CH02% vCH02, 엑스쿠라노
+Gui, 1:Add, GroupBox, x110 y85 w100 h125, 이동
+Gui, 1:Add, CheckBox, xp+10 yp+20 Checked%TeleportMove% cRed vTeleportMove, 깃털사용
+Gui, 1:Add, Text, xp yp+25, 실행
+Gui, 1:Add, Text, xp yp+30, 번호
+Gui, 1:Add, Text, xp yp+25, 화면
+Gui, 1:Add, Hotkey, xp+30 yp-58 w30 h20 vHotkey01, %Hotkey01%
+Gui, 1:Add, DDL, xp yp+28 w40 h100 vSP, %SP%||1|2|3|4|5|6|7|8|9|0|-|=
+Gui, 1:Add, DDL, xp yp+25 w50 h60 vST, %ST%||통합|마법
+Gui, 1:Add, GroupBox, x220 y10 w100 h200, 공격
+Gui, 1:Add, CheckBox, xp+10 yp+20 Checked%SM01% cRed vSM01, 연주공격
+Gui, 1:Add, Text, xp yp+25, 실행
+Gui, 1:Add, Text, xp yp+30, 나르
+Gui, 1:Add, Text, xp yp+25, 저주
+Gui, 1:Add, Text, xp yp+25, 리베
+Gui, 1:Add, Text, xp yp+25, 연공
+Gui, 1:Add, Text, xp yp+25, 셋팅
+Gui, 1:Add, Hotkey, xp+30 y52 w30 h20 vHotkey02, %Hotkey02%
+Gui, 1:Add, DDL, xp yp+28 w40 h100 vSM02, %SM02%||1|2|3|4|5|6|7|8|9|0|-|=
+Gui, 1:Add, DDL, xp yp+25 wp h100 vSM03, %SM03%||1|2|3|4|5|6|7|8|9|0|-|=
+Gui, 1:Add, DDL, xp yp+25 wp h100 vSM04, %SM04%||1|2|3|4|5|6|7|8|9|0|-|=
+Gui, 1:Add, DDL, xp yp+25 wp h100 vSM05, %SM05%||1|2|3|4|5|6|7|8|9|0|-|=
+Gui, 1:Add, DDL, xp yp+25 w50 h60 vSS, %SS%||리베|저주
+Gui, 1:Add, GroupBox, x330 y10 w90 h200, 무인
+Gui, 1:Add, CheckBox, xp+10 yp+20 Checked%NP01% cRed vNP01, 무인사냥
+Gui, 1:Add, Text, xp+15 yp+20, ㄴ
+Gui, 1:Add, Button, xp+10 yp w40 h20 gDestination, 좌표
+Gui, 1:Add, Radio, xp-25 yp+30 Group Checked%NP02% vNP02, 바드
+Gui, 1:Add, Radio, xp yp+20 Checked%NP03% vNP03, 소환사
+Gui, 1:Add, CheckBox, xp yp+20 Checked%NP04% vNP04, 접속해지
+Gui, 1:Add, CheckBox, xp yp+20 Checked%NP05% vNP05, 갈색가호
+Gui, 1:Add, CheckBox, xp yp+20 Checked%NP06% vNP06, 파란가호
+Gui, 1:Add, Button, xp yp+20 w70 h20 gSubSetting, 부가설정
+Gui, 2:Color, FFCCCC
+Gui, 2:Add, GroupBox, x10 y5 w185 h265, 마법
+Gui, 2:Add, CheckBox, xp+10 yp+20 Checked%DM01% vDM01, 코마 알림
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM02% vDM02, 바투 실드
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM03% vDM03, 리베 이동
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM04% vDM04, 따라 가기
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM05% vDM05, 무한 움
+Gui, 2:Add, CheckBox, xp yp+30 Checked%DM06% vDM06, 디소루마
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM07% vDM07, 디나르콜리
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM08% vDM08, 일루메나
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM09% vDM09, 디베노모
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM10% vDM10, 리베라토
+Gui, 2:Add, CheckBox, x110 y25 Checked%DM11% vDM11, 홀리큐어
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM12% vDM12, 디프라바
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM13% vDM13, 디데프레카
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM14% vDM14, 디바르도
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM15% vDM15, 디렌토
+Gui, 2:Add, CheckBox, xp yp+30 Checked%DM16% vDM16, 이모탈
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM17% vDM17, 리플렉토
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM18% vDM18, 매직프로
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM19% vDM19, 호르라마
+Gui, 2:Add, CheckBox, xp yp+20 Checked%DM20% vDM20, 콜라마
+Gui, 2:Add, Button, x20 yp+25 w165 h20 gDetailSave, 저장
+Gui, 3:Color, FFCCCC
+Gui, 3:Add, GroupBox, x10 y10 w420 h260, 이동좌표
+Gui, 3:Add, Text, x50 y35, X
+Gui, 3:Add, Text, xp-30 yp+25, 01
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX1, %PosX1%
+Gui, 3:Add, Text, xp-20 yp+35, 02
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX2, %PosX2%
+Gui, 3:Add, Text, xp-20 yp+35, 03
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX3, %PosX3%
+Gui, 3:Add, Text, xp-20 yp+35, 04
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX4, %PosX4%
+Gui, 3:Add, Text, xp-20 yp+35, 05
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX5, %PosX5%
+Gui, 3:Add, Text, xp-20 yp+35, 06
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX6, %PosX6%
+Gui, 3:Add, Text, xp-20 yp+35, 07
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX7, %PosX7%
+Gui, 3:Add, Text, x90 y35, Y
+Gui, 3:Add, Edit, xp-10 yp+20 w30 h20 vPosY1, %PosY1%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY2, %PosY2%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY3, %PosY3%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY4, %PosY4%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY5, %PosY5%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY6, %PosY6%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY7, %PosY7%
+Gui, 3:Add, Text, x150 y35, X
+Gui, 3:Add, Text, xp-30 yp+25, 08
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX8, %PosX8%
+Gui, 3:Add, Text, xp-20 yp+35, 09
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX9, %PosX9%
+Gui, 3:Add, Text, xp-20 yp+35, 10
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX10, %PosX10%
+Gui, 3:Add, Text, xp-20 yp+35, 11
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX11, %PosX11%
+Gui, 3:Add, Text, xp-20 yp+35, 12
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX12, %PosX12%
+Gui, 3:Add, Text, xp-20 yp+35, 13
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX13, %PosX13%
+Gui, 3:Add, Text, xp-20 yp+35, 14
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX14, %PosX14%
+Gui, 3:Add, Text, x190 y35, Y
+Gui, 3:Add, Edit, xp-10 yp+20 w30 h20 vPosY8, %PosY8%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY9, %PosY9%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY10, %PosY10%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY11, %PosY11%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY12, %PosY12%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY13, %PosY13%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY14, %PosY14%
+Gui, 3:Add, Text, x250 y35, X
+Gui, 3:Add, Text, xp-30 yp+25, 15
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX15, %PosX15%
+Gui, 3:Add, Text, xp-20 yp+35, 16
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX16, %PosX16%
+Gui, 3:Add, Text, xp-20 yp+35, 17
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX17, %PosX17%
+Gui, 3:Add, Text, xp-20 yp+35, 18
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX18, %PosX18%
+Gui, 3:Add, Text, xp-20 yp+35, 19
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX19, %PosX19%
+Gui, 3:Add, Text, xp-20 yp+35, 20
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX20, %PosX20%
+Gui, 3:Add, Text, xp-20 yp+35, 21
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX21, %PosX21%
+Gui, 3:Add, Text, x290 y35, Y
+Gui, 3:Add, Edit, xp-10 yp+20 w30 h20 vPosY15, %PosY15%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY16, %PosY16%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY17, %PosY17%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY18, %PosY18%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY19, %PosY19%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY20, %PosY20%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY21, %PosY21%
+Gui, 3:Add, Text, x350 y35, X
+Gui, 3:Add, Text, xp-30 yp+25, 22
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX22, %PosX22%
+Gui, 3:Add, Text, xp-20 yp+35, 23
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX23, %PosX23%
+Gui, 3:Add, Text, xp-20 yp+35, 24
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX24, %PosX24%
+Gui, 3:Add, Text, xp-20 yp+35, 25
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX25, %PosX25%
+Gui, 3:Add, Text, xp-20 yp+35, 26
+Gui, 3:Add, Edit, xp+20 yp-5 w30 h20 vPosX26, %PosX26%
+Gui, 3:Add, Text, xp-20 yp+35, 좌표 개수
+Gui, 3:Add, Edit, xp+60 yp-5 w30 h20 vUserRepeat, %UserRepeat%
+Gui, 3:Add, Text, x390 y35, Y
+Gui, 3:Add, Edit, xp-10 yp+20 w30 h20 vPosY22, %PosY22%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY23, %PosY23%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY24, %PosY24%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY25, %PosY25%
+Gui, 3:Add, Edit, xp yp+30 wp hp vPosY26, %PosY26%
+Gui, 3:Add, Button, xp-40 yp+60 w70 h20 gDestinationSave, 저장
+Gui, 4:Color, FFCCCC
+Gui, 4:Add, GroupBox, x10 y10 w170 h65, 종료설정
+Gui, 4:Add, CheckBox, xp+10 yp+20 Checked%NP07% cRed vNP07, 사용
+Gui, 4:Add, Edit, xp+50 yp-5 w100 h20 vTime, 20150102153000
+Gui, 4:Add, Text, xp-30 yp+30, 예) 2015.01.02.15.30.00
+Gui, 4:Add, GroupBox, x10 y90 w170 h100, 네트워크
+Gui, 4:Add, Text, xp+10 yp+20, Address :
+Gui, 4:Add, Edit, xp+60 yp-5 w90 h20 vNetworkAddress, 0.0.0.0
+Gui, 4:Add, Text, xp-35 yp+35, Port :
+Gui, 4:Add, Edit, xp+35 yp-5 w50 h20 vNetworkPort, 8257
+Gui, 4:Add, Button, xp-60 yp+30 w150 h20 gConnect, Connect
+Gui, 4:Add, Button, x10 y200 w170 h20 gSubSettingSave, 저장
+Gui, 5:Color, FFCCCC
+Gui, 5:Add, GroupBox, x10 y10 w160 h120, 선택
+Gui, 5:Add, Radio, xp+10 yp+20 vMacro01, Skill
+Gui, 5:Add, Radio, xp yp+20 vMacro02, Magic
+Gui, 5:Add, Edit, xp+60 yp-2 vMMagic, MagicName
+Gui, 5:Add, Edit, xp-45 yp+27 w125 h20 vMDelay, Delay
+Gui, 5:Add, Button, xp-15 yp+27 w140 h20 gMacroSave, 저장
+Gui, 1:Show, x650 y350 w430 h225, 긍설의 가호
+Return
+
+GuiClose:
+ExitApp
+
+TrayDisconnect:
+NormalClose()
+Return
+
+TrayExit:
+DllCall("Ws2_32\WSACleanup")
+ExitApp
+
+Detail:
+{
+	Gui, 1:Default
+	Gui, 1:Submit, Nohide
+	Gui, 2:Show, x650 y350 w205 h280, 세부설정
+	Gui, 2:Default
+}
+Return
+
+Destination:
+{
+	Gui, 1:Default
+	Gui, 1:Submit, Nohide
+	Gui, 3:Show, x650 y350 w440 h285, 좌표설정
+	Gui, 3:Default
+}
+Return
+
+SubSetting:
+{
+	Gui, 1:Default
+	Gui, 1:Submit, Nohide
+	Gui, 4:Show, x650 y350 w190 h230, 부가설정
+	Gui, 4:Default
+}
+Return
+
+Macro:
+{
+	Gui, 1:Default
+	Gui, 1:Submit, Nohide
+	Gui, 5:Show, x650 y350 w180 h140, 부가설정
+	Gui, 5:Default
+}
+Return
+
+DetailSave:
+{
+	Gui, 2:Default
+	Gui, 2:Submit, Nohide
+	Gui, 2:Hide
+	Gui, 1:Default
+}
+Return
+
+DestinationSave:
+{
+	Gui, 3:Default
+	Gui, 3:Submit, Nohide
+	Gui, 3:Hide
+	Gui, 1:Default
+}
+Return
+
+SubSettingSave:
+{
+	Gui, 4:Default
+	Gui, 4:Submit, Nohide
+	Gui, 4:Hide
+	Gui, 1:Default
+}
+Return
+
+MacroSave:
+{
+	Gui, 5:Default
+	Gui, 5:Submit, Nohide
+	Gui, 5:Hide
+	Gui, 1:Default
+}
+Return
+
+Connect:
+{
+	PrepareNetwork()
+	NetworkStart()
+}
+Return
+
+Licence:
+MsgBox, , Licence, [ UserName ]           긍설`n`n[ ProgramType ]       Type.1`n`n[ RegisterNumber ]   01
+Return
+
+Version:
+MsgBox, , Version, [ Current Version ]   1.0.8`n`n[ Latest Version ]     %LatestVersion%
+Gui, 5:Default
+Gui, 5:Destroy
+Gui, 5:+AlwaysOnTop
+Gui, 5:Add, ListView, x10 y10 w415 h220 -Hdr Grid Checked, 　|　|
+LV_Add("", "", "[ Update Content ]")
+LV_Add("", "", "[ 2015.02.10 Version 1.0.0 ]")
+LV_Add("", "", " * 그룹원 자동디스펠 속도향상")
+LV_Add("", "", " * 몬스터 디스펠하던 오류수정")
+LV_Add("", "", " * 지도가 유지안되던 오류수정")
+LV_Add("", "", " * 연주공격 몬스터인식기능 추가")
+LV_Add("", "", " * 자동가호옵션 추가")
+LV_Add("", "", " * 무장해제기능 추가(Shift+X)")
+LV_Add("", "", " * Licence, Version, Notice Menu 추가")
+LV_Add("", "", " * 최신버전 확인가능")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2015.03.11 Version 1.0.1 ]")
+LV_Add("", "", " * 전체힐기능 삭제")
+LV_Add("", "", " * 이모탈 딜레이조정")
+LV_Add("", "", " * IP연동 격수-비격수 무인사냥 Client 도입")
+LV_Add("", "", " * 채팅디스펠 개선")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2015.06.15 Version 1.0.2 ]")
+LV_Add("", "", " * 마력관리 삭제")
+LV_Add("", "", " * 일루메나 인식방법 변경")
+LV_Add("", "", " * Multi 격수-비격수 보호 도입")
+LV_Add("", "", " * 좌표 이동방법 변경")
+LV_Add("", "", " * 기타 오류수정")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2015.12.25 Version 1.0.3 ]")
+LV_Add("", "", " * 무인사냥 저장된 좌표 표시")
+LV_Add("", "", " * 무인사냥 소환사 저주방법 변경")
+LV_Add("", "", " * 무인사냥 방향전환방법 변경")
+LV_Add("", "", " * 일루메나 인식방법 변경")
+LV_Add("", "", " * 모든 업데이트내역 표시")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2016.02.18 Version 1.0.4 ]")
+LV_Add("", "", " * 무인사냥 좌표인식코드 간소화")
+LV_Add("", "", " * 무인사냥 방향전환방법 재변경")
+LV_Add("", "", " * 무인사냥 깃털이동방식 안정화")
+LV_Add("", "", " * 전체마법단축키 변경")
+LV_Add("", "", " * 기술 및 마법숙련도 자동화 추가")
+LV_Add("", "", " * 설명서 수정")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2016.04.30 Version 1.0.5 ]")
+LV_Add("", "", " * 깃털사용방해 수정")
+LV_Add("", "", " * Multi 비격수-비격수 보호 도입")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2016.06.25 Version 1.0.6 ]")
+LV_Add("", "", " * 무인사냥 알고리즘 소폭 변경(타겟 선 셋팅 후 이동)")
+LV_Add("", "", " * 무인사냥 깃털이동 알고리즘 변경으로 속도개선 및 안정화")
+LV_Add("", "", " * Multi 비격수-비격수 보호의 무인부분 속도개선")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2016.08.03 Version 1.0.7 ]")
+LV_Add("", "", " * 무인사냥 걷기유형 개선")
+LV_Add("", "", " * 따라가기 걷기유형 개선")
+LV_Add("", "", " * Multi 비격수-비격수 보호의 이모탈 우선순위 개선")
+LV_Add("", "", " * Multi 비격수-비격수 보호의 코마디아 우선순위 개선")
+LV_Add("", "", " * Multi 비격수-비격수 보호의 오류 개선")
+LV_Add("", "", " * 기타 코딩 안정화")
+LV_Add("", "", "")
+LV_Add("", "", "[ 2016.09.28 Version 1.0.8 ]")
+LV_Add("", "", " * 깃털매크로 사용 시 같은 위치의 마법 시전되던 오류 수정")
+LV_Add("", "", " * Multi 비격수-비격수 보호의 코마디아 기능 향상")
+LV_Add("", "", " * Multi 비격수-비격수 보호에 소환사 무인 추가")
+LV_Add("", "", " * 무인사냥 소환사 속성강화 삭제 및 일부 코딩 수정")
+LV_Add("", "", " * 무인사냥 Log 추가")
+LV_Add("", "", " * 따라가기 좌표 밀림 인식기능 추가")
+LV_Add("", "", " * 기타 코딩 안정화")
+LV_Add("", "", "")
+LV_ModifyCol(1, "0 Left")
+Gui, 5:Show, x650 y350 w430 h240, Version
+Return
+
+Notice:
+Gui, 6:Default
+Gui, 6:Destroy
+Gui, 6:+AlwaysOnTop
+Gui, 6:Add, ListView, x10 y10 w415 h220 -Hdr Grid Checked, 　|　|
+LV_Add("", "", "[ Notice ]")
+LV_Add("", "", "[ ID ]     세오의 서 : 내가긍설")
+LV_Add("", "", "")
+LV_Add("", "", " * 문의 및 업데이트 요청은 내가긍설로 편지주세요")
+LV_Add("", "", "")
+LV_Add("", "", " * 개인적인 수정은 절대 안합니다")
+LV_ModifyCol(1, "0 Left")
+Gui, 6:Show, x650 y350 w430 h240, Notice
+Return
+
+Single:
+WinSetTitle, %Target2%, , %Target1%
+CheckWindow()
+Target = %Target1%
+Inactive = 0
+InactiveX := 625+WinX
+InactiveY := 285+WinY
+Hotkey, ^X, Off
+Hotkey, WheelUp, Off
+Hotkey, WheelDown, Off
+Return
+
+Multi:
+WinSetTitle, %Target1%, , %Target2%
+CheckWindow()
+Target = %Target1%
+Inactive = 1
+Hotkey, ^X, On
+Hotkey, WheelUp, On
+Hotkey, WheelDown, On
+Return
+
+Double:
+WinSetTitle, %Target1%, , %Target2%
+CheckWindow()
+Target = %Target2%
+Inactive = 2
+Hotkey, ^X, On
+Hotkey, WheelUp, Off
+Hotkey, WheelDown, Off
+Return
+
+Apply:
+{
+	Gui, Submit, Nohide
+	IF (Hotkey01=없음 or Hotkey02=없음)
+	{
+		MsgBox, 16, Error, Please register the hotkey
+		Exit
+	}
+	IniWrite, %OP01%, Save.ini, 보호설정, 01
+	IniWrite, %OP02%, Save.ini, 보호설정, 02
+	IniWrite, %OP03%, Save.ini, 보호설정, 03
+	IniWrite, %OP04%, Save.ini, 보호설정, 04
+	IniWrite, %OP05%, Save.ini, 보호설정, 05
+	IniWrite, %OP06%, Save.ini, 보호설정, 06
+	IniWrite, %CH01%, Save.ini, 힐설정, 01
+	IniWrite, %CH02%, Save.ini, 힐설정, 02
+	IniWrite, %TeleportMove%, Save.ini, 이동설정, 01
+	IniWrite, %Hotkey01%, Save.ini, 이동설정, 02
+	IniWrite, %SP%, Save.ini, 이동설정, 03
+	IniWrite, %ST%, Save.ini, 이동설정, 04
+	IniWrite, %SM01%, Save.ini, 공격설정, 01
+	IniWrite, %Hotkey02%, Save.ini, 공격설정, 02
+	IniWrite, %SM02%, Save.ini, 공격설정, 03
+	IniWrite, %SM03%, Save.ini, 공격설정, 04
+	IniWrite, %SM04%, Save.ini, 공격설정, 05
+	IniWrite, %SM05%, Save.ini, 공격설정, 06
+	IniWrite, %SS%, Save.ini, 공격설정, 07
+	IniWrite, %DM01%, Save.ini, 보호마법설정, 01
+	IniWrite, %DM02%, Save.ini, 보호마법설정, 02
+	IniWrite, %DM03%, Save.ini, 보호마법설정, 03
+	IniWrite, %DM04%, Save.ini, 보호마법설정, 04
+	IniWrite, %DM05%, Save.ini, 보호마법설정, 05
+	IniWrite, %DM06%, Save.ini, 보호마법설정, 06
+	IniWrite, %DM07%, Save.ini, 보호마법설정, 07
+	IniWrite, %DM08%, Save.ini, 보호마법설정, 08
+	IniWrite, %DM09%, Save.ini, 보호마법설정, 09
+	IniWrite, %DM10%, Save.ini, 보호마법설정, 10
+	IniWrite, %DM11%, Save.ini, 보호마법설정, 11
+	IniWrite, %DM12%, Save.ini, 보호마법설정, 12
+	IniWrite, %DM13%, Save.ini, 보호마법설정, 13
+	IniWrite, %DM14%, Save.ini, 보호마법설정, 14
+	IniWrite, %DM15%, Save.ini, 보호마법설정, 15
+	IniWrite, %DM16%, Save.ini, 보호마법설정, 16
+	IniWrite, %DM17%, Save.ini, 보호마법설정, 17
+	IniWrite, %DM18%, Save.ini, 보호마법설정, 18
+	IniWrite, %DM19%, Save.ini, 보호마법설정, 19
+	IniWrite, %DM20%, Save.ini, 보호마법설정, 20
+	IniWrite, %NP01%, Save.ini, 무인설정, 01
+	IniWrite, %NP02%, Save.ini, 무인설정, 02
+	IniWrite, %NP03%, Save.ini, 무인설정, 03
+	IniWrite, %NP04%, Save.ini, 무인설정, 04
+	IniWrite, %NP05%, Save.ini, 무인설정, 05
+	IniWrite, %NP06%, Save.ini, 무인설정, 06
+	IniWrite, %NP07%, Save.ini, 무인설정, 07
+	IniWrite, %PosX1%, Save.ini, 좌표설정, X01
+	IniWrite, %PosX2%, Save.ini, 좌표설정, X02
+	IniWrite, %PosX3%, Save.ini, 좌표설정, X03
+	IniWrite, %PosX4%, Save.ini, 좌표설정, X04
+	IniWrite, %PosX5%, Save.ini, 좌표설정, X05
+	IniWrite, %PosX6%, Save.ini, 좌표설정, X06
+	IniWrite, %PosX7%, Save.ini, 좌표설정, X07
+	IniWrite, %PosX8%, Save.ini, 좌표설정, X08
+	IniWrite, %PosX9%, Save.ini, 좌표설정, X09
+	IniWrite, %PosX10%, Save.ini, 좌표설정, X10
+	IniWrite, %PosX11%, Save.ini, 좌표설정, X11
+	IniWrite, %PosX12%, Save.ini, 좌표설정, X12
+	IniWrite, %PosX13%, Save.ini, 좌표설정, X13
+	IniWrite, %PosX14%, Save.ini, 좌표설정, X14
+	IniWrite, %PosX15%, Save.ini, 좌표설정, X15
+	IniWrite, %PosX16%, Save.ini, 좌표설정, X16
+	IniWrite, %PosX17%, Save.ini, 좌표설정, X17
+	IniWrite, %PosX18%, Save.ini, 좌표설정, X18
+	IniWrite, %PosX19%, Save.ini, 좌표설정, X19
+	IniWrite, %PosX20%, Save.ini, 좌표설정, X20
+	IniWrite, %PosX21%, Save.ini, 좌표설정, X21
+	IniWrite, %PosX22%, Save.ini, 좌표설정, X22
+	IniWrite, %PosX23%, Save.ini, 좌표설정, X23
+	IniWrite, %PosX24%, Save.ini, 좌표설정, X24
+	IniWrite, %PosX25%, Save.ini, 좌표설정, X25
+	IniWrite, %PosX26%, Save.ini, 좌표설정, X26
+	IniWrite, %PosY1%, Save.ini, 좌표설정, Y01
+	IniWrite, %PosY2%, Save.ini, 좌표설정, Y02
+	IniWrite, %PosY3%, Save.ini, 좌표설정, Y03
+	IniWrite, %PosY4%, Save.ini, 좌표설정, Y04
+	IniWrite, %PosY5%, Save.ini, 좌표설정, Y05
+	IniWrite, %PosY6%, Save.ini, 좌표설정, Y06
+	IniWrite, %PosY7%, Save.ini, 좌표설정, Y07
+	IniWrite, %PosY8%, Save.ini, 좌표설정, Y08
+	IniWrite, %PosY9%, Save.ini, 좌표설정, Y09
+	IniWrite, %PosY10%, Save.ini, 좌표설정, Y10
+	IniWrite, %PosY11%, Save.ini, 좌표설정, Y11
+	IniWrite, %PosY12%, Save.ini, 좌표설정, Y12
+	IniWrite, %PosY13%, Save.ini, 좌표설정, Y13
+	IniWrite, %PosY14%, Save.ini, 좌표설정, Y14
+	IniWrite, %PosY15%, Save.ini, 좌표설정, Y15
+	IniWrite, %PosY16%, Save.ini, 좌표설정, Y16
+	IniWrite, %PosY17%, Save.ini, 좌표설정, Y17
+	IniWrite, %PosY18%, Save.ini, 좌표설정, Y18
+	IniWrite, %PosY19%, Save.ini, 좌표설정, Y19
+	IniWrite, %PosY20%, Save.ini, 좌표설정, Y20
+	IniWrite, %PosY21%, Save.ini, 좌표설정, Y21
+	IniWrite, %PosY22%, Save.ini, 좌표설정, Y22
+	IniWrite, %PosY23%, Save.ini, 좌표설정, Y23
+	IniWrite, %PosY24%, Save.ini, 좌표설정, Y24
+	IniWrite, %PosY25%, Save.ini, 좌표설정, Y25
+	IniWrite, %PosY26%, Save.ini, 좌표설정, Y26
+	IniWrite, %UserRepeat%, Save.ini, 반복설정, Repeat
+	IF (Setting01=0)
+	{
+		GuiControl, DisAble, OP01
+		GuiControl, DisAble, OP02
+		GuiControl, DisAble, OP03
+		GuiControl, DisAble, OP04
+		GuiControl, DisAble, OP05
+		GuiControl, DisAble, OP06
+		GuiControl, DisAble, CH01
+		GuiControl, DisAble, CH02
+		GuiControl, DisAble, TeleportMove
+		GuiControl, DisAble, Hotkey01
+		GuiControl, DisAble, SP
+		GuiControl, DisAble, ST
+		GuiControl, DisAble, SM01
+		GuiControl, DisAble, Hotkey02
+		GuiControl, DisAble, SM02
+		GuiControl, DisAble, SM03
+		GuiControl, DisAble, SM04
+		GuiControl, DisAble, SM05
+		GuiControl, DisAble, SS
+		GuiControl, DisAble, NP01
+		GuiControl, DisAble, NP02
+		GuiControl, DisAble, NP03
+		GuiControl, DisAble, NP04
+		GuiControl, DisAble, NP05
+		GuiControl, DisAble, NP06
+		IF (TeleportMove=1)
+			Hotkey, %Hotkey01%, TeleportMove, On
+		IF (SM01=1)
+			Hotkey, %Hotkey02%, Improvise, On
+		Setting01 = 1
+	}
+	Else
+	{
+		GuiControl, EnAble, OP01
+		GuiControl, EnAble, OP02
+		GuiControl, EnAble, OP03
+		GuiControl, EnAble, OP04
+		GuiControl, EnAble, OP05
+		GuiControl, EnAble, OP06
+		GuiControl, EnAble, CH01
+		GuiControl, EnAble, CH02
+		GuiControl, EnAble, TeleportMove
+		GuiControl, EnAble, Hotkey01
+		GuiControl, EnAble, SP
+		GuiControl, EnAble, ST
+		GuiControl, EnAble, SM01
+		GuiControl, EnAble, Hotkey02
+		GuiControl, EnAble, SM02
+		GuiControl, EnAble, SM03
+		GuiControl, EnAble, SM04
+		GuiControl, EnAble, SM05
+		GuiControl, EnAble, SS
+		GuiControl, EnAble, NP01
+		GuiControl, EnAble, NP02
+		GuiControl, EnAble, NP03
+		GuiControl, EnAble, NP04
+		GuiControl, EnAble, NP05
+		GuiControl, EnAble, NP06
+		Hotkey, %Hotkey01%, TeleportMove, Off
+		Hotkey, %Hotkey02%, Improvise, Off
+		Setting01 = 0
+	}
+	ID := WinExist(Target)
+	IF (NP01=1)
+		Next = 1
+}
+Return

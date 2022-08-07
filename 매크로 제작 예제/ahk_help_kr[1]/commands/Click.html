@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Click</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Click.html'>Click</a></div>
+<h1>Click</h1>
+<p>mouse button의 클릭/밀기 인하/인상등의 조작을 발생시킨다</p>
+
+<pre>Click[, Button, up/down, x, y, count, rel]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>
+
+
+<tr>
+
+<td>Button
+</td>
+<td>
+어느 버튼을 조작할까
+<dl>
+<dt>LEFT</dt><dd>왼쪽 버튼(디폴트)</dd>
+<dt>RIGHT</dt><dd>오른쪽 버튼</dd>
+<dt>MIDDLE</dt><dd>중앙 버튼(휠)</dd>
+<dt>WheelUp</dt><dd>휠을 상 회전(Windows2000/XP전용)</dd>
+<dt>WheelDown</dt><dd>휠을 하 회전(Windows2000/XP전용)</dd>
+<dt>X1</dt><dd>확장 버튼(Windows2000/XP전용)</dd>
+<dt>X2</dt><dd>확장 버튼(Windows2000/XP전용)</dd>
+</dl>
+「L」 「R」 「M」 「WU」 「WD」라고 하는 생략형에서도 지정 가능.
+</td>
+</tr>
+<tr>
+<td>up/down
+</td>
+<td>
+「Down」(이)나 「D」(을)를 지정하면, 버튼을 눌러 내려 만 해 떼어 놓지 않는다.<br>
+「Up」(이)나 「U」(을)를 지정하면, 눌러 내린 버튼을 떼어 놓는다.<br>
+생략시는 클릭을 실시한다.
+</td>
+</tr>
+<tr> 
+<td>X, Y
+</td>
+<td>
+클릭하는 좌표.<br>
+생략시는 현재의 커서 위치<br>
+통상은 액티브 윈도우의 좌상으로부터의 상대 좌표이지만,<a target=_top href='../commands/CoordMode.html'>CoordMode</a>그리고 스크린 전체로의 절대 좌표로 변경할 수 있다.
+</td>
+</tr>
+<tr> 
+<td>Count
+</td>
+<td>클릭·휠 회전하는 회수.<br>
+생략시는1회.<br>
+0(으)로 하면, 클릭을 실시하지 않고 커서의 이동만을 실시할 수 있다.
+</td>
+</tr>
+<tr>
+<td>Rel
+</td>
+<td>
+「Relative」(이)나 「Rel」(을)를 지정하면,X(와)과Y에 의한 이동은 현재의 커서 위치로부터의 상대 좌표가 된다.
+</td>
+</tr>
+
+</table>
+
+<p>
+Click커멘드에 한정해, 인수는 어떠한 차례로 기술해도 상관없다.<br>
+인수의 단락에는, 콤마 이외에 반각 스페이스도 사용할 수 있다.<br>
+이하의 예는 모두 같은 동작이 된다.
+</p>
+<pre>
+Click,Right,100,100,Down
+Click,100,100,Right,Down
+Click Down Right 100 100
+</pre>
+<p>다만, 수치의 인수에 관해서는, 하나만의 경우는Count,2개의 경우는 순서에X,Y,3개의 경우는 순서에X,Y,Count이다고 해석된다.
+</p>
+
+<h2>Remarks</h2>
+
+<p>
+Click커멘드는MouseClick커멘드와 달라, 컨트롤 패널로 좌우 버튼을 바꿔 넣고 있는지 어떤지에 관련되지 않고 같은 동작이 된다.
+</p>
+<p>
+일부의 어플리케이션에서는,WheelUp(이)나WheelDown(을)를Count(와)과 함께 사용해도 여러 차례의 동작이 되지 않는 경우가 있다.<br>
+그 경우는,<a target=_top href='../commands/Loop.html'>Loop</a>(을)를 사용해 여러 차례 커멘드를 실행하면 좋다.
+</p>
+<p>
+마우스 커서가 이동하고 있는 동안, 유저가 다른 조작을 실시할 수 없게 하려면 ,<a target=_top href='../commands/BlockInput.html'>BlockInput</a>커멘드를 사용한다.
+</p>
+
+<p>
+마우스 조작의 뒤에는, 다른 프로세스가 마우스 조작에 확실히 응답하기 위해서, 짧은 휴지가 삽입된다.<br>
+그 길이는,<a target=_top href='../commands/SetMouseDelay.html'>SetMouseDelay</a>그리고 설정할 수 있다.
+</p>
+
+<p>
+Click커멘드는<a target=_top href='../commands/Send.html'>Send</a>커멘드내에 키로서 묻을 수 있다.<br>
+아래와 같이 하는 것으로, 수식 키 첨부의 클릭 조작을 간단하게 기술할 수 있다.
+</p>
+<pre>Send +{Click 100, 200}  ; Shift+LeftClick
+Send ^{Click 100, 200, right}  ; Control+RightClick
+</pre>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Send.html#Click'>Send {Click}</a>, <a target=_top href='../commands/SendMode.html'>SendMode</a>, <a target=_top href='../commands/CoordMode.html'>CoordMode</a>, <a target=_top href='../commands/SetDefaultMouseSpeed.html'>SetDefaultMouseSpeed</a>,<a target=_top href='../commands/SetMouseDelay.html'> SetMouseDelay</a>, <a target=_top href='../commands/MouseClick.html'>MouseClick</a>, <a target=_top href='../commands/MouseClickDrag.html'>MouseClickDrag</a>, 
+  <a target=_top href='../commands/MouseMove.html'>MouseMove</a>, <a target=_top href='../commands/BlockInput.html'>BlockInput</a></p>
+
+<h2>Examples</h2>
+<pre>Click  ; Click left mouse button at mouse cursor's current position.
+Click 100, 200  ; Click left mouse button at specified coordinates.
+Click 100, 200, 0  ; Move the mouse without clicking.
+Click 100, 200 right  ; Click the right mouse button.
+Click 2  ; Perform a double-click.
+Click down  ; Presses down the left mouse button and holds it.
+Click up right  ; Releases the right mouse button.</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Click.html'>Click</a></div>
+</body>
+</html>

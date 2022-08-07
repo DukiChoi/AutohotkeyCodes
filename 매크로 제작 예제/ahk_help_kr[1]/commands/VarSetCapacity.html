@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>VarSetCapacity()</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/VarSetCapacity.html'>VarSetCapacity()</a></div>
+<h1>VarSetCapacity()</h1>
+<p>변수에 확보되고 있는 메모리의 사이즈를 변경한다.</p>
+
+<pre>VarSetCapacity(Var [, RequestedCapacity, FillByte])
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>
+<tr><td>Var</td><td>
+사이즈의 변경을 실시하는 변수.
+</td></tr>
+<tr><td>RequestedCapacity</td><td>
+확보하고 싶은 아르바이트수.<br>
+실제로는, 이 사이즈에1(을)를 더한 아르바이트 몇분의 메모리 영역이 확보된다.(null종단 문자의 분)<br>
+이 인수를 생략 하면,Var인수로 지정한 변수에는 어떤 변화도 일어나지 않는다.
+
+</td></tr>
+<tr><td>FillByte</td><td>
+확보한 버퍼를 임의의 아르바이트치로 묻고 싶은 경우에, 그 값(0...255)(을)를 지정한다.<br>
+버퍼를 문자열로서가 아니고 아르바이트열로서 사용하고 싶을 때에 이용한다.
+</td></tr>
+
+</table>
+
+<h2>돌아가 값</h2>
+<p>
+실제로 확보된 영역의 사이즈.<br>
+종단의null문자의 분은 포함되지 않는다.<br>
+RequestedCapacity그리고 지정한 사이즈와 같은가, 그것보다 작아진다.<br>
+어떠한 문제가 있어 확보를 하지 않았던 경우,0하지만 돌아간다.<br>
+RequestedCapacity인수를 생략 했을 경우,Var그리고 지정한 변수에 현재 확보되고 있는 메모리 영역의 사이즈가 돌아간다.
+</p>
+
+
+<h2>Remarks</h2>
+<p>빈메모리가 부족해 영역의 재확보를 할 수 없는등의 경우, 에러 다이얼로그가 표시되어 현재의<a target=_top href='../misc/Threads.html'>스렛드</a>하지만 강제 종료한다.
+</p>
+
+<p>AutoHotkey의 커멘드나 함수등을 실행하는 경우, 변수의 사이즈는 필요에 따라서 자동적으로 신장된다.<br>
+이 경우, 빈번한 사이즈의 변화에 의해서 재확보가 다발하고 퍼포먼스가 저하하는 것을 막기 위해, 내용의 사이즈보다 조금 큰 영역을 확보한다.<br>
+내용의 사이즈가64아르바이트 미만의 경우,0,1,6,63아르바이트가 확보된다.<br>
+확보되고 있는 사이즈가4096아르바이트 이상의 경우, 「Var=」등으로 해서 변수의 내용을 비우면, 영역을 개방해0아르바이트가 된다.<br>
+그것 미만의 경우나, 변수의 내용이 비우지 않는 경우는, 확보된 영역은 훨씬 그대로 된다.
+</p>
+
+<p>
+4096아르바이트 미만의 변수에서도, 「VarSetCapacity(Var,0)」라고 하는 것으로 영역을 해방할 수 있다.<br>
+다만,64아르바이트 미만의 영역은 개방되지 않는다.<br>
+아무래도 개방하고 싶은 경우는, 일단 「VarSetCapacity(Var,64)」등으로 해서로부터 개방한다.
+</p>
+<p>변수의 내용의 사이즈와 확보되고 있는 영역의 사이즈는,<a target=_top href='../commands/ListVars.html'>ListVars</a>커멘드등에서 표시되는 변수의 일람으로 볼 수 있다.
+</p>
+
+<p>
+RequestedCapacity에 「-1」(을)를 지정하면, 내부에서 보관 유지되고 있는 사이즈를 다시 센다.<br>
+이것은,DllCall그리고 「UInt,&var」(와)과 같이 변수의 주소를 건네주어,DLL의 함수내에서 변수의 내용을 고쳐 쓸 수 있었을 때 등에 이용된다.<br>
+이하의 예에서는,3행목이 있을 때와 없을 때로 변수의 문자 수라고 해 표시되는 값이 바뀐다.
+「Str,var」(와)과 같이 문자열로서 주소를 건네주었을 경우에는, 자동적으로 문자수는 다시 센다.
+</p>
+<pre>VarSetCapacity(var,256)
+DllCall("msvcrt.dll\_mbscpy",UInt,&var,Str,"aaa",Str)
+VarSetCapacity(var,-1)
+ListVars
+MsgBox
+</pre>
+
+
+<p>
+주로,<a target=_top href='../commands/DllCall.html'>DllCall()</a>그리고 일정한 메모리를 확보해 건네줄 필요가 있는 경우나, 버퍼의 확보되고 있는 사이즈를 인수로서 건네줄 필요가 있는 경우에 사용한다.
+</p>
+<p>
+또, 섬세한 문자열의 연결을 반복하는 경우 등에, 미리 큰 영역을 확보해 두는 것으로, 재확보의 발생을 줄여 퍼포먼스를 향상시킬 수도 있다.
+</p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/DllCall.html'>DllCall()</a>, <a target=_top href='../commands/_MaxMem.html'>#MaxMem</a>
+</p>
+
+<h2>Examples</h2>
+<pre>VarSetCapacity(MyVar, 1000)
+Loop
+{
+
+	...
+	MyVar = %MyVar%%StringToConcatenate%
+	...
+}</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/VarSetCapacity.html'>VarSetCapacity()</a></div>
+</body>
+</html>

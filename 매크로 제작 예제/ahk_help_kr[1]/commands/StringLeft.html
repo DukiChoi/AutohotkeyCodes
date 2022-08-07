@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>StringLeft / StringRight</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringLeft.html'>StringLeft / StringRight</a></div>
+<h1>StringLeft / StringRight</h1>
+<p>변수내의 문자열의 초 혹은 마지막의 지정 문자 몇분을 뽑아낸다</p>
+
+<pre>StringLeft, OutputVar, InputVar, Count
+StringRight, OutputVar, InputVar, Count</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>뽑아낸 문자열을 격납하는 변수명.
+InputVar(와)과 같은 것을 지정해도 괜찮다.
+</td>
+</tr>
+<tr> 
+<td>InputVar
+</td>
+<td>
+뽑아내는 원의 문자열이 들어간 변수명.
+</td>
+</tr>
+<tr>
+<td>Count
+</td>
+<td>
+뽑아내는 문자수.<br>
+제로 이하를 지정하면,OutputVar(은)는 비운다.<br>
+InputVar그리고 지정한 변수의 내용의 문자수보다 큰 값을 지정하면,OutputVar하InputVar(와)과 같은 내용이 된다.
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+<p>
+StringLeft그럼 문자열의 초를,StringRight그럼 문자열의 마지막을 꺼낸다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/IfInString.html'>IfInString</a>, <a target=_top href='../commands/StringGetPos.html'>StringGetPos</a>, <a target=_top href='../commands/StringMid.html'>StringMid</a>, <a target=_top href='../commands/StringTrimLeft.html'>StringTrimLeft</a>, <a target=_top href='../commands/StringTrimLeft.html'>StringTrimRight</a>, <a target=_top href='../commands/StringLen.html'>StringLen</a>, <a target=_top href='../commands/StringLower.html'>StringLower</a>, <a target=_top href='../commands/StringLower.html'>StringUpper</a>, <a target=_top href='../commands/StringReplace.html'>StringReplace</a></p>
+
+<h2>Example(s)</h2>
+<pre>String = This is a test. 
+StringLeft, OutputVar, String, 4 ; Stores the string &quot;This&quot; in OutputVar. 
+StringRight, OutputVar, InputVar, 5 ; Stores the string &quot;test.&quot; in OutputVar.  
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/StringLeft.html'>StringLeft / StringRight</a></div>
+</body>
+</html>

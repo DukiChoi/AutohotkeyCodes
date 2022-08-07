@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#HotkeyInterval</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_HotkeyInterval.html'>#HotkeyInterval</a></div>
+<h1>#HotkeyInterval</h1>
+<p>지정 시간의 사이에 실행할 수 있는 최대의 hot key수를 설정(<a target=_top href='../commands/_MaxHotkeysPerInterval.html'>#MaxHotkeysPerInterval</a>(와)과 함께 사용)</p>
+
+<pre>#HotkeyInterval Value</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>Value
+</td>
+<td>시간의 길이를 밀리 세컨드로 지정
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+
+<p>
+
+본지령으로 지정한 기간의 사이에<a target=_top href='../commands/_MaxHotkeysPerInterval.html'>#MaxHotkeysPerInterval</a>지령으로 지정한 회수 이상의 hot key 이벤트가 발생했을 경우, 경고 다이얼로그가 표시되어 스크립트가 정지한다.
+</p>
+<p>디폴트 설정은 「2000」(2초).</p>
+<p>
+이 기능에 의해, 무한 재귀 hot key 호출 등, hot key 이벤트가 실행계속 되어 버리는 불편을 탈출할 수 있다.<br>
+예를 들어, 「^c::Send,^c」라고 하는 정의를 했을 경우,Ctrl+C하지만 밀리면Ctrl+C(을)를 송신하는 써브루틴이 실행되어 그Ctrl+C에 반응해 재차 사브리틴이 실행되고 엔들레스 루프에 빠져 버린다.<br>
+여기서#HotkeyInterval,#MaxHotkeysPerInterval의 설정이 적절하면, 지정 회수의 hot key가 실행된 시점에서 경고가 표시되어 스크립트가 정지한다.
+</p>
+
+<p>
+「q::Send,d」(와)과 같은 키 교체를 실시하고 있어 키를 누르고 있을 뿐으로 했을 때의 키 반복 간격을 짧게 하고 있는 경우, 키 반복을 계속했을 때에 경고가 표시되어 버리는 경우가 있다.<br>
+「#MaxHotkeysPerInterval 70」정도로 해 두면, 컨트롤 패널의 키보드 설정으로 「표시의 간격」을 최고 속도로 하고 있어도 문제 없을 것이다.
+</p>
+
+<h2>Related</h2>
+<p> <a target=_top href='../commands/_MaxHotkeysPerInterval.html'>#MaxHotkeysPerInterval</a></p>
+
+<h2>Example(s)</h2>
+<pre>#HotkeyInterval 2000 ; This is  the default value (milliseconds).</pre>
+<pre>#MaxHotkeysPerInterval 50 ; This is the default value.</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_HotkeyInterval.html'>#HotkeyInterval</a></div>
+</body>
+</html>

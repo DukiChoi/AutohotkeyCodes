@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>URLDownloadToFile</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/URLDownloadToFile.html'>URLDownloadToFile</a></div>
+<h1>URLDownloadToFile</h1>
+<p>HTTP그리고 파일을 취득해, 지정 파일에 보존한다</p>
+
+<pre>URLDownloadToFile, URL, Filename </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>URL
+</td>
+<td>취득한다URL
+</td>
+</tr>
+<tr> 
+<td>Filename
+</td>
+<td>
+보존하는 파일명.<br>
+상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.<br>
+존재하는 파일을 지정했을 경우, 덧쓰기된다.
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+<p>성공시는 「0」, 실패시는 「1」.</p>
+
+<h2>Remarks</h2>
+
+<p>
+404등의 에러가 되돌아 와도, 에러 페이지가 파일에 보존된다.
+</p>
+
+<p>
+키보드나 마우스의 훅을 사용하고 있으면, 다운로드 시에 일시적으로 조작 불능에 빠지는 경우가 있다.
+</p>
+
+<p>
+InternetExplorer3이후가 필요.
+</p>
+<p>
+IE의 캐쉬에 파일이 있어도, 항상 서버상의 파일을 취득한다<br>
+「*0 http://www.example.com/」(와)과 같이URL의 전에 「*0」(을)를 붙이면, 캐쉬가 있는 경우는 캐쉬로부터 카피하게 된다.
+
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/FileCopy.html'>FileCopy</a></p>
+
+<h2>Example(s)</h2>
+<pre>URLDownloadToFile, http://www.someorg.org, c:\SomeOrg's Welcome.html</pre>
+<pre>URLDownloadToFile, http://someorg.org/archive.zip, c:\SomeOrg's Archive.zip</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/URLDownloadToFile.html'>URLDownloadToFile</a></div>
+</body>
+</html>

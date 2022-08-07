@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>EnvSub</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/EnvSub.html'>EnvSub</a></div>
+<h1>EnvSub</h1>
+<p>변수로부터 값을 감산한다.</p>
+
+<pre>EnvSub,Var,Value[,TimeUnits]
+Var-=Value[,TimeUnits]
+Var--</pre>
+
+<h2>Parameters</h2>
+
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Var
+</td>
+<td>
+대상이 되는 변수명
+</td>
+</tr>
+<tr>
+<td>Value
+</td>
+<td>
+감산하는 수치.<br>
+<a target=_top href='../Expression.html'>식</a>(을)를 사용하는 일도 가능.<br>
+식을 사용하는 경우,TimeUnits(은)는 사용할 수 없다.
+</td>
+</tr>
+<tr>
+<td>TimeUnits
+</td>
+<td>
+일자 시각끼리를 감산할 때의 결과의 단위.<br>
+「Seconds」 「Minutes」 「Hours」 「Days」의 어떤 것인지를 지정.머리 글자 한 글자에서도 가능.<br>
+지정되면,Var(와)과Value(을)를<a target=_top href='../misc/Time.html#YYYYMMDDHH24MISS'>YYYYMMDDHH24MISS</a>형식의 일자 시각 포맷으로 간주해,2개의 일자 시각의 사이의 간격을TimeUnits그리고 지정한 단위로Var에 격납한다.<br>
+지정한 단위 미만의 간격은, 잘라 버릴 수 있다.(사사오입은 아니다).<br>
+Var(이)나Value의 값이 하늘의 경우, 현재의 일자 시각이 사용된다.<br>
+Var인가Value어느 쪽인지에서도 값이 일자 시각으로서 잘못하고 있는 경우,Var의 값은 비운다.
+
+</td>
+</tr>
+</table>
+
+
+
+<h2>Remarks</h2>
+
+<p>
+「Var++」의 형식에서는,1만 값을 감산할 수 있다.<br>
+내부적으로는, 「Var-=1」라고 완전히 같다.
+</p>
+
+<p>
+Var(이)나Value의 값이 하늘이거나, 숫자 이외의 것에서는 글자 만문자열이었던 경우는, 「0」인 것으로서 계산된다.<br>
+숫자로부터 시작되어 있는 문자열이면, 선두의 숫자열(소수점 이하 포함한다)의 수치이다고 보인다.
+</p>
+<p>
+Var(와)과Value의 양쪽 모두가 소수점을 포함하지 않는 숫자열의 경우, 결과는 정수 표기가 된다.<br>
+어느쪽이든가 소수점을 포함한 경우, 결과는 소수 표기가 된다.<br>
+결과의 표기 포맷은<a target=_top href='../commands/SetFormat.html'>SetFormat</a>그리고 설정할 수 있다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='../commands/EnvMult.html'>EnvMult</a>, <a target=_top href='../commands/EnvDiv.html'>EnvDiv</a>, <a target=_top href='../commands/SetFormat.html'>SetFormat</a>, <a target=_top href='../Expression.html'>식</a>, <a target=_top href='../commands/IfIs.html'>If var is [not] type</a>, <a target=_top href='../commands/SetEnv.html'>SetEnv</a>, <a target=_top href='../commands/FileGetTime.html'>FileGetTime</a></p>
+
+<h2>Example(s)</h2>
+<pre>EnvSub, MyCount, 2
+MyCount -= 2 ; Equivalent to above
+</pre>
+<pre>var1 = 20050126
+var2 = 20040126
+EnvSub, var1, %var2%, days
+MsgBox, %var1% ; The answer will be 366 since 2004 is a leap year.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/EnvSub.html'>EnvSub</a></div>
+</body>
+</html>

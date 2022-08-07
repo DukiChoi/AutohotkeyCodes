@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SendMode</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SendMode.html'>SendMode</a></div>
+<h1>SendMode</h1>
+<p>Send,SendRaw,Click커멘드 및Mouse계 커멘드의 처리 방식을 변경한다</p>
+<pre>SendMode Mode
+</pre>
+
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr>
+<tr><td>Mode</td><td>
+이하의 어떤 것인지를 지정.<br>
+각방식의 자세한 특징은 후술.
+<dl>
+<dt>Event</dt><dd>WindowAPI의keybd_event,mouse_event(을)를 이용해 한개씩 이벤트를 생성하는 방식.
+</dd>
+<dt>Input</dt><dd>
+WindowsAPI의 「SendInput」함수를 이용해 시스템에 일련의 조작 이벤트를 정리해 보내는 방식.<br>
+다른 프로그램이 키 훅을 이용하고 있으면 성능이 저하한다.<br>
+이 방식을 이용할 수 없는 상황에서는, 대신에Event모드가 사용된다.
+</dd>
+<dt>Play</dt><dd>
+JournalPlayback(을)를 이용해 일련의 조작 이벤트를 재생시키는 방식.<br>
+게임등의 프로그램을 보다 확실히 조작할 수 있다.
+</dd>
+<dt>InputThenPlay</dt><dd>
+Input모드를 이용할 수 있으면Input모드, 이용할 수 없으면Play모드가 되도록(듯이) 한다.
+</dd>
+</dl>
+
+</td></tr>
+</table>
+<h3>Event모드</h3>
+<p>일정한 간격을 열면서, 개개의 조작 이벤트를 생성한다.<br>
+조작의 재생중에 유저가 간 조작이 끼어들어 버리는 일이 있다.<br>
+이것을 막으려면 ,<a target=_top href='../commands/BlockInput.html'>BlockInput</a>커멘드로 유저의 조작을 무효화해 두면 좋다.
+</p>
+<p>조작의 간격은,<a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>,<a target=_top href='../commands/SetMouseDelay.html'>SetMouseDelay</a>커멘드로 설정할 수 있다.
+</p>
+
+
+<h3>Input모드</h3>
+<p>입력의 재생 속도가 매우 빠르다.<br>
+이 때문에, 재생중에 예기치 못한 윈도우가 나타나고 동작을 방해할 수 있다고 말했던 것이 막을 수 있다.<br>
+또, 재생중에 유저가 간 조작은, 재생 종료후까지 뒷전으로 된다.
+</p>
+<p>
+이 모드에서는, 한 번에 실시할 수 있는 조작의 수는5000개정도까지 제한되고 있다.<br>
+이것을 넘은 만큼은 무시된다.
+</p>
+<p>다른 프로그램이 하위 레벨 키 훅을 사용하고 있으면,Input모드는 성능이 크게 저하해 버린다.<br>
+이 때문에, 다른AutoHotkey스크립트가 훅을 이용하고 있는 경우,Input모드는 자동적으로Event모드로 변경된다.<br>
+또,Windows95/NT그럼 이 모드는 이용하지 못하고, 똑같이Event모드로 변경된다.
+</p>
+
+<p>
+「<a target=_top href='../commands/CoordMode.html'>CoordMode,Mouse,Relative</a>」(으)로 마우스 조작의 좌표를 액티브 윈도우의 좌상으로부터의 상대 좌표로서 취급하도록(듯이) 설정되어 있을 때,Send커멘드내의 「{Click}」조작의 기준 좌표는 커멘드가 개시한 시점으로의 액티브 윈도우의 좌상 좌표가 된다.<br>
+이 때문에, 도중에 액티브 윈도우가 변하거나 하면, 기대 그대로의 동작이 되지 않는 것이 있다.<br>
+Send커멘드를 여러 차례로 나누고,Click의 전에 윈도우의 변화가 생기지 않게 하면, 이 문제는 발생하지 않는다.
+</p>
+
+<p>
+이 모드에서는, 일절 사이를 열지 않고 모든 조작이 재생된다.<br>
+<a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>커멘드로 간격을 설정할 수 없다.<br>
+Input모드를 사용하지 못하고Event모드로 변경되었을 경우는, 「SetKeyDelay,-1,0」(을)를 지정했을 때의 동작이 된다.<br>
+다만, 「SetKeyDelay,-1,-1」(이)가 설정되어 있는 경우는, 그 설정에 따른다.
+</p>
+
+
+
+<h3>Play모드</h3>
+<p>Play모드에서는, 일련의 조작이 액티브 윈도우에 대해서 일시에 이송된다.<br>
+Input모드보다는 저속이지만, 「SetKeyDelay,-1,-1」(이)가 설정되었다Event모드보다는 고속으로 동작한다.<br>
+「SetKeyDelay,10,10,Play」(와)과 같이 하면,Event모드와 같게 각 키 조작동안에 일정한 간격을 열게 할 수 있다.
+</p>
+<p>
+재생중에 유저가 간 조작은, 재생 종료후까지 뒷전으로 된다.<br>
+다만,Windows키를 포함한 시스템의 hot key만은 동작하기 위해(때문에), 스타트 메뉴등에 의해 그래가 방해할 수 있는 경우가 있다.<br>
+AutoHotkey하지만<a target=_top href='../commands/_InstallKeybdHook.html'>키보드 훅</a>(을)를 사용하고 있는 경우, 자동적으로Windows키가 무효화되어 오동작을 방지한다.
+</p>
+<p>
+Play모드로Windows키(LWin,RWin)(을)를 눌러도,Win+R등의 hot key는 반응하지 않는다.<br>
+또,CapsLock,NumLock,ScrollLock키의 타글 상태를 변경하는 것도 할 수 없다.
+</p>
+<p>재생중에Ctrl+Alt+Del(이)나Ctrl+Esc하지만 밀리면, 재생은 도중에 종료해, 스크립트의 다음이 실행된다.
+</p>
+<p>Play모드로 생성한 키의 눌러 인하 상태는,GetKeyState등에서 검출할 수 없다.<br>
+스크립트 자신의 윈도우에 보내졌을 때 만은 예외적으로 검출할 수 있지만, 「RShift」등과 같이 수식 키의 좌우를 구별할 수 없다.
+</p>
+
+
+<h2>Remarks</h2>
+
+<p>Send커멘드에는, 상기의3개의 모드에 대응하는 커멘드로서 「SendEvent」 「SendInput」 「SendPlay」커멘드가 준비되어 있다.<br>
+이러한 커멘드를 이용하는 것으로, 일시적으로SendMode의 설정과는 다른 방식으로 입력의 생성을 실시할 수 있다.<br>
+마우스 조작도, 「SendPlay,{Click}」(와)과 같이 해 발생 당한다.
+</p>
+<p>
+어느 모드도, 특정의 어플리케이션을 능숙하게 조작할 수 없는 경우가 있다.<br>
+조작하고 싶은 어플리케이션에 따라 구분하여 사용할 필요가 있다.
+</p>
+
+<p>
+이 설정의 기본치는, 스크립트의 최초의<a target=_top href='../Scripts.html#autoexecsection'>AutoExecute섹션</a>그리고 설정한다.<br>
+hot key등에서 새롭게 기동되었다<a target=_top href='../misc/Threads.html'>스렛드</a>그럼, 설정은 기본치로 설정된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Send.html'>Send</a>, <a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>, <a target=_top href='../commands/SetMouseDelay.html'>SetMouseDelay</a>, <a target=_top href='../commands/Click.html'>Click</a>, <a target=_top href='../commands/MouseClick.html'>MouseClick</a>, <a target=_top href='../commands/MouseClickDrag.html'>MouseClickDrag</a>, <a target=_top href='../commands/MouseMove.html'>MouseMove</a> </p>
+<h2>Examples</h2>
+<pre>SendMode Input
+SendMode InputThenPlay</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SendMode.html'>SendMode</a></div>
+</body>
+</html>

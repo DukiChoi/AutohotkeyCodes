@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Shutdown</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Shutdown.html'>Shutdown</a></div>
+<h1>Shutdown </h1>
+<p>시스템을 종료, 재기동, 로그 오프 한다</p>
+
+<pre>Shutdown, Code</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Code
+</td>
+<td>이하의 것의 화
+<dl>
+<dt>0</dt><dd>로그 오프</dd>
+<dt>1</dt><dd>슛다운</dd>
+<dt>2</dt><dd>재기동</dd>
+<dt>4</dt><dd>강제적</dd>
+<dt>8</dt><dd>실행 후 전원을 끈다</dd>
+</dl>
+
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+<a target=_top href='../commands/OnExit.html'>OnExit</a>써브루틴을 설정해 두어, 「A_ExitReason」변수를 조사하면, 유저가 슛다운이나 로그 오프를 실시하려고 한 것을 알 수 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Run.html'>Run</a>, <a target=_top href='../commands/ExitApp.html'>ExitApp</a>, <a target=_top href='../commands/OnExit.html'>OnExit</a> </p>
+
+<h2>Example(s)</h2>
+<pre>; Force a reboot (reboot + force = 2 + 4 = 6):
+Shutdown, 6
+</pre>
+
+<pre>
+; 중지나 하이바네이트를 실시하고 싶은 경우는, 아래와 같이Windows의API(을)를 호출한다.
+; Windows 95/NT4: Since this function does not exist, the following call would have no effect.
+; Parameter #1: Pass 1 instead of 0 to hibernate rather than suspend.
+; Parameter #2: Pass 1 instead of 0 to request permission from each application prior to suspending.
+; Parameter #3: Pass 1 instead of 0 to disable all wake events.
+
+DllCall(&quot;PowrProf\SetSuspendState&quot;, &quot;int&quot;, 0, &quot;int&quot;, 0, &quot;int&quot;, 0)</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Shutdown.html'>Shutdown</a></div>
+</body>
+</html>

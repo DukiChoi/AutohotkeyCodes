@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>RunAs</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/RunAs.html'>RunAs</a></div>
+<h1>RunAs</h1>
+<p>
+<a target=_top href='../commands/Run.html'>Run</a>(이)나<a target=_top href='../commands/Run.html'>RunWait</a>때, 다른 유저의 권한으로 기동하는 것을 가능하게 한다.(2000/XP전용)</p>
+
+<pre>RunAs [, User, Password, Domain] </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>User
+</td>
+<td>유저명
+</td>
+</tr>
+<tr> 
+<td>Password
+</td>
+<td>패스워드
+</td>
+</tr>
+<tr> 
+<td>Domain
+</td>
+<td>유저가 소속하는 도메인
+</td>
+</tr>
+</table>
+
+<h2>Remarks</h2>
+
+<p>
+인수 없이 실행하면, 통상 상태로 돌아온다.
+</p>
+<p>
+이 커멘드를 실행해도<a target=_top href='../misc/ErrorLevel.html'>ErrorLevel</a>(은)는 변화하지 않는다.<br>
+유저명등이 잘못되어 있었을 경우,<a target=_top href='../commands/Run.html'>Run</a>(이)나<a target=_top href='../commands/Run.html'>RunWait</a>커멘드를 실행했을 때에 에러 메세지가 나온다.
+</p>
+<p>
+이 커멘드가 유효하게 되어 있을 때는,<a target=_top href='../commands/Run.html'>Run</a>(이)나<a target=_top href='../commands/Run.html'>RunWait</a>커멘드의 인수에 실행 파일 이외를 지정해 열게 하거나 하는 것은 할 수 없다.
+</p>
+<p>
+이 커멘드는&quot;Secondary Logon&quot;서비스가 정지하고 있으면 동작하지 않는다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Run.html'>Run</a>, <a target=_top href='../commands/Run.html'>RunWait</a> </p>
+
+<h2>Example(s)</h2>
+<pre>RunAs, Administrator, MyPassword
+Run, RegEdit.exe
+RunAs ; Reset to normal behavior.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/RunAs.html'>RunAs</a></div>
+</body>
+</html>

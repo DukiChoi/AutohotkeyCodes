@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></div>
+<h1>Gui,Add</h1>
+<p>GUI윈도우에 컨트롤을 추가한다</p>
+
+<pre>Gui, Add, ControlType [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>ControlType</td><td>
+추가하는 컨트롤의 종류.<br>
+현재로서는, 이하의 것이 있다.<br>
+자세한 것은 각각의 항을 참조.
+<ul>
+<li><a target=_top href='../commands/Gui_Add_Text.html'>Text</a></li>
+<li><a target=_top href='../commands/Gui_Add_Edit.html'>Edit</a></li>
+<li><a target=_top href='../commands/Gui_Add_UpDown.html'>UpDown</a></li>
+<li><a target=_top href='../commands/Gui_Add_Hotkey.html'>Hotkey</a></li>
+<li><a target=_top href='../commands/Gui_Add_Picture.html'>Picture</a></li>
+<li><a target=_top href='../commands/Gui_Add_GroupBox.html'>GroupBox</a></li>
+<li><a target=_top href='../commands/Gui_Add_Button.html'>Button</a></li>
+<li><a target=_top href='../commands/Gui_Add_Checkbox.html'>Checkbox</a></li>
+<li><a target=_top href='../commands/Gui_Add_Checkbox.html'>Radio</a></li>
+<li><a target=_top href='../commands/Gui_Add_DropDownList.html'>DropDownList</a></li>
+<li><a target=_top href='../commands/Gui_Add_ComboBox.html'>ComboBox</a></li>
+<li><a target=_top href='../commands/Gui_Add_ListBox.html'>ListBox</a></li>
+<li><a target=_top href='../commands/Gui_Add_ListView.html'>ListView</a></li>
+<li><a target=_top href='../commands/Gui_Add_Slider.html'>Slider</a></li>
+<li><a target=_top href='../commands/Gui_Add_Progress.html'>Progress</a></li>
+<li><a target=_top href='../commands/Gui_Add_DateTime.html'>DateTime</a></li>
+<li><a target=_top href='../commands/Gui_Add_MonthCal.html'>MonthCal</a></li>
+<li><a target=_top href='../commands/Gui_Add_Tab.html'>Tab</a></li>
+</ul>
+</td>
+</tr>
+<tr><td>Options</td><td>
+각종의 설정을 반각 스페이스에서 단락지어 지정한다.<br>
+모든 컨트롤 종별로 공통의 것에 대해서는 후술.<br>
+고유의 것에 대해서는, 각각의 컨트롤의 항을 참조.
+</td>
+</tr>
+<tr><td>Text</td><td>
+컨트롤에 표시되는 캡션등을 지정한다.<br>
+ControlType에 따라서는, 특수한 지정이 필요한 것도 있다.<br>
+자세한 것은 각각의 컨트롤의 항을 참조.
+
+</td>
+</tr>
+</table>
+
+<h3>Options</h3>
+<h4>배치 관계</h4>
+<dl>
+<dt>Xn</dt><dd>
+n에 컨트롤의 수평 위치를 윈도우의 클라이언트 영역의 좌상으로부터의 상대 좌표로 지정.(례:X100)<br>
+생략시는 자동적으로 결정된다.
+</dd>
+<dt>Yn</dt><dd>
+n에 컨트롤의 수직 위치를 윈도우의 클라이언트 영역의 좌상으로부터의 상대 좌표로 지정.<br>
+생략시는 자동적으로 결정된다.
+</dd>
+<dt>x+n</dt><dd>
+컨트롤의 수평 위치를, 직전에 추가한 컨트롤의 우단으로부터의 거리로 지정한다.n에는 부의 값도 지정 가능(례:x+-10)
+</dd>
+<dt>y+n</dt><dd>
+컨트롤의 수직 위치를, 직전에 추가한 컨트롤의 하단으로부터의 거리로 지정한다.n에는 부의 값도 지정 가능(례:y+-10)
+</dd>
+<dt>xp+n</dt><dd>
+컨트롤의 수평 위치를, 직전에 추가한 컨트롤의 좌단으로부터의 거리로 지정한다.<br>
+GroupBox의 안쪽에 컨트롤을 배치하고 싶을 때에 사용한다.
+</dd>
+<dt>yp+n</dt><dd>
+컨트롤의 수직 위치를, 직전에 추가한 컨트롤의 상단으로부터의 거리로 지정한다.<br>
+GroupBox의 안쪽에 컨트롤을 배치하고 싶을 때에 사용한다.
+</dd>
+<dt>xm[+n|-n|]</dt><dd>
+컨트롤의 수평 위치를, 좌단으로 설정한다.「x0」라고 달라, 마진(Remarks참조)(은)는 고려된다.<br>
+「xm+100」(이)나 「xm-10」(와)과 같이 수치를 지정하면, 마진을 고려한 좌단으로부터 한층 더 지정 피크셀만 늦추어서 배치된다.
+</dd>
+<dt>ym[+n|-n|]</dt><dd>
+컨트롤의 수직 위치를, 상단으로 설정한다.「y0」라고 달라, 마진(Remarks참조)(은)는 고려된다.<br>
+「ym+100」(이)나 「ym-10」(와)과 같이 수치를 지정하면, 마진을 고려한 상단으로부터 한층 더 지정 피크셀만 늦추어서 배치된다.
+</dd>
+<dt>Section</dt><dd>
+그 컨트롤의 위치를 그 후 사용된다xs,ys옵션을 위한 기준 위치로 설정한다.<br>
+제일 최초로 배치되는 컨트롤은, 자동적으로 기준 위치로 설정된다.
+</dd>
+<dt>xs[+n|-n|]</dt><dd>
+컨트롤의 수평 위치를,Section그리고 설정한 컨트롤과 같은 위치로 설정한다.<br>
+「xm+100」(이)나 「xm-10」(와)과 같이 수치를 지정하면, 지정 피크셀만 늦춘 위치로 설정된다.
+</dd>
+<dt>ys[+n|-n|]</dt><dd>
+컨트롤의 수직 위치를,Section그리고 설정한 컨트롤과 같은 위치로 설정한다.<br>
+「ym+100」(이)나 「ym-10」(와)과 같이 수치를 지정하면, 지정 피크셀만 늦춘 위치로 설정된다.
+</dd>
+<dt>Wn</dt><dd>
+n에 컨트롤의 가로폭을 피크셀수로 지정한다.<br>
+생략시는, 일부의 컨트롤은Text인수의 내용이 들어가도록(듯이) 자동 설정되어 그 이외의 경우는 font size의15배로 설정된다.
+</dd>
+<dt>Hn</dt><dd>
+n에 컨트롤의 높이를 피크셀수로 지정한다.<br>
+H옵션과R의 모두 지정되지 않았던 경우, 높이는 자동적으로 결정된다.<br>
+DropDownList,ComboBox그럼, 전개된 드롭 다운의 높이의 지정이 된다.(지정하지 않으면 스크린의 높이 가득 전개된다)
+</dd>
+<dt>wp[+n|-n]</dt><dd>
+직전에 배치한 컨트롤의 폭으로부터의 상대치로 폭을 지정한다.<br>
+「wp」(이)라면 전의 컨트롤과 같은 폭, 「wp+10」(이)라면10피크셀 넓고, 「wp-10」(이)라면10피크셀 좁아진다.
+</dd>
+<dt>hp[+n|-n]</dt><dd>
+직전에 배치한 컨트롤의 높이로부터의 상대치로 높이를 지정한다.
+</dd>
+<dt>Rn</dt><dd>
+컨트롤의 높이를 텍스트의 행수로 지정.<br>
+n에 행수를 지정한다.소수로의 지정도 가능.<br>
+H옵션과 함께 사용했을 경우,R옵션 쪽이 우선된다.<br>
+GroupBox그럼, 세로 방향에 늘어놓을 수가 있는 컨트롤의 수가 된다.<br>
+DropDownList,ComboBox그럼, 전개된 드롭 다운에 한 번에 표시되는 항목수가 변경된다.
+</dd>
+</dl>
+<h4>실행 제어 관계</h4>
+<dl>
+<dt>Vn</dt><dd>
+컨트롤의 입력 내용을 취득하는 변수명을 설정.<br>
+n에 변수명을 지정한다.(례:「vName」)<br>
+글로벌 변수나 함수내의 스태틱 변수,ByRef인수로 건네받은 글로벌 변수를 지정할 수 있다.<br>
+입력 내용을 변수에 반영시키려면 , 「<code>GUI, Submit</code>」(을)를 실행할 필요가 있다.<br>
+유저가 값을 입력하는 타입의 컨트롤 이외에도, 변수를 할당해 두는 것으로 「<a target=_top href='../commands/GuiControl.html'>GuiControl</a>」(이)나 「<a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a>」커멘드로, 할당한 변수명을 사용해 컨트롤을 지정할 수 있다.
+</dd>
+<dt>Gn</dt><dd>
+그 컨트롤이 클릭이나 선택의 변경등의 조작을 하셨을 때에 실행되는 써브루틴을 설정한다.<br>
+n에 써브루틴 라벨을 지정한다.<br>
+예를 들어, 「gClicked」라고 지정하면 「Clicked」라고 하는 써브루틴이 실행되게 된다.<br>
+「gCancel」라고 하는 지정은 특수하고, 「Cancel」라고 하는 라벨이 존재하지 않는 경우, 「<code>GUI, Cancel</code>」의 동작이 대신에 실행되게 된다.<br>
+실행되는 써브루틴내에서는, 편입 변수<a target=_top href='../Variables.html#GuiControlEvent'>A_GuiControlEvent</a>그리고 더블 클릭 등 특수한 조작을 하신 것을 알 수 있다.(Text,Pictrue,Radio,ListBox등)
+
+</dd>
+
+<dt>HwndN</dt><dd>
+N그리고 지정한 이름의 변수에 작성된 컨트롤의 윈도우 핸들을 격납한다.(례:「HwndHandle」)<br>
+Gui,Add시간만 유효.
+</dd>
+
+</dl>
+<h4>스타일 관계</h4>
+
+<dl>
+<dt>Redraw</dt><dd>
+표시 내용에 변화가 있었을 때에 재묘화를 실시한다.<br>
+디폴트로ON(이)가 되어 있다.<br>
+리스트뷰등에서 대량의 항목을 추가·삭제·변경하기 전에<a target=_top href='../commands/GuiControl.html'>GuiControl,-Redraw,ControlID</a>그리고 재묘화를 정지해, 종료후에+Redraw그리고 재개시키는 것으로 퍼포먼스를 개선할 수 있다.
+</dl>
+<dt>Cn</dt><dd>
+문자색을 지정.n에<a target=_top href='../misc/Color.html'>색의 이름</a>(이)나RRGGBB형식의 칼라 코드와 함께 지정한다.(례1:cRed,례2:cFFCC99)
+</dd>
+<dt>BackGround</dt><dd>
+<a target=_top href='../commands/Gui_Color.html'>Gui,Color</a>그리고 설정한 컨트롤의 배경색을 적용한다(디폴트)<br>
+「-BackGround」라고 지정하는 것으로, 설정을 무시해 시스템의 디폴트 배색을 사용한다.
+</dd>
+<dt>Disabled</dt><dd>
+컨트롤을 조작할 수 없게 한다<br>
+Disabled0/Disabled1(으)로 하는 것으로, 조작 가능/불가능하게 하는 일도 가능.
+</dd>
+<dt>Hidden</dt><dd>
+컨트롤을 최초부터 비표시로 한다.<br>
+「<code><a target=_top href='../commands/Control.html'>Control, Show</a></code>」(으)로 표시 당한다.<br>
+Hidden0/Hidden1(으)로 하는 것으로, 표시/비표시로 하는 일도 가능.
+</dd>
+<dt>Left</dt><dd>
+Button의 텍스트를 왼쪽 가지런히 해로 한다
+</dd>
+<dt>Right</dt><dd>
+텍스트를 오른쪽맞춤으로 한다<br>
+CheckBox(이)나RadioButton그럼, 체크 박스의 부분도 우측이 된다.
+</dd>
+<dt>Center</dt><dd>
+텍스트를 centering로 한다
+</dd>
+<dt>-TabStop</dt><dd>
+Tab키에 의한 포커스의 이동으로 이동 대상으로 하지 않는다
+</dd>
+<dt>-Wrap</dt><dd>
+텍스트가 가로폭에 들어가지 않는 경우에, 자동적으로 반환을 실시하지 않게 한다.<br>
+(일부의 환경에서는,CheckBox(와)과RadioBox의 가로폭의 자동 산출이 이상하고, 가로폭을 지정하지 않으면1문자만 부족하게 되어2행에 되접어 꺾여 버리므로, 이 옵션으로 반환을 잃으면 좋다)
+</dd>
+<dt>VScroll/-VScroll</dt><dd>
+세로 스크롤 바를 표시한다(일부의 종류의 컨트롤에서만 유효)
+</dd>
+<dt>HScroll/-HScroll</dt><dd>
+옆스크롤 바를 표시한다(일부의 종류의 컨트롤에서만 유효)<br>
+ListBox그럼, 스크롤 할 수 있는 폭이 강제적으로 윈도우의 폭의3배에 고정된다.<br>
+「HScroll200」(와)과 같이 후에 수치를 지정하면, 스크롤 할 수 있는 폭을 지정할 수 있다.
+</dd>
+<dt>Border</dt><dd>
+컨트롤의 주위에 테두리를 표시한다.
+</dd>
+<dt>Theme/-Theme</dt><dd>
+컨트롤 마다WindowsXP의 테마를 적용할지를 설정한다.<br>
+</dd>
+<dt>[+/-]0xNNNNNNNN</dt><dd>
+컨트롤의 스타일을8자리수의16진수치로 지정한다.<br>
+자세한 것은<a target=_top href='../misc/Styles.html'>스타일 일람</a>(을)를 참조.<br>
+부호가 생략 되었을 경우는, 「+」라고 보인다.<br>
+
+</dd>
+<dt>[+/-]E0xNNNNNNNN</dt><dd>
+컨트롤의 확장 스타일을8자리수의16진수치로 지정한다.<br>
+자세한 것은<a target=_top href='../misc/Styles.html'>스타일 일람</a>(을)를 참조.<br>
+부호가 생략 되었을 경우는, 「+」라고 보인다.<br>
+</dd>
+
+</dl>
+
+<h2>Remarks</h2>
+<p>윈도우에 최초로 컨트롤을 추가할 경우에, 자동적으로 윈도우가 작성된다.</p>
+
+<p>
+X/Y옵션으로 좌표를 지정하지 않았던 경우, 컨트롤의 위치는 자동적으로 결정된다.<br>
+최초로 추가되는 컨트롤은, 윈도우의 좌상에 배치되어 2번째 이후의 컨트롤은, 직전의 컨트롤의 아래 쪽에 다른 컨트롤과 겹치지 않게 배치된다.<br>
+X/Y 중 다른 한쪽만 지정했을 경우, 또 하나의 좌표만이 자동적으로 결정된다.
+</p>
+<p>
+컨트롤의 사이즈도, 컨트롤의 종류나 텍스트의 내용등에 의해서 자동적으로 결정된다.
+</p>
+<p>
+자동 레이아웃시에는, 다른 컨트롤로부터 일정한 간격을 열어서 배치된다.<br>
+상하의 간격은 선택되고 있는 폰트의 높이의1.25배, 좌우의 간격은0.75배가 된다.<br>
+「<code><a target=_top href='../commands/Gui_Show.html'>Gui,Show</a></code>」(으)로 윈도우가 최초로 표시될 때도, 폭이나 높이가 지정되지 않는 이상 이 마진을 고려해 사이즈가 결정된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></div>
+</body>
+</html>

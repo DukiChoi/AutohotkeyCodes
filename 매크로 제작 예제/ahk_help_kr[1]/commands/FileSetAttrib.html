@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FileSetAtrrib</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileSetAttrib.html'>FileSetAtrrib</a></div>
+<h1>FileSetAttrib </h1>
+<p>하나 이상의 파일의 속성을 변경</p>
+
+<pre>FileSetAttrib, Attributes [, FilePattern, OperateOnFolders?, Recurse?]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>Attributes
+</td>
+<td>설정하는 속성(Remarks참조)
+</td>
+</tr>
+<tr>
+<td>FilePattern
+</td>
+<td>대상 파일명.<br>
+와일드 카드 사용가능.<br>
+상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.<br>
+생략시는, 제일 안쪽의<a target=_top href='../commands/LoopFile.html'>File-Loop</a>그리고 대상이 되고 있는 파일이 대상이 된다.
+
+</td>
+</tr>
+<tr>
+<td>OperateOnFolders?
+</td>
+<td>
+와일드 카드 사용시의 폴더의 취급
+<dl>
+<dt>0</dt><dd>폴더는 대상으로 하지 않는다</dd>
+<dt>1</dt><dd>폴더와 파일을 대칭으로 한다</dd>
+<dt>2</dt><dd>폴더만을 대칭으로 한다</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>Recurse?
+</td>
+<td>
+「1」(을)를 지정하면, 서브 폴더를 더듬어FilePattern에 일치하는 파일을 대상으로 한다.<br>
+생략시나 「0」(을)를 지정했을 경우는, 서브 폴더 이하는 포함하지 않는다.
+</td>
+</tr>
+</table>
+<h2>ErrorLevel</h2>
+<p>속성 변경에 실패한 파일수가 된다</p>
+
+<h2>Remarks</h2>
+<p>
+Attributes에는, 새로운 설정을 나타내는 오퍼레이터라고 변경하고 싶은 속성을 조합한 것을 연결해 지정한다.
+</p>
+
+</p>
+<table><caption>오퍼레이터</caption><tr><td>+
+</td>
+<td>속성을ON(으)로 한다
+</td>
+</tr>
+<tr>
+<td>-
+</td>
+<td>속성을OFF(으)로 한다
+</td>
+</tr>
+<tr>
+<td>^
+</td>
+<td>속성의ON/OFF(을)를 바꾼다
+</td>
+</tr>
+</table>
+
+<table><caption>속성</caption>
+<tr><td>R</td><td>독해 전용</td></tr>
+<tr><td>A</td><td>어카이브(archive)</td></tr>
+<tr><td>S</td><td>시스템</td></tr>
+<tr><td>H</td><td>은폐 파일</td></tr>
+<tr><td>O</td><td>오프 라인</td></tr>
+<tr><td>T</td><td>일시파일</td></tr>
+<tr><td>N</td><td>통상(다른 속성과 조합할 수 없다)</td></tr>
+</table>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/FileGetAttrib.html'>FileGetAttrib</a>, <a target=_top href='../commands/FileGetTime.html'>FileGetTime</a>, <a target=_top href='../commands/FileSetTime.html'>FileSetTime</a>, <a target=_top href='../commands/FileGetSize.html'>FileGetSize</a>, <a target=_top href='../commands/FileGetVersion.html'>FileGetVersion</a>, <a target=_top href='../commands/LoopFile.html'>File-loop</a></p>
+
+<h2>Example(s)</h2>
+<pre>FileSetAttrib, +RH, C:\MyFiles\*.*, 1 ; +RH is identical to +R+H
+FileSetAttrib, ^H, C:\MyFiles ; Toggle the folder's &quot;hidden&quot; attribute.
+FileSetAttrib, -R+A, C:\New Text File.txt
+FileSetAttrib, +A, C:\*.ini, , 1 ; Recurse through all .ini files on the C drive.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileSetAttrib.html'>FileSetAtrrib</a></div>
+</body>
+</html>

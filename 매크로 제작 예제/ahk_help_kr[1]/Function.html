@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>함수</title>
+
+<link href="css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Function.html'>함수</a></div>
+<h1>함수</h1>
+<p>
+함수란, 인수로서 값을 받아, 어떠한 처리를 실시해, 결과를 돌려주는 써브루틴이다.<br>
+통상의 커멘드와 달라,<a target=_top href='./Expression.html'>식</a>의 안에 짜넣어 사용할 수 있다.
+</p>
+
+<h2>함수의 정의 방법</h2>
+<p>
+함수의 정의는, 이하와 같이 한다.<br>
+함수의 내용이1행만으로도, 「{」 「}」(은)는 생략 할 수 없다.
+</p>
+<pre>
+함수명(인수 리스트){
+함수 본체
+}
+</pre>
+<p>함수명에는, 반각영숫자와 「_」(언더 바)등을 사용할 수 있다.<br>
+인수 리스트에는, 인수의 이름이나 타입, 디폴트치를 「,」(으)로 단락지어 열거한다.<br>
+함수가 인수를 필요로 하지 않는 경우, 인수 리스트는 비운다.<br>
+함수명과 「(」의 사이에는, 스페이스등을 넣어선 안 된다.<br>
+함수내에서는, 인수로서 주어진 값을 변수와 같이 참조할 수 있다.<br>
+「return」에 이어 기술했다<a target=_top href='./Expression.html'>식</a>하지만 돌아가 값으로 해서 호출해 바탕으로 돌려주어진다.<br>
+return하지만 없는 경우, 함수의 마지막 「}」까지 실행된 시점에서, 하늘의 문자열이 돌려주어진다.
+</p>
+
+<p>
+아래와 같은 예에서는,<code>Add</code>그렇다고 하는 함수명의 함수를 정의하고 있다.<br>
+Add함수는x(와)과y의2개의 인수를 받아,x(와)과y(을)를 더한 값을 돌아가 값으로 해서 돌려준다.
+</p>
+
+<pre>Add(x, y){
+	return x + y
+}
+</pre>
+<p>
+함수의 정의는, 함수 정의의 내부 이외라면 어디에 써도 상관없다.<br>
+스크립트 실행중에, 함수 정의의 행에 실행이 옮겼을 경우, 함수 정의의 마지막까지가 스킵 되고 실행은 되지 않는다.
+</p>
+
+
+
+
+
+<h2>함수의 호출</h2>
+
+<p>
+함수명에 이어 「()」의 안에 인수를 「,」단락으로 열거한 것이 함수 호출이다.<br>
+함수 호출은, 식안에 짜넣어 사용할 수 있다.
+</p>
+<pre>
+Sum:=Add(2,3)
+</pre>
+<p>상기의 예에서는,Add함수의 인수x(으)로서 「2」, 인수y(으)로서 「3」(을)를 주어 호출해, 그 결과를 변수 「Sum」에 대입하고 있다.
+</p>
+<p>
+「<code>Add(Add(1,2),3+4)</code>」(와)과 같이, 함수 호출의 인수에 식이나 함수 호출을 기술하는 일도 가능.<br>
+그 경우, 우선 안쪽의 식이 왼쪽의 인수로부터 순서에 계산되어 다음에 그것들을 인수로서 외측의 함수가 실행된다.
+</p>
+<p>변수에 대입하지 않고, 함수의 호출만을 실시하는 것도 가능하다.<br>
+아래와 같은 예에서는,2개의 인수의 화를 다이얼로그 표시하는 함수를 정의해, 인수에2(와)과3(을)를 주어 호출하고 있다.</p>
+<pre>
+ShowAdd(x,y){
+	MsgBox,% x+y
+}
+ShowAdd(2,3)
+</pre>
+
+<p>함수중에서 다른 함수를 호출하는 것도 가능하다.<br>
+호출의 심도의 상한은159회로,160번째의 호출을 하려고 하면AutoHotkey의 프로그램이 부정 종료한다.
+</p>
+
+
+
+<h3>동적 함수명으로의 호출해</h3>
+<p>
+함수 호출의 함수명 부분에는, 「%FuncName%()」(이)나 「Func%Index%()」(와)과 같이 변수 참조를 짜넣을 수 있다.<br>
+이 경우, 실행시에 그 변수를 전개한 이름의 함수가 불려 간다.<br>
+예를 들면, 「Index」(이)가 「1」의 때에 「Func%Index%()」(이)가 실행되면, 「Func1()」라고 하는 함수가 불려 간다<br>
+만약 그 함수가 존재하지 않거나, 인수의 수가 맞지 않았던 경우, 함수의 결과는 길이 제로의 문자열이 된다.
+
+</p>
+
+
+
+<h2>인수의 디폴트치</h2>
+<pre>
+Add(p1,p2,p3=0,p4=0,p5=0){
+	return p1+p2+p3+p4+p5
+}
+</pre>
+<p>상기와 같이, 인수 리스트의 인수명의 뒤에 「=」에 이어 디폴트치를 기술하는 것으로, 인수를 생략 했을 경우에는 그 값이 사용되도록(듯이) 하는 것이 가능하다.<br>
+상기의 예에서는, 「Add(1,2)」라고 했을 경우는3하지만 돌아가, 「Add(1,2,3)」라고 하면6하지만 돌아간다.<br>
+디폴트치로서 설정할 수 있는 것은, 「10」(이)나 「1.001」, 「1.11e+10」, 「""」, 「"this is default value"」(와)과 같은 정수,true,false뿐인다.<br>
+복수의 인수를 생략 하는 것은 가능하지만, 인수의 도중만을 생략 할 수 없다.상기의 예에서는, 「Add(1,2,,3)」라고 할 수 없다.<br>
+또, 이것에 수반해, 「x, y=0, z」(와)과 같이 디폴트치를 가지는 인수의 뒤에, 디폴트치를 가지지 않는 인수를 설정할 수 없다.
+
+</p>
+
+
+<h2>인수의 참조 인도</h2>
+<p>
+함수에 값은 아니고 변수의 참조를 건네주는 것을 참조 인도라고 말한다.<br>
+참조 인도를 이용하면, 함수로부터 호출해 원의 변수를 변경할 수 있다.<br>
+이것을 이용하면,2개이상의 정보를 호출해 바탕으로 알리는 것이 가능하게 된다.<br>
+인수를 참조 인도로 하려면 , 인수 리스트로 인수명의 전에 「ByRef 」(을)를 붙인다.<br>
+참조 인도가 되어 있는 인수에 변수 이외의 식을 지정하면 실행시 에러가 된다.미정도리의 변수를 지정하는 것은 가능.
+</p>
+<p>
+아래와 같은 예에서는,2개의 변수의 내용을 바꿔 넣는 함수 「Swap」(을)를 정의하고 있다.
+</p>
+<pre>Swap(ByRef Left, ByRef Right){
+	temp := Left
+	Left := Right
+	Right := temp
+}
+</pre>
+<p>
+참조 인도에서는, 함수 호출시에 변수의 내용의 카피를 하지 않기 때문에, 큰 문자열을 인수에 건네줄 때의 효율이 좋아진다.
+</p>
+<p>ByRef인수에도 디폴트치를 지정할 수 있다.<br>
+인수가 생략 되었을 경우는, 디폴트치를 격납한 로컬 변수가 작성된다.
+</p>
+
+
+
+
+
+
+<h2>변수의 유효 범위</h2>
+<p>
+통상의 함수에서는, 함수 중(안)에서 사용되는 함수 중(안)에서 사용되는 변수(<a target=_top href='./Variables.html'>편입 변수를 제외하다</a>)(은)는, 함수내에서만 유효한 로컬 변수가 된다.
+로컬 변수는, 함수의 소환 마다 작성되고 함수로부터 돌아올 때에 파기된다.<br>
+따라서, 이하의 스크립트는 기대 그대로의 동작을 하지 않는다.
+</p>
+<pre>
+;x의 값을 설정하는 함수를 만들고 싶다
+SetX(val){
+	x:=val
+}
+x:=0
+SetX(10)
+MsgBox,%x%
+</pre>
+
+
+
+
+
+
+<h2>글로벌 변수의 이용</h2>
+<p>
+함수내로부터 통상의 변수(글로벌 변수)에 액세스 하려면 , 「global」에 이어 액세스 하고 싶은 변수명을 기술한다.복수의 변수명을 「<code>,</code>」(으)로 단락지어 정리하고 쓸 수 있다.<br>
+이하의 스크립트는 기대 그대로의 동작이 된다.
+</p>
+<pre>
+;x의 값을 설정하는 함수를 만들고 싶다
+SetX(val){
+	global x
+	x:=val
+}
+x:=0
+SetX(10)
+MsgBox,%x%
+</pre>
+
+
+<p>
+또, 변수의 사용을 선언하는 것과 동시에, 변수에 값을 대입할 수도 있다.<br>
+이 때, 「=」연산자는, 비교 연산자는 아니고 「:=」연산자로 간주해진다.
+</p>
+<pre>
+SetX(val){
+	global x=val
+}
+</pre>
+
+
+<p>조건 분기를 사용해도, 조건에 의해서 변수를 글로벌로 할까 로컬로 할까를 바꾸는 것은 할 수 없다.
+</p>
+
+<h2>디폴트의 유효 범위를 글로벌로 한다</h2>
+
+<p>
+함수의 최초로 「global」라고만 쓴 행이 있으면, 함수내에 기술된 모든 변수가 글로벌 변수가 된다.<br>
+이 때, 「local」에 이어 변수명을 쓴 행이 있으면, 그 변수만 로컬 변수가 된다.<br>
+글로벌 변수의 사용 선언과 같이, 복수의 변수명을 「<code>,</code>」(으)로 단락지어 정리하고 쓰거나 선언과 동시에 대입하는 일도 가능.
+</p>
+<pre>
+SetX(val){
+	global
+	x=val
+}
+</pre>
+<p>
+함수의 최초로 「global」(이)가 없어도, 「local」의 변수 선언이 있으면, 그 이외의 변수는 글로벌 변수로서 다루어진다.
+</p>
+
+
+<p>
+함수내에서 「Array%i%」(와)과 같은 동적 변수를 사용했을 경우, 로컬 변수로서 다루어진다.<br>
+다만, 그 이름의 로컬 변수가 존재하지 않고, 글로벌 변수라면 존재하는 경우, 그 글로벌 변수가 사용된다.<br>
+로컬에도 글로벌에도 존재하지 않고, 변수를 새롭게 작성해야 하는 경우, 디폴트의 유효 범위에서 작성된다.
+</p>
+<p>
+<a target=_top href='./commands/StringSplit.html'>StringSplit</a>커멘드등에서 배열을 작성하는 경우, 통상은 로컬 변수로서 작성된다.<br>
+다만, 배열의 최초의 요소가global선언되고 있는 경우는, 모든 요소가 글로벌 변수로서 작성된다.
+</p>
+
+<p>
+</p>
+
+
+
+
+
+
+
+
+<h2>스태틱 변수</h2>
+<p>
+같은 함수 중(안)에서 공유되는 변수를 작성하려면  「static」에 이어 변수명을 쓴다.복수의 변수명을 「<code>,</code>」(으)로 단락지어 정리하고 쓸 수 있다.<br>
+스태틱 변수는, 함수 중(안)에서 밖에 참조할 수 없지만, 같은 함수로 하나의 변수가 공유된다.
+</p>
+<pre>
+AAA(){
+	static CalledTimes:=0
+	CalledTimes++
+	MsgBox,%CalledTimes%번째
+}
+</pre>
+<p>
+스태틱 변수의 초기화에서는, 수치나 문자열의 정수를 대입하는 것 마셔 가능.<br>
+스태틱 변수는, 스크립트의 기동시에 한 번만 초기화된다.
+</p>
+
+
+<h2>재귀 호출</h2>
+<p>
+함수중에서 그 함수 자신을 호출하는 테크닉을 재귀 호출이라고 한다.<br>
+아래와 같은 예는, 인수로 주어졌다n의 계승을 요구하는 함수이다.
+</p>
+<pre>
+Factorial(n){
+	If n=1
+		return 1
+	else
+		return n*Factorial(n-1)
+}
+</pre>
+<p>덧붙여 재귀 호출을 실시하는 함수로, 「ByRef」에 의한 참조 인도의 인수에 로컬 변수를 주면, 호출처의 해당 변수가 참조되게 되어 버린다.<br>
+따라서, 이하의 스크립트는 올바르게 동작하지 않는다.
+</p>
+<pre>
+Factorial(ByRef n){
+	If n=1			;(2)여기의n그럼 호출원의x(이)가 아니고, 불려 간 측의x하지만 참조되어 버린다
+		return
+	x:=n-1
+	Factorial(x)	;(1)여기서 로컬 변수x(을)를 참조 건네주면
+	n*=x
+}
+</pre>
+
+
+
+<h2>함수내로부터의Gosub/Goto/Exit</h2>
+<p>함수내에서는, 함수의 내외의 써브루틴을 「<a target=_top href='./commands/Gosub.html'>Gosub</a>」(으)로 호출할 수 있다.<br>
+함수외의 써브루틴을 호출했을 경우, 불려 간 써브루틴에서는 함수내의 로컬 변수는 호출할 수 없다.한편, 함수에 「global」(이)가 선언되어 있지 않아도, 모든 글로벌 변수를 이용할 수 있다.
+</p>
+<p>
+함수내에서는, 함수내의 라벨에게만 「<a target=_top href='./commands/Goto.html'>Goto</a>」(으)로 점프 할 수 있다.<br>
+함수외의 라벨에Goto그리고 점프 하려고 했을 경우, 그 행은 무시된다.
+</p>
+
+<p>
+함수내에서 실행중의<a target=_top href='./misc/Threads.html'>스렛드</a>(을)를 종료하는 「<a target=_top href='./commands/Exit.html'>Exit</a>」커멘드를 실행하면, 함수의 호출해 원래대로 돌아가는 일 없이 그 시점에서 스렛드가 종료한다.
+</p>
+
+
+
+
+
+<h2><a name="library">함수 라이브러리 스크립트</a></h2>
+<p>
+라이브러리 스크립트는 「%A_MyDocuments%\AutoHotkey\Lib\」인가,AutoHotkey.exe(이)가 있는 폴더내의 「Lib」폴더에 격납한다.<br>
+스크립트 파일명중, 확장자(extension)를 제외한 이름 부분이 라이브러리명이 된다.<br>
+라이브러리 스크립트에는, 라이브러리명과 같은 이름의 함수나, 라이브러리명의 뒤에 「_」에 이어 임의의 문자열이 붙은 이름의 함수(례:「MyLib_FuncA()」)(을)를 기술한다.<br>
+그 이외의 함수나 라벨도 정의할 수 있어 읽기원스크립트로부터 호출할 수 있지만, 이름이 중복 하지 않게 주의할 필요가 있다.
+</p>
+
+
+
+<p>스크립트 읽기시, 스크립트중에서 정의되어 있지 않은 함수의(비동적 함수명으로의)호출이 기술되고 있으면, 그 함수명에 「.ahk」(을)를 붙인 파일명의 스크립트가 라이브러리 폴더로부터 검색되어 만약 존재하면 추가로 읽힌다.<br>
+해당하는 파일이 존재하지 않고, 함수명에 「_」(이)가 포함되는 경우, 마지막 「_」의 전까지를 파일명으로 한 파일이 검색된다.<br>
+이러한 파일을 읽어들여도, 해당하는 함수가 정의되어 있지 않은 경우는, 스크립트 read error가 된다.
+</p>
+
+
+
+<p>
+읽힌 스크립트는, 원의 스크립트의 말미로<a target=_top href='./commands/_Include.html'>#Include</a>된 것과 같은 상태가 된다.<br>
+라이브러리 스크립트내에서, 함수의 밖에 써브루틴 라벨등을 기술하면, 의도되어 있지 않은 상황으로 실행되어 버리는 경우가 있다.<br>
+라이브러리 스크립트의 선두에return(을)를 기술해 두면 방지할 수 있다.
+</p>
+
+<p>
+라이브러리 스크립트내에서도, 다른 라이브러리 스크립트의 함수를 호출해 가능하다.
+</p>
+<p>
+라이브러리 스크립트내에<a target=_top href='./commands/_Include.html'>#Include</a>(을)를 기술했을 경우, 패스의 기준 폴더는 그 라이브러리 스크립트가 있는 폴더가 된다.
+</p>
+
+
+<p>
+<a target=_top href='./Usage.html#ahk2exe'>ahk2exe.exe</a>그리고 컴파일 하는 경우, 사용되고 있는 라이브러리 스크립트도 읽어들여 컴파일 된다.
+이 때,ahk2exe.exe(은)는,AutoHotkey.exe하지만 있는 폴더내의 어떠한 폴더(통상은 「Compiler」)에 놓여져 있을 필요가 있다.
+</p>
+
+
+
+<h2>함수에 의한 스크립트의 모듈화</h2>
+<p>
+함수의 정의만을 쓴 스크립트를 「<a target=_top href='./commands/_Include.html'>#Include</a>」지령으로 읽어들여 사용하도록(듯이) 하는 것으로, 스크립트의 보수성을 향상 당한다.<br>
+다른 사람이 만든 스크립트를 자신의 스크립트에 짜넣고 싶은 경우 등에, 변수명의 중복을 신경쓰지 않아도 되므로 편리하다.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>편입 함수</h2>
+<p>
+AutoHotkey에는, 미리 정의된 편입 함수가 준비되어 있다.<br>
+이것들은, 보통 함수와 같이 사용할 수 있다.<br>
+정의되고 있는 편입 함수에 대해서는,<a target=_top href='./commands/index.html'>커멘드 레퍼런스</a>(을)를 참조.
+</p>
+<p>
+편입 함수는, 같은 이름의 함수를 정의하는 것으로 덧쓰기할 수 있다.
+</p>
+
+
+
+
+
+
+
+<!-- 
+<table>
+<caption>실행 제어 관련</caption>
+<tr><th>서식</th><th>설명</th></tr>
+<tr><td><a target=_top href='./commands/OnMessage.html'>OnMessae</a>(MsgNumber [, &quot;FunctionName&quot;])</td><td>
+스크립트가 소유하는 윈도우에MsgNumber그리고 지정한 메세지가 보내졌을 때에,FunctionName그리고 지정된 함수가 불려 가도록(듯이) 등록한다.<br>
+자세한 것은 링크 앞의 개별 해설을 참조.
+</td></tr>
+
+<tr><td><a target=_top href='./commands/DllCall.html'>DllCall</a>("[DllFile\]Function" [, Type1, Arg1, Type2, Arg2, "Cdecl ReturnType"])
+</td><td>
+DllFile안의Function함수를 호출해 돌아가 값을 얻는다.<br>
+TypeN하ArgN의 형태를 지정.<br>
+자세한 것은 링크 앞의 개별 해설을 참조.
+</td></tr>
+
+<tr><td><a target=_top href='./commands/VarSetCapacity.html'>VarSetCapacity</a>(Var [, RequestedCapacity])
+</td><td>
+Var그리고 지정한 변수로서 확보하는 메모리 영역의 사이즈를RequestedCapacity(으)로 설정한다.<br>
+자세한 것은 링크 앞의 개별 해설을 참조.
+</td></tr>
+
+<tr><td>IsLabel("LabelName")</td><td>
+LabelName그리고 지정된 이름의 라벨이 존재하면 「1」(을)를, 존재하지 않으면 「0」(을)를 돌려준다.<br>
+LabelName에는,<a target=_top href='./commands/Gosub.html'>Gosub</a>커멘드등에서 사용하는 것과 같은 라벨명을 지정할 수 있다.
+</td></tr>
+
+
+</table>
+
+
+
+
+
+
+
+
+<table>
+<caption>시스템 관련</caption>
+<tr><th>서식</th><th>설명</th></tr>
+<tr><td>FileExist(FilePattern)
+</td><td>
+FilePattern에 일치하는 파일이 존재하는 경우, 파일의 속성이<a target=_top href='./commands/FileGetAttrib.html'>FileGetAttrib</a>커멘드로 사용되는 서식에서 돌려주어진다.<br>
+파일이 존재하지 않는 경우는, 길이 제로의 공문자열이 돌려주어진다.<br>
+파일이 존재하지만, 어떤 속성도 붙지 않은 경우는 「X」(이)가 된다.<br>
+FilePattern에는 구체적인 파일명외, 와일드 카드 문자로서 「*」 「?」(이)가 사용할 수 있다.<br>
+FilePattern에 상대 패스를 지정했을 경우,<a target=_top href='./Variables.html#WorkingDir'>A_WorkingDir</a>(으)로부터의 상대 패스로 간주해진다.
+</td></tr>
+
+<tr><td>GetKeyState(KeyName [, "P" or "T"])
+</td><td>KeyName하지만 눌러 내려지고 있었을 경우 「1」(이)가, 눌러 내릴 수 지 없었던 경우 「0」(이)가 돌아간다.<br>
+KeyName하지만 부정했던 경우는, 길이 제로의 공문자열이 돌아간다.<br>
+제2인수에 「"P"」(을)를 지정했을 경우, 프로그램이 생성하는 가상적인 눌러 인하 상태를 무시해, 물리적인 눌러 인하 상태를 판정한다.<br>
+제2인수에 「"T"」(을)를 지정했을 경우,Capslock, Numlock, Scrolllock, Insert키의 타글 상태를 취득할 수 있다.<br>
+<a target=_top href='./commands/GetKeyState.html'>GetKeyState</a>커멘드의 설명도 참조.
+
+</td></tr>
+
+<tr><td>WinExist("WinTitle" [, "WinText", "ExcludeTitle", "ExcludeText"])
+</td><td>
+해당하는 윈도우가 존재하면, 그 윈도우의 핸들을 돌려준다.<br>
+존재하지 않으면 「0」(을)를 돌려준다.<br>
+인수의 지정의 방법에 대해서는<a target=_top href='./Window.html'>윈도우 지정의 방법</a>(을)를 참조.
+
+</td></tr>
+
+<tr><td>WinActive("WinTitle" [, "WinText", "ExcludeTitle", "ExcludeText"])
+</td><td>
+해당하는 윈도우가 액티브하면, 그 윈도우의 핸들을 돌려준다.<br>
+그렇지 않으면 「0」(을)를 돌려준다.<br>
+인수의 지정의 방법에 대해서는<a target=_top href='./Window.html'>윈도우 지정의 방법</a>(을)를 참조.
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+
+<table>
+<caption>문자열 관련</caption>
+<tr><th>서식</th><th>설명</th></tr>
+<tr><td>Asc(String)
+</td><td>
+String그리고 주어진 문자열의1아르바이트눈의ASCII코드를 돌려준다.String하지만 길이 제로의 문자열이었던 경우는0하지만 돌아간다.
+</td></tr>
+
+<tr><td>Chr(N)
+</td><td>
+N그리고 지정되었다ASCII코드로 나타내진다1문자를 문자열로서 돌려준다.<br>
+N에는0(으)로부터255의 사이의 값을 지정한다.그 이외를 지정했을 경우는, 길이 제로의 공문자열이 돌아간다.
+</td></tr>
+
+<tr><td>StrLen(String)
+</td><td>
+String그리고 주어진 문자열의 길이를 아르바이트수로 돌려준다.<br>
+동작의 자세한 것은<a target=_top href='./commands/StringLen.html'>StringLen</a>커멘드를 참조.
+</td></tr>
+
+
+<tr><td>InStr(String, Needle [, CaseSensitive=false, StartingPos=1])
+</td><td>
+String그리고 주어진 문자열 중(안)에서,Needle그리고 주어진 문자열이 최초로 출현하는 위치를 돌려준다.<br>
+String의1문자눈은 「1」로서 다루어진다.<br>
+발견되지 않았던 경우는 「0」(이)가 돌아간다.<br>
+CaseSensitive(을)를true(으)로 하면, 대문자 소문자를 구별한다.<br>
+StartingPos(을)를 「2」이상으로 설정하면,StartingPos문자눈 이후를 검색한다.<br>
+StartingPos하지만String의 길이 이상이 되는 경우는, 「0」(이)가 돌아간다.<br>
+StartingPos(을)를 「0」(으)로 하면,String안의 제일 마지막Nedle의 위치가 돌아간다.<br>
+StartingPos(을)를 지정했을 경우에서도, 돌아가 값은 문자열의 선두로부터 센 위치가 된다.
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+
+
+<table>
+<caption>수학 함수</caption>
+<tr><th>서식</th><th>설명</th></tr>
+<tr><td>Abs(N)
+</td><td>수치N의 절대치를 돌려준다
+</td></tr>
+
+<tr><td>Ceil(N)
+</td><td>수치N보다 큰 최소의 정수를 정수치 표현으로 돌려준다
+</td></tr>
+
+<tr><td>Floor(N)
+</td><td>수치N보다 작은 최대의 정수를 정수치 표현으로 돌려준다
+</td></tr>
+
+<tr><td>Round(N[,Place])
+</td><td>수치N(을)를 소수점 이하Place자리수로 사사오입 한다.<br>
+Place(을)를 생략 했을 경우는, 소수점 이하를 사사오입 하고 정수가 돌아간다.<br>
+Place에 부의 수를 지정했을 경우는, 소수점보다 위에서 사사오입 된다.
+Place에 성의 수를 지정했을 경우는 소수치가, 그 이외는 정수치가 돌아간다.
+</td></tr>
+
+
+<tr><td>Sqrt(N)
+</td><td>N의 제곱뿌리가 소수치로 돌아간다
+</td></tr>
+
+<tr><td>Exp(N)
+</td><td>네피아수e의N승을 돌려준다.<br>
+N에는 부의 수나 소수도 지정 가능.
+</td></tr>
+
+
+<tr><td>Log(N)
+</td><td>N의10(을)를 바닥으로 한 대수를 소수치 표현으로 돌려준다
+</td></tr>
+
+<tr><td>Ln(N)
+</td><td>N의 자연대수를 소수치 표현으로 돌려준다
+</td></tr>
+
+<tr><td>Mod(N,Divisor)
+</td><td>N(을)를Dvisor그리고 나눈 너무를 돌려준다.<br>
+예를 들어,Mod(5,3)하2(이)가 된다.<br>
+부호는N(와)과 같게 된다.<br>
+소수치를 지정하는 일도 가능.<br>
+어느 쪽인가의 인수가 소수치였던 경우는, 돌아가 값도 소수치가 된다
+</td></tr>
+
+
+<tr><td>Sin(Radian)
+</td><td>Radian그리고 지정된 각도의 사인이 돌아간다
+</td></tr>
+
+<tr><td>Cos(Radian)
+</td><td>Radian그리고 지정된 각도의 코사인이 돌아간다
+</td></tr>
+
+<tr><td>Tan(Radian)
+</td><td>Radian그리고 지정된 각도의 탄젠트가 돌아간다
+</td></tr>
+
+<tr><td>ASin(N)
+</td><td>N의 아크사인이 라디안으로 돌아간다
+</td></tr>
+
+<tr><td>ACos(N)
+</td><td>N의 아크 코사인이 라디안으로 돌아간다
+</td></tr>
+
+<tr><td>ATan(N)
+</td><td>N의 arctangent가 라디안으로 돌아간다
+</td></tr>
+
+
+</table>
+<p>어느 수학 관련 함수도, 인수가 수치가 아니었던 경우나, 계산 불능인 값이 주어졌을 경우는 길이 제로의 공문자열이 돌아간다
+</p>
+
+<p>
+아크사인이란,Sin하지만 원래의 수치가 되는 각도이다.
+</p>
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="navi">→ <a target=_top href='./index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='./Function.html'>함수</a></div>
+</body>
+</html>

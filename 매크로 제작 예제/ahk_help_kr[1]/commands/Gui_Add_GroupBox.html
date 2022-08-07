@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,GroupBox</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_GroupBox.html'>Gui,Add,GroupBox</a></div>
+<h1>Gui,Add,GroupBox</h1>
+<p>GUI윈도우에 복수의 컨트롤을 둘러싸는 테두리를 추가한다</p>
+
+<pre>Gui, Add, GroupBox [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+고유의 옵션으로서BackgroundTrans하지만 있다.<br>
+</td>
+</tr>
+<tr><td>Text</td><td>
+컨트롤의 좌상에 표시되는 캡션을 지정한다.<br>
+「&amp;A」(와)과 같이&amp;+영숫자를 넣는 것으로, 액세스 키를 설정할 수 있다.<br>
+액세스 키는 「<u>A</u>」(와)과 같이 언더라인 첨부의 문자로 표시된다.<br>
+Alt+문자 키로, 다음에 추가한 컨트롤에 포커스가 옮긴다.
+
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>BackgroundTrans</dt><dd>
+배경 부분을 투과 해, 아래에 배치된 컨트롤이 보이도록(듯이) 한다.<br>
+나중에 해제하는데는,<a target=_top href='../commands/GuiControl.html'>GuiControl</a>그리고 「+Background」(을)를 설정한다.
+</dd>
+</dl>
+
+
+<h2>Remarks</h2>
+<p>
+GroupBox의 안쪽에 컨트롤을 배치하려면 , 다음의 컨트롤을 「xp+」 「yp+」옵션으로 전의 컨트롤의 좌상으로부터의 상대 좌표로 위치를 지정하면 좋다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_GroupBox.html'>Gui,Add,GroupBox</a></div>
+</body>
+</html>

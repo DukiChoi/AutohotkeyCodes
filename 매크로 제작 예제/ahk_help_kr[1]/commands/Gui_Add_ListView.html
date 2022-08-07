@@ -1,0 +1,917 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,ListView</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_ListView.html'>Gui,Add,ListView</a></div>
+<h1>Gui,Add,ListView</h1>
+<p>GUI윈도우에 리스트뷰콘트로르를 추가한다.열이나 항목의 조작을 실시하는 편입 함수도 준비되어 있다.</p>
+
+<pre>Gui, Add, ListView [, Options, ColumnTitles]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+공통의 옵션에 대해서는,<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+고유의 옵션은 후술.<br>
+「V」옵션으로 변수를 관련지어도, 변수에 정보가 격납될 것은 없다.다만,<a target=_top href='../commands/GuiControl.html'>GuiControl</a>등의 커멘드로 컨트롤을 지정하기 위해서 이용할 수 있다.<br>
+G그리고 라벨명을 지정하면, 각종의 조작을 할 때 마다 써브루틴이 실행된다.자세한 것은<a target=_top href='../commands/Gui_Add_ListView.html#Event'>이벤트</a>시에를 참조.
+
+</td>
+</tr>
+<tr><td>ColumnTitles</td><td>
+상세 표시의 열의 표제를 「|」(으)로 단락지어 열거한다.(례:「이름|사이즈|갱신 일시」)<br>
+「<a target=_top href='../commands/Gui_Option.html#Delimiter'>Gui,+Delimiter`n</a>」(와)과 같이 하면, 단락 문자를 「|」이외의 것(이 예에서는 개행)(으)로 변경할 수 있다.<br>
+각 렬의 폭의 초기 상태는, 텍스트가 들어가는 폭이 된다.
+
+</td>
+</tr>
+</table>
+
+<h3>고유의Option</h3>
+<dl>
+<dt>Report</dt><dd>
+표시 스타일을 상세 표시로 한다.<br>
+디폴트이며,Gui,Add그럼 사용하지 않는다.<br>
+다른 스타일로부터 변경하고 싶을 때에 「<a target=_top href='../commands/GuiControl.html'>GuiControl,+Report,List</a>」등으로 해서 사용한다.
+</dd>
+
+<dt>Icon</dt><dd>
+표시 스타일을 큰 아이콘 표시로 한다.
+</dd>
+
+<dt>IconSmall</dt><dd>
+표시 스타일을 작은 아이콘 표시로 한다
+</dd>
+
+<dt>Tile</dt><dd>
+표시 스타일을 큰 일람표시로 한다(XP이후 마셔 유효)
+</dd>
+
+<dt>List</dt><dd>
+표시 스타일을 일람표시로 한다
+</dd>
+
+<dt>AltSubmit</dt><dd>
+「G」옵션으로 지정된 써브루틴이 불려 간다<a target=_top href='../commands/Gui_Add_ListView.html#Event'>이벤트</a>의 수를 확장한다.<br>
+자세한 것은 후술.
+</dd>
+
+<dt>cCOLOR</dt><dd>
+COLOR에 문자색을 지정한다.(례:「cFF9900」 「cRed」 「cDefault」)<br>
+RRGGBB형식의 칼라 코드나<a target=_top href='../misc/Color.html'>색의 이름</a>, 「Default」(을)를 지정할 수 있다.
+</dd>
+
+<dt>BackgroundCOLOR</dt><dd>
+COLOR에 배경색을 지정한다.(례:「BackgroundFF9900」 「BackgroundRed」 「BackgroundDefault」)<br>
+RRGGBB형식의 칼라 코드나<a target=_top href='../misc/Color.html'>색의 이름</a>, 「Default」(을)를 지정할 수 있다.<br>
+이 옵션이 없는 경우,<a target=_top href='../commands/Gui_Color.html'>Gui,Color</a>의 지정에 의존한다.
+</dd>
+
+<dt>Checked</dt><dd>
+리스트 항목에 체크 박스를 붙인다.
+</dd>
+
+<dt>CountROWS</dt><dd>
+ROWS에 예측되는 항목수를 지정한다(예:「Count1000」)<br>
+항목이 추가될 때, 이 수치에 따라서 정리해 메모리를 확보한다.<br>
+너무 적으면 대량의 항목을 추가할 때에 시간이 걸려 버리지만, 너무 많이 하면 메모리 소비가 쓸데 없게 증가한다.
+</dd>
+
+<dt>Grid</dt><dd>
+상세 표시시에 행·렬을 단락짓는 선을 표시한다
+</dd>
+
+<dt>Hdr</dt><dd>
+상세 표시시에 열의 표제를 표시한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-Hdr」(으)로 표제를 비표시로 할 수 있다.
+</dd>
+
+<dt>LVXXXXXXXX</dt><dd>
+리스트뷰의 확장 스타일(LVS_EX_*)(을)를 설정한다.
+XXXXXXXX에 확장 스타일의 번호를 지정한다.(례:「LV0x100」=LVS_EX_FLATSB)
+</dd>
+
+<dt>LV0x10</dt><dd>
+상세 표시시에 열표제의 부분을 드러그 하고 열을 바꿔 넣는 것을 가능하게 한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-LV0x10」(으)로 열교체 금지로 할 수 있다.<br>
+열을 바꿔 넣어도, 리스트뷰 조작 함수등에서 취급하는 열번호는 변하지 않다.
+</dd>
+
+<dt>LV0x20</dt><dd>
+상세 표시시에, 행의 어디를 클릭해도 항목을 선택할 수 있는 행 선택으로 한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-LV0x20」(으)로1번째의 텍스트를 클릭하지 않으면 선택할 수 없게 한다.
+</dd>
+
+<dt>Multi</dt><dd>
+복수 선택을 가능하게 한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-Multi」(으)로 하나 밖에 선택할 수 없게 할 수 있다.
+</dd>
+
+<dt>NoSortHdr</dt><dd>
+열의 표제를 클릭하고, 그 열의 내용으로 나란해져 바꾸는 기능을 무효로 한다.<br>
+표제 부분은 평탄한 표시가 되어, 클릭해도 「G」옵션으로 지정한 써브루틴은 불려 가지 않게 된다.<br>
+이 옵션은,GuiControl커멘드로 나중에 변경할 수 없다.
+</dd>
+
+<dt>NoSort</dt><dd>
+열의 표제를 클릭하고, 그 열의 내용으로 나란해져 바꾸는 기능을 무효로 한다.<br>
+표제 부분의 표시는 그대로, 클릭되면 「G」옵션으로 지정한 써브루틴이 불려 간다.
+</dd>
+
+<dt>ReadOnly</dt><dd>
+텍스트를 변경 금지로 한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-ReadOnly」라고 하면,1번째의 부분을 클릭하거나F2키를 누르는 것으로 내용을 편집할 수 있게 된다.<br>
+편집을 하면, 「G」옵션으로 지정한 써브루틴이 불려 간다.<br>
+
+</dd>
+<dt>WantF2</dt><dd>
+「-ReadOnly」(이)가 설정되어 있을 때,F2키로 텍스트를 편집할 수 있도록 한다.<br>
+디폴트로 유효하게 되어 있다.<br>
+「-WantF2」라고 하면,F2키가 밀려도 편집 상태가 되지 않게 할 수 있다.
+</dd>
+
+<dt>Rn</dt><dd>
+n에 행수를 수치로 지정한다(례:「R10」)<br>
+컨트롤의 높이는, 이 행수가 들어가는 높이가 된다.<br>
+Icon표시로 했을 경우 등은, 항목이 세로에 이 수만큼 들어가는 높이가 된다.
+</dd>
+
+<dt>Sort</dt><dd>
+항목이 추가될 때1번째의 내용으로 자동적으로 승순 소트 되도록(듯이) 한다.<br>
+명시적으로 다른 열로 소트를 실시하면, 줄 순서가 이상해진다.
+</dd>
+
+<dt>SortDesc</dt><dd>
+항목이 추가될 때1번째의 내용으로 자동적으로 내림차순 소트 되도록(듯이) 한다.<br>
+명시적으로 다른 열로 소트를 실시하면, 줄 순서가 이상해진다.
+</dd>
+
+
+
+</dl>
+
+
+
+<h2><a name="Functions">ListView조작용 편입 함수</a></h2>
+<p>리스트뷰를 조작하기 위해서, 다수의 기능이 함수로서 준비되어 있다.<br>
+LV계의 함수가 조작 대상으로 하는 리스트뷰는,<a target=_top href='../commands/Gui.html#multiwin'>디폴트GUI윈도우</a>위의 카렌트리스트뷰이다.<br>
+카렌트리스트뷰는, 통상은 마지막에 항목을 추가한 리스트뷰이지만, 「<a target=_top href='../commands/Gui_ListView.html'>Gui,ListView,LVName</a>」(와)과 같이 해 변경할 수 있다.<br>
+GUI윈도우가 존재하지 않거나, 디폴트GUI윈도우상에 리스트뷰콘트로르가 존재하지 않았던 경우,LV계 함수는 「0」(을)를 돌려준다.
+</p>
+<p>
+이러한 함수로 사용되는 「항목 번호」는, 맨 위가 「1」(이)가 된다.
+</p>
+
+<h3><a name="IconFunc">이미지 리스트</a></h3>
+<p>
+리스트 등에 표시하는 아이콘은, 이미지 리스트에 등록해 둔다.<br>
+IL_Create그리고 이미지 리스트를 작성해,LV_SetImageList그리고 리스트뷰에 할당할 필요가 있다.<br>
+큰 아이콘과 작은 아이콘은 다른 이미지 리스트 로 유지한다.<br>
+</p>
+
+<dl>
+<dt><a name="IL_Create">IL_Create</a>([InitialCount, GrowCount, IsLargeIcons])</dt><dd>
+이미지 리스트를 신규 작성한다.<br>
+InitialCount그리고 최초로 메모리를 확보해 두는 아이콘의 수를,GrowCount그리고 메모리를 확보되어 있는 아이콘수를 넘었을 때에 새롭게 확보하는 수를 지정할 수 있다.디폴트는 각각2(와)과5이다.<br>
+IsLargeIcons(을)를 「1」(으)로 하면, 작은 아이콘은 아니고 큰 아이콘을 보관 유지하는 이미지 리스트를 작성한다.<br>
+작성에 성공하면, 고유의 번호를 할당할 수 있어 그 번호가 돌려주어진다.다른 함수로ImageListID인수에 사용하므로, 반드시 변수에 대입해 둘 필요가 있다.작성에 실패했을 경우는0하지만 돌려주어진다.
+</dd>
+<dt><a name="LV_SetImageList">LV_SetImageList</a>(ImageListID [,Type])</dt><dd>
+리스트뷰에ImageListID그리고 지정한 이미지 리스트를 할당한다.<br>
+Type에 「0」(을)를 지정하면 큰 아이콘에, 「1」(을)를 지정하면 작은 아이콘에 할당할 수 있다.또, 「2」(을)를 지정하면 상태 아이콘에 할당할 수 있지만, 상태 아이콘에 관한 함수는 현재 준비되어 있지 않다.<br>
+Type(을)를 생략 했을 경우는,IL_Create의IsLargeIcons(으)로의 지정에 따라 큰 아이콘인가 작은 아이콘에 할당할 수 있다.<br>
+돌아가 값은 그것까지 리스트뷰에 할당할 수 있고 있던 이미지 리스트의ID(이)가 된다.(없으면 「0」)
+</dd>
+
+
+
+<dt><a name="IL_Add">IL_Add</a>(ImageListID, Filename [, IconNumber, ResizeNonIcon])</dt><dd>
+ImageListID그리고 지정한 이미지 리스트에Filename그리고 지정한 파일을 추가한다.<br>
+추가할 수 있는 파일 타입은,ICO/CUR/ANI/EXE/DLL/BMP/GIF/JPG/PNG/TIF/EXIF/WMF/EMF이다.<br>
+EXE/DLL그럼,IconNumber에 아이콘 그룹의 번호를 지정한다.생략시는1번째가 된다.<br>
+BMP/GIF/JPG/PNG/TIF/EXIF/WMF/EMF의 화상 파일에서는,IconNumber에 투과색으로 지정하는 색을16진수로 지정한다(례:「0xFFCC99」).<br>
+PNG등의 투과색·알파 채널 정보를 포함한 파일에서는 지정할 필요는 없다.<br>
+ResizeNonIcon(을)를1(으)로 하면, 화상을 아이콘의 사이즈에 리사이즈 한다.생략시나 「0」(으)로 했을 경우는, 화상의 좌상으로부터 아이콘의 사이즈 만큼만이 잘라진다.<br>
+추가에 성공하면, 아이콘을 지정할 경우에 사용하는 아이콘 번호가 돌려주어진다.실패시는 「0」(이)가 돌려주어진다.
+</dd>
+
+<dt><a name="IL_Destroy">IL_Destroy</a>(ImageListID)</dt><dd>
+ImageListID그리고 지정한 이미지 리스트를 파기한다.
+</dd>
+
+</dl>
+<h3><a name="ColFunc">열조작</a></h3>
+
+<dl>
+<dt><a name="LV_ModifyCol">LV_ModifyCol</a>([ColumnNumber, Options, ColumnTitle])</dt><dd>
+ColmnNumber번째의 열의 옵션을Options에, 표제 텍스트를ColmunTitle(으)로 변경한다.<br>
+Options에는 후술의 옵션을 반각 스페이스 혹은Tab문자로 단락짓고 문자열로서 준다.<br>
+ColmunTitle(을)를 생략 하면, 옵션만이 변경된다.<br>
+ColumunNumber만을 지정하면, 그 열의 폭을 모든 항목의 텍스트가 표시 다 할 수 있도록(듯이) 조절한다.<br>
+모든 인수를 생략 하면, 모든 열의 폭을 조절한다.<br>
+실패하면 「0」(이)가, 성공하면 「1」(이)가 돌아간다.
+</dd>
+
+<dt><a name="LV_InsertCol">LV_InsertCol</a>(ColumnNumber [, Options, ColumnTitle])</dt><dd>
+새로운 열을ColumnNumber번째에 삽입한다.<br>
+ColumnNumber하지만 존재하는 렬수보다 컸던 경우, 제일 마지막에 추가된다.<br>
+Options에는 후술의 옵션을,ColumnTitle에는 열의 표제를 지정한다.<br>
+새롭게 추가된 열은, 각 항목의 텍스트는 비운다.<br>
+다만,ColumnNumber하지만1의 경우는, 전의1번째의 내용이 계승되어야 본전1번째였던 열이 비운다.<br>
+실패하면 「0」(이)가, 성공하면 추가된 열의 번호가 돌아간다.
+</dd>
+
+<dt><a name="LV_DeleteCol">LV_DeleteCol</a>(ColumnNumber)</dt><dd>
+ColumnNumber번째의 열을 삭제한다.<br>
+이후,ColumnNumber번째 이후의 열의 열번호는 하나씩 전에 늦추어진다.<br>
+실패하면 「0」(이)가, 성공하면 「1」(이)가 돌아간다.<br>
+WindowsXP미만의OS그럼,1번째의 열은 삭제할 수 없다.
+
+</dd>
+</dl>
+
+
+
+
+
+<h4><a name="ColFuncOption">열조작으로 사용되는 옵션</a></h4>
+<p>LV_ModifyCol,LV_InsertCol의Options인수로 지정할 수 있는 옵션에는 이하의 것이 있다.</p>
+<dl>
+<dt>정수치</dt><dd>
+「100」 등 정수치를 지정하면, 그 열의 폭을 설정할 수 있다.
+</dd>
+
+<dt>Integer</dt><dd>
+그 열로 소트 할 경우에, 문자열로서가 아니고 정수치로서 소트 한다.<br>
+문자열의 경우, 「100」(은)는 「12」보다 작아져 버린다.<br>
+선두에 숫자열이 붙어 있는 문자열은, 그 숫자열의 수치로서 다루어지지만, 선두가 숫자가 아닌 문자열은 「0」로서 다루어진다.<br>
+취급할 수 있는 수치의 범위는-2147483648(으)로부터2147483647까지이다.
+</dd>
+
+<dt>Float</dt><dd>
+그 열을 소트 할 때, 소수치로서 소트 한다.
+</dd>
+
+<dt>Text</dt><dd>
+그 열을 소트 할 때, 문자열로서 소트 한다.<br>
+디폴트로 이 상태이다.
+</dd>
+
+<dt>Uni</dt><dd>
+열표제를2회클릭해 역순에 소트 하는 것을 금지한다.
+</dd>
+
+<dt>-Uni</dt><dd>
+「-Uni」의 지정을 해제한다
+</dd>
+
+
+<dt>Desc</dt><dd>
+승순 소트는 아니고 내림차순 소트로 한다.<br>
+Uni하지만 지정되어 있지 않은 경우,2회표제를 클릭하면 승순 소트가 된다.
+</dd>
+
+<dt>-Desc</dt><dd>
+「-Desc」의 지정을 해제한다
+</dd>
+
+
+<dt>Case</dt><dd>
+소트 방법이Text때, 대문자 소문자를 구별한다.
+</dd>
+
+<dt>-Case</dt><dd>
+「-Case」의 지정을 해제한다
+</dd>
+
+
+<dt>-CaseLocale</dt><dd>
+현재의 유저의 로케일 설정에 따라서 대문자 소문자의 차이를 무시한다.<br>
+일본어 환경의 경우, 전각의 알파벳등도 대상이 된다.
+</dd>
+
+
+<dt>Logical</dt><dd>
+소트때, 문자열의 도중에 포함되어 있는 숫자열도 수치로서 비교한다.
+</dd>
+
+<dt>NoSort</dt><dd>
+열의 표제를 클릭하고, 그 열의 내용으로 나란해져 바꾸는 기능을 무효로 한다.<br>
+표제 부분의 표시는 그대로, 클릭되면 「G」옵션으로 지정한 써브루틴이 불려 간다.
+</dd>
+
+
+<dt>-NoSort</dt><dd>
+「-NoSort」의 지정을 해제한다
+</dd>
+
+
+
+
+<dt>Sort</dt><dd>
+그 열로 승순 소트 시킨다.<br>
+다음에 다른 열표제가 클릭되면, 그 열로 소트 된다.
+</dd>
+
+<dt>SortDesc</dt><dd>
+그 열로 내림차순 소트 시킨다.<br>
+다음에 다른 열표제가 클릭되면, 그 열로 소트 된다.
+</dd>
+
+
+<dt>Right</dt><dd>
+텍스트를 오른쪽 갖추어로 한다.<br>
+Integer(이)나Float(을)를 지정하면, 디폴트로 이 상태가 된다.
+</dd>
+
+
+
+<dt>Center</dt><dd>
+텍스트를 중앙 갖추어로 한다.
+</dd>
+
+
+
+<dt>Left</dt><dd>
+텍스트를 왼쪽 갖추어로 한다.<br>
+Integer(이)나Float하지만 지정되어 있지 않은 경우의 디폴트는 이 상태이다.
+</dd>
+
+
+
+<dt>Auto</dt><dd>
+그 열의 폭을 모든 항목의 텍스트가 표시 다 할 수 있도록(듯이) 조절한다.<br>
+</dd>
+
+
+<dt>AutoHdr</dt><dd>
+그 열의 폭을 열의 표제와 모든 항목의 텍스트가 표시 다 할 수 있도록(듯이) 조절한다.<br>
+마지막 열로 이것을 지정했을 경우, 리스트뷰의 우단까지 열을 넓힐 수 있다.
+</dd>
+
+<dt>IconN</dt><dd>
+열의 찾아내에 아이콘을 표시한다.<br>
+N에 아이콘 번호를 지정한다.
+</dd>
+
+<dt>IconRight</dt><dd>
+IconN그리고 아이콘을 표시할 때, 왼쪽은 아니고 오른쪽으로 표시한다.
+</dd>
+
+
+<dt>-Icon</dt><dd>
+열표제에 아이콘을 표시하지 않게 한다
+</dd>
+
+</dl>
+
+
+
+
+
+
+<h3><a name="RowFunc">항목 조작</a></h3>
+<dl>
+<dt><a name="LV_Add">LV_Add</a>([Options, Col1, ...ColN])</dt><dd>
+리스트의 마지막에 항목을 추가한다.<br>
+Options에는 후술의 옵션을 반각 스페이스 혹은Tab문자로 단락짓고 문자열로서 준다.<br>
+Col1...ColN에는, 각 렬에 표시하는 텍스트를 문자열 혹은 수치로 지정한다.<br>
+Col1...ColN에 공문자열이 지정되었을 경우나 생략 되었을 경우는, 표시는 비운다.<br>
+추가에 성공하면, 추가된 항목의 항목 번호가 돌려주어진다.추가에 실패했을 경우는, 「0」(이)가 돌려주어진다.
+</dd>
+
+<dt><a name="LV_Insert">LV_Insert</a>(RowNumber [, Options, Col1, ...ColN])</dt><dd>
+RowNumber그리고 지정한 위치에 항목을 삽입한다.<br>
+그 이외의 인수는LV_Add(와)과 같다.<br>
+현재의 항목수보다 큰 값을 지정했을 경우는, 제일 마지막에 삽입된다.<br>
+추가에 성공하면, 추가된 항목의 항목 번호가 돌려주어진다.추가에 실패했을 경우는, 「0」(이)가 돌려주어진다.
+</dd>
+
+<dt><a name="LV_Modify">LV_Modify</a>(RowNumber, Options [, Col1, ...ColN])</dt><dd>
+RowNumber그리고 지정한 항목의 옵션이나 열텍스트를 변경한다.<br>
+RowNumber에 「0」(을)를 지정하면, 모든 항목의 옵션을 정리해 변경할 수 있다.<br>
+Col1...ColN에 공문자열이 지정되었을 경우나 생략 되었을 경우는, 그 열의 텍스트는 변경되지 않는다.<br>
+변경에 실패한 항목이 있으면 「0」(이)가, 모두 성공하면 「1」(이)가 돌아간다.
+</dd>
+
+<dt><a name="LV_Delete">LV_Delete</a>([RowNumber])</dt><dd>
+RowNumber그리고 지정한 항목을 삭제한다.<br>
+RowNumber(을)를 생략 했을 경우, 모든 항목이 삭제된다.<br>
+삭제에 실패하면 「0」(이)가, 성공하면 「1」(이)가 돌아간다.
+</dd>
+
+
+</dl>
+
+<h4><a name="RowFuncOption">항목 조작으로 사용되는 옵션</a></h4>
+<p>항목 조작계의 함수의Options인수로 지정할 수 있는 옵션에는 이하의 것이 있다.</p>
+<dl>
+<dt>Vis</dt><dd>
+스크롤 바가 표시되고 있는 상태로, 해당 항목이 화면외에 있을 때, 해당 항목이 표시되도록(듯이) 스크롤 시킨다.<br>
+LV_Modify()함수에서만 유효.
+</dd>
+
+<dt>Select</dt><dt>Select1</dt><dd>
+항목을 선택 상태로 한다.
+</dd>
+
+
+<dt>-Select</dt><dt>Select0</dt><dd>
+항목을 비선택 상태로 한다.
+</dd>
+
+<dt>Focus</dt><dt>Focus1</dt><dd>
+키보드 포커스를 그 항목에 맞춘다
+</dd>
+
+
+<dt>-Focus</dt><dt>Focus0</dt><dd>
+키보드 포커스가 그 항목에 합쳐지지 않은 상태로 한다
+</dd>
+
+<dt>Check</dt><dt>Check1</dt><dd>
+체크 박스의 체크를On(으)로 한다.
+</dd>
+
+
+<dt>-Check</dt><dt>Check0</dt><dd>
+체크 박스의 체크를Off(으)로 한다.
+</dd>
+<dt>IconN</dt><dd>
+N에 아이콘 번호를 지정한다.(례:「Icon1」)<br>
+후술의<a target=_top href='../commands/Gui_Add_ListView.html#IconFunc'>이미지 리스트 조작 함수</a>그리고 이미지 리스트에 등록한 번호를 지정한다.<br>
+이 옵션이 지정되지 않았던 경우는, 이미지 리스트의 최초의 아이콘이 사용된다.<br>
+「Icon1000」 등, 이미지 리스트에 등록되어 있는 수보다 큰 값을 지정하면, 공백이 표시된다.<br>
+이미지 리스트에 아이콘이 등록되지 않으면 아무것도 표시되지 않고 아이콘을 표시해야할 영역은 채울 수 있다.
+</dd>
+
+<dt>ColN</dt><dd>
+N에 열번호를 지정한다.1번째는 「1」이다.(례:「Col2」)<br>
+인수의Col1...ColN그리고 대상이 되는 열의 개시 위치를 변경한다.<br>
+예를 들어, 「LV_Modify(1,"Col2","aaa","bbb"」라고 하면,1손톱의 항목의2번째를 「aaa」,3번째를 「bbb」(으)로 변경한다.
+</dd>
+</dl>
+
+
+
+
+
+<h3><a name="InfoFunc">정보 취득</a></h3>
+<dl>
+<dt><a name="LV_GetCount">LV_GetCount</a>([Type])</dt><dd>
+리스트뷰의 항목수를 돌려준다.<br>
+Type에 「"S"」(을)를 지정하면, 선택 항목의 수가 돌려주어진다.<br>
+Type에 「"Col"」(을)를 지정하면, 열의 수를 돌려준다.
+</dd>
+
+<dt><a name="LV_GetNext">LV_GetNext</a>([StartingRowNumber, [Type])</dt><dd>
+StartingRowNumber번째 이후의 항목으로 최초의 선택되고 있는 항목의 항목 번호를 돌려준다.<br>
+StartingRowNumber하지만 생략 되었을 경우는, 맨 위의 선택되고 있는 항목을 돌려준다.<br>
+Type에 「C」(을)를 지정하면, 체크되고 있는 항목의 번호를 돌려준다.<br>
+Type에 「F」(을)를 지정하면, 포커스가 있는 항목의 번호를 돌려준다(덧붙여 포커스는 하나 밖에 없다).<br>
+해당 항목이 없는 경우는 「0」(을)를 돌려준다.
+
+
+</dd>
+
+<dt><a name="LV_GetText">LV_GetText</a>(OutputVar, RowNumber [, ColumnNumber])</dt><dd>
+RowNumber번째의 항목의ColumnNumber번째의 텍스트를 취득해OutputVar에 격납한다.<br>
+ColumnNumber하지만 생략 되었을 경우,1번째의 열의 텍스트가 취득된다.<br>
+RowNumber(을)를 「0」(으)로 하면, 열의 표제의 텍스트가 취득된다.<br>
+텍스트가8191아르바이트 이상 있는 경우는, 최초의8191아르바이트만이 취득된다.<br>
+실패하면 「0」(이)가, 성공하면 「1」(이)가 돌아간다.<br>
+
+</dd>
+
+
+
+</dl>
+
+
+
+
+
+<h2><a name="Event">이벤트</a></h2>
+<p>「G」옵션으로 라벨명을 지정해 있으면, 아래와 같은 이벤트가 발생할 때마다 써브루틴이 실행된다.<br>
+이 때,<a target=_top href='../Variables.html#GuiEvent'>A_GuiEvent</a>변수에 이벤트명이 격납된다.<br>
+「E」와「e」 등 대문자와 소문자와 소문자가 다른 이벤트명은 별개이다.
+덧붙여 이벤트는 향후도 추가될 가능성이 있다.
+</p>
+
+
+
+<dl>
+
+<dt>DoubleClick</dt><dd>
+항목이 더블 클릭 되었다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 더블 클릭 된 항목의 항목 번호가 격납된다.<br>
+항목 이외의 부분이 클릭되었을 경우는, 포커스가 있는 항목의 번호가 격납된다.
+</dd>
+
+<dt>R</dt><dd>
+항목이 오른쪽 클릭으로 더블 클릭 되었다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 포커스가 있는 항목의 항목 번호가 격납된다.
+
+</dd>
+
+<dt>ColClick</dt><dd>
+열표제의 버튼이 클릭되었다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 열번호가 격납된다.<br>
+열번호는, 유저가 드러그&드롭으로 열의 차례를 바꿔 넣어도 변하지 않다.최초로1번째 선 열은,2번째에 이동되어도 열번호는1인 채이다.<br>
+「NoSort」옵션으로 찾아내 클릭에 의한 소트를 무효로 하고, 자기 부담으로 소트를 실시하고 싶을 때 등에 사용한다.
+</dd>
+
+<dt>e</dt><dd>
+「-ReadOnly」(으)로1번째의 텍스트를 편집 가능하게 되어 있을 때, 텍스트를 다 편집했을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 편집된 행의 번호가 격납된다.
+</dd>
+
+<dt>D</dt><dd>
+항목을 드러그 개시했을 때에 실행된다.<br>
+현재, 항목의 드러그&드롭에 관한 기능은 준비되어 있지 않다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 포커스가 있는 항목의 항목 번호가 격납된다.
+</dd>
+
+<dt>d</dt><dd>
+항목을 오른쪽 클릭으로 드러그 개시했을 때에 실행된다.<br>
+현재, 항목의 드러그&드롭에 관한 기능은 준비되어 있지 않다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 포커스가 있는 항목의 항목 번호가 격납된다.
+</dd>
+</dl>
+
+<h3><a name="ExEvent">확장 이벤트</a></h3>
+<p>AltSubmit옵션을 지정하면, 상기의 이벤트에 가세해 아래와 같은 이벤트시에도 써브루틴이 불려 간다.
+</p>
+<dl>
+<dt>Normal</dt><dd>
+항목이 왼쪽 클릭되었다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 포커스가 있는 항목의 항목 번호(포커스가 없으면 「0」)하지만 격납된다.
+</dd>
+
+<dt>RightClick</dt><dd>
+항목이 오른쪽 클릭되었다.<br>
+항목이 오른쪽 클릭으로 더블 클릭 되었다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 포커스가 있는 항목의 항목 번호가 격납된다.<br>
+Apps키등의 대체 context menu 호출 조작에서는 실행되지 않는다.
+
+</dd>
+
+<dt>A</dt><dd>
+항목이 액티브화 되었다.<br>
+통상은DoubleClick이벤트의 뒤에 발생한다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 액티브화 된 항목의 항목 번호가 격납된다.
+</dd>
+
+<dt>C</dt><dd>
+mouse button가 눌러 내릴 수 있거나 떼어 놓아졌을 때에 발생한다.
+</dd>
+
+
+<dt>E</dt><dd>
+「-ReadOnly」(으)로1번째의 텍스트를 편집 가능하게 되어 있을 때, 텍스트를 편집하기 시작했을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 편집되는 행의 번호가 격납된다.
+</dd>
+
+<dt>F</dt><dd>
+리스트뷰콘트로르가 포커스를 받았을 때에 실행된다.
+</dd>
+
+<dt>f</dt><dd>
+리스트뷰콘트로르가 포커스를 잃었을 때에 실행된다.
+</dd>
+
+<dt>I</dt><dd>
+리스트뷰의 선택 상태가 변화했을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는 상태가 변화한 행의 번호가 격납된다.<br>
+이 이벤트가 불려 갔을 때,ErrorLevel(은)는 이하의 문자를 연결한 쓸모 있게 된다.<br>
+InStr(ErrorLevel, "S", true)(와)과 같이 하고, 어느 변화가 일어났는지를 판별할 수 있다.
+<dl compact="true">
+<dt>S</dt><dd>선택되었다</dd>
+<dt>s</dt><dd>선택 해제되었다</dd>
+<dt>F</dt><dd>포커스를 받았다</dd>
+<dt>f</dt><dd>포커스를 잃었다</dd>
+<dt>C</dt><dd>체크되었다</dd>
+<dt>c</dt><dd>체크가 떼어졌다</dd>
+</dl>
+선택행이 변했을 때에는, 선택 해제 이벤트와 새로운 행의 선택 이벤트가 별개에 발생한다.<br>
+
+</dd>
+
+<dt>K</dt><dd>
+리스트뷰에 포커스가 있을 때 키보드의 키가 밀렸다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는, 밀린 키의 가상 키코드가 격납된다.<br>
+키를 누르고 있을 뿐으로 하면, 키 반복이 일해 이벤트가 반복해 발생한다.
+</dd>
+
+<dt>M</dt><dd>
+마우스에 의한 범위 선택을 개시했다.<br>
+이 후, 선택 상태가 변화할 때마다 「I」이벤트가 발생해, 마우스가 이야기해지면 「C」이벤트가 발생한다.
+</dd>
+
+<dt>S</dt><dd>
+스크롤 바로의 스크롤을 개시했을 때에 실행된다.
+</dd>
+
+<dt>s</dt><dd>
+스크롤 바로의 스크롤을 종료했을 때에 실행된다.
+</dd>
+
+
+</dl>
+
+<p>이러한 이벤트의 동작을 확인하려면 , 이하의 샘플 스크립트를 이용하면 좋다.
+</p>
+<pre>
+Gui,Add,ListView,h600 -ReadOnly AltSubmit gLV R10,A_GuiEvent|A_EventInfo|일시
+Gui,Add,Button,gClear,&amp;Clear
+
+Gui,Show
+return
+
+LV:
+FormatTime,t,%A_Now%,yyyy/MM/dd hh:mm:ss
+Lv_Add("",A_GuiEvent,A_EventInfo,t)
+return
+
+Clear:
+Lv_Delete()
+return
+</pre>
+
+
+
+<h2>Remarks</h2>
+<p>항목의 각 렬에 표시 가능한 텍스트의 상한은260아르바이트이다.<br>
+LV_GetText그리고 취득할 수 있는 것은8191아르바이트까지이다.<br>
+실제로 격납할 수 있는 텍스트장에는 상한은 없다.
+</p>
+<p>
+열표제의 클릭이나 「LV_ModifyCol(1, "Sort") 」(와)과 같은 함수에 의한 소트는, 그 시점에서 소트 될 뿐으로, 나중에 추가되는 항목에는 영향을 주지 않는다.<br>
+ListView컨트롤의 옵션의 「Sort」와「SortDesc」(은)는, 항목이 추가될 때 동작한다.<br>
+다만, 벌써 존재하는 항목은 소트 되지 않기 때문에, 미리 항목이 소트 되어 있지 않으면 올바른 위치에 삽입되지 않는다.
+</p>
+
+<p>
+리스트뷰에 포커스가 있을 때 키보드로 문자열을 입력하거나IME그리고 변환 문자열을 확정시키면,1번째의 텍스트가 그 내용으로 시작되는 항목에 포커스가 이동한다.
+</p>
+
+<p>리스트뷰콘트로르에서는,Shift+클릭으로 최종 선택 위치로부터 클릭 위치까지를 선택,Shift+커서 키로 범위 선택,Ctrl+커서 키의 상하로 포커스만을 이동,Ctrl+Space그리고 포커스가 있는 항목의 선택 상태를 반전할 수 있다.
+</p>
+
+<p>
+리스트뷰콘트로르는Enter키가 밀린 것을 알 수 없다.<br>
+Enter키가 밀렸을 때에 특정의 동작을 시키고 싶을 때는, 아래와 같은 예의 같게 윈도우에 디폴트 버튼을 설정한다.<br>
+디폴트 버튼은 비표시로 하는 것도 가능하다.
+</p>
+<pre>
+Gui,Add,ListView,gLVEvent,col1|col2
+Gui,Add,Button,gOnEnter Hidden Default
+;그 외의 초기화 동작
+return
+
+OnEnter:
+	GuiControlGet, FocusedControl, Focus
+	if FocusedControl = SysListView321
+		Selected(LV_GetNext(1,"F"))
+return
+
+LVEvent:
+	if A_GuiEvent = DoubleClick
+		Selected(A_EventInfo)
+return
+
+Selected(row)
+{
+	;항목 결정시의 동작
+}
+</pre>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<pre>; Create the ListView with two columns, Name and Size:
+Gui, Add, ListView, r20 w700 gMyListView, Name|Size (KB)
+
+; Gather a list of file names from a folder and put them into the ListView:
+Loop, %A_MyDocuments%\*.*
+	LV_Add(&quot;&quot;, A_LoopFileName, A_LoopFileSizeKB)
+
+LV_ModifyCol()  ; Auto-size each column to fit its contents.
+LV_ModifyCol(2, &quot;Integer&quot;)  ; For sorting purposes, indicate that column 2 is an integer.
+
+; Display the window and return. The script will be notified whenever the user double clicks a row.
+Gui, Show
+return
+
+MyListView:
+if A_GuiEvent = DoubleClick
+{
+	LV_GetText(RowText, A_EventInfo)  ; Get the row's first-column text.
+	MsgBox You double-clicked row number %A_EventInfo%. Text: &quot;%RowText%&quot;
+}
+return
+
+GuiClose:  ; Indicate that the script should exit automatically when the window is closed.
+ExitApp</pre><pre>; Select or de-select all rows by specifying 0 as the row number:
+LV_Modify(0, &quot;Select&quot;)   ; Select all.
+LV_Modify(0, &quot;-Select&quot;)  ; De-select all.
+
+; Auto-size all columns to fit their contents:
+LV_ModifyCol()  ; There are no parameters in this mode.
+
+</pre><pre>
+
+; MAIN EXAMPLE
+; The following is a working script that is more elaborate than the one near the top of this page.
+; It displays the files in a folder chosen by the user, with each file assigned the icon associated with
+; its type. The user can double-click a file, or right-click one or more files to display a context menu.
+
+; Allow the user to maximize or drag-resize the window:
+Gui +Resize
+
+; Create some buttons:
+Gui, Add, Button, Default gButtonLoadFolder, Load a folder
+Gui, Add, Button, x+20 gButtonClear, Clear List
+Gui, Add, Button, x+20, Switch View
+
+; Create the ListView and its columns:
+Gui, Add, ListView, xm r20 w700 vMyListView gMyListView, Name|In Folder|Size (KB)|Type
+LV_ModifyCol(3, &quot;Integer&quot;)  ; For sorting, indicate that the Size column is an integer.
+
+; Create an ImageList so that the ListView can display some icons:
+ImageListID1 := IL_Create(10)
+ImageListID2 := IL_Create(10, 10, true)  ; A list of large icons to go with the small ones.
+
+; Attach the ImageLists to the ListView so that it can later display the icons:
+LV_SetImageList(ImageListID1)
+LV_SetImageList(ImageListID2)
+
+; Create a popup menu to be used as the context menu:
+Menu, MyContextMenu, Add, Open, ContextOpenFile
+Menu, MyContextMenu, Add, Properties, ContextProperties
+Menu, MyContextMenu, Add, Clear from ListView, ContextClearRows
+Menu, MyContextMenu, Default, Open  ; Make &quot;Open&quot; a bold font to indicate that double-click does the same thing.
+
+; Display the window and return. The OS will notify the script whenever the user
+; performs an eligible action:
+Gui, Show
+return
+
+
+ButtonLoadFolder:
+Gui +OwnDialogs  ; Forces user to dismiss the following dialog before using main window.
+FileSelectFolder, Folder,, 3, Select a folder to read:
+if not Folder  ; The user canceled the dialog.
+	return
+
+; Check if the last character of the folder name is a backslash, which happens for root
+; directories such as C:\. If it is, remove it to prevent a double-backslash later on.
+StringRight, LastChar, Folder, 1
+if LastChar = \
+	StringTrimRight, Folder, Folder, 1  ; Remove the trailing backslash.
+
+; Ensure the variable has enough capacity to hold the longest file path. This is done
+; because ExtractAssociatedIconA() needs to be able to store a new filename in it.
+VarSetCapacity(Filename, 260)
+
+; Gather a list of file names from the selected folder and append them to the ListView:
+Loop %Folder%\*.*
+{
+	FileName := A_LoopFileFullPath  ; Must save it to a writable variable for use below.
+
+	; Build a unique extension ID to avoid characters that are illegal in variable names,
+	; such as dashes.  This unique ID method also performs better because finding an item
+	; in the array does not require search-loop.
+	SplitPath, FileName,,, FileExt  ; Get the file's extension.
+	if FileExt = EXE
+	{
+		ExtID = EXE  ; Special ID as a placeholder.
+		IconNumber = 0  ; Flag it as not found so that EXEs can each have a unique icon.
+	}
+	else  ; Non-EXE, so calculate this extension's unique ID.
+	{
+		ExtID = 0  ; Initializize to handle extensions that are shorter than others.
+		Loop 7     ; Limit the extension to 7 characters so that it fits in a 64-bit value.
+		{
+			StringMid, ExtChar, FileExt, A_Index, 1
+			if not ExtChar  ; No more characters.
+				break
+			; Derive a Unique ID by assigning a different bit position to each character:
+			ExtID := ExtID | (Asc(ExtChar) &lt;&lt; (8 * (A_Index - 1)))
+		}
+		; Check if this file extension already has an icon in the ImageLists. If it does,
+		; several calls can be avoided and loading performance is greatly improved,
+		; especially for a folder containing hundreds of files:
+		IconNumber := IconArray%ExtID%
+	}
+	if not IconNumber  ; There is not yet any icon for this extension, so load it.
+	{
+		; Get the icon associated with this file extension:
+		hIcon := DllCall(&quot;Shell32\ExtractAssociatedIconA&quot;, UInt, 0, Str, FileName, UShortP, iIndex)
+		if not hIcon  ; Failed to load/find icon.
+			IconNumber = 9999999  ; Set it out of bounds to display a blank icon.
+		else
+		{
+			; Add the HICON directly to the small-icon and large-icon lists.
+			; Below uses +1 to convert the returned index from zero-based to one-based:
+			IconNumber := DllCall(&quot;ImageList_ReplaceIcon&quot;, UInt, ImageListID1, Int, -1, UInt, hIcon) + 1
+			DllCall(&quot;ImageList_ReplaceIcon&quot;, UInt, ImageListID2, Int, -1, UInt, hIcon)
+			; Now that it's been copied into the ImageLists, the original should be destroyed:
+			DllCall(&quot;DestroyIcon&quot;, Uint, hIcon)
+			; Cache the icon to save memory and improve loading performance:
+			IconArray%ExtID% := IconNumber
+		}
+	}
+
+	; Create the new row in the ListView and assign it the icon number determined above:
+	LV_Add(&quot;Icon&quot; . IconNumber, A_LoopFileName, A_LoopFileDir, A_LoopFileSizeKB, FileExt)
+}
+LV_ModifyCol()  ; Auto-size each column to fit its contents.
+LV_ModifyCol(3, 60) ; Make the Size column at little wider to reveal its header.
+return
+
+
+ButtonClear:
+LV_Delete()  ; Clear the ListView, but keep icon cache intact for simplicity.
+return
+
+ButtonSwitchView:
+if not IconView
+	GuiControl, +Icon, MyListView    ; Switch to icon view.
+else
+	GuiControl, +Report, MyListView  ; Switch back to details view.
+IconView := not IconView             ; Invert in preparation for next time.
+return
+
+MyListView:
+if A_GuiEvent = DoubleClick  ; There are many other possible values the script can check.
+{
+	LV_GetText(FileName, A_EventInfo, 1) ; Get the text of the first field.
+	LV_GetText(FileDir, A_EventInfo, 2)  ; Get the text of the second field.
+	Run %FileDir%\%FileName%,, UseErrorLevel
+	if ErrorLevel
+		MsgBox Could not open &quot;%FileDir%\%FileName%&quot;.
+}
+return
+
+GuiContextMenu:  ; Launched in response to a right-click or press of the Apps key.
+if A_GuiControl &lt;&gt; MyListView  ; Display the menu only for clicks inside the ListView.
+	return
+; Show the menu at the provided coordinates, A_GuiX and A_GuiY.  These should be used
+; because they provide correct coordinates even if the user pressed the Apps key:
+Menu, MyContextMenu, Show, %A_GuiX%, %A_GuiY%
+return
+
+ContextOpenFile:  ; The user selected &quot;Open&quot; in the context menu.
+ContextProperties:  ; The user selected &quot;Properties&quot; in the context menu.
+; For simplicitly, operate upon only the focused row rather than all selected rows:
+FocusedRowNumber := LV_GetNext(0, &quot;F&quot;)  ; Find the focused row.
+if not FocusedRowNumber  ; No row is focused.
+	return
+LV_GetText(FileName, FocusedRowNumber, 1) ; Get the text of the first field.
+LV_GetText(FileDir, FocusedRowNumber, 2)  ; Get the text of the second field.
+IfInString A_ThisMenuItem, Open  ; User selected &quot;Open&quot; from the context menu.
+	Run %FileDir%\%FileName%,, UseErrorLevel
+else  ; User selected &quot;Properties&quot; from the context menu.
+	Run Properties &quot;%FileDir%\%FileName%&quot;,, UseErrorLevel
+if ErrorLevel
+	MsgBox Could not perform requested action on &quot;%FileDir%\%FileName%&quot;.
+return
+
+ContextClearRows:  ; The user selected &quot;Clear&quot; in the context menu.
+RowNumber = 0  ; This causes the first iteration to start the search at the top.
+Loop
+{
+	; Since deleting a row reduces the RowNumber of all other rows beneath it,
+	; subtract 1 so that the search includes the same row number that was previously
+	; found (in case adjacent rows are selected):
+	RowNumber := LV_GetNext(RowNumber - 1)
+	if not RowNumber  ; The above returned zero, so there are no more selected rows.
+		break
+	LV_Delete(RowNumber)  ; Clear the row from the ListView.
+}
+return
+
+GuiSize:  ; Allows the ListView to grow or shrink in response user's resizing of window.
+if A_EventInfo = 1  ; The window has been minimized.  No action needed.
+	return
+; Otherwise, the window has been resized or maximized. Resize the ListView to match.
+GuiControl, Move, MyListView, % &quot;W&quot; . (A_GuiWidth - 20) . &quot; H&quot; . (A_GuiHeight - 40)
+return
+
+GuiClose:  ; When the window is closed, exit the script automatically:
+ExitApp</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_ListView.html'>Gui,Add,ListView</a></div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FileGetTime</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileGetTime.html'>FileGetTime</a></div>
+<h1>FileGetTime </h1>
+<p>파일의 타임 스탬프를 취득</p>
+
+<pre>FileGetTime, OutputVar [, Filename, WhichTime]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>결과를 격납하는 변수명
+</td>
+</tr>
+<tr> 
+<td>Filename
+</td>
+<td>
+타임 스탬프를 취득하는 파일명.<br>
+상대 패스로 지정했을 경우는,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>(을)를 기준으로 한 패스가 된다.<br>
+생략시는, 제일 안쪽의<a target=_top href='../commands/LoopFile.html'>File-Loop</a>그리고 대상이 되고 있는 파일이 대상이 된다.
+</td>
+</tr>
+<tr>
+<td>WhichTime
+</td>
+<td>
+어느 타임 스탬프를 취득할까.<br>
+<dl>
+<dt>M</dt><dd>최종 갱신 일시(디폴트)</dd>
+<dt>C</dt><dd>작성 일시</dd>
+<dt>A</dt><dd>최종 액세스 일시</dd>
+</dl>
+</td>
+</tr>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>성공시는 「0」, 실패시는 「1」.</p>
+
+<h2>Remarks</h2>
+<p>최종 액세스 일시는NTFS에서만 취득 가능.</p>
+<p>일자 시각은<a target=_top href='../misc/Time.html#YYYYMMDDHH24MISS'>YYYYMMDDHH24MISS</a>의 서식에서 취득된다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/FileSetTime.html'>FileSetTime</a>, <a target=_top href='../commands/IfIs.html'>If var is [not] type</a>, <a target=_top href='../commands/FileGetAttrib.html'>FileGetAttrib</a>, <a target=_top href='../commands/FileSetAttrib.html'>FileSetAttrib</a>, <a target=_top href='../commands/FileGetSize.html'>FileGetSize</a>, <a target=_top href='../commands/FileGetVersion.html'>FileGetVersion</a><a target=_top href='../commands/FileGetVersion.html'></a>, <a target=_top href='../commands/LoopFile.html'>File-loop</a>, <a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='../commands/EnvSub.html'>EnvSub</a></p>
+
+<h2>Example(s)</h2>
+<pre>FileGetTime, OutputVar, C:\My Documents\test.doc ; Retrieves the modification time by default. 
+</pre>
+<pre>FileGetTime, OutputVar, C:\My Documents\test.doc, C ; Retrieves the creation time.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FileGetTime.html'>FileGetTime</a></div>
+</body>
+</html>

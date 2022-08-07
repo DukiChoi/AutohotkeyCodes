@@ -1,0 +1,514 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>
+GUI</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui.html'>Gui</a></div>
+
+<h1>GUI</h1>
+<p>입력 폼 등에 사용할 수 있다GUI(을)를 작성/조작한다</p>
+<p>아래와 같은 서브 커멘드가 있다.<br>
+설명의 양이 많기 때문에 항을 나눈다.
+</p>
+<dl>
+<dt><a target=_top href='../commands/Gui_Add.html'>GUI, Add, ControlType [, Options, Text]</a></dt><dd>
+윈도우에 컨트롤을 추가한다<br>
+추가할 수 있는 컨트롤에는 이하의 것이 있다.<br>
+<a target=_top href='../commands/Gui_Add_Text.html'>Text</a>, 
+<a target=_top href='../commands/Gui_Add_Edit.html'>Edit</a>, 
+<a target=_top href='../commands/Gui_Add_UpDown.html'>UpDown</a>, 
+<a target=_top href='../commands/Gui_Add_Hotkey.html'>Hotkey</a>, 
+<a target=_top href='../commands/Gui_Add_Picture.html'>Picture</a>, 
+<a target=_top href='../commands/Gui_Add_GroupBox.html'>GroupBox</a>, 
+<a target=_top href='../commands/Gui_Add_Button.html'>Button</a>, 
+<a target=_top href='../commands/Gui_Add_Checkbox.html'>Checkbox</a>, 
+<a target=_top href='../commands/Gui_Add_Radio.html'>Radio</a>, 
+<a target=_top href='../commands/Gui_Add_DropDownList.html'>DropDownList</a>, 
+<a target=_top href='../commands/Gui_Add_ComboBox.html'>ComboBox</a>, 
+<a target=_top href='../commands/Gui_Add_ListBox.html'>ListBox</a>, 
+<a target=_top href='../commands/Gui_Add_ListView.html'>ListView</a>, 
+<a target=_top href='../commands/Gui_Add_Slider.html'>Slider</a>, 
+<a target=_top href='../commands/Gui_Add_Progress.html'>Progress</a>, 
+<a target=_top href='../commands/Gui_Add_DateTime.html'>DateTime</a>, 
+<a target=_top href='../commands/Gui_Add_MonthCal.html'>MonthCal</a>, 
+<a target=_top href='../commands/Gui_Add_Tab.html'>Tab</a>
+
+</dd>
+<dt><a target=_top href='../commands/Gui_Tab.html'>GUI, Tab [, Item, ControlNo]</a></dt><dd>
+탭 콘트롤이 있을 때, 향후 배치하는 컨트롤을 어느 탭 시트에 배치하는지를 변경</dd>
+<dt><a target=_top href='../commands/Gui_ListView.html'>GUI,ListView,ListViewName</a></dt><dd>
+리스트뷰 조작계 함수로 대상이 되는 리스트뷰를 변경한다.
+</dd>
+<dt><a target=_top href='../commands/Gui_Menu.html'>GUI, Menu [, MenuName]</a></dt><dd>
+윈도우에 도구모음을 추가/삭제한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Color.html'>GUI, Color [, WindowColor, ControlColor]</a></dt><dd>
+윈도우 및 컨트롤의 배경색을 설정한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Font.html'>GUI, Font [, Options, FontName]</a></dt><dd>
+이 이후에 추가되는 컨트롤의 폰트를 변경한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Margin.html'>GUI, Margin [,X, Y]</a></dt><dd>
+컨트롤 위치의 자동 결정시에 시작될 수 있는 마진을 설정
+</dd>
+
+<dt><a target=_top href='../commands/Gui_Show.html'>GUI, Show [, Options, Title]</a></dt><dd>
+윈도우를 표시/표시 상태의 변경
+</dd>
+<dt><a target=_top href='../commands/Gui_Hide.html'>GUI, Hide</a></dt><dd>
+윈도우를 비표시로 한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Maximize.html'>GUI, Maximize</a></dt><dd>
+윈도우를 최대화한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Minimize.html'>GUI, Minimize</a></dt><dd>
+윈도우를 최소화한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Restore.html'>GUI, Restore</a></dt><dd>
+윈도우를 바탕으로 되돌린다
+</dd>
+<dt><a target=_top href='../commands/Gui_Flash.html'>GUI, Flash [,Off]</a></dt><dd>
+윈도우의 타이틀 바와 태스크바의 색을 반전시킨다.이것을 이용해 타이틀 바를 점멸시킬 수 있다.
+</dd>
+<dt><a target=_top href='../commands/Gui_Submit.html'>GUI, Submit [, NoHide]</a></dt><dd>
+컨트롤 상태나 내용을 지정된 변수에 반영시킨다
+</dd>
+<dt><a target=_top href='../commands/Gui_Cancel.html'>GUI, Cancel</a></dt><dd>
+변수에 내용을 반영시키지 않고 , 윈도우를 비표시로 한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Destroy.html'>GUI, Destroy</a></dt><dd>
+윈도우를 완전하게 파기해, 메모리나 system resource를 개방한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Option.html'>GUI, +/-Option</a></dt><dd>
+윈도우의 옵션을 추가/삭제한다
+</dd>
+<dt><a target=_top href='../commands/Gui_Default.html'>GUI, Default</a></dt><dd>
+디폴트의 윈도우를 변경한다
+</dd>
+</dl>
+
+
+
+
+<h2>Remarks</h2>
+<h3>윈도우의 생성</h3>
+<p>윈도우는Add그리고 최초로 컨트롤이 배치될 때 만들어진다.<br>
+윈도우의<a target=_top href='../Window.html#classname'>클래스명</a>(은)는 「AutoHotkeyGUI」.<br>
+Gui,Show그리고 타이틀을 지정해 표시하기 전의 타이틀은, 스크립트의 파일명 부분.
+</p>
+
+
+
+<h3><a name="multiwin">복수 윈도우</a></h3>
+<p>스크립트는 최대로99의 윈도우를 가질 수 있다.<br>
+각 윈도우에는 최대11000개의 컨트롤을 배치할 수 있다.<br>
+디폴트 이외의 윈도우를 조작하려면 , 서브 커멘드의 전에 「2:」(와)과 같이 윈도우 번호와 코론을 추가한다.
+</p>
+<pre>
+Gui, 2:Add, Text,, Text for about box.
+Gui, 2:Show
+</pre>
+<p>
+기본적으로 디폴트의 윈도우 번호는 「1」이지만,2번째 이후의 윈도우상의GUI조작 이벤트(컨트롤의 조작시나 도구모음의 아이템 등)그리고 실행된 스렛드에서는, 그 윈도우가 디폴트 윈도우가 된다.<br>
+디폴트 윈도우는,<a target=_top href='../commands/Gui_Default.html'>Gui,2:Default</a>(와)과 같이 해 변경할 수 있다.
+</p>
+<p>Font서브 커멘드로의 폰트의 설정은, 윈도우 마다 보관 유지된다.</p>
+
+
+
+
+
+<h3><a name="SpecialLabel">특수 써브루틴 라벨</a></h3>
+<p>GuiEscape,GuiClose등이 특별한 이름의<a target=_top href='../Scripts.html#jump'>써브루틴 라벨</a>하지만 존재하면, 윈도우에 대해서 특정의 조작을 했을 때 그 써브루틴이 실행되게 된다.<br>
+현재 준비되어 있는 특수 써브루틴에는 이하의 것이 있다.
+</p>
+
+<p>
+2번째 이후의 윈도우의 이벤트는, 「2GuiEscape」(와)과 같이 전에 숫자를 추가한 이름의 라벨로 정의한다.
+</p>
+
+<dl>
+<dt><a name="GuiEscape">GuiEscape</a></dt><dd>
+Escape키를 눌렀을 때에 실행된다.<br>
+라벨이 존재하지 않는 경우,Escape키를 눌러도 아무것도 일어나지 않는다.
+</dd>
+
+<dt><a name="GuiClose">GuiClose</a></dt><dd>
+윈도우를 닫으려고 했을 때에 실행된다.<br>
+라벨이 존재하지 않는 경우, 윈도우는 단지 비표시가 된다(<code>Gui,Cancel</code>(와)과 같은 동작)
+</dd>
+
+<dt><a name="GuiSize">GuiSize</a></dt><dd>
+윈도우가 리사이즈, 최소화, 최대화, 복원되었을 때에 실행된다.<br>
+<a target=_top href='../Variables.html#GuiWidth'>A_GuiWidth</a>,<a target=_top href='../Variables.html#GuiHeight'>A_GuiHeight</a>변수에 클라이언트 영역의 새로운 폭과 높이가 격납된다.<br>
+또,<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수와<a target=_top href='../Variables.html#ErrorLevel'>ErrorLevel</a>변수에 이하의 값이 격납된다.
+<dl>
+<dt>0</dt><dd>
+리사이즈 또는 최대화·최소화로부터의 복원
+</dd>
+<dt>1</dt><dd>
+최소화
+</dd>
+<dt>2</dt><dd>
+최대화
+</dd>
+</dl>
+</dd>
+
+<dt><a name="GuiDropFiles">GuiDropFiles</a></dt><dd>
+파일이나 폴더가 드러그&amp;드롭 되었을 때에 실행된다.<br>
+이 이벤트의 스렛드가 실행되고 있는 동안은, 드러그&amp;드롭은 무시된다.<br>
+<a target=_top href='../Variables.html#GuiEvent'>A_GuiEvent</a>변수와<a target=_top href='../Variables.html#GuiControlEvent'>A_GuiControlEvent</a>변수에는 드롭 된 파일의 파일명이 개행 단락으로 격납된다.<br>
+<a target=_top href='../Variables.html#GuiControl'>A_GuiControl</a>변수에는 드롭처의 컨트롤에 관련지을 수 있었던 변수명인가, 그것이 없으면 컨트롤의 텍스트가 격납된다.컨트롤에 드롭 되었으므로 없으면, 비운다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수와<a target=_top href='../Variables.html#ErrorLevel'>ErrorLevel</a>변수에는, 드롭 된 파일의 수가 격납된다.<br>
+<a target=_top href='../Variables.html#GuiX'>GuiX</a>(와)과<a target=_top href='../Variables.html#GuiY'>GuiY</a>변수에는, 드롭을 한 좌표가 윈도우의 좌상으로부터의 상대 좌표로 격납된다.<br>
+「<code>Gui,-E0x00000010</code>」(으)로 확장 스타일WS_EX_ACCEPTFILES(을)를 해제하면, 일시적으로 드러그&amp;드롭 접수를 무효로 할 수 있다.<br>
+「<code>Gui,+E0x00000010</code>」(으)로 다시 유효하게 할 수 있다.
+</dd>
+
+<dt><a name="GuiContextMenu">GuiContextMenu</a></dt><dd>
+윈도우의 타이틀 바와 도구모음을 제외한 클라이언트 부분을 오른쪽 클릭했을 때에 실행된다.Apps키나Shift+F10(을)를 눌렀을 때에도 실행된다.<br>
+이 써브루틴은, 벌써 스렛드가 실행중에서도 새롭게 실행 개시된다.<br>
+<a target=_top href='../Variables.html#GuiEvent'>A_GuiEvent</a>변수에는, 오른쪽 클릭에 의한 이벤트 발생이라면 「RightClick」(이)가, 키 조작에 의한 발생이라면 「Normal」(이)가 격납된다.<br>
+<a target=_top href='../Variables.html#GuiControl'>A_GuiControl</a>변수에는 클릭된 컨트롤에 관련지을 수 있었던 변수명인가, 그것이 없으면 컨트롤의 텍스트가 격납된다.컨트롤이 클릭되었으므로 없으면, 비운다.<br>
+<a target=_top href='../Variables.html#EventInfo'>A_EventInfo</a>변수에는, 리스트 박스나 리스트뷰의 포커스를 가지는 행 번호가 격납된다.(다만, 오른쪽 클릭에서는 포커스는 이동하지 않는다)1행목은 「1」(이)가 된다.리스트 박스나 리스트뷰가 아니면 「0」(이)가 된다.<br>
+<a target=_top href='../Variables.html#GuiX'>GuiX</a>(와)과<a target=_top href='../Variables.html#GuiY'>GuiY</a>변수에는, 이벤트가 발생했을 때의 마우스 커서의 좌표가 윈도우의 좌상으로부터의 상대 좌표로 격납된다.키 조작에 의해서 기동되었을 때에도 똑같이 격납된다.
+</dd>
+</dl>
+
+
+<p>아래와 같이 써브루틴의 전에 복수의 라벨을 쓰면, 복수의 이벤트에 하나의 동작을 할당할 수 있다.</p>
+<pre>GuiEscape:
+GuiClose:
+ButtonCancel:
+Gui, Cancel ; All of the above labels will execute this subroutine.
+return 
+</pre>
+<p>
+GUI커멘드의 테스트를 할 때는, 아래와 같은 할당이 추천.<br>
+보통으로 윈도우를 닫은 것 만으로는 스크립트가 종료하지 않기 때문에, 윈도우를 닫았을 때에 스크립트가 종료하도록(듯이) 해 준다.
+</p>
+<pre>
+GuiClose:
+ExitApp
+</pre>
+<h3>Button컨트롤의 디폴트 써브루틴 라벨</h3>
+<p>
+Button컨트롤에서는, 「G」옵션으로 써브루틴을 지정하지 않아도, 자동적으로 디폴트의 라벨을 할당할 수 있다.<br>
+예를 들어,Text인수가 「Text」의 버튼에서는, 「ButtonText」라고 하는 라벨에 할당할 수 있다.(해당하는 라벨이 존재하면)<br>
+다만,Text인수에 반각 스페이스나 「&amp;」, 개행 문자등이 포함되는 경우, 그러한 문자를 제외한 문자열이 사용된다.
+</p>
+<p>
+2번째 이후의 윈도우의 버튼에 대해서는, 「2ButtonText」(와)과 같은 최초로 윈도우 번호를 매긴 이름의 라벨에 할당할 수 있다.
+</p>
+<pre>
+GUI,Add,Button,,Exit
+
+ButtonExit:
+ExitApp
+</pre>
+
+
+
+<h3>Tab네비게이션</h3>
+<p>
+작성한 윈도우는, 일반적인 윈도우와 같이Tab키로 포커스를 다른 컨트롤로 이동할 수 있다.<br>
+이동하는 순서는, 컨트롤이 윈도우에 추가된 차례.<br>
+윈도우가 표시될 때는, 최초의NoTab옵션을 지정되어 있지 않은 포커스도 비치는 컨트롤에 포커스가 세트 된다.
+</p>
+
+<h3>액세스 키</h3>
+<p>일부의 컨트롤은, 텍스트에 「&amp;A」(와)과 같이&amp;+영숫자를 넣는 것으로, 액세스 키를 설정할 수 있다.<br>
+액세스 키는 「<u>A</u>」(와)과 같이 언더라인 첨부의 문자로 표시되어Alt+문자 키로 그 컨트롤을 클릭했을 때의 동작을 한다.<br>
+Text(이)나GroupBox그럼, 다음에 추가한 컨트롤에 포커스가 옮긴다.<br>
+복수의 컨트롤에 같은 액세스 키를 할당할 수 있고 있는 경우, 액세스 키를 누를 때 마다 다음의 해당하는 컨트롤에 포커스가 이동한다.
+</p>
+<p>
+「&amp;&amp;」라고 쓰는 것으로, 텍스트중에 「&amp;」(을)를 표시할 수 있다.
+</p>
+
+<h3>자동 레이아웃</h3>
+
+<p>
+컨트롤을 추가할 때,X/Y옵션으로 좌표를 지정하지 않았던 경우, 컨트롤의 위치는 자동적으로 결정된다.<br>
+최초로 추가되는 컨트롤은, 윈도우의 좌상에 배치되어 2번째 이후의 컨트롤은, 직전의 컨트롤의 아래 쪽에 다른 컨트롤과 겹치지 않게 배치된다.<br>
+X/Y 중 다른 한쪽만 지정했을 경우, 또 하나의 좌표만이 자동적으로 결정된다.
+</p>
+<p>
+컨트롤의 사이즈도, 컨트롤의 종류나 텍스트의 내용등에 의해서 자동적으로 결정된다.
+</p>
+<p>
+자동 레이아웃시에는, 다른 컨트롤로부터 일정한 간격을 열어서 배치된다.<br>
+디폴트에서는, 상하의 간격은 선택되고 있는 폰트의 높이의1.25배, 좌우의 간격은0.75배가 된다.<br>
+마진의 폭은,<code><a target=_top href='../commands/GUI_Margin.html'>Gui,Margin</a></code>」(으)로 변경할 수 있다.<br>
+「<code>Gui,Show</code>」(으)로 윈도우가 최초로 표시될 때도, 폭이나 높이가 지정되지 않는 이상 이 마진을 고려해 사이즈가 결정된다.
+</p>
+<h3>윈도우의 아이콘</h3>
+<p>
+윈도우의 아이콘에는, 윈도우가 작성될 때 task tray 아이콘으로 하고 사용되고 있던 아이콘이 사용된다.<br>
+task tray 아이콘은 「<code><a target=_top href='../commands/Menu.html'>Menu</a>, Tray, Icon</code>」(으)로 설정할 수 있다.
+</p>
+
+<h3>이벤트 호출시의LastFoundWindow</h3>
+<p>
+윈도우 컨트롤의 조작에 의해서 신규 스렛드로 써브루틴이 불려 갈 때 ,<a target=_top href='../Window.html#lastfoundwindow'>LastFoundWindow</a>(으)로서 컨트롤을 가지는 윈도우가 기억된다.<br>
+이것에 의해, 각종 윈도우 조작 커멘드로 해당 윈도우를 조작하고 싶을 때, 윈도우의 지정을 생략 할 수 있다.
+</p>
+<h3>상주</h3>
+<p>
+GUI커멘드를 포함하고 있는 스크립트는,<a target=_top href='../commands/_Persistent.html'>상주 상태</a>한편<a target=_top href='../commands/_SingleInstance.html'>#SingleInstance(복수 실행 불가)</a>(이)가 된다.
+</p>
+<h3>컨트롤의 조작</h3>
+<p>작성했다GUI위의 컨트롤을 조작하려면 ,<a target=_top href='../commands/GuiControl.html'>GuiControl</a>,<a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a>커멘드를 사용한다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/GuiControl.html'>GuiControl</a>, <a target=_top href='../commands/GuiControlGet.html'>GuiControlGet</a>, <a target=_top href='../commands/Menu.html'>Menu</a>, <a target=_top href='../commands/Control.html'>Control</a>, <a target=_top href='../commands/ControlGet.html'>ControlGet</a>, <a target=_top href='../commands/Progress.html'>SplashImage</a>, <a target=_top href='../commands/MsgBox.html'>MsgBox</a>, <a target=_top href='../commands/FileSelectFile.html'>FileSelectFile</a>, <a target=_top href='../commands/FileSelectFolder.html'>FileSelectFolder</a> </p>
+
+<h2>Example(s)</h2>
+<h3>Example #1: Simple input-box</h3>
+<pre>
+Gui, add, text,, First name:
+Gui, add, text,, Last name:
+Gui, add, edit, vFirstName ym  ; The ym option starts a new column of controls.
+Gui, add, edit, vLastName
+Gui, add, button, default, OK  ; The label ButtonOK (if it exists) will be run when the button is pressed.
+Gui, show,, Simple Input Example
+return  ; End of auto-execute section. The script is idle until the user does something.
+
+GuiClose:
+ButtonOK:
+Gui, submit  ; Save the input from the user to each control's associated variable.
+MsgBox You entered &quot;%FirstName% %LastName%&quot;.
+ExitApp
+
+</pre>
+<h3>Example #2: Tab control</h3>
+<pre>
+Gui, add, tab,, First Tab|Second Tab|Third Tab
+Gui, add, checkbox, vMyCheckbox, Sample checkbox
+Gui, tab, 2
+Gui, add, radio, vMyRadio, Sample radio1
+Gui, add, radio,, Sample radio2
+Gui, tab, 3
+Gui, add, edit, vMyEdit r5  ; r5 means 5 rows tall.
+Gui, tab  ; i.e. subsequently-added controls will not belong to the tab control.
+Gui, add, button, default xm, OK  ; xm puts it at the bottom left corner.
+Gui, show
+return
+
+ButtonOK:
+GuiClose:
+GuiEscape:
+Gui, submit
+MsgBox You entered:`n%MyCheckbox%`n%MyRadio%`n%MyEdit%
+ExitApp
+
+</pre>
+<h3>Example #3: ListBox containing files in a directory</h3>
+<pre>
+Gui, Add, Text,, Pick a file to launch from the list below.`nTo cancel, press ESCAPE or close this window.
+Gui, Add, ListBox, vMyListBox gMyListBox w640 r10
+Gui, Add, Button, Default, OK
+Loop, C:\*.*  ; Change this folder and wildcard pattern to suit your preferences.
+{
+	GuiControl,, MyListBox, %A_LoopFileFullPath%
+}
+Gui, Show
+return
+
+MyListBox:
+if A_GuiControlEvent &lt;&gt; DoubleClick
+	return
+; Otherwise, the user double-clicked a list item, so treat that the same as pressing OK.
+; So fall through to the next label.
+ButtonOK:
+GuiControlGet, MyListBox  ; Retrieve the ListBox's current selection.
+MsgBox, 4,, Would you you like to launch the file or document below?`n`n%MyListBox%
+IfMsgBox, No
+	return
+; Otherwise, try to launch it:
+Run, %MyListBox%,, UseErrorLevel
+if ErrorLevel = ERROR
+	MsgBox Could not launch the specified file.  Perhaps it is not associated with anything.
+return
+
+GuiClose:
+GuiEscape:
+ExitApp
+
+</pre>
+<h3>Example #4: On-screen display (OSD)</h3>
+<pre>
+CustomColor = EEAA99  ; Can be any RGB color (it will be made transparent below).
+Gui, Color, %CustomColor%
+Gui, Font, s24
+Gui, Add, Text, vMyText cLime, XXXXX YYYYY  ; XX &amp; YY serve to auto-size the window.
+Gui, +AlwaysOnTop +LastFound   ; Make it always-on-top and make it the last found window.
+; Make all pixels of this color transparent and make the text itself translucent (150):
+WinSet, TransColor, %CustomColor% 150
+Gui, -Caption  ; Remove the borders. Due to a quirk in Windows, this must be done after transparency.
+SetTimer, UpdateOSD, 500
+Gosub, UpdateOSD  ; Make the first update immediate rather than waiting for the timer.
+Gui, Show, x0 y400
+return
+
+UpdateOSD:
+MouseGetPos, MouseX, MouseY
+GuiControl,, MyText, X%MouseX%, Y%MouseY%
+return
+</pre>
+<h3>Example #5: Simple image viewer.</h3>
+<pre>
+Gui, +Resize
+Gui, Add, Button, default, &Load New Image
+Gui, Add, Radio, ym+5 x+10 vRadio checked, Load &actual size
+Gui, Add, Radio, ym+5 x+10, Load to &fit screen
+Gui, Add, Pic, xm vPic
+Gui, Show
+return
+
+ButtonLoadNewImage:
+FileSelectFile, file,,, Select an image:, Images (*.gif; *.jpg; *.bmp; *.png; *.tif; *.ico; *.cur; *.ani; *.exe; *.dll)
+if file =
+	return
+Gui, Submit, NoHide ; Save the values of the radio buttons.
+if Radio = 1  ; Display image at its actual size.
+{
+	width = 0
+	height = 0
+}
+else ; Second radio is selected: Resize the image to fit the screen.
+{
+	width = %A_ScreenWidth%
+	Width -= 28  ; Allow room for borders and margins inside.
+	Height = -1 ; Keep aspect ratio seems best.
+}
+GuiControl,, Pic, *w%width% *h%height% %file%
+Gui, Show, xCenter y0 AutoSize, %file%  ; Resize the window to match the picture size.
+return
+
+GuiClose:
+ExitApp</pre>
+
+
+<h3>Example #6: Simple text editor with menu bar.</h3>
+
+<pre>
+; Create the sub-menus for the menu bar:
+Menu, FileMenu, Add, &amp;New, FileNew
+Menu, FileMenu, Add, &amp;Open, FileOpen
+Menu, FileMenu, Add, &amp;Save, FileSave
+Menu, FileMenu, Add, Save &amp;As, FileSaveAs
+Menu, FileMenu, Add  ; Separator line.
+Menu, FileMenu, Add, E&amp;xit, FileExit
+Menu, HelpMenu, Add, &amp;About, HelpAbout
+
+; Create the menu bar by attaching the sub-menus to it:
+Menu, MyMenuBar, Add, &amp;File, :FileMenu
+Menu, MyMenuBar, Add, &amp;Help, :HelpMenu
+
+; Attach the menu bar to the window:
+Gui, Menu, MyMenuBar
+
+; Create the main Edit control and display the window:
+Gui, +Resize  ; Make the window resizable.
+Gui, Add, Edit, vMainEdit W600 R20
+Gui, Show,, Untitled
+CurrentFileName =  ; Indicate that there is no current file.
+return
+
+FileNew:
+GuiControl,, MainEdit   ; Clear the Edit control.
+return
+
+FileOpen:
+FileSelectFile, SelectedFileName, 3,, Open File, Text Documents (*.txt)
+if SelectedFileName =  ; No file selected.
+	return
+Gosub FileRead
+return
+
+FileRead:  ; Caller has set the variable SelectedFileName for us.
+FileRead, MainEdit, %SelectedFileName%  ; Read the file's contents into the variable.
+if ErrorLevel &lt;&gt; 0
+{
+	MsgBox Could not open &quot;%SelectedFileName%&quot;.
+	return
+}
+GuiControl,, MainEdit, %MainEdit%  ; Put the text into the control.
+CurrentFileName = %SelectedFileName%
+Gui, Show,, %CurrentFileName%   ; Show file name in title bar.
+return
+
+FileSave:
+if CurrentFileName =   ; No filename selected yet, so do Save-As instead.
+	Goto FileSaveAs
+Gosub SaveCurrentFile
+return
+
+FileSaveAs:
+FileSelectFile, SelectedFileName, S16,, Save File, Text Documents (*.txt)
+if SelectedFileName =  ; No file selected.
+	return
+CurrentFileName = %SelectedFileName%
+Gosub SaveCurrentFile
+return
+
+SaveCurrentFile:  ; Caller has ensured that CurrentFileName is not blank.
+IfExist %CurrentFileName%
+{
+	FileDelete %CurrentFileName%
+	if ErrorLevel &lt;&gt; 0
+	{	
+		MsgBox The attempt to overwrite &quot;%CurrentFileName%&quot; failed.
+		return
+	}
+}
+GuiControlGet, MainEdit  ; Retrieve the contents of the Edit control.
+FileAppend, %MainEdit%, %CurrentFileName%  ; Save the contents to the file.
+; Upon success, Show file name in title bar (in case we were called by FileSaveAs):
+Gui, Show,, %CurrentFileName%
+return
+
+HelpAbout:
+MsgBox A very simple text editor.
+return
+
+GuiDropFiles:  ; Support drag &amp; drop.
+Loop, parse, A_GuiControlEvent, `n
+{
+	SelectedFileName = %A_LoopField%  ; Get the first file only (in case there's more than one).
+	break
+}
+Gosub FileRead
+return
+
+GuiSize:
+if ErrorLevel = 1  ; The window has been minimized.  No action needed.
+	return
+; Otherwise, the window has been resized or maximized. Resize the Edit control to match.
+NewWidth := A_GuiWidth - 20
+NewHeight := A_GuiHeight - 20
+GuiControl, Move, MainEdit, W%NewWidth% H%NewHeight%
+return
+
+FileExit:     ; User chose &quot;Exit&quot; from the File menu.
+GuiClose:  ; User closed the window.
+ExitApp</pre>
+<h3>Example: Achieve an effect similar to SplashTextOn.</h3>
+<pre>
+Gui, +AlwaysOnTop +Disabled -SysMenu
+Gui, Add, Text,, Some text to display.
+Gui, Show, NoActivate, My Window  ; NoActivate avoids deactivating the currently active window.
+</pre>
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui.html'>Gui</a></div>
+</body>
+</html>

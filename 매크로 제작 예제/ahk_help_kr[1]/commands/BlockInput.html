@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>BlockInput</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/BlockInput.html'>BlockInput</a></div>
+<h1>BlockInput</h1>
+<p>키보드나 마우스등에서의 입력을 무효화·무효화 해제한다</p>
+
+<pre>BlockInput, Mode</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Mode
+</td>
+<td>
+<dl>
+<dt>On</dt><dd>모든 입력을 무효화한다</dd>
+<dt>Off</dt><dd>입력을 유효하게 한다</dd>
+<dt>Send</dt><dd>Send(이)나SendRaw커멘드를 실행할 때에에 자동적으로 입력 블록이 유효화 되도록(듯이) 한다.(2000/XP이외에서는 무의미)</dd>
+<dt>Mouse</dt><dd>MouseMove,MouseClick,MouseClickDrag커멘드 실행시에 자동적으로 입력 블록이 유효화 되도록(듯이) 한다(2000/XP이외에서는 무의미)</dd>
+<dt>SendAndMouse</dt><dd>Send(와)과Mouse(을)를 동시에 설정</dd>
+<dt>Default</dt><dd>Send(와)과Mouse의 설정을OFF(으)로 한다</dd>
+<dt>MouseMove</dt><dd>마우스 커서를 이동할 수 없게 한다</dd>
+<dt>MouseMoveOff</dt><dd>「BlockInput,MouseMove」(을)를 해제한다</dd>
+</dl>
+
+
+
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>이 커멘드를 사용하면,AutoHotkey에 의한 조작 자동화 시에 유저의 입력이 섞이는 것에 의해서 오조작이 발생하는 것을 막을 수 있다.</p>
+<p>입력을 무효화하고 있는 동안은,AutoHotkey의 hot key도 동작하지 않게 된다.<br>
+다만, 일부의Hook(을)를 이용한 hot key는 동작한다.</p>
+
+<p>
+이 커멘드를 실행하는 순간에, 수식 키를 눌러 내리고 있어 입력이 무효화되고 있는 동안에 놓아지면, 그 수식 키가 눌러 내릴 수 있던 채가 되어 버린다.<br>
+이것을 막으려면 ,<a target=_top href='../commands/KeyWait.html'>KeyWait</a>커멘드로 수식 키가 놓아지는 것을 기다리고 나서<code>BlockInput,On</code>(을)를 실행하면 좋다.
+</p>
+
+<p>「BlockInput,MouseMove」(이)가 실행되면,<a target=_top href='../commands/_InstallMouseHook.html'>마우스 훅</a>하지만 유효화 된다.<br>
+그 이후는, 스크립트가<a target=_top href='../commands/_Persistent.html'>상주 상태</a>(이)가 되어,<a target=_top href='../commands/ExitApp.html'>ExitApp</a>커멘드를 실행할 때까지 종료하지 않게 된다.<br>
+<a target=_top href='../commands/Hotkey.html'>Susupend</a>커멘드인가<a target=_top href='../commands/Hotkey.html'>Hotkey</a>커멘드가 실행될 때, 마우스 훅이 필요없게 되고 있으면 해제된다.
+</p>
+
+
+<p>스크립트 종료시에는 자동적으로 입력은 유효하게 되돌려진다</p>
+<p>API의 사양에 의해Ctrl+Alt+Del(을)를 실행하면, 입력은 유효하게 돌아온다.</p>
+
+<p>이 커멘드는,OS에 의해서 효과에 차이가 있다.</p>
+
+<table>
+<tr>
+<th>OS</th>
+<th>효과</th>
+</tr>
+<tr>
+<td>Windows95 
+</td>
+<td>효과 없음
+</td>
+</tr>
+<tr>
+<td>WindowsNT4(SP6이전)
+</td>
+<td>효과 없음
+</td>
+</tr>
+<tr>
+<td>Windows98/Me
+</td>
+<td>유저의 입력과 함께,AutoHotkey하지만 생성하는 입력(Send,SendRaw,MouseMove,MouseClick,MouseClickDrag등)도 무효화된다
+</td>
+</tr>
+<tr>
+<td>WindowsNT4(SP6)/2000/XP
+</td>
+<td>유저의 입력은 무효화되지만,AutoHoteky하지만 생성하는 입력은 유효.
+</td>
+</tr>
+</table>
+<p><br>
+
+
+<h2>Example(s)</h2>
+<pre>if A_OSVersion &lt;&gt; WIN_98
+	if A_OSVersion &lt;&gt; WIN_ME
+		BlockInput, on
+Run, notepad
+WinWaitActive, Untitled - Notepad
+Send, {F5} ; pastes time and date
+BlockInput, off</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/BlockInput.html'>BlockInput</a></div>
+</body>
+</html>

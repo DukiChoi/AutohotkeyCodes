@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Gui,Add,Edit</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Edit.html'>Gui,Add,Edit</a></div>
+<h1>Gui,Add,Edit</h1>
+<p>GUI윈도우에 텍스트 입력란을 추가한다</p>
+
+<pre>Gui, Add, Edit [, Options, Text]
+</pre>
+
+<h2>Parameters</h2>
+<table>
+<tr><th>인수명</th><th>설명</th></tr><tr><td>Options</td><td>
+옵션을 반각 스페이스 단락으로 열거.<br>
+<a target=_top href='../commands/Gui_Add.html'>Gui,Add</a>의 항참조.<br>
+고유의 옵션은 아래와 같이 참조.<br>
+R그리고 행수를 지정하면, 복수행을 입력 가능한 입력란이 된다.<br>
+V그리고 변수명을 지정해, 「<code>GUI, Submit</code>」(을)를 실행하는 것으로, 입력 내용을 취득할 수 있다.<br>
+G그리고 라벨명을 지정하면, 입력 내용이 변경될 때 마다 써브루틴이 실행된다.
+</td>
+</tr>
+<tr><td>Text</td><td>
+최초로 입력란에 표시되고 있는 텍스트를 지정한다
+</td>
+</tr>
+</table>
+<h3>고유의Option</h3>
+<dl>
+<dt>Multi</dt><dd>
+H(이)나R에 의한 높이의 지정이 없어도 복수행 에디트로 한다
+</dd>
+<dt>Tn</dt><dd>
+탭 위치를 지정한다.<br>
+n에는 수치를 지정.n×2피크셀 정도의 폭이 된다.<br>
+디폴트는32.<br>
+「t8 t16 t8」(와)과 같이 복수를 지정하면, 탭 위치를 개별적으로 지정할 수 있게 된다.<br>
+지정한 개수 이후의 탭 위치는, 마지막에 지정한 폭으로 새겨진다.<br>
+최대50개까지 지정할 수 있다.
+</dd>
+<dt>Number</dt><dd>
+10진수치만 입력 가능하게 한다.<a target=_top href='../commands/Gui_Add_UpDown.html'>UpDown</a>컨트롤에 의해, 수치를 증감시키기 위한▲▼버튼을 추가할 수 있다.
+</dd>
+<dt>Lowercase</dt><dd>
+알파벳이 모두 소문자가 되도록(듯이) 한다
+</dd>
+<dt>Uppercase</dt><dd>
+알파벳이 모두 대문자가 되도록(듯이) 한다
+</dd>
+<dt>Limit[N]</dt><dd>
+입력할 수 있는 문자수를 제한한다.<br>
+「Limit16」(와)과 같이N에 수치를 지정하면, 그 문자수가 상한이 된다.<br>
+N(을)를 생략 했을 경우, 컨트롤의 크기 가득 표시할 수 있는 문자수가 상한이 된다.
+</dd>
+<dt>WantReturn</dt><dd>
+통상,Default옵션의 지정되었다Button하지만 있는 경우, 윈도우상에서Enter키를 누르면 그 버튼이 밀리지만,WantReturn하지만 유효하게 되어 있는 복수행의Edit에 포커스가 있는 경우, 대신에 입력란에 개행이 입력된다.<br>
+복수행 에디트에서는, 디폴트로 유효하게 된다.「-WantReturn」(을)를 모두 지정하는 것으로 무효로 할 수 있다.
+</dd>
+<dt>WantTab</dt><dd>
+Tab키를 눌렀을 때에, 다음의 컨트롤로 이동하는 것이 아니라,Tab문자가 입력되도록(듯이) 한다.<br>
+복수행의 경우, 이 옵션이 없어도,Ctrl+Tab그리고 탭 문자를 입력할 수 있다.
+</dd>
+
+<dt>WatnCtrlA</dt><dd>
+Ctrl+A키를 눌렀을 때에 텍스트가 모두 선택되게 된다.<br>
+디폴트로 유효하게 되어 있다.
+</dd>
+
+<dt>ReadOnly</dt><dd>
+편집 불가로 한다
+</dd>
+<dt>Password*</dt><dd>
+패스워드 입력란과 같이 입력 내용이 마스크 되도록(듯이) 한다.<br>
+*에 대신해에 표시되는 문자를 지정
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+<p>
+복수행 입력란에 포커스가 있을 때는,Enter키는 디폴트 버튼의 눌러 인하는 아니고 개행의 입력이 된다.Tab키는 포커스의 이동인 채이지만,Ctrl+Tab그리고Tab문자를 입력할 수 있다.
+</p>
+<p>
+변수에 취득될 때, 복수행 입력란의 개행은LF(`n)(이)가 된다.
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/Gui.html'>GUI</a>, <a target=_top href='../commands/Gui_Add.html'>Gui,Add</a></p>
+<!-- 
+
+
+<h2>Example(s)</h2>
+<pre></pre>
+ -->
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Gui_Add_Edit.html'>Gui,Add,Edit</a></div>
+</body>
+</html>

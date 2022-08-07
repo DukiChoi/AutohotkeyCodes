@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Progress/SplashImage</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Progress.html'>Progress/SplashImage</a></div>
+<h1>Progress / SplashImage</h1>
+<p>progress bar나 스플래쉬 이미지의 윈도우를 표시·갱신한다</p>
+
+<pre>
+Progress, Off
+Progress, Sow
+Progress, ProgressParam1 [, SubText, MainText, WinTitle, FontName, FutureUse]
+
+SplashImage, Off
+SplashImage, Show
+SplashImage [, ImageFile, Options, SubText, MainText, WinTitle, FontName, FutureUse]
+</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>ImageFile
+</td>
+<td>
+화상 파일명.<br>
+대응 형식은BMP/GIF/JPEG.<br>
+상대 패스로 지정했을 경우,<a target=_top href='../Variables.html#WorkingDir'>%A_WorkingDir%</a>이하로부터 검색된다.<br>
+ImageFile(와)과Options하지만 생략 되었을 경우, 화상은 갱신되지 않는다.<br>
+윈도우를 최초로 표시할 때, 화상의 읽어들여에 실패하면, 화상 없이 표시된다.
+</td>
+</tr>
+<tr> 
+<td>ProgressParam1
+</td>
+<td>
+후술의 옵션 문자열인가, progress bar의 진행도(0...100)(을)를 지정한다.
+</td>
+</tr>
+<tr>
+<td>Options
+</td>
+<td>후술의 옵션 문자열을 지정한다
+</td>
+</tr>
+<tr>
+<td>SubText
+</td>
+<td>
+바나 화상아래에 표시되는 텍스트를 지정.<br>
+기존의 윈도우의 텍스트를 소거하려면  「%A_Space%」(을)를 지정한다.
+
+
+</td>
+</tr>
+<tr>
+<td>MainText
+</td>
+<td>
+바나 화상 위에 표시되는 텍스트를 지정.<br>
+생략시는, 텍스트 표시 영역은 확보되지 않는다.<br>
+SubText(이)나MainText의 행수가 바뀌어도, 윈도우가 재생성되지 않는 한 윈도우의 높이는 변하지 않다.
+
+</td>
+</tr>
+<tr>
+<td>WinTitle
+</td>
+<td>
+윈도우의 타이틀을 설정.<br>
+디폴트는 스크립트명.<br>
+옵션에 「B」(이)가 포함되는 경우, 타이틀 바는 표시되지 않지만,<a target=_top href='../commands/WinMove.html'>WinMove</a>커멘드등에서 윈도우를 검색할 경우에는 여기서 지정한 타이틀을 사용할 수 있다.
+</td>
+</tr>
+<tr>
+<td>FontName
+</td>
+<td>
+MainText(와)과SubText그리고 사용하는 폰트를 지정.<br>
+생략시나, 지정한 폰트가 발견되지 않는 경우는, 시스템의 디폴트GUI폰트가 사용된다.
+</td>
+</tr>
+<tr>
+<td>FutureUse
+</td>
+<td>장래의 확장을 위해서 확보되고 있다.
+</td>
+</tr>
+</table>
+
+<h2>옵션</h2>
+<p>
+Param1(이)나Options에는, 이하의 옵션을 열거한다.<br>
+반각 스페이스에서 단락지어도, 모두 연결하고 써도 괜찮다.
+</p>
+<h3>윈도우 설정</h3>
+<dl>
+<dt>A</dt><dd>
+윈도우를 맨 앞면표시로 하지 않는다
+</dd>
+<dt>B</dt><dd>
+윈도우의 테두리와 타이틀 바를 표시하지 않는다
+</dd>
+<dt>B1</dt><dd>
+윈도우의 타이틀 바를 표시하지 않는다
+</dd>
+<dt>B2</dt><dd>
+윈도우의 테두리를 다이얼로그 형식으로 한다
+</dd>
+
+<dt>M</dt><dd>
+윈도우를 이동 가능하게 한다.
+
+</dd>
+<dt>Pn</dt><dd>
+n에 초기치를 지정.
+</dd>
+<dt>Rl-r</dt><dd>
+좌단의 값과 우단의 값을 지정.<br>
+예를 들어, 「R0-1000」라고 하면,0(으)로부터1000의 범위가 된다.<br>
+「R-50-50」(이)나 「R50--50」(와)과 같이,l(이)나r에 부의 값을 지정할 수도 있다.
+</dd>
+<dt>M1</dt><dd>
+윈도우를 이동 가능한 동시에 사이즈 가능하게 한다
+</dd>
+<dt>M2</dt><dd>
+이동·리사이즈외, 최소화·최대화·닫는 것도 가능하게 한다
+</dd>
+
+
+<dt>T</dt><dd>
+태스크바에 버튼을 표시
+</dd>
+<dt>Hn</dt><dd>
+n에 윈도우의 테두리안의 영역의 높이를 지정.<br>
+지정하지 않는 경우, 텍스트의 행수등에서 자동적으로 계산된다.
+</dd>
+<dt>Wn</dt><dd>
+n에 윈도우의 폭을 지정한다.<br>
+지정하지 않는 경우,SplashImage(은)는 화상의 폭을 바탕으로 계산된다.Progress의 경우,300(이)가 된다.
+</dd>
+<dt>Xn</dt><dd>
+n에 윈도우의 횡좌표를 지정 
+</dd>
+<dt>Yn</dt><dd>
+n에 윈도우의 종좌표를 지정
+</dd>
+<dt>Hide</dt><dd>
+작성시에 윈도우를 비표시로 한다.<br>
+「<code>Progress,Show</code>」(으)로 표시 당한다.
+</dd>
+</dl>
+
+<h3>오브젝트 배치</h3>
+<dl>
+<dt>Cxy</dt><dd>
+텍스트를 centering로 할까.<br>
+x에SubText의 설정,y에MainText의 설정을 지정.<br>
+「0」(으)로 왼쪽 가지런히 해 「1」(으)로 centering.
+</dd>
+<dt>ZHn</dt><dd>
+n에 화상이나 바의 높이를 지정.<br>
+화상의 경우, 디폴트는 화상의 실제의 높이.<br>
+바의 높이의 디폴트는20.<br>
+「-1」(을)를 지정하면, 화상의 종횡비를 유지하도록(듯이) 자동 조절된다.
+</dd>
+<dt>ZWn</dt><dd>
+n에 화상의 폭을 지정.<br>
+생략시는 화상의 실제의 폭.<br>
+「-1」(을)를 지정하면, 화상의 종횡비를 유지하도록(듯이) 자동 조절된다.
+</dd>
+<dt>ZXn</dt><dd>
+n에 옆의 마진의 폭을 지정.<br>
+바의 디폴트는10, 화상의 디폴트는0.
+
+</dd>
+<dt>ZYn</dt><dd>
+n에 세로의 마진의 폭을 지정.<br>
+바의 디폴트는5, 화상의 디폴트는0.
+</dd>
+</dl>
+
+<h3>폰트 설정</h3>
+<dl>
+<dt>FMn</dt><dd>
+n에MainText의 font size를 지정.
+</dd>
+<dt>FSn</dt><dd>
+n에SubText의 font size를 지정.
+</dd>
+<dt>WMn</dt><dd>
+n에MainText의 폰트의 굵기를 지정.<br>
+1...1000의 사이.<br>
+디폴트는600.
+</dd>
+<dt>WSn</dt><dd>
+n에SubText의 폰트의 굵기를 지정.<br>
+1...1000의 사이.<br>
+디폴트는400.
+700(으)로 하면 「Bold」(이)가 된다.
+</dd>
+</dl>
+
+<h3>색설정</h3>
+<p>n에는<a target=_top href='../misc/Color.html'>색의 이름</a>인가,HTML그리고 사용되는RRGGBB형식의16진수를 지정한다.<br>
+생략시는 시스템의 디폴트 칼라.</p>
+<p>이러한 옵션지정 하는 경우, 옵션은 반각 스페이스에서 단락지어 열거하는 것</p>
+
+
+<dl>
+<dt>CBn</dt><dd>
+바의 색
+</dd>
+<dt>CTn</dt><dd>
+텍스트의 색
+</dd>
+<dt>CWn</dt><dd>
+윈도우의 배경색.<a target=_top href='../commands/WinSet.html'>WinSet TransColor</a>그리고 배경을 투과 시킬 수 있다.
+</dd>
+</dl>
+
+<h2>Remarks</h2>
+
+<p>제일 인수에 「OFF」(을)를 지정하면, 윈도우는 파기된다.</p>
+<p>Hide옵션월에 작성된 윈도우는, 제1인수에 「Show」(을)를 지정하는 것으로 표시시킬 수 있다.</p>
+
+<p>스크립트는 최대10개의 진행 윈도우와10개의 스플래쉬 윈도우를 표시할 수 있다.<br>
+제일 인수의 전에 「:」(으)로 단락지어 윈도우 번호(1...10)(을)를 지정하면, 지정한 윈도우에 대해서 조작을 실시할 수 있다.<br>
+윈도우 번호가 지정되지 않았을 때는,1(이)가 된다.
+</p>
+<p>
+데스크탑보다 큰 윈도우는, 자동적으로 데스크탑의 사이즈에 거둘 수 있다.
+</p>
+<p>
+이 커멘드로 윈도우가 표시되어도, 스크립트는 정지하지 않고 그대로 다음의 처리가 실행된다.<br>
+<a target=_top href='../commands/WinSet.html'>WinSet</a>(이)나<a target=_top href='../commands/WinMove.html'>WinMove</a>커멘드로 윈도우 상태를 변경할 수 있다.
+</p>
+
+<p>
+<a target=_top href='../commands/Gui.html'>Gui</a>커멘드를 사용하면, 보다 유연한 progress bar 표시가 가능.
+</p>
+<p><a target=_top href='../commands/Gui_Option.html'>Gui,+OwnDialogs</a>(을)를 사용하는 것으로,GUI윈도우의 아이 윈도우로서 스플래쉬 윈도우를 표시할 수 있다.<br>
+부모가 된다GUI윈도우가 파기되면, 아이 윈도우도 파기된다.
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/SplashTextOn.html'>SplashTextOn</a>, <a target=_top href='../commands/ToolTip.html'>ToolTip</a> </p>
+
+<h2>Example(s)</h2>
+<pre>Progress, b w200, My SubText, My MainText, My Title
+Progress, 50 ; Set the position of the bar to 50%.
+Sleep, 4000 
+Progress, Off
+
+; Create a window just to display some 18-point Courier text:
+Progress, m2 b fs18 zh0, This is the Text.`nThis is a 2nd line., , , Courier New
+
+; Create a simple SplashImage window:
+SplashImage, C:\My Pictures\Company Logo.gif
+
+; Create a borderless SplashImage window with some large text beneath the image:
+SplashImage, C:\My Pictures\Company Logo.gif, b fs18, This is our company logo. 
+Sleep, 4000
+SplashImage, Off
+
+; Here is a working example that demonstrates how a Progress window can be
+; overlayed on a SplashImage to make a professional looking Installer screen:
+IfExist, C:\WINDOWS\system32\ntimage.gif, SplashImage, C:\WINDOWS\system32\ntimage.gif, A,,, Installation
+Loop, %windir%\system32\*.*
+{
+	Progress, %a_index%, %a_loopfilename%, Installing..., Draft Installtion
+	Sleep, 50
+	IfEqual, a_index, 100, break
+}
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Progress.html'>Progress/SplashImage</a></div>
+</body>
+</html>

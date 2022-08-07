@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#HotkeyModifierTimeout</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_HotkeyModifierTimeout.html'>#HotkeyModifierTimeout</a></div>
+<h1>#HotkeyModifierTimeout</h1>
+<p>키보드 훅 없이 hot key중에서Send커멘드를 사용했을 때에 수식 키 상태를 복원하지 않게 되는 타임 아웃 시간을 설정</p>
+
+<pre>#HotkeyModifierTimeout Value </pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>Value
+</td>
+<td>
+밀리 세컨드로 지정.<br>
+초기치는50.
+</td>
+</tr>
+</table>
+<h2>Remarks</h2>
+
+
+
+
+<p>
+hot key중에서Send커멘드가 실행되었을 경우, 밀리고 있는 수식 키가 의사적으로 밀어 올려 상태로 되어 수식 키가 밀리지 않은 상태로 되고 나서 키스트로크(keystroke)가 송신된다.<br>
+키보드 훅을 사용하고 있지 않으면Send커멘드가 끝난 뒤에 수식 키가 아직 실제로 밀리고 있을까를 알 수 없기 때문에, 수식 키를 재차 밀린 상태에 되돌려야할 것인가 모른다.<br>
+거기서, 이 커멘드로 설정된 시간이 경과하고 있지 않으면 유저는 아직 수식 키를 누른 채로 있으면 간주, 수식 키를 의사적으로 재차 눌러 인하 상태로 한다.
+</p>
+<p>
+이 값을 너무 크게 설정하면 , 유저가 벌써 수식 키를 떼어 놓고 있는데, 재차 눌러 인하 상태로 해 버려, 수식 키가 밀린 채로 상태가 되어 버리는 일이 있다.<br>
+이 상태가 되어 버렸을 경우, 실제로 수식 키를 한 번 누르는 것으로, 밀리지 않은 상태에 되돌릴 수 있다.
+</p>
+<p>
+이 값이 작으면Send커멘드 실행시에 수식 키가 떼어 놓아진 상태가 되어 버리는 일이 있어, 수식 키를 누른 채로Send커멘드를 포함한 hot key를 여러 차례 실행할 수 없게 되어 버린다.
+</p>
+
+
+
+<p>
+키보드 훅을 사용하고 있는 경우, 수식 키가 실제로 밀리고 있는지 어떤지를 취득 가능하기 때문에, 이 설정에 관계없이 정확하게 수식 키 상태가 복원된다.<br>
+NT계의 경우,<a target=_top href='../commands/_InstallKeybdHook.html'>#InstallKeybdHook</a>지령으로 강제적으로 키보드 훅을 유효하게 할 수 있다.<br>
+9x계에서는,<a target=_top href='../commands/SetKeyDelay.html'>SetKeyDelay</a>그리고 키의 입력 간격을 짧게 하는 것으로, 오동작을 줄일 수 있다.
+</p>
+
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/GetKeyState.html'>GetKeyState</a></p>
+
+<h2>Example(s)</h2>
+<pre>#HotkeyModifierTimeout 200</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_HotkeyModifierTimeout.html'>#HotkeyModifierTimeout</a></div>
+</body>
+</html>

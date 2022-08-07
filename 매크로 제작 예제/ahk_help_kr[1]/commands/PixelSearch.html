@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>PixelSearch</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/PixelSearch.html'>PixelSearch</a></div>
+<h1>PixelSearch </h1>
+<p>지정 범위로 지정한 색이 존재하면, 그 좌표를 취득한다</p>
+
+<pre>PixelSearch, [OutputVarX], [OutputVarY], X1, Y1, X2, Y2, ColorID [, Variation, Fast|RGB]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVarX , OutputVarY
+</td>
+<td>
+발견되었을 경우X좌표와Y좌표가 격납되는 변수명.<br>
+생략 가능.
+</td>
+</tr>
+<tr> 
+<td>X1,Y1
+</td>
+<td>
+검색 대상이 되는 구형의 좌상의 좌표.<br>
+통상은 액티브 윈도우의 좌상으로부터의 상대 좌표이지만,<a target=_top href='../commands/CoordMode.html'>CoordMode</a>커멘드를 사용하면 스크린 전체로의 좌표가 된다.
+</td>
+</tr>
+<tr>
+<td>X2,Y2
+</td>
+<td>
+검색 대상이 되는 구형의 우하의 좌표.<br>
+통상은 액티브 윈도우의 좌상으로부터의 상대 좌표이지만,<a target=_top href='../commands/CoordMode.html'>CoordMode</a>커멘드를 사용하면 스크린 전체로의 좌표가 된다.
+</td>
+</tr>
+<tr>
+<td>ColorID
+</td>
+<td>
+검색하는 칼라 코드.<br>
+RGB(을)를16진수로0BBGGRR되는 포맷으로 지정.<br>
+<a target=_top href='../commands/PixelGetColor.html'>PixelGetColor</a>그리고 취득할 수도 있다.
+</td>
+</tr>
+<tr>
+<td>Variation
+</td>
+<td>
+RGB각 요소마다의 허용 하는 오차.<br>
+생략시는 「0」.
+</td>
+</tr>
+<tr>
+<td>Fast|RGB</td>
+<td>
+이하의 것을 반각 스페이스에서 단락지어 지정한다.
+<dl>
+<dt>Fast</dt><dd>
+고속의 검색 방법을 사용한다.<br>
+시스템의 칼라 모드가8비트 미만의 경우 동작하지 않는다.<br>
+24비트나32비트 쪽이 보다 고속으로 된다.<br>
+통상의 방법이 세로 방향을 먼저 검색하는데 대해,Fast모드는 횡방향을 먼저 검색하기 위해(때문에), 발견되는 좌표가 바뀌는 경우가 있다.
+</dd>
+<dt>RGB</dt><dd>ColorID하지만0xRRGGBB의 포맷으로 간주해진다.</dd>
+</dl>
+
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+<p>색이 발견되면 「0」, 발견되지 않으면 「1」, 문제가 발생하고 있으면 「2」</p>
+
+<h2>Remarks</h2>
+<p>
+검색 대상으로 할 수 있는 것은, 화면에 표시되고 있는 부분 뿐이어서, 윈도우의 화면에서는 봐 내고 있는 부분등의 색은 취득할 수 없다.<br>
+다만, 마우스 커서아래의 색은 취득할 수 있다.
+</p>
+<p>Fast모드를 사용하지 않는 경우, 우선X1,Y1의 좌표로부터X2의 방향으로 검색되어 다음에Y2의 방향으로1열이동해 검색한다고 하는 동작을X2,Y2하지만 검색될 때까지 반복한다.
+</p>
+<p>
+너무 넓은 범위를 검색하면, 처리 부하가 커지므로 주의.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/PixelGetColor.html'>PixelGetColor</a>, <a target=_top href='../commands/ImageSearch.html'>ImageSearch</a>, <a target=_top href='../commands/CoordMode.html'>CoordMode</a>, <a target=_top href='../commands/MouseGetPos.html'>MouseGetPos</a></p>
+
+<h2>Example(s)</h2>
+<pre>PixelSearch, Px, Py, 200, 200, 300, 300, 16777215, 3, Fast
+if ErrorLevel = 0
+	MsgBox, A color within 3 shades of variation was found at X%Px% Y%Py%.
+else
+	MsgBox, That color was not found in the specified region.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/PixelSearch.html'>PixelSearch</a></div>
+</body>
+</html>

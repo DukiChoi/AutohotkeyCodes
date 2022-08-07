@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>#SingleInstance</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_SingleInstance.html'>#SingleInstance</a></div>
+<h1>#SingleInstance</h1>
+<p>같은 스크립트의 복수 프로세스로 실행의 금지·허가를 설정</p>
+
+<pre>#SingleInstance [force|ignore|off]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr><td>force|ignore|off
+</td>
+<td>
+<dl>
+<dt>인수 없음</dt><dd>실행중의 스크립트가 또 하나 기동되었을 때, 「기존의 프로세스를 종료해 기동할까」를 문의하는 다이얼로그가 표시해, 「네」라고 대답하면 기존의 프로세스를 종료해 새롭게 실행을 개시한다.「아니오」라고 대답하면, 아무것도 하지 않고 종료한다.
+<dt>FORCE</dt><dd>
+실행중의 스크립트가 또 하나 기동되었을 때, 자동적으로 기존의 프로세스를 종료해 새롭게 실행 개시한다
+</dd>
+<dt>IGNORE</dt><dd>실행중의 스크립트가 또 하나 기동되었을 때, 아무것도 하지 않고 종료한다.</dd>
+<dt>OFF</dt><dd><a target=_top href='../commands/_Persistent.html'>상주 상태</a>(이)나<a target=_top href='../Hotkeys.html'>hot key</a>(을)를 포함한 스크립트에서도 복수 기동을 허가한다</dd>
+</dl>
+
+</td>
+</tr>
+</table>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/Reload.html'>Reload</a></p>
+
+<h2>Example(s)</h2>
+<pre>#SingleInstance force
+#SingleInstance ignore</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/_SingleInstance.html'>#SingleInstance</a></div>
+</body>
+</html>

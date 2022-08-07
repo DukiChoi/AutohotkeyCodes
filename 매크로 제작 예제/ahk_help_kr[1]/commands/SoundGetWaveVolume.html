@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>SoundGetWaveVolume</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundGetWaveVolume.html'>SoundGetWaveVolume</a></div>
+<h1>SoundGetWaveVolume </h1>
+<p>WAVE출력의 음량의 현재의 설정치를 취득한다</p>
+
+<pre>SoundGetWaveVolume, OutputVar [, DeviceNumber]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>결과를 취득하는 변수명
+</td>
+</tr>
+<tr>
+<td>DeviceNumber
+</td>
+<td>사운드 디바이스의 번호.<br>
+생략시는 「1」.
+</td>
+</tr>
+</table>
+
+<h2>ErrorLevel</h2>
+<p>성공하면 「0」, 실패하면 「1」</p>
+
+<h2>Remarks</h2>
+
+<p>
+값은0...100의 수치로 취득된다.<br>
+취득에 실패했을 경우는 비운다.
+</p>
+<p>값을 변경하려면 ,<a target=_top href='../commands/SoundSetWaveVolume.html'>SoundSetWaveVolume</a>(을)를 사용한다.
+</p>
+<p>마스터 볼륨등의 설정은,<a target=_top href='../commands/SoundSet.html'>SoundSet</a>(와)과<a target=_top href='../commands/SoundGet.html'>SoundGet</a>그리고 조작할 수 있다.</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/SoundSetWaveVolume.html'>SoundSetWaveVolume</a>, <a target=_top href='../commands/SoundSet.html'>SoundSet</a>, <a target=_top href='../commands/SoundGet.html'>SoundGet</a>, <a target=_top href='../commands/SoundPlay.html'>SoundPlay</a></p>
+
+<h2>Example(s)</h2>
+<pre>SoundGetWaveVolume, OutputVar
+MsgBox, The current wave output volume level is %OutputVar%`%.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/SoundGetWaveVolume.html'>SoundGetWaveVolume</a></div>
+</body>
+</html>

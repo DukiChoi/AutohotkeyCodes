@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Time</title>
+
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Time.html'>Time</a></div>
+<h1>일자 시각</h1>
+
+
+
+
+<h2><a name="YYYYMMDDHH24MISS">YYYYMMDDHH24MISS</a></h2>
+
+
+<p><a target=_top href='../commands/FileGetTime.html'>FileGetTime</a>(이)나<a target=_top href='../commands/FileSetTime.html'>FileSetTime</a>,<a target=_top href='../commands/FormatTime.html'>FormatTime</a>그리고 사용되는 타임 스탬프는,YYYYMMDDHH24MISS의 포맷의 문자열이다.<br>
+이 포맷은, 이하의 것을 연결했다14자리수의 숫자열이다.
+</p>
+<table>
+<tr><th>부분</th><th>의미</th></tr>
+<tr><td>YYYY
+</td>
+<td>4자리수의 서기년
+</td>
+</tr>
+<tr>
+<td>MM
+</td>
+<td>월(01-12)
+</td>
+</tr>
+<tr>
+<td>DD
+</td>
+<td>일(01-31)
+</td>
+</tr>
+<tr>
+<td>HH24
+</td>
+<td>시(00-23)
+</td>
+</tr>
+<tr>
+<td>MI
+</td>
+<td>분(00-59)
+</td>
+</tr>
+<tr>
+<td>SS
+</td>
+<td>초(00-59)
+</td>
+</tr>
+</table>
+<p>상기 요소 중 도중까지 밖에 지정하지 않았던 경우(례:20040401), 나머지의 요소는 최소의 값(MM,DD하01,HH24,MI,SS하00)이다고 보인다.
+</p>
+<p>
+<a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>(이)나<a target=_top href='../commands/EnvSub.html'>EnvSub</a>커멘드에서는, 이 포맷의 일자 시각을 더해 인 나무 할 수 있다.
+</p>
+<h2>제한</h2>
+<p>
+일자 시각으로서 취급할 수 있는 시각의 범위는,1601해부터9999해까지이다.
+
+</p>
+<h2>편입 변수</h2>
+<p><a target=_top href='../Variables.html#YYYY'>편입 변수</a>그리고 현재 일시의YYYYMMDDHH24MISS형식 문자열이나, 연월일 시분초등의 요소를 참조할 수 있다.
+</p>
+
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../misc/index.html'>그 외 해설</a> → <a target=_top href='../misc/Time.html'>Time</a></div>
+</body>
+</html>

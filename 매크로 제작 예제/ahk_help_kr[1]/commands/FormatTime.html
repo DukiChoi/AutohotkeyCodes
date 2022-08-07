@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>FormatTime</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FormatTime.html'>FormatTime</a></div>
+<h1>FormatTime</h1>
+<p>YYYYMMDDHH24MISS형식의 타임 스탬프를 지정의 서식의 일자 시각 문자열로 변환한다</p>
+
+<pre>FormatTime, OutputVar [, TimeStamp, Format] </pre>
+<h2>Parameters</h2>
+<table>
+<tr>
+<td>OutputVar
+</td>
+<td>
+출력 결과를 격납하는 변수명.
+</td>
+</tr>
+<tr>
+<td>TimeStamp
+</td>
+<td>
+<a target=_top href='../misc/Time.html#YYYYMMDDHH24MISS'>YYYYMMDDHH24MISS</a>형식의 타임 스탬프 문자열.<br>
+생략시는 현재 시각.<br>
+일자 부분/시각 부분 가운데,25시간등 잘못된 부분을 포함한 부분은 출력되지 않는다.<br>
+또,1601해부터9999해의 범위외의 일자의 경우도, 일자 부분은 출력되지 않는다.<br>
+뒤로, 반각 스페이스에서 단락지어 이하의 옵션을 열거할 수 있다.
+<dl>
+<dt>R</dt><dd>
+Format생략시, 일자 부분과 시각 부분의 차례를 바꿔 넣는다
+</dd>
+<dt>Ln</dt><dd>
+n에 출력에 사용하는 언어의<a target=_top href='../misc/Languages.html'>언어 코드</a>(을)를 지정한다.<br>
+예를 들어, 「L0x0409」라고 하면, 영어 형식의 일자 시각 문자열이 출력된다.
+</dd>
+<dt>D0</dt><dd>강제적으로 디폴트의 일자 옵션을 사용한다</dd>
+<dt>D1</dt><dd>Format미지정시, 일자를 짧은 형식으로 한다(D2,D8(와)과는 병용 불가)</dd>
+<dt>D2</dt><dd>Format미지정시, 일자를 긴 형식으로 한다(D1,D8(와)과는 병용 불가)</dd>
+<dt>D4</dt><dd>대체 캘린더를 사용한다(일본어의 경우, 해 「헤세이 16」(와)과 같은 연호가 된다)</dd>
+<dt>D8</dt><dd>Format미지정시, 일자를 해와 달만의 형식으로 한다(D1,D2(와)과는 병용 불가)</dd>
+<dt>D0x10</dt><dd>왼쪽에서 오른쪽으로 읽도록(듯이) 지정한다</dd>
+<dt>D0x20</dt><dd>오른쪽에서 왼쪽으로 읽도록(듯이) 지정한다</dd>
+<dt>D0x40000000</dt><dd>일자 부분에 강제적으로ANSIcode page를 사용한다</dd>
+<dt>D0x80000000</dt><dd>시스템의 디폴트 일자 표기를 무시한다</dd>
+<dt>T0</dt><dd>강제적으로 디폴트의 시각 옵션을 사용한다</dd>
+<dt>T1</dt><dd>분과 초를 생략 한다</dd>
+<dt>T2</dt><dd>초를 생략 한다</dd>
+<dt>T4</dt><dd>AM/PM의 표시를 생략 한다</dd>
+<dt>T8</dt><dd>강제적으로24시간제 표기를 사용한다</dd>
+<dt>T0x40000000</dt><dd>시각 부분에 강제적으로ANSIcode page를 사용한다</dd>
+<dt>T0x80000000</dt><dd>시스템의 디폴트 시각표기를 무시한다</dd>
+</dl>
+
+</td>
+</tr>
+<tr> 
+<td>Format
+</td>
+<td>
+출력되는 서식을 지정.
+이하의 어떤 것인지를 지정.
+<dl>
+<dt>(생략/공백)</dt><dd>
+긴 일자 시각(례:3:37 2004년12월22일)
+</dd>
+<dt>Time</dt><dd>
+시각(례:5:26)
+</dd>
+<dt>ShortDate</dt><dd>
+짧은 일자(례:2004/12/12)
+</dd>
+<dt>LongDate</dt><dd>
+긴 일자(례:2004년12월12일)
+</dd>
+<dt>YearMonth</dt><dd>
+해와 달(례:2004년12월)
+</dd>
+<dt>YDay</dt><dd>
+1월1일부터의 경과일수(1...366)
+</dd>
+<dt>YDay0</dt><dd>
+1월1일부터의 경과일수(001...366)
+</dd>
+<dt>WDay</dt><dd>
+요일을 나타내는 숫자(1...7)1하지만 일요일.
+</dd>
+<dt>YWeek</dt><dd>
+서기년과 주번호를 연결했다ISO8601형식의 문자열(...200453...)<br>
+1해에 최초의4일 이상 있는 주가 제1주가 된다.
+</dd>
+<dt>(서식 문자열)</dt><dd>
+후술의 서식 문자열을 임의개 연결한 것.<br>
+반각영숫자 이외의 문자는, 그대로 기술할 수 있지만, 반각영숫자는 「'」(으)로 둘러쌀 필요가 있다.<br>
+「'」자신을 출력하려면 , 「''''」라고4개 계속하고 쓴다.<br>
+일자의 부분과 시각의 부분의2개로 나누어져 있을 필요가 있다.「yyyy년MM월hh때」는 가능하지만, 「yyyy년hh시MM달」은 지정할 수 없다.
+</dd>
+</dl>
+
+</td>
+</tr>
+
+</table>
+
+
+<h2><a name="Format">Format의 서식 문자열</a></h2>
+<p>대문자 소문자는 구별된다</p>
+<table>
+<caption>일자의 서식</caption>
+<tr><th>서식 문자열</th><th>출력 결과</th></tr>
+<tr>
+<td>d</td>
+<td>일자(1...31)</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>일자(01...31)</td>
+</tr>
+<tr> 
+<td>ddd</td>
+<td>짧은 요일 문자열(일...토)</td>
+</tr>
+<tr>
+<td>dddd</td>
+<td>긴 요일 문자열(일요일...토요일)</td>
+</tr>
+<tr>
+<td>M</td>
+<td>월(1...12)</td>
+</tr>
+<tr>
+<td>MM</td>
+<td>월(01...12)</td>
+</tr>
+<tr>
+<td>MMM</td>
+<td>짧은 월명(일본어에서는1-12.영어의 경우,Jan등.)</td>
+</tr>
+<tr>
+<td>MMMM</td>
+<td>긴 월명(일본어에서는1월-12월.영어의 경우,January등.)</td>
+</tr>
+<tr>
+<td>y</td>
+<td>서기년의10의 정도 이하(0-99)</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>서기년아래2형(00-99)</td>
+</tr>
+<tr>
+<td>yyyy</td>
+<td>4자리수의 서기년(2005등)</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>연호 등.없는 경우는 하늘.(일본어의 경우,TimeStamp의 옵션에 「D4」(을)를 붙이면 「헤세이」 등에 된다)</td>
+</tr>
+</table>
+
+<table>
+<caption>시각의 서식</caption>
+<tr><th>서식 문자열</th><th>출력 결과</th></tr>
+<tr>
+<td>h</td>
+<td>시(1...12)</td>
+</tr>
+<tr>
+<td>hh</td>
+<td>시(01...12)</td>
+</tr>
+<tr> 
+<td>H</td>
+<td>시(0...23)</td>
+</tr>
+<tr>
+<td>HH</td>
+<td>시(00...23)</td>
+</tr>
+<tr>
+<td>m</td>
+<td>분(0...59)</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>분(00...59)</td>
+</tr>
+<tr>
+<td>s</td>
+<td>초(0...59)</td>
+</tr>
+<tr>
+<td>ss</td>
+<td>초(00...59)</td>
+</tr>
+<tr>
+<td>t</td>
+<td>오전/오후를 나타낸다1문자(일본어의 경우, 어느쪽이나 「오」가 되어 버려 의미가 없다.영어의 경우, 「A」 「P」.</td>
+</tr>
+<tr>
+<td>tt</td>
+<td>오전이나 오후(영어의 경우AM/PM)</td>
+</tr>
+</table>
+
+
+</p>
+<h2>Related</h2>
+<p><a target=_top href='../commands/SetFormat.html'>SetFormat</a>, <a target=_top href='../commands/Transform.html'>Transform</a>, <a target=_top href='../Variables.html#DD'>built-in date and time variables</a>, <a target=_top href='../commands/FileGetTime.html'>FileGetTime</a> </p>
+
+<h2>Example(s)</h2>
+<pre>FormatTime, TimeString
+MsgBox The current time and date (time first) is %TimeString%.
+
+FormatTime, TimeString, R
+MsgBox The current time and date (date first) is %TimeString%.
+
+FormatTime, TimeString,, Time
+MsgBox The current time is %TimeString%.
+
+FormatTime, TimeString, T12, Time
+MsgBox The current 24-hour time is %TimeString%.
+
+FormatTime, TimeString,, LongDate
+MsgBox The current date (long format) is %TimeString%.
+
+FormatTime, TimeString, 20050423220133, dddd MMMM d, yyyy hh:mm:ss tt
+MsgBox The specified date and time, when formatted, is %TimeString%.
+
+FormatTime, TimeString, 200504, 'Month Name': MMMM`n'Day Name': dddd
+MsgBox %TimeString%
+
+FormatTime, YearWeek, 20050101, YWeek
+MsgBox January 1st of 2005 is in the following ISO year and week number: %YearWeek%
+
+FileSelectFile, FileName, 3,, Pick a file
+if FileName =  ; The user didn't pick a file.
+	return
+FileGetTime, FileTime, %FileName%
+FormatTime, FileTime, %FileTime%   ; Since the last parameter is omitted, the long date and time are retrieved.
+MsgBox The selected file was last modified at %FileTime%.</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/FormatTime.html'>FormatTime</a></div>
+</body>
+</html>

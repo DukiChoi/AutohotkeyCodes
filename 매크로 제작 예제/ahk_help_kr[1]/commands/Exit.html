@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>Exit</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Exit.html'>Exit</a></div>
+<h1>Exit</h1>
+<p>현재의 스렛드를 종료한다.상주 상태로 없는 스크립트는 그대로 종료한다.</p>
+
+<pre>Exit [, ExitCode]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>ExitCode
+</td>
+<td>
+정수를 지정.<br>
+스크립트를 종료할 때, 프로세스의 종료 코드를 지정한다.<br>
+일반적으로, 정상 종료의 경우 「0」(을)를 돌려준다.<br>
+디폴트는 「0」.<br>
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+
+<p>
+hot key의 등록이나,<a target=_top href='../commands/_Persistent.html'>#Persistent</a>지령에 의해서 상주 상태가 되어 있는 경우,Exit커멘드는 현재의 스렛드를 종료한다.<br>
+<a target=_top href='../commands/Return.html'>Return</a>의 경우,<a target=_top href='../commands/Gosub.html'>Gosub</a>그리고 써브루틴을 호출하고 있으면, 써브루틴으로부터 돌아올 뿐(만큼)이지만,Exit그럼 써브루틴내에 있어도 즉석에서 스렛드를 종료한다.
+</p>
+<p>
+스크립트가 상주 상태로 없는 경우는, 스크립트가 종료한다.<br>
+다만,<a target=_top href='../commands/OnExit.html'>OnExit</a>써브루틴이 설정되어 있는 경우,OnExit써브루틴내에서<a target=_top href='../commands/ExitApp.html'>ExitApp</a>하지만 실행되지 않으면 종료할 수 없다.
+</p>
+
+<p>상주 상태의 스크립트를 종료하려면 ,<a target=_top href='../commands/ExitApp.html'>ExitApp</a>커멘드를 사용한다.
+</p>
+
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/ExitApp.html'>ExitApp</a>, <a target=_top href='../commands/OnExit.html'>OnExit</a>, <a target=_top href='../commands/Gosub.html'>Gosub</a>, <a target=_top href='../commands/Return.html'>Return</a>, <a target=_top href='../misc/Threads.html'>Threads</a>, <a target=_top href='../commands/_Persistent.html'>#Persistent</a></p>
+
+<h2>Example(s)</h2>
+<pre>#z::
+Gosub, Sub2
+MsgBox, This msgbox will never happen because of the EXIT.
+return
+Sub2:
+Exit ; Terminate this subroutine as well as the calling subroutine.
+</pre>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/Exit.html'>Exit</a></div>
+</body>
+</html>

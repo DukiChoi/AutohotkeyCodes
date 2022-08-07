@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>EnvMult</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/EnvMult.html'>EnvMult</a></div>
+<h1>EnvMult</h1>
+<p>변수의 값에 값을 걸어 적을 변수에 격납한다</p>
+
+<pre>EnvMult, Var, Value
+Var*=Value</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>Var
+</td>
+<td>대상이 되는 변수명
+</td>
+</tr>
+<tr>
+<td>Value
+</td>
+<td>거는 값.
+<a target=_top href='../Expression.html'>식</a>(을)를 사용하는 일도 가능.
+</td>
+</tr>
+</table>
+
+
+<h2>Remarks</h2>
+<p>
+Var(이)나Value의 값이 하늘이거나, 숫자 이외의 것에서는 글자 만문자열이었던 경우는, 「0」인 것으로서 계산된다.<br>
+숫자로부터 시작되어 있는 문자열이면, 선두의 숫자열(소수점 이하 포함한다)의 수치이다고 보인다.
+</p>
+<p>
+Var(와)과Value의 양쪽 모두가 소수점을 포함하지 않는 숫자열의 경우, 결과는 정수 표기가 된다.<br>
+어느쪽이든가 소수점을 포함한 경우, 결과는 소수 표기가 된다.<br>
+결과의 표기 포맷은<a target=_top href='../commands/SetFormat.html'>SetFormat</a>그리고 설정할 수 있다.
+</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/EnvAdd.html'>EnvAdd</a>, <a target=_top href='../commands/EnvSub.html'>EnvSub</a>, <a target=_top href='../commands/EnvDiv.html'>EnvDiv</a>, <a target=_top href='../commands/SetFormat.html'>SetFormat</a>, <a target=_top href='../Expression.html'>식</a>, <a target=_top href='../commands/IfIs.html'>If var is [not] type</a>, <a target=_top href='../commands/SetEnv.html'>SetEnv</a>, <a target=_top href='../commands/Transform.html'>bitwise operations (Transform)</a></p>
+
+<h2>Example(s)</h2>
+<pre>EnvMult, MyCount, 2 </pre>
+<pre>MyCount *= 2 ; Equivalent to above</pre>
+
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/EnvMult.html'>EnvMult</a></div>
+</body>
+</html>

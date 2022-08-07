@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<title>ControlGetFocus</title>
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/ControlGetFocus.html'>ControlGetFocus</a></div>
+<h1>ControlGetFocus</h1>
+<p>지정 윈도우의 현재 포커스를 가지고 있는 컨트롤의ClassNN(을)를 취득</p>
+
+<pre>ControlGetFocus, OutputVar [WinTitle, WinText, ExcludeTitle, ExcludeText]</pre>
+
+<h2>Parameters</h2>
+<table><tr><th>인수명</th><th>설명</th></tr><tr> 
+<td>OutputVar
+</td>
+<td>
+결과를 격납하는 변수명.<br>
+
+</td>
+</tr>
+<tr> 
+<td>WinTitle
+</td>
+<td>윈도우 타이틀 등.<br>
+<a target=_top href='../Window.html'>윈도우 지정의 방법</a>참조.
+</td>
+</tr>
+<tr> 
+<td>WinText
+</td>
+<td>윈도우에 포함되는 텍스트
+</td>
+</tr>
+<tr>
+<td>ExcludeTitle
+</td>
+<td>제외 타이틀
+</td>
+</tr>
+<tr>
+<td>ExcludeText
+</td>
+<td>제외 텍스트
+</td>
+</tr>
+</table>
+
+
+<h2>ErrorLevel</h2>
+<p>성공하면 「0」, 실패하면 「1」</p>
+
+<h2>Related</h2>
+<p><a target=_top href='../commands/ControlFocus.html'>ControlFocus</a>, <a target=_top href='../commands/ControlMove.html'>ControlMove</a>, <a target=_top href='../commands/ControlClick.html'>ControlClick</a>, <a target=_top href='../commands/ControlGetText.html'>ControlGetText</a>, <a target=_top href='../commands/ControlSetText.html'>ControlSetText</a>, <a target=_top href='../commands/ControlSend.html'>ControlSend</a> </p>
+
+<h2>Example(s)</h2>
+<PRE>
+ControlGetFocus, OutputVar, Untitled - Notepad
+if ErrorLevel = 0
+	MsgBox, Control with focus = %OutputVar%
+else
+	MsgBox, The target window doesn't exist or none of its controls has input focus.
+</PRE>
+<div class="navi">→ <a target=_top href='../index.html'>AutoHotkey(을)를 유행시키는 페이지</a> → <a target=_top href='../commands/index.html'>레퍼런스</a> → <a target=_top href='../commands/ControlGetFocus.html'>ControlGetFocus</a></div>
+</body>
+</html>
